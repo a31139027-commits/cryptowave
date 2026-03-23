@@ -1,234 +1,199 @@
 /**
  * modules/aes.js — AES Encryption / Decryption Module
- * Uses: Web Crypto API (native browser)
- * Supports: AES-GCM (recommended), AES-CBC, AES-CTR
- * Key lengths: 128, 192, 256 bit
- * NEW: Custom IV input, Output format (Base64 / HEX)
+ *
+ * GCM  → Web Crypto API (authenticated encryption)
+ * CBC  → CryptoJS ✓ Compatible with anycript.com
+ * ECB  → CryptoJS ✓ Compatible with anycript.com
+ * CTR  → Web Crypto API
  */
-
 'use strict';
 
 const AESModule = (() => {
 
-  /* ── Key Parsing ──────────────────────────────────────── */
+  function requireCryptoJS() {
+    if (!window.CryptoJS) throw new Error('CryptoJS not loaded');
+  }
+
+  /* ── Key / IV parsing ─────────────────────────────────── */
 
   function parseKeyInput(keyStr, keyLen) {
-    const enc = new TextEncoder();
-    // Hex
-    if (/^[0-9a-fA-F]+$/.test(keyStr) && keyStr.length === keyLen / 4) {
+    if (/^[0-9a-fA-F]+$/.test(keyStr) && keyStr.length === keyLen / 4)
       return Utils.hexToBuf(keyStr);
-    }
-    // Base64
     try {
       const buf = Utils.base64ToBuf(keyStr);
       if (new Uint8Array(buf).length === keyLen / 8) return new Uint8Array(buf);
     } catch (_) {}
-    // Plaintext — pad/trim to required length
-    const raw = enc.encode(keyStr);
+    const raw = new TextEncoder().encode(keyStr);
     const out = new Uint8Array(keyLen / 8);
     out.set(raw.slice(0, keyLen / 8));
     return out;
   }
 
   async function importRawKey(keyData, algorithm, keyLen) {
-    return crypto.subtle.importKey(
-      'raw', keyData, { name: algorithm, length: keyLen }, false, ['encrypt', 'decrypt']
-    );
+    return crypto.subtle.importKey('raw', keyData, { name: algorithm, length: keyLen }, false, ['encrypt','decrypt']);
   }
 
-  /* ── IV Parsing ───────────────────────────────────────── */
-
-  function parseIVInput(ivStr, ivLen) {
-    if (!ivStr || !ivStr.trim()) return null; // auto-generate
+  function parseIVBytes(ivStr, ivLen) {
+    if (!ivStr || !ivStr.trim()) return null;
     const s = ivStr.trim();
-    // Hex string
-    if (/^[0-9a-fA-F]+$/.test(s) && s.length === ivLen * 2) {
-      return Utils.hexToBuf(s);
-    }
-    // Base64
+    if (/^[0-9a-fA-F]+$/.test(s) && s.length === ivLen * 2) return Utils.hexToBuf(s);
     try {
       const buf = new Uint8Array(Utils.base64ToBuf(s));
       if (buf.length === ivLen) return buf;
     } catch (_) {}
-    // UTF-8 text — pad/trim
     const raw = new TextEncoder().encode(s);
     const out = new Uint8Array(ivLen);
     out.set(raw.slice(0, ivLen));
     return out;
   }
 
-  /* ── Format helpers ───────────────────────────────────── */
-
   function toOutputFormat(buf, format) {
-    if (format === 'HEX') return Utils.bufToHex(buf);
-    return Utils.bufToBase64(buf); // Base64 default
+    return format === 'HEX' ? Utils.bufToHex(buf) : Utils.bufToBase64(buf);
   }
 
   function fromInputFormat(str, format) {
-    const s = str.trim();
-    if (format === 'HEX') {
-      return Utils.hexToBuf(s).buffer;
-    }
-    return Utils.base64ToBuf(s); // Base64 default
+    return format === 'HEX' ? Utils.hexToBuf(str.trim()).buffer : Utils.base64ToBuf(str.trim());
   }
 
-  /* ── AES-GCM ──────────────────────────────────────────── */
+  /* ── CryptoJS helpers ─────────────────────────────────── */
 
-  async function encryptGCM(plaintext, keyStr, keyLen = 256, options = {}) {
-    const { ivStr = '', outputFormat = 'Base64' } = options;
-    const enc    = new TextEncoder();
-    const ivBuf  = parseIVInput(ivStr, 12);
-    const iv     = ivBuf || crypto.getRandomValues(new Uint8Array(12));
-    const keyBuf = parseKeyInput(keyStr, keyLen);
-    const key    = await importRawKey(keyBuf, 'AES-GCM', keyLen);
-    const cipher = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(plaintext));
-
-    // Output: IV prepended to ciphertext
-    const combined = new Uint8Array(iv.byteLength + cipher.byteLength);
-    combined.set(iv, 0);
-    combined.set(new Uint8Array(cipher), iv.byteLength);
-
-    return {
-      result: toOutputFormat(combined.buffer, outputFormat),
-      iv:     Utils.bufToHex(iv),
-      ivBase64: Utils.bufToBase64(iv.buffer),
-    };
+  function toCJS(uint8) {
+    const words = [];
+    for (let i = 0; i < uint8.length; i += 4)
+      words.push(((uint8[i]||0)<<24)|((uint8[i+1]||0)<<16)|((uint8[i+2]||0)<<8)|(uint8[i+3]||0));
+    return window.CryptoJS.lib.WordArray.create(words, uint8.length);
   }
 
-  async function decryptGCM(cipherStr, keyStr, keyLen = 256, options = {}) {
-    const { ivStr = '', inputFormat = 'Base64' } = options;
-    const keyBuf = parseKeyInput(keyStr, keyLen);
-    const key    = await importRawKey(keyBuf, 'AES-GCM', keyLen);
+  function fromCJS(wa) {
+    const u8 = new Uint8Array(wa.sigBytes);
+    for (let i = 0; i < wa.sigBytes; i++)
+      u8[i] = (wa.words[i>>>2] >>> (24-(i%4)*8)) & 0xff;
+    return u8;
+  }
 
+  /* ── AES-GCM (Web Crypto) ─────────────────────────────── */
+
+  async function encryptGCM(text, keyStr, keyLen=256, opts={}) {
+    const {ivStr='', outputFormat='Base64'} = opts;
+    const enc = new TextEncoder();
+    const ivBuf = parseIVBytes(ivStr, 12);
+    const iv = ivBuf || crypto.getRandomValues(new Uint8Array(12));
+    const key = await importRawKey(parseKeyInput(keyStr, keyLen), 'AES-GCM', keyLen);
+    const cipher = await crypto.subtle.encrypt({name:'AES-GCM',iv}, key, enc.encode(text));
+    const combined = new Uint8Array(12 + cipher.byteLength);
+    combined.set(iv); combined.set(new Uint8Array(cipher), 12);
+    return { result: toOutputFormat(combined.buffer, outputFormat), iv: Utils.bufToHex(iv) };
+  }
+
+  async function decryptGCM(cipherStr, keyStr, keyLen=256, opts={}) {
+    const {ivStr='', inputFormat='Base64'} = opts;
+    const key = await importRawKey(parseKeyInput(keyStr, keyLen), 'AES-GCM', keyLen);
+    const ivBuf = parseIVBytes(ivStr, 12);
     let iv, cipher;
-    const ivBuf = parseIVInput(ivStr, 12);
-
-    if (ivBuf) {
-      // User provided IV separately — ciphertext has no prepended IV
-      iv     = ivBuf;
-      cipher = new Uint8Array(fromInputFormat(cipherStr, inputFormat));
-    } else {
-      // IV is prepended to ciphertext
-      const data = new Uint8Array(fromInputFormat(cipherStr, inputFormat));
-      iv     = data.slice(0, 12);
-      cipher = data.slice(12);
-    }
-
-    const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, cipher);
-    return new TextDecoder().decode(plain);
+    if (ivBuf) { iv=ivBuf; cipher=new Uint8Array(fromInputFormat(cipherStr,inputFormat)); }
+    else { const d=new Uint8Array(fromInputFormat(cipherStr,inputFormat)); iv=d.slice(0,12); cipher=d.slice(12); }
+    return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv}, key, cipher));
   }
 
-  /* ── AES-CBC ──────────────────────────────────────────── */
+  /* ── AES-CBC (CryptoJS — anycript.com compatible) ──────── */
 
-  async function encryptCBC(plaintext, keyStr, keyLen = 256, options = {}) {
-    const { ivStr = '', outputFormat = 'Base64' } = options;
-    const enc    = new TextEncoder();
-    const ivBuf  = parseIVInput(ivStr, 16);
-    const iv     = ivBuf || crypto.getRandomValues(new Uint8Array(16));
-    const keyBuf = parseKeyInput(keyStr, keyLen);
-    const key    = await importRawKey(keyBuf, 'AES-CBC', keyLen);
-    const cipher = await crypto.subtle.encrypt({ name: 'AES-CBC', iv }, key, enc.encode(plaintext));
-
-    const combined = new Uint8Array(16 + cipher.byteLength);
-    combined.set(iv, 0);
-    combined.set(new Uint8Array(cipher), 16);
-
-    return {
-      result: toOutputFormat(combined.buffer, outputFormat),
-      iv:     Utils.bufToHex(iv),
-      ivBase64: Utils.bufToBase64(iv.buffer),
-    };
+  function encryptCBC(text, keyStr, keyLen=256, opts={}) {
+    requireCryptoJS();
+    const {ivStr='', outputFormat='Base64'} = opts;
+    const keyBytes = parseKeyInput(keyStr, keyLen);
+    const ivBuf = parseIVBytes(ivStr, 16);
+    const iv = ivBuf || (() => { const b=new Uint8Array(16); crypto.getRandomValues(b); return b; })();
+    const enc = window.CryptoJS.AES.encrypt(text, toCJS(keyBytes),
+      {iv: toCJS(iv), mode: window.CryptoJS.mode.CBC, padding: window.CryptoJS.pad.Pkcs7});
+    return { result: toOutputFormat(fromCJS(enc.ciphertext).buffer, outputFormat), iv: Utils.bufToHex(iv) };
   }
 
-  async function decryptCBC(cipherStr, keyStr, keyLen = 256, options = {}) {
-    const { ivStr = '', inputFormat = 'Base64' } = options;
-    const keyBuf = parseKeyInput(keyStr, keyLen);
-    const key    = await importRawKey(keyBuf, 'AES-CBC', keyLen);
-
-    let iv, cipher;
-    const ivBuf = parseIVInput(ivStr, 16);
-
-    if (ivBuf) {
-      iv     = ivBuf;
-      cipher = new Uint8Array(fromInputFormat(cipherStr, inputFormat));
-    } else {
-      const data = new Uint8Array(fromInputFormat(cipherStr, inputFormat));
-      iv     = data.slice(0, 16);
-      cipher = data.slice(16);
-    }
-
-    const plain = await crypto.subtle.decrypt({ name: 'AES-CBC', iv }, key, cipher);
-    return new TextDecoder().decode(plain);
+  function decryptCBC(cipherStr, keyStr, keyLen=256, opts={}) {
+    requireCryptoJS();
+    const {ivStr='', inputFormat='Base64'} = opts;
+    const keyBytes = parseKeyInput(keyStr, keyLen);
+    const ivBuf = parseIVBytes(ivStr, 16);
+    const iv = ivBuf || new Uint8Array(16);
+    const cwa = inputFormat==='HEX'
+      ? window.CryptoJS.enc.Hex.parse(cipherStr.trim())
+      : window.CryptoJS.enc.Base64.parse(cipherStr.trim());
+    const dec = window.CryptoJS.AES.decrypt(
+      window.CryptoJS.lib.CipherParams.create({ciphertext: cwa}),
+      toCJS(keyBytes), {iv: toCJS(iv), mode: window.CryptoJS.mode.CBC, padding: window.CryptoJS.pad.Pkcs7}
+    );
+    const r = dec.toString(window.CryptoJS.enc.Utf8);
+    if (!r) throw new Error('Decryption failed — check key, IV, and input.');
+    return r;
   }
 
-  /* ── AES-CTR ──────────────────────────────────────────── */
+  /* ── AES-ECB (CryptoJS — anycript.com compatible) ──────── */
 
-  async function encryptCTR(plaintext, keyStr, keyLen = 256, options = {}) {
-    const { ivStr = '', outputFormat = 'Base64' } = options;
-    const enc     = new TextEncoder();
-    const ivBuf   = parseIVInput(ivStr, 16);
+  function encryptECB(text, keyStr, keyLen=256, opts={}) {
+    requireCryptoJS();
+    const {outputFormat='Base64'} = opts;
+    const keyBytes = parseKeyInput(keyStr, keyLen);
+    const enc = window.CryptoJS.AES.encrypt(text, toCJS(keyBytes),
+      {mode: window.CryptoJS.mode.ECB, padding: window.CryptoJS.pad.Pkcs7});
+    return { result: toOutputFormat(fromCJS(enc.ciphertext).buffer, outputFormat), iv: '(ECB — no IV)' };
+  }
+
+  function decryptECB(cipherStr, keyStr, keyLen=256, opts={}) {
+    requireCryptoJS();
+    const {inputFormat='Base64'} = opts;
+    const keyBytes = parseKeyInput(keyStr, keyLen);
+    const cwa = inputFormat==='HEX'
+      ? window.CryptoJS.enc.Hex.parse(cipherStr.trim())
+      : window.CryptoJS.enc.Base64.parse(cipherStr.trim());
+    const dec = window.CryptoJS.AES.decrypt(
+      window.CryptoJS.lib.CipherParams.create({ciphertext: cwa}),
+      toCJS(keyBytes), {mode: window.CryptoJS.mode.ECB, padding: window.CryptoJS.pad.Pkcs7}
+    );
+    const r = dec.toString(window.CryptoJS.enc.Utf8);
+    if (!r) throw new Error('Decryption failed — check key and input.');
+    return r;
+  }
+
+  /* ── AES-CTR (Web Crypto) ─────────────────────────────── */
+
+  async function encryptCTR(text, keyStr, keyLen=256, opts={}) {
+    const {ivStr='', outputFormat='Base64'} = opts;
+    const enc = new TextEncoder();
+    const ivBuf = parseIVBytes(ivStr, 16);
     const counter = ivBuf || crypto.getRandomValues(new Uint8Array(16));
-    const keyBuf  = parseKeyInput(keyStr, keyLen);
-    const key     = await importRawKey(keyBuf, 'AES-CTR', keyLen);
-    const cipher  = await crypto.subtle.encrypt(
-      { name: 'AES-CTR', counter, length: 64 }, key, enc.encode(plaintext)
-    );
-
+    const key = await importRawKey(parseKeyInput(keyStr, keyLen), 'AES-CTR', keyLen);
+    const cipher = await crypto.subtle.encrypt({name:'AES-CTR',counter,length:64}, key, enc.encode(text));
     const combined = new Uint8Array(16 + cipher.byteLength);
-    combined.set(counter, 0);
-    combined.set(new Uint8Array(cipher), 16);
-
-    return {
-      result: toOutputFormat(combined.buffer, outputFormat),
-      iv:     Utils.bufToHex(counter),
-      ivBase64: Utils.bufToBase64(counter.buffer),
-    };
+    combined.set(counter); combined.set(new Uint8Array(cipher), 16);
+    return { result: toOutputFormat(combined.buffer, outputFormat), iv: Utils.bufToHex(counter) };
   }
 
-  async function decryptCTR(cipherStr, keyStr, keyLen = 256, options = {}) {
-    const { ivStr = '', inputFormat = 'Base64' } = options;
-    const keyBuf = parseKeyInput(keyStr, keyLen);
-    const key    = await importRawKey(keyBuf, 'AES-CTR', keyLen);
-
+  async function decryptCTR(cipherStr, keyStr, keyLen=256, opts={}) {
+    const {ivStr='', inputFormat='Base64'} = opts;
+    const key = await importRawKey(parseKeyInput(keyStr, keyLen), 'AES-CTR', keyLen);
+    const ivBuf = parseIVBytes(ivStr, 16);
     let counter, cipher;
-    const ivBuf = parseIVInput(ivStr, 16);
-
-    if (ivBuf) {
-      counter = ivBuf;
-      cipher  = new Uint8Array(fromInputFormat(cipherStr, inputFormat));
-    } else {
-      const data = new Uint8Array(fromInputFormat(cipherStr, inputFormat));
-      counter = data.slice(0, 16);
-      cipher  = data.slice(16);
-    }
-
-    const plain = await crypto.subtle.decrypt(
-      { name: 'AES-CTR', counter, length: 64 }, key, cipher
-    );
-    return new TextDecoder().decode(plain);
+    if (ivBuf) { counter=ivBuf; cipher=new Uint8Array(fromInputFormat(cipherStr,inputFormat)); }
+    else { const d=new Uint8Array(fromInputFormat(cipherStr,inputFormat)); counter=d.slice(0,16); cipher=d.slice(16); }
+    return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-CTR',counter,length:64}, key, cipher));
   }
 
-  /* ── Generate Key ─────────────────────────────────────── */
+  /* ── Generators ───────────────────────────────────────── */
 
-  function generateKey(bits = 256, format = 'hex') {
-    const bytes = new Uint8Array(bits / 8);
-    crypto.getRandomValues(bytes);
-    if (format === 'base64') return btoa(String.fromCharCode(...bytes));
-    return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+  function generateKey(bits=256, format='hex') {
+    const b = new Uint8Array(bits/8); crypto.getRandomValues(b);
+    return format==='base64' ? Utils.bufToBase64(b.buffer) : Utils.bufToHex(b);
   }
 
-  function generateIV(mode, format = 'hex') {
-    const len   = mode === 'GCM' ? 12 : 16;
-    const bytes = new Uint8Array(len);
-    crypto.getRandomValues(bytes);
-    if (format === 'base64') return Utils.bufToBase64(bytes.buffer);
-    return Utils.bufToHex(bytes);
+  function generateIV(mode, format='hex') {
+    const len = mode==='GCM' ? 12 : 16;
+    const b = new Uint8Array(len); crypto.getRandomValues(b);
+    return format==='base64' ? Utils.bufToBase64(b.buffer) : Utils.bufToHex(b);
   }
 
-  /* ── UI Init ──────────────────────────────────────────── */
+  /* ── UI ───────────────────────────────────────────────── */
 
   function init() {
-    const encBtn   = document.getElementById('aes-encrypt-btn');
+    const encBtn = document.getElementById('aes-encrypt-btn');
     if (!encBtn) return;
 
     const decBtn   = document.getElementById('aes-decrypt-btn');
@@ -243,113 +208,100 @@ const AESModule = (() => {
     const bitsEl   = document.getElementById('aes-bits');
     const fmtEl    = document.getElementById('aes-output-format');
     const outBox   = document.getElementById('aes-output');
-    const counter  = document.getElementById('aes-char-count');
     const ivInfo   = document.getElementById('aes-iv-info');
     const ivInfoVal= document.getElementById('aes-iv-info-val');
-    const copyIVBtn= document.getElementById('aes-copy-iv');
+    const copyIV   = document.getElementById('aes-copy-iv');
+    const modeNote = document.getElementById('aes-mode-note');
 
-    Utils.bindCharCounter(inputEl, counter);
+    Utils.bindCharCounter(inputEl, document.getElementById('aes-char-count'));
 
-    // Update IV placeholder based on mode
-    function updateIVHint() {
+    function onModeChange() {
       const mode = modeEl.value;
-      const ivGroup = document.getElementById('aes-iv-group');
-      if (!ivEl) return;
-      if (mode === 'GCM') {
-        ivEl.placeholder = '12 bytes — hex (24 chars) or base64 or text';
-      } else {
-        ivEl.placeholder = '16 bytes — hex (32 chars) or base64 or text';
+      const ivHint = document.getElementById('aes-iv-hint');
+      const isECB = mode === 'ECB';
+      if (ivEl)  ivEl.disabled  = isECB;
+      if (genIV) genIV.disabled = isECB;
+      if (ivHint) ivHint.textContent = isECB
+        ? 'ECB does not use IV'
+        : mode==='GCM' ? 'GCM: 12 bytes (24 hex chars) — auto-generated if empty'
+                       : 'CBC/CTR: 16 bytes (32 hex chars) — auto-generated if empty';
+      if (modeNote) {
+        if (mode==='CBC'||mode==='ECB') {
+          modeNote.textContent = '✓ Compatible with anycript.com (CryptoJS)';
+          modeNote.style.color = 'var(--green-text)';
+        } else {
+          modeNote.textContent = 'Web Crypto API — not interoperable with CryptoJS tools';
+          modeNote.style.color = 'var(--text-muted)';
+        }
       }
-      // GCM doesn't need IV for ECB — but all our modes use IV
-      if (ivGroup) ivGroup.style.display = 'block';
     }
-    if (modeEl) { modeEl.addEventListener('change', updateIVHint); updateIVHint(); }
+    modeEl.addEventListener('change', onModeChange); onModeChange();
 
-    // Generate key
     genKey.addEventListener('click', () => {
-      const fmt = document.getElementById('aes-key-format')?.value || 'hex';
-      keyEl.value = generateKey(parseInt(bitsEl.value) || 256, fmt);
+      keyEl.value = generateKey(parseInt(bitsEl.value)||256, document.getElementById('aes-key-format')?.value||'hex');
       Utils.showToast('🔑 Key generated');
     });
 
-    // Generate IV
-    if (genIV) {
-      genIV.addEventListener('click', () => {
-        const fmt = document.getElementById('aes-iv-format')?.value || 'hex';
-        ivEl.value = generateIV(modeEl.value, fmt);
-        Utils.showToast('🔀 IV generated');
-      });
-    }
-
-    function showIVInfo(ivHex) {
-      if (!ivInfo || !ivInfoVal) return;
-      ivInfoVal.textContent = ivHex;
-      ivInfo.style.display = 'block';
-    }
+    if (genIV) genIV.addEventListener('click', () => {
+      ivEl.value = generateIV(modeEl.value, document.getElementById('aes-iv-format')?.value||'hex');
+      Utils.showToast('🔀 IV generated');
+    });
 
     encBtn.addEventListener('click', async () => {
-      if (!Utils.requireField(inputEl, 'Plaintext')) return;
-      if (!Utils.requireField(keyEl,   'Secret key')) return;
+      if (!Utils.requireField(inputEl,'Plaintext')||!Utils.requireField(keyEl,'Secret key')) return;
       Utils.setLoading(encBtn, true);
-      if (ivInfo) ivInfo.style.display = 'none';
+      if (ivInfo) ivInfo.style.display='none';
       try {
-        const mode = modeEl.value;
-        const bits = parseInt(bitsEl.value) || 256;
-        const opts = { ivStr: ivEl?.value || '', outputFormat: fmtEl?.value || 'Base64' };
+        const mode=modeEl.value, bits=parseInt(bitsEl.value)||256;
+        const opts={ivStr:ivEl?.value||'', outputFormat:fmtEl?.value||'Base64'};
         let res;
-        if      (mode === 'GCM') res = await encryptGCM(inputEl.value, keyEl.value, bits, opts);
-        else if (mode === 'CBC') res = await encryptCBC(inputEl.value, keyEl.value, bits, opts);
-        else if (mode === 'CTR') res = await encryptCTR(inputEl.value, keyEl.value, bits, opts);
+        if      (mode==='GCM') res=await encryptGCM(inputEl.value,keyEl.value,bits,opts);
+        else if (mode==='CBC') res=      encryptCBC(inputEl.value,keyEl.value,bits,opts);
+        else if (mode==='ECB') res=      encryptECB(inputEl.value,keyEl.value,bits,opts);
+        else if (mode==='CTR') res=await encryptCTR(inputEl.value,keyEl.value,bits,opts);
         Utils.setOutput(outBox, res.result, 'success');
-        showIVInfo(res.iv);
-      } catch (err) {
-        Utils.setOutput(outBox, `Error: ${err.message}`, 'error');
-      }
+        if (ivInfo && ivInfoVal && res.iv !== '(ECB — no IV)') {
+          ivInfoVal.textContent = res.iv; ivInfo.style.display='block';
+        }
+      } catch(err) { Utils.setOutput(outBox,`Error: ${err.message}`,'error'); }
       Utils.setLoading(encBtn, false);
     });
 
     decBtn.addEventListener('click', async () => {
-      if (!Utils.requireField(inputEl, 'Ciphertext')) return;
-      if (!Utils.requireField(keyEl,   'Secret key')) return;
+      if (!Utils.requireField(inputEl,'Ciphertext')||!Utils.requireField(keyEl,'Secret key')) return;
       Utils.setLoading(decBtn, true);
       try {
-        const mode = modeEl.value;
-        const bits = parseInt(bitsEl.value) || 256;
-        const opts = { ivStr: ivEl?.value || '', inputFormat: fmtEl?.value || 'Base64' };
+        const mode=modeEl.value, bits=parseInt(bitsEl.value)||256;
+        const opts={ivStr:ivEl?.value||'', inputFormat:fmtEl?.value||'Base64'};
         let result;
-        if      (mode === 'GCM') result = await decryptGCM(inputEl.value, keyEl.value, bits, opts);
-        else if (mode === 'CBC') result = await decryptCBC(inputEl.value, keyEl.value, bits, opts);
-        else if (mode === 'CTR') result = await decryptCTR(inputEl.value, keyEl.value, bits, opts);
+        if      (mode==='GCM') result=await decryptGCM(inputEl.value,keyEl.value,bits,opts);
+        else if (mode==='CBC') result=      decryptCBC(inputEl.value,keyEl.value,bits,opts);
+        else if (mode==='ECB') result=      decryptECB(inputEl.value,keyEl.value,bits,opts);
+        else if (mode==='CTR') result=await decryptCTR(inputEl.value,keyEl.value,bits,opts);
         Utils.setOutput(outBox, result, 'success');
-      } catch (err) {
-        Utils.setOutput(outBox, 'Decryption failed — check your key, mode, IV, and input format.', 'error');
-      }
+      } catch(err) { Utils.setOutput(outBox,'Decryption failed — check key, IV, mode, and format.','error'); }
       Utils.setLoading(decBtn, false);
     });
 
     clearBtn.addEventListener('click', () => {
-      inputEl.value = ''; keyEl.value = '';
-      if (ivEl) ivEl.value = '';
-      if (ivInfo) ivInfo.style.display = 'none';
-      Utils.setOutput(outBox, '', 'default');
-      outBox.innerHTML = '<span class="placeholder">Output will appear here…</span>';
+      inputEl.value=''; keyEl.value='';
+      if(ivEl) ivEl.value='';
+      if(ivInfo) ivInfo.style.display='none';
+      outBox.classList.remove('output-box--success','output-box--error');
+      outBox.innerHTML='<span class="placeholder">Output will appear here…</span>';
     });
 
     copyBtn.addEventListener('click', () => {
-      const text = outBox.textContent.trim();
-      if (text && !text.includes('appear here'))
-        Utils.copyToClipboard(text, 'Output copied');
+      const t=outBox.textContent.trim();
+      if(t&&!t.includes('appear here')) Utils.copyToClipboard(t,'Output copied');
     });
 
-    if (copyIVBtn) {
-      copyIVBtn.addEventListener('click', () => {
-        const v = ivInfoVal?.textContent;
-        if (v) Utils.copyToClipboard(v, 'IV copied');
-      });
-    }
+    if(copyIV) copyIV.addEventListener('click', () => {
+      const v=ivInfoVal?.textContent; if(v) Utils.copyToClipboard(v,'IV copied');
+    });
   }
 
-  return { init, encryptGCM, decryptGCM, encryptCBC, decryptCBC, encryptCTR, decryptCTR, generateKey, generateIV };
+  return { init, encryptGCM, decryptGCM, encryptCBC, decryptCBC, encryptECB, decryptECB, encryptCTR, decryptCTR, generateKey, generateIV };
 
 })();
 

@@ -78,7 +78,9 @@
             <option value="GCM" selected>AES-GCM (Recommended)</option>
             <option value="CBC">AES-CBC</option>
             <option value="CTR">AES-CTR</option>
+            <option value="ECB">AES-ECB (No IV)</option>
           </select>
+          <div style="margin-top:6px;font-family:var(--font-mono);font-size:0.75rem;" id="aes-mode-note"></div>
         </div>
         <div class="form-group">
           <label for="aes-bits">Key Length</label>
@@ -228,6 +230,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/modules/aes.js"></script>
