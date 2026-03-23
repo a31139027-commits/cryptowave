@@ -776,18 +776,31 @@ input, textarea, select, .key-box, .drop-zone,
 
 .dropdown__menu {
   display: none;
-  position: absolute; top: calc(100% + 6px); left: 50%;
+  position: absolute; top: 100%; left: 50%;
   transform: translateX(-50%);
+  padding-top: 8px; /* bridge gap with invisible padding */
+  z-index: 200;
+  white-space: nowrap;
+  min-width: 180px;
+}
+/* The visible box is inside an inner div */
+.dropdown__menu-inner {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   padding: 6px;
-  min-width: 180px;
-  z-index: 200;
-  white-space: nowrap;
 }
 .dropdown:hover .dropdown__menu { display: block; animation: fadeIn 0.15s ease; }
+
+/* Invisible bridge — fills the gap so mouse doesn't "leave" the dropdown */
+.dropdown__menu::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 8px;
+}
 
 .dropdown__menu a {
   display: flex; align-items: center; gap: 8px;
