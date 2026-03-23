@@ -9,7 +9,7 @@
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AES encryption and decryption online — GCM, CBC, CTR modes with 128/192/256-bit keys. All processing is client-side." />
+  <meta name="description" content="AES encryption and decryption online — GCM, CBC, CTR modes with 128/192/256-bit keys, custom IV, Base64/HEX output. All processing is client-side." />
   <title>AES Encryption / Decryption — CryptoWave</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +52,6 @@
 <main class="tool-page">
   <div class="container container--narrow">
 
-    <!-- Header -->
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
       <h1 class="tool-header__title"><span>AES</span> Encryption / Decryption</h1>
@@ -61,7 +60,7 @@
 
     <div class="alert alert--info">
       <span class="alert__icon">ℹ</span>
-      <div><strong>AES-GCM is recommended</strong> — it provides authenticated encryption (confidentiality + integrity). CBC and CTR are available for compatibility but require additional message authentication.</div>
+      <div><strong>AES-GCM is recommended</strong> — it provides authenticated encryption (confidentiality + integrity). CBC and CTR are available for compatibility. Leave IV empty to auto-generate a secure random IV.</div>
     </div>
 
     <!-- Settings -->
@@ -71,6 +70,7 @@
         <div class="panel__head-title">Settings</div>
         <div class="panel__head-badge">AES</div>
       </div>
+
       <div class="form-row">
         <div class="form-group">
           <label for="aes-mode">Mode</label>
@@ -88,6 +88,13 @@
             <option value="256" selected>256-bit (Recommended)</option>
           </select>
         </div>
+        <div class="form-group">
+          <label for="aes-output-format">Output Format</label>
+          <select id="aes-output-format">
+            <option value="Base64" selected>Base64</option>
+            <option value="HEX">HEX</option>
+          </select>
+        </div>
       </div>
 
       <!-- Key -->
@@ -102,12 +109,37 @@
             <option value="hex">Hex</option>
             <option value="base64">Base64</option>
           </select>
-          <span class="text-xs text-muted">Key format for generation</span>
+          <span class="text-xs text-muted">Format for key generation</span>
+        </div>
+      </div>
+
+      <!-- IV -->
+      <div class="form-group" id="aes-iv-group">
+        <label for="aes-iv">IV / Nonce <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+        <div class="input-with-btn">
+          <input type="text" id="aes-iv"
+            placeholder="Leave empty to auto-generate a secure random IV"
+            autocomplete="off" spellcheck="false" />
+          <button class="btn btn--icon" id="aes-gen-iv" title="Generate random IV">⟳</button>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:6px;align-items:center;flex-wrap:wrap;">
+          <select id="aes-iv-format" style="width:auto;font-size:0.8125rem;padding:4px 28px 4px 8px;">
+            <option value="hex">Hex</option>
+            <option value="base64">Base64</option>
+          </select>
+          <span class="text-xs text-muted" id="aes-iv-hint">GCM: 12 bytes (24 hex chars) · CBC/CTR: 16 bytes (32 hex chars)</span>
+        </div>
+        <div class="alert alert--info" style="margin-top:10px;margin-bottom:0;font-size:0.8rem;">
+          <span class="alert__icon">ℹ</span>
+          <div>
+            <strong>When encrypting:</strong> Leave blank — a secure random IV is auto-generated and prepended to the output.<br/>
+            <strong>When decrypting:</strong> Leave blank if IV is prepended to ciphertext, or enter the IV used during encryption.
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Input / Output -->
+    <!-- Input -->
     <div class="panel">
       <div class="panel__head">
         <div class="panel__head-icon">📝</div>
@@ -115,12 +147,12 @@
       </div>
       <div class="form-group">
         <label for="aes-input">Plaintext / Ciphertext <span class="required">*</span></label>
-        <textarea id="aes-input" placeholder="Enter text to encrypt, or base64 ciphertext to decrypt…" rows="6" spellcheck="false"></textarea>
+        <textarea id="aes-input" placeholder="Enter text to encrypt, or ciphertext to decrypt…" rows="6" spellcheck="false"></textarea>
         <div class="char-count" id="aes-char-count">0 chars</div>
       </div>
       <div class="btn-group">
         <button class="btn btn--primary" id="aes-encrypt-btn">🔒 Encrypt</button>
-        <button class="btn btn--ghost" id="aes-decrypt-btn">🔓 Decrypt</button>
+        <button class="btn btn--ghost"   id="aes-decrypt-btn">🔓 Decrypt</button>
         <button class="btn btn--secondary" id="aes-clear-btn">✕ Clear</button>
       </div>
     </div>
@@ -130,24 +162,50 @@
       <div class="output-header">
         <span class="output-label">Output</span>
         <div style="display:flex;gap:8px;">
-          <button class="btn btn--sm btn--icon" id="aes-copy-btn" title="Copy output">⎘ Copy</button>
-          <button class="btn btn--sm btn--icon" id="aes-download-btn" title="Download output">⬇</button>
+          <button class="btn btn--sm btn--icon" id="aes-copy-btn">⎘ Copy</button>
+          <button class="btn btn--sm btn--icon" id="aes-download-btn">⬇</button>
         </div>
       </div>
       <div class="output-box output-box--large" id="aes-output">
         <span class="placeholder">Encrypted / decrypted result will appear here…</span>
       </div>
+
+      <!-- IV Info — shown after encryption -->
+      <div id="aes-iv-info" style="display:none;margin-top:14px;">
+        <div style="background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:var(--radius-lg);padding:14px 16px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+            <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;">IV Used (save this for decryption)</span>
+            <button class="btn btn--sm btn--icon" id="aes-copy-iv">⎘ Copy IV</button>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:0.8125rem;color:var(--text-primary);word-break:break-all;" id="aes-iv-info-val"></div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:6px;">⚠ The IV is also prepended to the ciphertext above — you only need this if decrypting with IV field separately.</div>
+        </div>
+      </div>
     </div>
 
-    <!-- Info -->
-    <div class="panel" style="margin-top:32px;">
+    <!-- About -->
+    <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
         <div class="panel__head-icon">📖</div>
-        <div class="panel__head-title">About AES</div>
+        <div class="panel__head-title">About AES &amp; IV</div>
       </div>
-      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;">
-        The Advanced Encryption Standard (AES) is a symmetric block cipher standardized by NIST in 2001. It operates on 128-bit blocks and supports key sizes of 128, 192, and 256 bits. AES-GCM (Galois/Counter Mode) is the modern recommended mode as it provides both encryption and integrity verification in a single pass. This tool uses the native <strong>Web Crypto API</strong> — the same cryptographic primitives used by your browser for HTTPS.
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;margin-bottom:12px;">
+        The <strong>IV (Initialization Vector)</strong> is a random value used to ensure that the same plaintext encrypted twice produces different ciphertexts. It does not need to be secret but must be unique per encryption. By default, CryptoWave auto-generates a secure random IV and prepends it to the output — so you only need one string to decrypt.
       </p>
+      <div style="display:grid;gap:8px;font-size:0.8375rem;">
+        <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <span style="color:var(--accent);font-weight:700;font-family:var(--font-mono);white-space:nowrap;">GCM</span>
+          <span style="color:var(--text-secondary);">12-byte IV (nonce). Provides authenticated encryption — tampering is detected automatically.</span>
+        </div>
+        <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <span style="color:var(--accent);font-weight:700;font-family:var(--font-mono);white-space:nowrap;">CBC</span>
+          <span style="color:var(--text-secondary);">16-byte IV. Each block XORed with the previous ciphertext block before encryption.</span>
+        </div>
+        <div style="display:flex;gap:10px;padding:10px 14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <span style="color:var(--accent);font-weight:700;font-family:var(--font-mono);white-space:nowrap;">CTR</span>
+          <span style="color:var(--text-secondary);">16-byte counter/nonce. Turns AES into a stream cipher — parallelizable and no padding needed.</span>
+        </div>
+      </div>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
         <div class="security-note">🔒 Web Crypto API</div>
         <div class="security-note">✓ NIST FIPS 197</div>
@@ -161,7 +219,11 @@
 <footer class="footer">
   <div class="footer__inner">
     <div><div class="footer__brand">Crypto<span>Wave</span></div><div class="footer__tagline">Free, private developer tools</div></div>
-    <nav class="footer__links"><a href="../index.html">Home</a><a href="rsa.html">RSA</a><a href="hash.html">Hash</a><a href="encoding.html">Encoding</a><a href="audio.html">Audio</a></nav>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a><a href="rsa.html">RSA</a>
+      <a href="des.html">DES</a><a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+    </nav>
     <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
   </div>
 </footer>
@@ -170,10 +232,9 @@
 <script src="../js/theme.js"></script>
 <script src="../js/modules/aes.js"></script>
 <script>
-  // Download button
   document.getElementById('aes-download-btn')?.addEventListener('click', () => {
     const text = document.getElementById('aes-output').textContent.trim();
-    if (text && text !== 'Encrypted / decrypted result will appear here…')
+    if (text && !text.includes('appear here'))
       Utils.downloadText(text, 'aes-output.txt');
   });
 </script>
