@@ -1,54 +1,53 @@
 /**
  * theme.js — Dark / Light Theme Toggle
  * Persists preference to localStorage
- * Applies to all pages via shared script
  */
 
 'use strict';
 
-const ThemeModule = (() => {
+const STORAGE_KEY = 'cw-theme';
 
-  const STORAGE_KEY = 'cw-theme';
-  const DARK  = 'dark';
-  const LIGHT = 'light';
+function getTheme() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'light' || saved === 'dark') return saved;
+  // First visit: default to DARK regardless of OS
+  return 'dark';
+}
 
-  function getPreferred() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) return saved;
-    // Respect OS preference on first visit
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? LIGHT : DARK;
-  }
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(STORAGE_KEY, theme);
 
-  function apply(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-    // Update all toggle buttons on the page
-    document.querySelectorAll('.theme-toggle').forEach(btn => {
-      btn.setAttribute('aria-label', theme === DARK ? 'Switch to light mode' : 'Switch to dark mode');
-      btn.querySelector('.theme-toggle__icon').textContent = theme === DARK ? '☀️' : '🌙';
-      btn.querySelector('.theme-toggle__label').textContent = theme === DARK ? 'Light' : 'Dark';
-    });
-  }
+  document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+    var icon  = btn.querySelector('.theme-toggle__icon');
+    var label = btn.querySelector('.theme-toggle__label');
+    if (theme === 'dark') {
+      if (icon)  icon.textContent  = '☀️';
+      if (label) label.textContent = 'Light';
+      btn.setAttribute('aria-label', 'Switch to light mode');
+    } else {
+      if (icon)  icon.textContent  = '🌙';
+      if (label) label.textContent = 'Dark';
+      btn.setAttribute('aria-label', 'Switch to dark mode');
+    }
+  });
+}
 
-  function toggle() {
-    const current = document.documentElement.getAttribute('data-theme') || DARK;
-    apply(current === DARK ? LIGHT : DARK);
-  }
+function toggleTheme() {
+  var current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
 
-  function init() {
-    // Apply saved/preferred theme immediately (before paint)
-    apply(getPreferred());
+// Apply immediately on script load (prevents flash)
+applyTheme(getTheme());
 
-    // Bind all toggle buttons
-    document.querySelectorAll('.theme-toggle').forEach(btn => {
-      btn.addEventListener('click', toggle);
-    });
-  }
+// Bind buttons after DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.theme-toggle').forEach(function(btn) {
+    btn.addEventListener('click', toggleTheme);
+  });
+  // Re-apply to update button icons after DOM loads
+  applyTheme(getTheme());
+});
 
-  return { init, toggle, apply, getPreferred };
-
-})();
-
-// Run as early as possible to avoid flash
-ThemeModule.init();
-window.ThemeModule = ThemeModule;
+window.ThemeModule = { toggle: toggleTheme, apply: applyTheme, getTheme: getTheme };
