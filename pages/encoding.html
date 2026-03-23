@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online encoder/decoder — Base64, Hex, URL encode, HTML entities, and JWT decoder. All client-side." />
+  <title>Encoding / Decoding — CryptoWave</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    .jwt-section .output-label { display:block; margin-bottom:4px; }
+    pre.json-view {
+      background: var(--bg-input); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 14px;
+      font-family: var(--font-mono); font-size: 0.8125rem;
+      color: var(--text-primary); overflow-x: auto;
+      white-space: pre-wrap; word-break: break-all;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand"><div class="navbar__brand-icon">🔐</div>Crypto<span>Wave</span></a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="aes.html">🔒 AES</a></li>
+      <li><a href="rsa.html">🗝️ RSA</a></li>
+      <li><a href="hash.html"># Hash</a></li>
+      <li><a href="encoding.html" class="active">⇄ Encoding</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">⇄ <span>Encoding</span> &amp; Decoding</h1>
+      <p class="tool-header__sub">Base64, Hex, URL encoding, HTML entities, and JWT inspection.</p>
+    </div>
+
+    <div class="tabs-container">
+      <div class="tabs" style="flex-wrap:wrap;">
+        <button class="tab-btn active" data-tab="tab-b64">Base64</button>
+        <button class="tab-btn" data-tab="tab-hex">Hex</button>
+        <button class="tab-btn" data-tab="tab-url">URL Encode</button>
+        <button class="tab-btn" data-tab="tab-html-ent">HTML Entities</button>
+        <button class="tab-btn" data-tab="tab-jwt">JWT Decoder</button>
+      </div>
+
+      <!-- ── Base64 ── -->
+      <div class="tab-panel active" id="tab-b64">
+        <div class="panel">
+          <div class="panel__head"><div class="panel__head-icon">64</div><div class="panel__head-title">Base64 Encode / Decode</div></div>
+          <div class="form-group" style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <label class="check-item">
+              <input type="checkbox" id="b64-urlsafe" />
+              <span class="check-item__box"></span>
+              URL-safe Base64 (RFC 4648 §5)
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="b64-input">Input</label>
+            <textarea id="b64-input" placeholder="Enter text to encode or base64 to decode…" rows="5" spellcheck="false"></textarea>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" id="b64-encode-btn">⬆ Encode</button>
+            <button class="btn btn--ghost" id="b64-decode-btn">⬇ Decode</button>
+            <button class="btn btn--secondary" id="b64-swap">⇄ Swap</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="output-header"><span class="output-label">Output</span><button class="btn btn--sm btn--icon" id="b64-copy">⎘ Copy</button></div>
+          <div class="output-box" id="b64-output"><span class="placeholder">Encoded / decoded result will appear here…</span></div>
+        </div>
+      </div>
+
+      <!-- ── Hex ── -->
+      <div class="tab-panel" id="tab-hex">
+        <div class="panel">
+          <div class="panel__head"><div class="panel__head-icon">0x</div><div class="panel__head-title">Hex Encode / Decode</div></div>
+          <div class="form-group">
+            <label for="hex-input">Input</label>
+            <textarea id="hex-input" placeholder="Enter text to encode, or hex string to decode (e.g. 48656c6c6f)…" rows="5" spellcheck="false"></textarea>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" id="hex-encode-btn">⬆ Encode to Hex</button>
+            <button class="btn btn--ghost" id="hex-decode-btn">⬇ Decode from Hex</button>
+            <button class="btn btn--secondary" id="hex-swap">⇄ Swap</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="output-header"><span class="output-label">Output</span><button class="btn btn--sm btn--icon" id="hex-copy">⎘ Copy</button></div>
+          <div class="output-box" id="hex-output"><span class="placeholder">Hex encoded / decoded result will appear here…</span></div>
+        </div>
+      </div>
+
+      <!-- ── URL ── -->
+      <div class="tab-panel" id="tab-url">
+        <div class="panel">
+          <div class="panel__head"><div class="panel__head-icon">%</div><div class="panel__head-title">URL Encode / Decode</div></div>
+          <div class="form-group">
+            <label for="url-input">Input</label>
+            <textarea id="url-input" placeholder="Enter text to percent-encode, or encoded string to decode…" rows="5" spellcheck="false"></textarea>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" id="url-encode-btn">⬆ Encode</button>
+            <button class="btn btn--ghost" id="url-decode-btn">⬇ Decode</button>
+            <button class="btn btn--secondary" id="url-swap">⇄ Swap</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="output-header"><span class="output-label">Output</span><button class="btn btn--sm btn--icon" id="url-copy">⎘ Copy</button></div>
+          <div class="output-box" id="url-output"><span class="placeholder">URL encoded / decoded result will appear here…</span></div>
+        </div>
+      </div>
+
+      <!-- ── HTML Entities ── -->
+      <div class="tab-panel" id="tab-html-ent">
+        <div class="panel">
+          <div class="panel__head"><div class="panel__head-icon">&lt;&gt;</div><div class="panel__head-title">HTML Entities Encode / Decode</div></div>
+          <div class="form-group">
+            <label for="html-input">Input</label>
+            <textarea id="html-input" placeholder="Enter HTML or plain text to encode/decode entities…" rows="5" spellcheck="false"></textarea>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" id="html-encode-btn">⬆ Encode</button>
+            <button class="btn btn--ghost" id="html-decode-btn">⬇ Decode</button>
+            <button class="btn btn--secondary" id="html-swap">⇄ Swap</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="output-header"><span class="output-label">Output</span><button class="btn btn--sm btn--icon" id="html-copy">⎘ Copy</button></div>
+          <div class="output-box" id="html-output"><span class="placeholder">HTML encoded / decoded result will appear here…</span></div>
+        </div>
+      </div>
+
+      <!-- ── JWT ── -->
+      <div class="tab-panel" id="tab-jwt">
+        <div class="panel">
+          <div class="panel__head"><div class="panel__head-icon">JWT</div><div class="panel__head-title">JWT Decoder</div></div>
+          <div class="alert alert--warning" style="margin-bottom:0;">
+            <span class="alert__icon">⚠</span>
+            <div>This tool <strong>decodes</strong> JWTs for inspection only — it does <strong>not verify</strong> the signature. Never trust unverified tokens in production.</div>
+          </div>
+          <div class="divider"></div>
+          <div class="form-group">
+            <label for="jwt-input">JWT Token</label>
+            <textarea id="jwt-input" placeholder="Paste your JWT token here (eyJ…)…" rows="4" spellcheck="false"></textarea>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" id="jwt-decode-btn">🔍 Decode Token</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="output-header"><span class="output-label">Decoded Token</span></div>
+          <div class="output-box output-box--large" id="jwt-output"><span class="placeholder">Decoded JWT header, payload and signature will appear here…</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><div class="footer__brand">Crypto<span>Wave</span></div><div class="footer__tagline">Free, private developer tools</div></div>
+    <nav class="footer__links"><a href="../index.html">Home</a><a href="aes.html">AES</a><a href="rsa.html">RSA</a><a href="hash.html">Hash</a><a href="audio.html">Audio</a></nav>
+    <div class="footer__copy">© 2025 CryptoWave</div>
+  </div>
+</footer>
+
+<script src="../js/utils.js"></script>
+<script src="../js/modules/encoding.js"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (location.hash === '#hex')  document.querySelector('[data-tab="tab-hex"]')?.click();
+    if (location.hash === '#url')  document.querySelector('[data-tab="tab-url"]')?.click();
+    if (location.hash === '#jwt')  document.querySelector('[data-tab="tab-jwt"]')?.click();
+  });
+</script>
+</body>
+</html>

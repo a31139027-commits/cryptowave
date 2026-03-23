@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online audio converter — MP3, WAV, FLAC, AAC, OGG, OPUS, M4A. Extract audio from video files. Powered by FFmpeg.wasm in your browser." />
+  <title>Audio Converter — CryptoWave</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand"><div class="navbar__brand-icon">🔐</div>Crypto<span>Wave</span></a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="aes.html">🔒 AES</a></li>
+      <li><a href="rsa.html">🗝️ RSA</a></li>
+      <li><a href="hash.html"># Hash</a></li>
+      <li><a href="encoding.html">⇄ Encoding</a></li>
+      <li><a href="audio.html" class="active">🎵 Audio <span class="navbar__badge">New</span></a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">🎵 <span>Audio</span> Converter</h1>
+      <p class="tool-header__sub">Convert between audio formats and extract audio from video — entirely in your browser using FFmpeg.wasm.</p>
+    </div>
+
+    <!-- FFmpeg Status -->
+    <div id="audio-status" class="alert alert--info">
+      <span class="alert__icon">⏳</span>
+      Checking browser capabilities…
+    </div>
+
+    <!-- Server Header Setup Notice -->
+    <div class="panel" style="margin-bottom:0;">
+      <div class="panel__head">
+        <div class="panel__head-icon">⚙</div>
+        <div class="panel__head-title">Server Setup Required</div>
+        <div class="panel__head-badge">One-time</div>
+      </div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">
+        FFmpeg.wasm requires <strong>Cross-Origin Isolation</strong> to access <code>SharedArrayBuffer</code>. Your web server must send these HTTP headers on all pages:
+      </p>
+      <div class="output-box" style="margin-bottom:12px;font-size:0.8rem;">Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp</div>
+      <p style="font-size:0.8125rem;color:var(--text-secondary);">
+        <strong>Local dev:</strong> <code>npx serve -C .</code> &nbsp;|&nbsp;
+        <strong>Nginx:</strong> Add to <code>server</code> block &nbsp;|&nbsp;
+        <strong>Apache:</strong> Add to <code>.htaccess</code> &nbsp;|&nbsp;
+        <strong>Vercel/Netlify:</strong> Add to <code>vercel.json</code> or <code>_headers</code> file
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Drop Zone -->
+    <div id="audio-drop-zone" class="drop-zone">
+      <div class="drop-zone__icon">🎵</div>
+      <div class="drop-zone__title">Drop audio or video files here</div>
+      <div class="drop-zone__sub">or <button class="btn btn--sm btn--ghost" id="audio-browse-btn" style="display:inline-flex;">browse files</button></div>
+      <input type="file" id="audio-file-input" multiple accept="audio/*,video/*" style="display:none;" />
+      <div class="drop-zone__formats">
+        <span class="format-badge">MP3</span><span class="format-badge">WAV</span>
+        <span class="format-badge">FLAC</span><span class="format-badge">AAC</span>
+        <span class="format-badge">OGG</span><span class="format-badge">OPUS</span>
+        <span class="format-badge">M4A</span><span class="format-badge">AIFF</span>
+        <span class="format-badge">MP4</span><span class="format-badge">MKV</span>
+        <span class="format-badge">MOV</span><span class="format-badge">AVI</span>
+        <span class="format-badge">WebM</span>
+      </div>
+    </div>
+
+    <!-- File List -->
+    <div id="audio-file-list" class="file-list"></div>
+
+    <!-- Conversion Settings -->
+    <div class="panel" style="margin-top:20px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">⚙</div>
+        <div class="panel__head-title">Conversion Settings</div>
+      </div>
+      <div class="options-grid">
+        <div class="form-group">
+          <label for="audio-format">Output Format</label>
+          <select id="audio-format">
+            <option value="mp3" selected>MP3</option>
+            <option value="wav">WAV (Lossless)</option>
+            <option value="flac">FLAC (Lossless)</option>
+            <option value="aac">AAC</option>
+            <option value="ogg">OGG Vorbis</option>
+            <option value="opus">OPUS</option>
+            <option value="m4a">M4A (iTunes)</option>
+            <option value="aiff">AIFF (Apple)</option>
+          </select>
+        </div>
+        <div class="form-group" id="bitrate-group">
+          <label for="audio-bitrate">Bitrate</label>
+          <select id="audio-bitrate">
+            <option value="64k">64 kbps (Low)</option>
+            <option value="128k">128 kbps</option>
+            <option value="192k" selected>192 kbps (Standard)</option>
+            <option value="256k">256 kbps (High)</option>
+            <option value="320k">320 kbps (Maximum)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="audio-samplerate">Sample Rate</label>
+          <select id="audio-samplerate">
+            <option value="22050">22,050 Hz</option>
+            <option value="44100" selected>44,100 Hz (CD)</option>
+            <option value="48000">48,000 Hz (Pro)</option>
+            <option value="96000">96,000 Hz (Hi-Res)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="audio-channels">Channels</label>
+          <select id="audio-channels">
+            <option value="1">Mono (1)</option>
+            <option value="2" selected>Stereo (2)</option>
+          </select>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn--primary btn--lg" id="audio-convert-btn" disabled>🎵 Convert Files</button>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div id="audio-progress-wrap" class="panel hidden" style="margin-top:16px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+        <span class="output-label">Progress</span>
+        <span class="output-label" id="audio-progress-label">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-bar__fill" id="audio-progress-fill" style="width:0%"></div></div>
+    </div>
+
+    <!-- Results -->
+    <div id="audio-result-list" style="margin-top:16px;"></div>
+
+    <!-- Info -->
+    <div class="panel" style="margin-top:32px;">
+      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">About FFmpeg.wasm</div></div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;">
+        This converter uses <strong>FFmpeg.wasm</strong> — a WebAssembly port of the industry-standard FFmpeg library. All conversion happens entirely in your browser. No files are uploaded to any server. The FFmpeg WASM binary (~30MB) is downloaded once from a CDN and cached by your browser for subsequent conversions.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">🔒 Files never leave your device</div>
+        <div class="security-note">⚡ WebAssembly powered</div>
+        <div class="security-note">🎬 Supports 300+ formats</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><div class="footer__brand">Crypto<span>Wave</span></div><div class="footer__tagline">Free, private developer tools</div></div>
+    <nav class="footer__links"><a href="../index.html">Home</a><a href="aes.html">AES</a><a href="rsa.html">RSA</a><a href="hash.html">Hash</a><a href="encoding.html">Encoding</a></nav>
+    <div class="footer__copy">© 2025 CryptoWave</div>
+  </div>
+</footer>
+
+<!-- FFmpeg.wasm — use v0.11 for wider compatibility -->
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/modules/audio.js"></script>
+<script>
+  // Hide bitrate for lossless formats
+  document.getElementById('audio-format')?.addEventListener('change', function() {
+    const lossless = ['wav', 'flac', 'aiff'].includes(this.value);
+    document.getElementById('bitrate-group').style.opacity = lossless ? '0.4' : '1';
+    document.getElementById('audio-bitrate').disabled = lossless;
+  });
+</script>
+</body>
+</html>

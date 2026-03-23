@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CryptoWave — Free, private, client-side tools for encryption, hashing, encoding, and audio conversion. AES, RSA, SHA, Base64, FFmpeg and more." />
+  <title>CryptoWave — Encryption, Hashing & Audio Tools</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- ══ Navbar ══════════════════════════════════════════════ -->
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="index.html" class="active"><span class="navbar__nav-icon">🏠</span> Home</a></li>
+      <li><a href="pages/aes.html"><span class="navbar__nav-icon">🔒</span> AES</a></li>
+      <li><a href="pages/rsa.html"><span class="navbar__nav-icon">🗝️</span> RSA</a></li>
+      <li><a href="pages/hash.html"><span class="navbar__nav-icon">#</span> Hash</a></li>
+      <li><a href="pages/encoding.html"><span class="navbar__nav-icon">⇄</span> Encoding</a></li>
+      <li><a href="pages/audio.html"><span class="navbar__nav-icon">🎵</span> Audio <span class="navbar__badge">New</span></a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ Hero ════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__badge">
+      <span></span> 100% Client-Side · Zero Data Transmission
+    </div>
+    <h1 class="hero__title">
+      Security &amp; Conversion<br /><span>Tools for Developers</span>
+    </h1>
+    <p class="hero__subtitle">
+      Professional-grade encryption, hashing, encoding, and audio conversion — all running directly in your browser. No servers. No accounts. No data leaves your device.
+    </p>
+    <div class="hero__tags">
+      <span class="hero__tag"><span class="hero__tag-dot"></span>AES-GCM / CBC / CTR</span>
+      <span class="hero__tag"><span class="hero__tag-dot"></span>RSA-OAEP / PKCS#1</span>
+      <span class="hero__tag"><span class="hero__tag-dot"></span>SHA-256 / SHA-512</span>
+      <span class="hero__tag"><span class="hero__tag-dot"></span>HMAC · Bcrypt · MD5</span>
+      <span class="hero__tag"><span class="hero__tag-dot"></span>Base64 · Hex · JWT</span>
+      <span class="hero__tag"><span class="hero__tag-dot"></span>MP3 / WAV / FLAC / AAC</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Encryption Tools ═══════════════════════════════════ -->
+<section class="tools-section">
+  <div class="container">
+
+    <!-- Crypto -->
+    <div class="section-head">
+      <h2 class="section-head__title">🔐 <span>Encryption</span> &amp; Decryption</h2>
+      <div class="section-head__line"></div>
+    </div>
+    <div class="tools-grid">
+      <a href="pages/aes.html" class="tool-card">
+        <div class="tool-card__icon">🔒</div>
+        <div class="tool-card__name">AES Cipher</div>
+        <p class="tool-card__desc">Advanced Encryption Standard with GCM, CBC, and CTR modes. Supports 128, 192, and 256-bit keys. NIST-approved.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--accent">GCM</span>
+          <span class="tool-card__tag">CBC</span>
+          <span class="tool-card__tag">CTR</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/rsa.html" class="tool-card">
+        <div class="tool-card__icon">🗝️</div>
+        <div class="tool-card__name">RSA Cipher</div>
+        <p class="tool-card__desc">Asymmetric encryption with OAEP and PKCS#1 padding. Generate key pairs from 1024 to 4096 bits.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--accent">OAEP</span>
+          <span class="tool-card__tag">PKCS#1</span>
+          <span class="tool-card__tag">4096-bit</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Hashing -->
+    <div class="section-head" style="margin-top:48px;">
+      <h2 class="section-head__title"># <span>Hashing</span> &amp; Verification</h2>
+      <div class="section-head__line"></div>
+    </div>
+    <div class="tools-grid">
+      <a href="pages/hash.html" class="tool-card">
+        <div class="tool-card__icon">🔏</div>
+        <div class="tool-card__name">Hash Generator</div>
+        <p class="tool-card__desc">Generate cryptographic hashes with SHA-256, SHA-512, MD5, and more. Verify data integrity instantly.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--green">SHA-256</span>
+          <span class="tool-card__tag">SHA-512</span>
+          <span class="tool-card__tag">MD5</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/hash.html#hmac" class="tool-card">
+        <div class="tool-card__icon">🛡️</div>
+        <div class="tool-card__name">HMAC Generator</div>
+        <p class="tool-card__desc">Hash-based Message Authentication Code for verifying message integrity and authenticity with a shared secret.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--green">HMAC-SHA256</span>
+          <span class="tool-card__tag">HMAC-SHA512</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/hash.html#bcrypt" class="tool-card">
+        <div class="tool-card__icon">🔑</div>
+        <div class="tool-card__name">Bcrypt</div>
+        <p class="tool-card__desc">Adaptive password hashing with configurable work factor. Industry standard for secure password storage.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--green">Bcrypt</span>
+          <span class="tool-card__tag">Rounds 4–12</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Encoding -->
+    <div class="section-head" style="margin-top:48px;">
+      <h2 class="section-head__title">⇄ <span>Encoding</span> &amp; Decoding</h2>
+      <div class="section-head__line"></div>
+    </div>
+    <div class="tools-grid">
+      <a href="pages/encoding.html" class="tool-card">
+        <div class="tool-card__icon">64</div>
+        <div class="tool-card__name">Base64</div>
+        <p class="tool-card__desc">Encode and decode text or binary data using standard Base64 or URL-safe Base64 format.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag">Standard</span>
+          <span class="tool-card__tag">URL-safe</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/encoding.html#hex" class="tool-card">
+        <div class="tool-card__icon">0x</div>
+        <div class="tool-card__name">Hex Encoder</div>
+        <p class="tool-card__desc">Convert text to hexadecimal representation and back. Essential for binary data inspection.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag">UTF-8</span>
+          <span class="tool-card__tag">Binary</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/encoding.html#url" class="tool-card">
+        <div class="tool-card__icon">%</div>
+        <div class="tool-card__name">URL Encode</div>
+        <p class="tool-card__desc">Percent-encode strings for safe use in URLs and query parameters. RFC 3986 compliant.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag">RFC 3986</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/encoding.html#jwt" class="tool-card">
+        <div class="tool-card__icon">JWT</div>
+        <div class="tool-card__name">JWT Decoder</div>
+        <p class="tool-card__desc">Inspect and decode JSON Web Tokens — header, payload, and expiry. No signature verification (client-only).</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag">Header</span>
+          <span class="tool-card__tag">Payload</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Audio -->
+    <div class="section-head" style="margin-top:48px;">
+      <h2 class="section-head__title">🎵 <span>Audio</span> Converter</h2>
+      <div class="section-head__line"></div>
+    </div>
+    <div class="tools-grid">
+      <a href="pages/audio.html" class="tool-card">
+        <div class="tool-card__icon">🎵</div>
+        <div class="tool-card__name">Audio Format Converter</div>
+        <p class="tool-card__desc">Convert audio between MP3, WAV, FLAC, AAC, OGG, OPUS, M4A, and AIFF. Extract audio from video files too.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--accent">FFmpeg.wasm</span>
+          <span class="tool-card__tag">MP3 · WAV · FLAC</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/audio.html#extract" class="tool-card">
+        <div class="tool-card__icon">🎬</div>
+        <div class="tool-card__name">Video → Audio</div>
+        <p class="tool-card__desc">Extract audio tracks from MP4, MKV, MOV, AVI, and WebM video files without any quality loss.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--accent">MP4 · MKV</span>
+          <span class="tool-card__tag">MOV · AVI</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ Privacy Banner ═════════════════════════════════════ -->
+<section style="padding: 0 0 80px;">
+  <div class="container">
+    <div class="panel" style="display:flex; flex-wrap:wrap; gap:24px; align-items:center; justify-content:space-between;">
+      <div>
+        <h3 style="font-family:var(--font-head);font-size:1.125rem;font-weight:700;margin-bottom:6px;">100% Client-Side Processing</h3>
+        <p style="font-size:0.875rem;color:var(--text-secondary);max-width:520px;">Every operation runs entirely in your browser using the Web Crypto API and WebAssembly. No data is sent to any server. No analytics. No logging. Your secrets stay yours.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;flex-shrink:0;">
+        <div class="security-note">🔒 Web Crypto API</div>
+        <div class="security-note">🛡️ No data stored</div>
+        <div class="security-note">🔓 Open source ready</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Footer ══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="pages/aes.html">AES</a>
+      <a href="pages/rsa.html">RSA</a>
+      <a href="pages/hash.html">Hash</a>
+      <a href="pages/encoding.html">Encoding</a>
+      <a href="pages/audio.html">Audio</a>
+    </nav>
+    <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="js/utils.js"></script>
+<script>
+  // Navbar hamburger
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.navbar__nav');
+    if (hamburger && nav) hamburger.addEventListener('click', () => nav.classList.toggle('open'));
+  });
+</script>
+</body>
+</html>
