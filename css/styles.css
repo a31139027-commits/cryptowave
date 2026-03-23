@@ -758,3 +758,49 @@ input, textarea, select, .key-box, .drop-zone,
   width: 60px !important;
   text-align: center;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   DROPDOWN MENU
+   ═══════════════════════════════════════════════════════════ */
+.navbar__nav .dropdown {
+  position: relative;
+}
+.navbar__nav .dropdown > a {
+  display: flex; align-items: center; gap: 5px;
+}
+.dropdown__arrow {
+  font-size: 9px; opacity: 0.6;
+  transition: transform var(--transition);
+}
+.dropdown:hover .dropdown__arrow { transform: rotate(180deg); }
+
+.dropdown__menu {
+  display: none;
+  position: absolute; top: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  min-width: 180px;
+  z-index: 200;
+  white-space: nowrap;
+}
+.dropdown:hover .dropdown__menu { display: block; animation: fadeIn 0.15s ease; }
+
+.dropdown__menu a {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: var(--radius);
+  font-size: 0.8375rem; font-weight: 500;
+  color: var(--text-secondary); text-decoration: none;
+  transition: all var(--transition);
+}
+.dropdown__menu a:hover {
+  color: var(--accent); background: var(--accent-dim);
+}
+.dropdown__menu a.active { color: var(--accent); background: var(--accent-dim); }
+.dropdown__divider {
+  height: 1px; background: var(--border-subtle);
+  margin: 4px 6px;
+}

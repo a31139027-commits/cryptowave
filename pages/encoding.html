@@ -39,10 +39,15 @@
       <li><a href="tripledes.html">🔐 3DES</a></li>
       <li><a href="hash.html"># Hash</a></li>
       <li><a href="encoding.html" class="active">⇄ Encoding</a></li>
-      <li><a href="audio.html">🎵 Audio</a></li>
-      <li><a href="video.html">🎬 Video <span class="navbar__badge">New</span></a></li>
+      <li class="dropdown">
+        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu">
+          <a href="audio.html">🎵 Audio Converter</a>
+          <a href="video.html">🎬 Video Converter</a>
+        </div>
+      </li>
       <li><a href="password.html">🔑 Password</a></li>
-          <li><a href="qrcode.html">⬛ QR Code</a></li>
+      <li><a href="qrcode.html">⬛ QR Code</a></li>
     </ul>
     <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
       <span class="theme-toggle__icon">☀️</span>
