@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online DES encryption and decryption — CBC, ECB, CFB, OFB modes. Legacy compatibility tool. All processing is client-side." />
+  <title>DES Encryption / Decryption — CryptoWave</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="aes.html">🔒 AES</a></li>
+      <li><a href="rsa.html">🗝️ RSA</a></li>
+      <li><a href="des.html" class="active">🔓 DES</a></li>
+      <li><a href="tripledes.html">🔐 3DES</a></li>
+      <li><a href="hash.html"># Hash</a></li>
+      <li><a href="encoding.html">⇄ Encoding</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="password.html">🔑 Password</a></li>
+      <li><a href="qrcode.html">⬛ QR Code</a></li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">🔓 <span>DES</span> Encryption / Decryption</h1>
+      <p class="tool-header__sub">Data Encryption Standard — legacy symmetric cipher. Provided for compatibility with older systems.</p>
+    </div>
+
+    <div class="alert alert--warning">
+      <span class="alert__icon">⚠</span>
+      <div>
+        <strong>DES is cryptographically broken.</strong> Its 56-bit key is vulnerable to brute-force attacks. Use this tool only for <strong>legacy system compatibility</strong>. For new projects, always use <a href="aes.html" style="color:var(--orange);font-weight:600;">AES-256</a>.
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="panel">
+      <div class="panel__head">
+        <div class="panel__head-icon">⚙</div>
+        <div class="panel__head-title">Settings</div>
+        <div class="panel__head-badge">DES</div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="des-mode">Mode</label>
+          <select id="des-mode">
+            <option value="CBC" selected>CBC (Recommended)</option>
+            <option value="ECB">ECB (No IV)</option>
+            <option value="CFB">CFB</option>
+            <option value="OFB">OFB</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="des-format">Output Format</label>
+          <select id="des-format">
+            <option value="Base64" selected>Base64</option>
+            <option value="HEX">HEX</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Key -->
+      <div class="form-group">
+        <label for="des-key">Secret Key <span class="required">*</span></label>
+        <input type="text" id="des-key" placeholder="Enter 8-character key (DES requires exactly 8 bytes)" autocomplete="off" spellcheck="false" maxlength="8" />
+        <div class="char-count" style="margin-top:6px;"><span style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.75rem;">DES key must be exactly 8 characters (64 bits, 56 effective)</span></div>
+      </div>
+
+      <!-- IV -->
+      <div class="form-group" id="des-iv-group">
+        <label for="des-iv">IV (Initialization Vector)</label>
+        <div class="input-with-btn">
+          <input type="text" id="des-iv" placeholder="8 characters (leave empty to auto-generate)" autocomplete="off" spellcheck="false" maxlength="8" />
+          <button class="btn btn--icon" id="des-gen-iv" title="Generate random IV">⟳</button>
+        </div>
+        <div style="margin-top:6px;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);">Must match IV used during encryption for decryption to work</div>
+      </div>
+    </div>
+
+    <!-- Input -->
+    <div class="panel">
+      <div class="panel__head">
+        <div class="panel__head-icon">📝</div>
+        <div class="panel__head-title">Input</div>
+      </div>
+      <div class="form-group">
+        <label for="des-input">Plaintext / Ciphertext <span class="required">*</span></label>
+        <textarea id="des-input" placeholder="Enter text to encrypt, or ciphertext to decrypt…" rows="6" spellcheck="false"></textarea>
+        <div class="char-count" id="des-char-count">0 chars</div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn--primary" id="des-encrypt-btn">🔒 Encrypt</button>
+        <button class="btn btn--ghost" id="des-decrypt-btn">🔓 Decrypt</button>
+        <button class="btn btn--secondary" id="des-clear-btn">✕ Clear</button>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div class="panel">
+      <div class="output-header">
+        <span class="output-label">Output</span>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn--sm btn--icon" id="des-copy-btn">⎘ Copy</button>
+          <button class="btn btn--sm btn--icon" id="des-download-btn">⬇</button>
+        </div>
+      </div>
+      <div class="output-box output-box--large" id="des-output">
+        <span class="placeholder">Encrypted / decrypted result will appear here…</span>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="panel">
+      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">About DES</div></div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        The Data Encryption Standard (DES) was published by NIST in 1977 and was widely used until the late 1990s. It uses a 56-bit key and operates on 64-bit blocks. In 1999, it was publicly broken in under 24 hours using specialized hardware. DES was officially withdrawn as a standard in 2005 and replaced by AES. This tool uses <strong>CryptoJS</strong> to provide DES compatibility for legacy systems.
+      </p>
+      <div style="margin-top:16px;">
+        <a href="aes.html" class="btn btn--primary btn--sm">🔒 Switch to AES (Recommended)</a>
+        <a href="tripledes.html" class="btn btn--ghost btn--sm" style="margin-left:8px;">🔐 Try Triple DES</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><div class="footer__brand">Crypto<span>Wave</span></div><div class="footer__tagline">Free, private developer tools</div></div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a><a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a><a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a><a href="audio.html">Audio</a>
+    </nav>
+    <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/des.js"></script>
+</body>
+</html>
