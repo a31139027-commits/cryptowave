@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free QR Code generator and scanner — create QR codes from URLs, text, WiFi passwords, and contact cards. Scan QR code images instantly. 100% client-side." />
+  <title>QR Code Generator & Scanner — CryptoWave</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    /* QR Preview Box */
+    .qr-preview-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 280px; padding: 24px;
+      position: relative; overflow: hidden;
+    }
+    .qr-preview-box img {
+      max-width: 100%; border-radius: var(--radius);
+      display: none; /* shown via JS */
+      image-rendering: pixelated;
+    }
+    .qr-placeholder {
+      text-align: center; color: var(--text-muted);
+    }
+    .qr-placeholder-icon { font-size: 3rem; margin-bottom: 12px; display: block; }
+    .qr-placeholder-text { font-size: 0.875rem; }
+
+    /* Color pickers */
+    input[type="color"] {
+      width: 40px; height: 36px; padding: 2px;
+      border-radius: var(--radius); cursor: pointer;
+      background: var(--bg-input); border: 1px solid var(--border);
+    }
+    .color-row {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .color-row label { margin-bottom: 0; text-transform: none; font-size: 0.875rem; }
+
+    /* Scan preview */
+    #qr-scan-preview {
+      max-width: 200px; border-radius: var(--radius);
+      display: none; margin: 12px 0;
+      border: 1px solid var(--border);
+    }
+
+    /* WiFi / vCard preview */
+    #wifi-preview, #vcard-preview {
+      display: none; max-width: 200px;
+      border-radius: var(--radius); margin-top: 16px;
+      image-rendering: pixelated;
+    }
+
+    /* Two-column layout for generator */
+    .qr-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .qr-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="aes.html">🔒 AES</a></li>
+      <li><a href="rsa.html">🗝️ RSA</a></li>
+      <li><a href="hash.html"># Hash</a></li>
+      <li><a href="encoding.html">⇄ Encoding</a></li>
+      <li><a href="audio.html">🎵 Audio</a></li>
+      <li><a href="password.html">🔑 Password</a></li>
+      <li><a href="qrcode.html" class="active">⬛ QR Code <span class="navbar__badge">New</span></a></li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">⬛ <span>QR Code</span> Generator &amp; Scanner</h1>
+      <p class="tool-header__sub">Generate QR codes from URLs, text, WiFi passwords, and contact cards. Scan QR code images to extract content. All client-side.</p>
+    </div>
+
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-generate">Generate</button>
+        <button class="tab-btn" data-tab="tab-scan">Scan / Read</button>
+        <button class="tab-btn" data-tab="tab-wifi">WiFi</button>
+        <button class="tab-btn" data-tab="tab-vcard">Contact Card</button>
+      </div>
+
+      <!-- ── Generate Tab ── -->
+      <div class="tab-panel active" id="tab-generate">
+        <div class="qr-layout">
+          <!-- Left: Options -->
+          <div>
+            <div class="panel">
+              <div class="panel__head">
+                <div class="panel__head-icon">⬛</div>
+                <div class="panel__head-title">Content</div>
+              </div>
+
+              <div class="form-group">
+                <label for="qr-input">Text / URL <span class="required">*</span></label>
+                <textarea id="qr-input" rows="4" placeholder="Enter a URL, plain text, email, phone number…&#10;&#10;Examples:&#10;https://cryptowave-rouge.vercel.app&#10;Hello World!&#10;mailto:you@example.com" spellcheck="false"></textarea>
+                <div class="char-count" id="qr-char-count">0 / 900</div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="qr-size">Size</label>
+                  <select id="qr-size">
+                    <option value="128">128 × 128 px</option>
+                    <option value="256" selected>256 × 256 px</option>
+                    <option value="512">512 × 512 px</option>
+                    <option value="1024">1024 × 1024 px</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="qr-error-level">Error Correction</label>
+                  <select id="qr-error-level">
+                    <option value="L">L — 7% (Low)</option>
+                    <option value="M">M — 15%</option>
+                    <option value="Q">Q — 25%</option>
+                    <option value="H" selected>H — 30% (High)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Colors</label>
+                <div style="display:flex;gap:20px;flex-wrap:wrap;">
+                  <div class="color-row">
+                    <input type="color" id="qr-fg" value="#000000" />
+                    <label for="qr-fg">Foreground</label>
+                  </div>
+                  <div class="color-row">
+                    <input type="color" id="qr-bg" value="#ffffff" />
+                    <label for="qr-bg">Background</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-group">
+                <button class="btn btn--primary btn--lg" id="qr-generate-btn">⬛ Generate QR Code</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Preview -->
+          <div>
+            <div class="panel">
+              <div class="panel__head">
+                <div class="panel__head-icon">👁</div>
+                <div class="panel__head-title">Preview</div>
+              </div>
+              <div class="qr-preview-box">
+                <div class="qr-placeholder" id="qr-placeholder">
+                  <span class="qr-placeholder-icon">⬛</span>
+                  <div class="qr-placeholder-text">QR Code will<br/>appear here</div>
+                </div>
+                <img id="qr-preview" alt="Generated QR Code" />
+              </div>
+              <div class="btn-group" style="margin-top:12px;">
+                <button class="btn btn--success" id="qr-download-btn" disabled>⬇ Download PNG</button>
+                <button class="btn btn--ghost btn--sm" id="qr-copy-img">⎘ Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Scan Tab ── -->
+      <div class="tab-panel" id="tab-scan">
+        <div class="panel">
+          <div class="panel__head">
+            <div class="panel__head-icon">🔍</div>
+            <div class="panel__head-title">Scan QR Code Image</div>
+          </div>
+
+          <div class="alert alert--info">
+            <span class="alert__icon">ℹ</span>
+            <div>Upload a QR Code image to extract its content. Works with screenshots, photos, and downloaded QR codes.</div>
+          </div>
+
+          <div class="drop-zone" id="qr-scan-drop" style="padding:36px 24px;">
+            <div class="drop-zone__icon">🔍</div>
+            <div class="drop-zone__title">Drop QR Code image here</div>
+            <div class="drop-zone__sub">or click to browse</div>
+            <input type="file" id="qr-scan-input" accept="image/*" style="display:none;" />
+            <div class="drop-zone__formats">
+              <span class="format-badge">PNG</span>
+              <span class="format-badge">JPG</span>
+              <span class="format-badge">WebP</span>
+              <span class="format-badge">GIF</span>
+              <span class="format-badge">BMP</span>
+            </div>
+          </div>
+
+          <img id="qr-scan-preview" alt="Uploaded QR Code" />
+
+          <div class="output-header" style="margin-top:16px;">
+            <span class="output-label">Decoded Content</span>
+            <button class="btn btn--sm btn--icon" id="qr-scan-copy">⎘ Copy</button>
+          </div>
+          <div class="output-box output-box--large" id="qr-scan-result">
+            <span class="placeholder">Upload a QR code image to see its content…</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── WiFi Tab ── -->
+      <div class="tab-panel" id="tab-wifi">
+        <div class="panel">
+          <div class="panel__head">
+            <div class="panel__head-icon">📶</div>
+            <div class="panel__head-title">WiFi QR Code</div>
+          </div>
+          <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:20px;">
+            Generate a QR code that instantly connects devices to your WiFi — no typing required. Just scan and connect.
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="wifi-ssid">Network Name (SSID) <span class="required">*</span></label>
+              <input type="text" id="wifi-ssid" placeholder="MyHomeNetwork" autocomplete="off" />
+            </div>
+            <div class="form-group">
+              <label for="wifi-type">Security Type</label>
+              <select id="wifi-type">
+                <option value="WPA" selected>WPA / WPA2</option>
+                <option value="WEP">WEP (Legacy)</option>
+                <option value="nopass">None (Open)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="wifi-password">Password</label>
+            <input type="password" id="wifi-password" placeholder="Leave empty for open networks" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label class="check-item" style="text-transform:none;font-size:0.875rem;">
+              <input type="checkbox" id="wifi-hidden" />
+              <span class="check-item__box"></span>
+              Hidden network (does not broadcast SSID)
+            </label>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn--primary" id="wifi-generate-btn">📶 Generate WiFi QR Code</button>
+          </div>
+          <div style="text-align:center;">
+            <img id="wifi-preview" alt="WiFi QR Code" />
+            <div id="wifi-placeholder" style="color:var(--text-muted);font-size:0.875rem;margin-top:12px;"></div>
+            <div class="btn-group" style="justify-content:center;margin-top:12px;">
+              <button class="btn btn--success btn--sm" id="wifi-download" disabled>⬇ Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── vCard Tab ── -->
+      <div class="tab-panel" id="tab-vcard">
+        <div class="panel">
+          <div class="panel__head">
+            <div class="panel__head-icon">📇</div>
+            <div class="panel__head-title">Contact Card QR Code</div>
+          </div>
+          <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:20px;">
+            Generate a QR code with your contact info. Scanning it will offer to save the contact directly to the phone's address book.
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vcard-name">Full Name</label>
+              <input type="text" id="vcard-name" placeholder="John Smith" />
+            </div>
+            <div class="form-group">
+              <label for="vcard-org">Organization</label>
+              <input type="text" id="vcard-org" placeholder="Acme Corp" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vcard-phone">Phone</label>
+              <input type="text" id="vcard-phone" placeholder="+1 234 567 8900" />
+            </div>
+            <div class="form-group">
+              <label for="vcard-email">Email</label>
+              <input type="email" id="vcard-email" placeholder="you@example.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vcard-url">Website</label>
+              <input type="text" id="vcard-url" placeholder="https://example.com" />
+            </div>
+            <div class="form-group">
+              <label for="vcard-address">Address</label>
+              <input type="text" id="vcard-address" placeholder="123 Main St, City" />
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn--primary" id="vcard-generate-btn">📇 Generate Contact QR Code</button>
+          </div>
+          <div style="text-align:center;">
+            <img id="vcard-preview" alt="Contact QR Code" />
+            <div class="btn-group" style="justify-content:center;margin-top:12px;">
+              <button class="btn btn--success btn--sm" id="vcard-download" disabled>⬇ Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end tabs -->
+
+    <!-- Info -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">About QR Codes</div></div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        QR (Quick Response) codes can store up to ~3KB of text data. Higher error correction levels make the code more scannable even when partially damaged. This tool generates and scans QR codes entirely in your browser — your data never leaves your device.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">🔒 100% client-side</div>
+        <div class="security-note">✓ PNG download</div>
+        <div class="security-note">✓ WiFi &amp; vCard support</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div><div class="footer__brand">Crypto<span>Wave</span></div><div class="footer__tagline">Free, private developer tools</div></div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a><a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a><a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a><a href="password.html">Password</a>
+    </nav>
+    <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<!-- QR Code libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/qrcode.js"></script>
+</body>
+</html>
