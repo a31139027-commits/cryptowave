@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
+  <script>(function(){var t=localStorage.getItem('cw-theme');document.documentElement.setAttribute('data-theme',t||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'));})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="AES encryption and decryption online — GCM, CBC, CTR modes with 128/192/256-bit keys. All processing is client-side." />
   <title>AES Encryption / Decryption — CryptoWave</title>
@@ -10,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 </head>
 <body>
-<script defer src="/_vercel/insights/script.js"></script>
+
 <nav class="navbar">
   <div class="navbar__inner">
     <a href="../index.html" class="navbar__brand">
@@ -24,7 +25,12 @@
       <li><a href="hash.html"><span class="navbar__nav-icon">#</span> Hash</a></li>
       <li><a href="encoding.html"><span class="navbar__nav-icon">⇄</span> Encoding</a></li>
       <li><a href="audio.html"><span class="navbar__nav-icon">🎵</span> Audio</a></li>
+      <li><a href="password.html">🔑 Password <span class="navbar__badge">New</span></a></li>
     </ul>
+    <button class="theme-toggle" aria-label="Switch to light mode">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
     <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -147,6 +153,7 @@
 </footer>
 
 <script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
 <script src="../js/modules/aes.js"></script>
 <script>
   // Download button
