@@ -255,13 +255,45 @@
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/modules/encoding.js"></script>
-<script>
-  window.addEventListener('DOMContentLoaded', () => {
-    if (location.hash === '#hex')  document.querySelector('[data-tab="tab-hex"]')?.click();
-    if (location.hash === '#url')  document.querySelector('[data-tab="tab-url"]')?.click();
-    if (location.hash === '#jwt')  document.querySelector('[data-tab="tab-jwt"]')?.click();
-  });
-</script>
+
 <script defer src="/_vercel/insights/script.js"></script>
+
+<script>
+// Handle dropdown hash navigation — switch tabs without page reload
+(function() {
+  function switchToHash(hash) {
+    if (!hash) return;
+    var tabId = hash.replace('#', '');
+    // Check if it maps to a tab
+    var tabBtn = document.querySelector('[data-tab="' + tabId + '"]');
+    if (tabBtn) { tabBtn.click(); return; }
+    // Try direct element scroll
+    var el = document.getElementById(tabId);
+    if (el) el.scrollIntoView({behavior:'smooth'});
+  }
+
+  // On load
+  document.addEventListener('DOMContentLoaded', function() {
+    if (location.hash) switchToHash(location.hash);
+  });
+
+  // Intercept all navbar dropdown links that point to THIS page
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || !href.includes('#')) return;
+    // Same page link?
+    var pagePart = href.split('#')[0];
+    var hashPart = '#' + href.split('#')[1];
+    var currentPage = location.pathname.split('/').pop();
+    if (pagePart === '' || pagePart === currentPage || href.startsWith('#')) {
+      e.preventDefault();
+      history.pushState(null, '', hashPart);
+      switchToHash(hashPart);
+    }
+  });
+})();
+</script>
 </body>
 </html>
