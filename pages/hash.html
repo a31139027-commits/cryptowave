@@ -22,12 +22,37 @@
     <a href="../index.html" class="navbar__brand"><div class="navbar__brand-icon">🔐</div>Crypto<span>Wave</span></a>
     <ul class="navbar__nav">
       <li><a href="../index.html">🏠 Home</a></li>
-      <li><a href="aes.html">🔒 AES</a></li>
-      <li><a href="rsa.html">🗝️ RSA</a></li>
-      <li><a href="des.html">🔓 DES</a></li>
-      <li><a href="tripledes.html">🔐 3DES</a></li>
-      <li><a href="hash.html" class="active"># Hash</a></li>
-      <li><a href="encoding.html">⇄ Encoding</a></li>
+
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="hash.html" class="active"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="hash.html" class="active">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="hash.html#tab-bcrypt">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+
       <li class="dropdown">
         <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
@@ -35,6 +60,7 @@
           <a href="video.html">🎬 Video Converter</a>
         </div></div>
       </li>
+
       <li class="dropdown">
         <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
@@ -43,8 +69,14 @@
           <a href="image.html#pdf">📄 Image to PDF</a>
         </div></div>
       </li>
-      <li><a href="password.html">🔑 Password</a></li>
-      <li><a href="qrcode.html">⬛ QR Code</a></li>
+
+      <li class="dropdown">
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+        </div></div>
+      </li>
     </ul>
     <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
       <span class="theme-toggle__icon">☀️</span>
