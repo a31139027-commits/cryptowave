@@ -101,25 +101,33 @@ const AESModule = (() => {
     requireCryptoJS();
     const {ivStr='', outputFormat='Base64'} = opts;
     const keyBytes = parseKeyInput(keyStr, keyLen);
-    const ivBuf = parseIVBytes(ivStr, 16);
-    const iv = ivBuf || (() => { const b=new Uint8Array(16); crypto.getRandomValues(b); return b; })();
+
+    // Use IV as UTF-8 string (same as anycrypt.com / CryptoJS default behaviour)
+    // Auto-generate: 16 printable ASCII chars so it can be pasted into any tool
+    const ivString = ivStr.trim() || generateAsciiIV(16);
+    const cjsIV = window.CryptoJS.enc.Utf8.parse(ivString.substring(0, 16).padEnd(16, '0'));
+
     const enc = window.CryptoJS.AES.encrypt(text, toCJS(keyBytes),
-      {iv: toCJS(iv), mode: window.CryptoJS.mode.CBC, padding: window.CryptoJS.pad.Pkcs7});
-    return { result: toOutputFormat(fromCJS(enc.ciphertext).buffer, outputFormat), iv: Utils.bufToHex(iv) };
+      {iv: cjsIV, mode: window.CryptoJS.mode.CBC, padding: window.CryptoJS.pad.Pkcs7});
+    return { result: toOutputFormat(fromCJS(enc.ciphertext).buffer, outputFormat), iv: ivString.substring(0, 16).padEnd(16, '0') };
   }
 
   function decryptCBC(cipherStr, keyStr, keyLen=256, opts={}) {
     requireCryptoJS();
     const {ivStr='', inputFormat='Base64'} = opts;
     const keyBytes = parseKeyInput(keyStr, keyLen);
-    const ivBuf = parseIVBytes(ivStr, 16);
-    const iv = ivBuf || new Uint8Array(16);
+
+    // Parse IV as UTF-8 string — same as anycrypt.com
+    // Zero IV if not provided (matches anycrypt.com when IV field is empty)
+    const ivString = ivStr.trim() || '0000000000000000';
+    const cjsIV = window.CryptoJS.enc.Utf8.parse(ivString.substring(0, 16).padEnd(16, '0'));
+
     const cwa = inputFormat==='HEX'
       ? window.CryptoJS.enc.Hex.parse(cipherStr.trim())
       : window.CryptoJS.enc.Base64.parse(cipherStr.trim());
     const dec = window.CryptoJS.AES.decrypt(
       window.CryptoJS.lib.CipherParams.create({ciphertext: cwa}),
-      toCJS(keyBytes), {iv: toCJS(iv), mode: window.CryptoJS.mode.CBC, padding: window.CryptoJS.pad.Pkcs7}
+      toCJS(keyBytes), {iv: cjsIV, mode: window.CryptoJS.mode.CBC, padding: window.CryptoJS.pad.Pkcs7}
     );
     const r = dec.toString(window.CryptoJS.enc.Utf8);
     if (!r) throw new Error('Decryption failed — check key, IV, and input.');
@@ -188,6 +196,13 @@ const AESModule = (() => {
     const len = mode==='GCM' ? 12 : 16;
     const b = new Uint8Array(len); crypto.getRandomValues(b);
     return format==='base64' ? Utils.bufToBase64(b.buffer) : Utils.bufToHex(b);
+  }
+
+  // Generate a 16-char printable ASCII IV (compatible with anycrypt.com text input)
+  function generateAsciiIV(len=16) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    const arr = new Uint8Array(len); crypto.getRandomValues(arr);
+    return Array.from(arr).map(b => chars[b % chars.length]).join('');
   }
 
   /* ── UI ───────────────────────────────────────────────── */

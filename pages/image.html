@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Free online image tools — compress images, convert between JPG, PNG, WebP, GIF formats, and convert images to PDF. 100% client-side, no uploads." />
+  <title>Image Tools — Compress, Convert & PDF — CryptoWave</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <style>
+    .img-preview-grid {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 14px;
+    }
+    .quality-row {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .quality-row input[type="range"] {
+      flex: 1; -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 99px;
+      background: var(--border-strong); border: none;
+      padding: 0; cursor: pointer; outline: none;
+    }
+    .quality-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim); cursor: pointer;
+    }
+    .quality-val {
+      font-family: var(--font-mono); font-size: 1rem;
+      font-weight: 700; color: var(--accent);
+      min-width: 44px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li><a href="aes.html">🔒 AES</a></li>
+      <li><a href="rsa.html">🗝️ RSA</a></li>
+      <li><a href="des.html">🔓 DES</a></li>
+      <li><a href="tripledes.html">🔐 3DES</a></li>
+      <li><a href="hash.html"># Hash</a></li>
+      <li><a href="encoding.html">⇄ Encoding</a></li>
+      <li class="dropdown">
+        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="audio.html">🎵 Audio Converter</a>
+          <a href="video.html">🎬 Video Converter</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="image.html" class="active">🖼️ Image <span class="navbar__badge">New</span> <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html" class="active">🗜️ Compress Image</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+        </div></div>
+      </li>
+      <li><a href="password.html">🔑 Password</a></li>
+      <li><a href="qrcode.html">⬛ QR Code</a></li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">🖼️ <span>Image</span> Tools</h1>
+      <p class="tool-header__sub">Compress images, convert between formats, and create PDFs — all in your browser. No uploads, no servers.</p>
+    </div>
+
+    <div class="tabs-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="tab-compress">🗜️ Compress</button>
+        <button class="tab-btn" data-tab="tab-convert">⇄ Convert Format</button>
+        <button class="tab-btn" data-tab="tab-pdf">📄 Image to PDF</button>
+      </div>
+
+      <!-- ── Compress Tab ── -->
+      <div class="tab-panel active" id="tab-compress">
+        <div class="drop-zone" id="img-drop-zone" style="padding:36px 24px;">
+          <div class="drop-zone__icon">🗜️</div>
+          <div class="drop-zone__title">Drop images here to compress</div>
+          <div class="drop-zone__sub">or click to browse</div>
+          <input type="file" id="img-file-input" multiple accept="image/*" style="display:none;" />
+          <div class="drop-zone__formats">
+            <span class="format-badge">JPG</span>
+            <span class="format-badge">PNG</span>
+            <span class="format-badge">WebP</span>
+            <span class="format-badge">GIF</span>
+            <span class="format-badge">BMP</span>
+          </div>
+        </div>
+
+        <div id="img-preview" class="img-preview-grid"></div>
+
+        <div class="panel" style="margin-top:16px;">
+          <div class="panel__head">
+            <div class="panel__head-icon">⚙</div>
+            <div class="panel__head-title">Compression Settings</div>
+          </div>
+
+          <div class="form-group">
+            <label>Quality</label>
+            <div class="quality-row">
+              <input type="range" id="img-quality" min="0.1" max="1" step="0.05" value="0.8" />
+              <span class="quality-val" id="img-quality-val">80%</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="img-output-format">Output Format</label>
+              <select id="img-output-format">
+                <option value="jpg" selected>JPG (smallest)</option>
+                <option value="png">PNG (lossless)</option>
+                <option value="webp">WebP (best ratio)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="img-max-width">Max Width / Height (px)</label>
+              <select id="img-max-width">
+                <option value="3840">Original (no resize)</option>
+                <option value="1920" selected>1920px (FHD)</option>
+                <option value="1280">1280px (HD)</option>
+                <option value="800">800px (Web)</option>
+                <option value="400">400px (Thumbnail)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn--primary btn--lg" id="img-compress-btn" disabled>🗜️ Compress Images</button>
+          </div>
+        </div>
+
+        <div id="img-results" style="margin-top:14px;"></div>
+      </div>
+
+      <!-- ── Convert Tab ── -->
+      <div class="tab-panel" id="tab-convert">
+        <div class="drop-zone" id="conv-drop-zone" style="padding:36px 24px;">
+          <div class="drop-zone__icon">⇄</div>
+          <div class="drop-zone__title">Drop images to convert format</div>
+          <div class="drop-zone__sub">or click to browse</div>
+          <input type="file" id="conv-file-input" multiple accept="image/*" style="display:none;" />
+          <div class="drop-zone__formats">
+            <span class="format-badge">JPG → PNG</span>
+            <span class="format-badge">PNG → WebP</span>
+            <span class="format-badge">WebP → JPG</span>
+            <span class="format-badge">Any → Any</span>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:16px;">
+          <div class="panel__head">
+            <div class="panel__head-icon">⚙</div>
+            <div class="panel__head-title">Conversion Settings</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="conv-format">Output Format</label>
+              <select id="conv-format">
+                <option value="jpg" selected>JPG</option>
+                <option value="png">PNG (lossless)</option>
+                <option value="webp">WebP</option>
+                <option value="bmp">BMP</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quality (JPG / WebP)</label>
+              <div class="quality-row">
+                <input type="range" id="conv-quality" min="0.1" max="1" step="0.05" value="0.92" />
+                <span class="quality-val" id="conv-quality-val">92%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn--primary btn--lg" id="conv-btn" disabled>⇄ Convert Images</button>
+          </div>
+        </div>
+
+        <div id="conv-results" style="margin-top:14px;"></div>
+      </div>
+
+      <!-- ── PDF Tab ── -->
+      <div class="tab-panel" id="tab-pdf">
+        <div class="alert alert--info">
+          <span class="alert__icon">ℹ</span>
+          <div>Upload multiple images to combine them into a single PDF. Each image becomes one page. Drag to reorder before converting.</div>
+        </div>
+
+        <div class="drop-zone" id="pdf-drop-zone" style="padding:36px 24px;">
+          <div class="drop-zone__icon">📄</div>
+          <div class="drop-zone__title">Drop images to convert to PDF</div>
+          <div class="drop-zone__sub">Multiple images = multiple pages</div>
+          <input type="file" id="pdf-file-input" multiple accept="image/*" style="display:none;" />
+          <div class="drop-zone__formats">
+            <span class="format-badge">JPG</span>
+            <span class="format-badge">PNG</span>
+            <span class="format-badge">WebP</span>
+            <span class="format-badge">GIF</span>
+          </div>
+        </div>
+
+        <div id="pdf-file-list" class="file-list"></div>
+
+        <div class="panel" style="margin-top:16px;">
+          <div class="panel__head">
+            <div class="panel__head-icon">⚙</div>
+            <div class="panel__head-title">PDF Settings</div>
+          </div>
+
+          <div class="options-grid">
+            <div class="form-group">
+              <label for="pdf-page-size">Page Size</label>
+              <select id="pdf-page-size">
+                <option value="a4" selected>A4</option>
+                <option value="a3">A3</option>
+                <option value="letter">Letter (US)</option>
+                <option value="legal">Legal (US)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pdf-orientation">Orientation</label>
+              <select id="pdf-orientation">
+                <option value="auto" selected>Auto (per image)</option>
+                <option value="portrait">Portrait</option>
+                <option value="landscape">Landscape</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pdf-margin">Margin (mm)</label>
+              <select id="pdf-margin">
+                <option value="0">No margin</option>
+                <option value="10" selected>10mm</option>
+                <option value="20">20mm</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn--primary btn--lg" id="pdf-btn" disabled>📄 Create PDF</button>
+          </div>
+        </div>
+
+        <div id="pdf-results" style="margin-top:14px;"></div>
+      </div>
+
+    </div>
+
+    <!-- Info -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">How It Works</div></div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        All image processing uses the browser's native <strong>Canvas API</strong>. Your images are never uploaded to any server — everything runs locally. The PDF feature uses <strong>jsPDF</strong>, an open-source JavaScript library.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">🔒 Canvas API</div>
+        <div class="security-note">✓ Files never leave device</div>
+        <div class="security-note">✓ No file size limits</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="des.html">DES</a>
+      <a href="tripledes.html">3DES</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+    </nav>
+    <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<!-- jsPDF for Image to PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/image.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  // Handle hash navigation to tabs
+  window.addEventListener('DOMContentLoaded', () => {
+    if (location.hash === '#convert') document.querySelector('[data-tab="tab-convert"]')?.click();
+    if (location.hash === '#pdf')     document.querySelector('[data-tab="tab-pdf"]')?.click();
+  });
+</script>
+</body>
+</html>

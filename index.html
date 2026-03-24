@@ -40,6 +40,14 @@
           <a href="pages/video.html">🎬 Video Converter</a>
         </div></div>
       </li>
+      <li class="dropdown">
+        <a href="pages/image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="pages/image.html">🗜️ Compress</a>
+          <a href="pages/image.html#convert">⇄ Convert Format</a>
+          <a href="pages/image.html#pdf">📄 Image to PDF</a>
+        </div></div>
+      </li>
       <li><a href="pages/password.html">🔑 Password</a></li>
       <li><a href="pages/qrcode.html">⬛ QR Code</a></li>
     </ul>
@@ -282,6 +290,44 @@
       </a>
     </div>
 
+    <!-- Image Tools -->
+    <div class="section-head" style="margin-top:48px;">
+      <h2 class="section-head__title">🖼️ <span>Image</span> Tools</h2>
+      <div class="section-head__line"></div>
+    </div>
+    <div class="tools-grid">
+      <a href="pages/image.html" class="tool-card">
+        <div class="tool-card__icon">🗜️</div>
+        <div class="tool-card__name">Image Compressor</div>
+        <p class="tool-card__desc">Compress JPG, PNG, and WebP images with custom quality and max resolution. See exactly how much space you save before downloading.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--accent">Canvas API</span>
+          <span class="tool-card__tag">JPG · PNG · WebP</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/image.html#convert" class="tool-card">
+        <div class="tool-card__icon">⇄</div>
+        <div class="tool-card__name">Image Format Converter</div>
+        <p class="tool-card__desc">Convert between JPG, PNG, WebP, and BMP formats. Batch convert multiple images at once with custom quality settings.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--green">PNG → WebP</span>
+          <span class="tool-card__tag">JPG → PNG</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/image.html#pdf" class="tool-card">
+        <div class="tool-card__icon">📄</div>
+        <div class="tool-card__name">Image to PDF</div>
+        <p class="tool-card__desc">Combine multiple images into a single PDF document. Choose page size, orientation, and margin. Each image becomes one page.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--accent">jsPDF</span>
+          <span class="tool-card__tag">A4 · Letter · A3</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+    </div>
+
     <!-- Password -->
     <div class="section-head" style="margin-top:48px;">
       <h2 class="section-head__title">🔑 <span>Password</span> Generator</h2>
@@ -360,17 +406,24 @@
 
 <!-- ══ Footer ══════════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="footer__inner">
+    <div class="footer__inner">
     <div>
       <div class="footer__brand">Crypto<span>Wave</span></div>
       <div class="footer__tagline">Free, private developer tools</div>
     </div>
     <nav class="footer__links">
+      <a href="index.html">Home</a>
       <a href="pages/aes.html">AES</a>
       <a href="pages/rsa.html">RSA</a>
+      <a href="pages/des.html">DES</a>
+      <a href="pages/tripledes.html">3DES</a>
       <a href="pages/hash.html">Hash</a>
       <a href="pages/encoding.html">Encoding</a>
       <a href="pages/audio.html">Audio</a>
+      <a href="pages/video.html">Video</a>
+      <a href="pages/image.html">Image</a>
+      <a href="pages/password.html">Password</a>
+      <a href="pages/qrcode.html">QR Code</a>
     </nav>
     <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
   </div>
