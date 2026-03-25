@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Word Counter Online — Count Words, Characters & More | CryptoWave</title>
-  <meta name="description" content="Free online word counter. Count words, characters, sentences, paragraphs, and lines instantly as you type. Includes reading time and speaking time estimates." />
-  <meta name="keywords" content="word counter, character counter, word count online, count words online, words and characters, letter counter, text counter, how many words" />
+  <title>Text to Speech Online Free — Browser TTS Tool | CryptoWave</title>
+  <meta name="description" content="Convert text to speech instantly in your browser. Choose from system voices, adjust speed, pitch and volume. No upload, no server — 100% client-side Web Speech API." />
+  <meta name="keywords" content="text to speech online, TTS free, browser text to speech, web speech API, read aloud online, convert text to audio" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/word-count.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/tts.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/word-count.html" />
-  <meta property="og:title"       content="Word Counter Online — Count Words, Characters & More" />
-  <meta property="og:description" content="Count words, characters, sentences and paragraphs in real time. Includes reading and speaking time estimates." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/tts.html" />
+  <meta property="og:title"       content="Text to Speech Online Free — Browser TTS Tool" />
+  <meta property="og:description" content="Convert text to speech in your browser. Choose voices, adjust speed, pitch and volume. 100% client-side — no upload required." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Word Counter Online — Count Words, Characters & More" />
-  <meta name="twitter:description" content="Count words, characters, sentences and paragraphs in real time. Free and instant." />
+  <meta name="twitter:title"       content="Text to Speech Online Free — Browser TTS Tool" />
+  <meta name="twitter:description" content="Convert text to speech in your browser. Choose voices, adjust speed and pitch. No upload required." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,23 +39,21 @@
     })();
   </script>
   <style>
-    .wc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 16px; }
-    .wc-card { background: var(--input-bg); border: 1px solid var(--border); border-radius: 12px; padding: 14px 10px; text-align: center; }
-    .wc-card--highlight { border-color: rgba(var(--accent-rgb),.4); }
-    .wc-card__value { font-family: var(--font-head); font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
-    .wc-card--highlight .wc-card__value { font-size: 2.2rem; }
-    .wc-card__label { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
-    .wc-time-row { display: flex; gap: 12px; margin-top: 12px; }
-    .wc-time-card { flex: 1; background: var(--input-bg); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; }
-    .wc-time-icon { font-size: 1.25rem; }
-    .wc-time-label { font-size: 0.75rem; color: var(--text-muted); }
-    .wc-time-value { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
-    .wc-top-words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .wc-word-tag { background: rgba(var(--accent-rgb),.1); border: 1px solid rgba(var(--accent-rgb),.25); border-radius: 20px; padding: 4px 10px; font-size: 0.8rem; color: var(--text-primary); }
-    .wc-word-count { font-weight: 700; color: var(--accent); margin-left: 4px; }
-    .wc-textarea { width: 100%; min-height: 240px; resize: vertical; font-size: 0.9rem; line-height: 1.65; }
-    .wc-actions { display: flex; gap: 10px; margin-top: 12px; }
-    @media (max-width: 480px) { .wc-time-row { flex-direction: column; } }
+    .tts-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 560px) { .tts-controls { grid-template-columns: 1fr; } }
+    .range-row { display: flex; align-items: center; gap: 10px; }
+    .range-row input[type=range] { flex: 1; accent-color: var(--accent); }
+    .range-val { font-family: var(--font-head); font-weight: 700; color: var(--accent); min-width: 44px; text-align: right; font-size: 0.9rem; }
+    .tts-btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .tts-btn-row .btn { flex: 1; min-width: 100px; }
+    .tts-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .tts-status--speaking { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .tts-status--done     { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .tts-status--error    { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    .tts-status--paused   { color: #f59e0b; border-color: rgba(245,158,11,.4); background: rgba(245,158,11,.06); }
+    .progress-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+    .progress-bar  { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .3s; }
+    .char-count { font-size: 0.75rem; color: var(--text-muted); text-align: right; margin-top: 4px; }
   </style>
 <script type="application/ld+json">
 {
@@ -63,19 +61,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Word Counter",
-      "url": "https://cryptowave-rouge.vercel.app/pages/word-count.html",
-      "description": "Free online word counter. Count words, characters, sentences, paragraphs, and lines instantly as you type. Includes reading time and speaking time estimates.",
+      "name": "Text to Speech",
+      "url": "https://cryptowave-rouge.vercel.app/pages/tts.html",
+      "description": "Convert text to speech instantly in your browser using the Web Speech API. Choose from system voices, adjust speed, pitch and volume. No upload required.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Word count", "Character count", "Sentence count", "Paragraph count", "Reading time estimate", "Speaking time estimate", "Top word frequency"]
+      "featureList": ["Multiple system voices", "Adjustable speed and pitch", "Volume control", "Pause and resume", "100% client-side"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "Word Counter", "item": "https://cryptowave-rouge.vercel.app/pages/word-count.html" }
+        { "@type": "ListItem", "position": 2, "name": "Text to Speech", "item": "https://cryptowave-rouge.vercel.app/pages/tts.html" }
       ]
     },
     {
@@ -83,18 +81,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I count words online?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Paste or type your text into the box above. The word count, character count, sentence count, and more update instantly as you type — no button needed." }
+          "name": "How does the text to speech tool work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "This tool uses the Web Speech API built into your browser to convert text to spoken audio. No files are uploaded — everything runs locally on your device." }
         },
         {
           "@type": "Question",
-          "name": "How is reading time calculated?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Reading time is estimated at an average adult reading speed of 238 words per minute. Speaking time uses an average speaking pace of 130 words per minute." }
+          "name": "Which voices are available?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The available voices depend on your operating system and browser. Most devices provide several voices in different languages. Chrome typically offers the most voices via Google's TTS engine." }
         },
         {
           "@type": "Question",
-          "name": "Does the word counter include spaces in the character count?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, the tool shows two character counts: one including spaces and one excluding spaces, so you can choose whichever you need." }
+          "name": "Can I download the audio output?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Web Speech API plays audio directly — it does not expose a downloadable audio stream. To record the output, use your operating system's audio recording feature or a screen recorder." }
         }
       ]
     }
@@ -156,7 +154,7 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="word-count.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <a href="tts.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="password.html">🔑 Password Generator</a>
           <a href="qrcode.html">⬛ QR Code</a>
@@ -166,8 +164,8 @@
           <div class="dropdown__divider"></div>
           <a href="pdf-merge.html">📎 PDF Merger</a>
           <a href="pdf-split.html">✂️ PDF Splitter</a>
-          <a href="tts.html">🔊 Text to Speech</a>
-          <a href="word-count.html" class="active">📝 Word Counter</a>
+          <a href="tts.html" class="active">🔊 Text to Speech</a>
+          <a href="word-count.html">📝 Word Counter</a>
           <a href="base-convert.html">🔢 Base Converter</a>
           <a href="color-convert.html">🎨 Color Converter</a>
         </div></div>
@@ -186,92 +184,68 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">📝 <span>Word Counter</span></h1>
-      <p class="tool-header__sub">Count words, characters, sentences and paragraphs in real time as you type.</p>
+      <h1 class="tool-header__title">🔊 <span>Text to Speech</span></h1>
+      <p class="tool-header__sub">Convert text to spoken audio using your browser's built-in voices. Adjust speed, pitch and volume — no upload required.</p>
     </div>
 
-    <!-- Input Panel -->
+    <!-- Text Input Panel -->
     <div class="panel">
       <div class="panel__head">
-        <div class="panel__head-icon">✏️</div>
-        <div class="panel__head-title">Your Text</div>
+        <div class="panel__head-icon">📝</div>
+        <div class="panel__head-title">Text Input</div>
       </div>
 
-      <textarea
-        id="wc-input"
-        class="input wc-textarea"
-        placeholder="Type or paste your text here…"
-        spellcheck="true"
-      ></textarea>
-
-      <div class="wc-actions">
-        <button class="btn btn--ghost btn--sm" id="wc-copy-btn">📋 Copy</button>
-        <button class="btn btn--ghost btn--sm" id="wc-clear-btn">🗑 Clear</button>
-      </div>
+      <textarea id="tts-text" class="input" rows="7" placeholder="Type or paste your text here…" style="resize:vertical;"></textarea>
+      <div class="char-count" id="tts-char-count">0 chars</div>
     </div>
 
-    <!-- Stats Panel -->
+    <!-- Settings Panel -->
     <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
-        <div class="panel__head-icon">📊</div>
-        <div class="panel__head-title">Statistics</div>
+        <div class="panel__head-icon">⚙️</div>
+        <div class="panel__head-title">Voice Settings</div>
       </div>
 
-      <div class="wc-grid">
-        <div class="wc-card wc-card--highlight">
-          <div class="wc-card__value" id="wc-words">0</div>
-          <div class="wc-card__label">Words</div>
-        </div>
-        <div class="wc-card wc-card--highlight">
-          <div class="wc-card__value" id="wc-chars">0</div>
-          <div class="wc-card__label">Characters</div>
-        </div>
-        <div class="wc-card">
-          <div class="wc-card__value" id="wc-chars-ns">0</div>
-          <div class="wc-card__label">No Spaces</div>
-        </div>
-        <div class="wc-card">
-          <div class="wc-card__value" id="wc-sentences">0</div>
-          <div class="wc-card__label">Sentences</div>
-        </div>
-        <div class="wc-card">
-          <div class="wc-card__value" id="wc-paragraphs">0</div>
-          <div class="wc-card__label">Paragraphs</div>
-        </div>
-        <div class="wc-card">
-          <div class="wc-card__value" id="wc-lines">0</div>
-          <div class="wc-card__label">Lines</div>
-        </div>
+      <div style="margin-bottom:16px;">
+        <label class="form-label">VOICE</label>
+        <select id="tts-voice" class="input"></select>
       </div>
 
-      <div class="wc-time-row">
-        <div class="wc-time-card">
-          <div class="wc-time-icon">👁</div>
-          <div>
-            <div class="wc-time-label">Reading time</div>
-            <div class="wc-time-value" id="wc-read-time">—</div>
+      <div class="tts-controls">
+        <div>
+          <label class="form-label">SPEED</label>
+          <div class="range-row">
+            <input type="range" id="tts-rate" min="0.5" max="2" step="0.1" value="1" />
+            <span class="range-val" id="tts-rate-val">1.0x</span>
           </div>
         </div>
-        <div class="wc-time-card">
-          <div class="wc-time-icon">🎙</div>
-          <div>
-            <div class="wc-time-label">Speaking time</div>
-            <div class="wc-time-value" id="wc-speak-time">—</div>
+        <div>
+          <label class="form-label">PITCH</label>
+          <div class="range-row">
+            <input type="range" id="tts-pitch" min="0" max="2" step="0.1" value="1" />
+            <span class="range-val" id="tts-pitch-val">1.0</span>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">VOLUME</label>
+          <div class="range-row">
+            <input type="range" id="tts-volume" min="0" max="1" step="0.05" value="1" />
+            <span class="range-val" id="tts-volume-val">100%</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Top Words Panel -->
-    <div class="panel" style="margin-top:16px;">
-      <div class="panel__head">
-        <div class="panel__head-icon">🔤</div>
-        <h2 class="panel__head-title">Top Keywords</h2>
+      <div class="tts-btn-row">
+        <button class="btn btn--primary btn--lg" id="tts-speak-btn">▶ Speak</button>
+        <button class="btn btn--ghost" id="tts-pause-btn">⏸ Pause</button>
+        <button class="btn btn--ghost" id="tts-resume-btn">⏵ Resume</button>
+        <button class="btn btn--ghost" id="tts-stop-btn" style="max-width:110px;">⏹ Stop</button>
       </div>
-      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px;">Most frequent words (common stop words excluded)</p>
-      <div class="wc-top-words" id="wc-top-words">
-        <span style="color:var(--text-muted);font-size:0.85rem;">—</span>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="tts-progress"></div>
       </div>
+      <div class="tts-status" id="tts-status">Ready.</div>
     </div>
 
     <!-- About Panel -->
@@ -281,11 +255,11 @@
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        All counting happens instantly in your browser as you type. Reading time is estimated at <strong>238 words per minute</strong> (average adult reading speed). Speaking time uses <strong>130 words per minute</strong>. Your text is never sent anywhere.
+        This tool uses the <strong>Web Speech API</strong> built into modern browsers to synthesize speech from text. All processing is local — nothing is sent to any server. The available voices depend on your operating system; Chrome typically offers the most via Google's TTS engine. Voice settings are saved between sessions.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
-        <div class="security-note">⚡ Real-time counting</div>
-        <div class="security-note">🔤 Keyword frequency</div>
+        <div class="security-note">🔊 System voices</div>
+        <div class="security-note">⚡ Instant playback</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -325,7 +299,7 @@
 
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
-<script src="../js/modules/word-count.js"></script>
+<script src="../js/modules/tts.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
