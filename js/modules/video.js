@@ -289,6 +289,7 @@ const VideoModule = (() => {
             </div>
             <a href="${url}" download="${outName}" class="btn btn--success btn--sm">⬇ Download</a>
           `;
+          item.querySelector('a').addEventListener('click', () => setTimeout(() => URL.revokeObjectURL(url), 10000));
           resultList.appendChild(item);
         } catch (err) {
           const item = document.createElement('div');

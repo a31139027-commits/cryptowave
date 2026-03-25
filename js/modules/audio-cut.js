@@ -120,8 +120,8 @@
   }
 
   previewBtn.addEventListener('click', () => {
-    if (!audioBuffer) return;
-    if (sourceNode) { sourceNode.stop(); sourceNode = null; }
+    if (!audioBuffer || audioCtx.state === 'closed') return;
+    if (sourceNode) { try { sourceNode.stop(); } catch (_) {} sourceNode = null; }
     const { start, end } = getRange();
     sourceNode = audioCtx.createBufferSource();
     sourceNode.buffer = audioBuffer;
@@ -143,7 +143,8 @@
   });
 
   cutBtn.addEventListener('click', () => {
-    if (!audioBuffer) return;
+    if (!audioBuffer || cutBtn.disabled) return;
+    cutBtn.disabled = true;
     const { start, end } = getRange();
     const sr = audioBuffer.sampleRate;
     const ch = audioBuffer.numberOfChannels;
@@ -157,7 +158,6 @@
       newBuf.copyToChannel(audioBuffer.getChannelData(c).slice(startSample, endSample), c);
     }
 
-    const outFormat = formatSel.value; // 'wav' or 'mp3-wav'
     setStatus('Encoding…', 'working');
 
     // Encode to WAV (universal, no extra lib needed)
@@ -172,6 +172,7 @@
     a.click();
     setTimeout(() => URL.revokeObjectURL(url), 5000);
     setStatus('Downloaded: ' + a.download, 'done');
+    cutBtn.disabled = false;
   });
 
   function encodeWav(buffer) {

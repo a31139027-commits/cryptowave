@@ -192,6 +192,7 @@ const QRModule = (() => {
     async function processFile(file) {
       if (!file.type.startsWith('image/')) { Utils.showToast('⚠ Please upload an image file'); return; }
       const url = URL.createObjectURL(file);
+      scanPreview.onload = () => URL.revokeObjectURL(url);
       scanPreview.src = url;
       scanPreview.style.display = 'block';
       scanResult.className = 'output-box output-box--large';

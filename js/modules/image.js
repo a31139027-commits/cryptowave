@@ -205,6 +205,7 @@ const ImageModule = (() => {
         const wrap = document.createElement('div');
         wrap.style.cssText = 'position:relative;display:inline-block;';
         const img = document.createElement('img');
+        img.onload = () => URL.revokeObjectURL(url);
         img.src = url;
         img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid var(--border);';
         const lbl = document.createElement('div');
@@ -247,6 +248,7 @@ const ImageModule = (() => {
             </div>
             <a href="${url}" download="${outName}" class="btn btn--success btn--sm">⬇ Download</a>
           `;
+          item.querySelector('a').addEventListener('click', () => setTimeout(() => URL.revokeObjectURL(url), 10000));
           results.appendChild(item);
         } catch (err) {
           const item = document.createElement('div');
@@ -324,6 +326,7 @@ const ImageModule = (() => {
             </div>
             <a href="${url}" download="${outName}" class="btn btn--success btn--sm">⬇ Download</a>
           `;
+          item.querySelector('a').addEventListener('click', () => setTimeout(() => URL.revokeObjectURL(url), 10000));
           results.appendChild(item);
         } catch (err) {
           const item = document.createElement('div');
@@ -417,6 +420,7 @@ const ImageModule = (() => {
           </div>
           <a href="${url}" download="${name}" class="btn btn--success btn--sm">⬇ Download PDF</a>
         `;
+        item.querySelector('a').addEventListener('click', () => setTimeout(() => URL.revokeObjectURL(url), 10000));
         results.appendChild(item);
       } catch (err) {
         Utils.showToast(`✗ ${err.message}`);
