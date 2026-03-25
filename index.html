@@ -74,7 +74,8 @@
         { "@type": "ListItem", "position": 16, "name": "Number Base Converter", "url": "https://cryptowave-rouge.vercel.app/pages/base-convert.html" },
         { "@type": "ListItem", "position": 17, "name": "Color Converter", "url": "https://cryptowave-rouge.vercel.app/pages/color-convert.html" },
         { "@type": "ListItem", "position": 18, "name": "PDF Splitter", "url": "https://cryptowave-rouge.vercel.app/pages/pdf-split.html" },
-        { "@type": "ListItem", "position": 19, "name": "Text to Speech", "url": "https://cryptowave-rouge.vercel.app/pages/tts.html" }
+        { "@type": "ListItem", "position": 19, "name": "Text to Speech", "url": "https://cryptowave-rouge.vercel.app/pages/tts.html" },
+        { "@type": "ListItem", "position": 20, "name": "Audio Cutter", "url": "https://cryptowave-rouge.vercel.app/pages/audio-cut.html" }
       ]
     }
   ]
@@ -128,6 +129,7 @@
         <a href="pages/audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="pages/audio.html">🎵 Audio Converter</a>
+          <a href="pages/audio-cut.html">✂️ Audio Cutter</a>
           <a href="pages/video.html">🎬 Video Converter</a>
         </div></div>
       </li>
@@ -353,6 +355,16 @@
         <div class="tool-card__meta">
           <span class="tool-card__tag tool-card__tag--accent">FFmpeg.wasm</span>
           <span class="tool-card__tag">MP3 · WAV · FLAC</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
+      <a href="pages/audio-cut.html" class="tool-card">
+        <div class="tool-card__icon">✂️</div>
+        <div class="tool-card__name">Audio Cutter</div>
+        <p class="tool-card__desc">Trim any audio file to an exact time range. Upload MP3, WAV, OGG or FLAC, set start and end, preview and download — no upload required.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--green">Web Audio API</span>
+          <span class="tool-card__tag">Waveform view</span>
           <span class="tool-card__arrow">→</span>
         </div>
       </a>
@@ -616,6 +628,7 @@
       <a href="pages/hash.html">Hash</a>
       <a href="pages/encoding.html">Encoding</a>
       <a href="pages/audio.html">Audio</a>
+      <a href="pages/audio-cut.html">Audio Cut</a>
       <a href="pages/video.html">Video</a>
       <a href="pages/image.html">Image</a>
       <a href="pages/password.html">Password</a>
