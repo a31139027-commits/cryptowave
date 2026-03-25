@@ -127,8 +127,10 @@
     sourceNode.buffer = audioBuffer;
     sourceNode.connect(audioCtx.destination);
     sourceNode.start(0, start, end - start);
+    stopBtn.disabled = false;
     sourceNode.onended = () => {
       sourceNode = null;
+      stopBtn.disabled = true;
       setStatus('Preview finished.', 'idle');
     };
     setStatus('Previewing ' + fmt(start) + ' → ' + fmt(end) + '…', 'working');
@@ -136,6 +138,7 @@
 
   stopBtn.addEventListener('click', () => {
     if (sourceNode) { sourceNode.stop(); sourceNode = null; }
+    stopBtn.disabled = true;
     setStatus('Stopped.', 'idle');
   });
 
