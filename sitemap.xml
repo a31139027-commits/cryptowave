@@ -171,4 +171,11 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://cryptowave-rouge.vercel.app/pages/video-loop.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
 </urlset>

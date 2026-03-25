@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Change Video Speed Online Free — Slow Down or Speed Up MP4 | CryptoWave</title>
-  <meta name="description" content="Change video playback speed online for free. Slow down to 0.25× or speed up to 4× your MP4, MKV, MOV or WebM. Powered by FFmpeg.wasm — no upload to server." />
-  <meta name="keywords" content="change video speed online, slow down video, speed up video, video speed changer, slow motion video online, fast forward video browser" />
+  <title>Loop Video Online Free — Repeat MP4 Video N Times | CryptoWave</title>
+  <meta name="description" content="Loop or repeat a video online for free. Choose how many times to repeat your MP4, MKV, MOV or WebM and download as a single looped MP4. Powered by FFmpeg.wasm — no upload to server." />
+  <meta name="keywords" content="loop video online, repeat video online, video loop maker, repeat mp4 online, loop video free, video repeater browser" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-speed.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-loop.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-speed.html" />
-  <meta property="og:title"       content="Change Video Speed Online Free — Slow Down or Speed Up MP4" />
-  <meta property="og:description" content="Slow down or speed up any video in your browser. No upload required — powered by FFmpeg.wasm." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-loop.html" />
+  <meta property="og:title"       content="Loop Video Online Free — Repeat MP4 Video N Times" />
+  <meta property="og:description" content="Repeat a video 2–10 times and download as one file. No upload required — powered by FFmpeg.wasm." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Change Video Speed Online Free" />
-  <meta name="twitter:description" content="Slow down or speed up video in your browser. 0.25× to 4×. 100% client-side, FFmpeg.wasm." />
+  <meta name="twitter:title"       content="Loop Video Online Free — Repeat MP4 N Times" />
+  <meta name="twitter:description" content="Repeat a video 2–10 times and download as one MP4. 100% client-side, FFmpeg.wasm." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,30 +39,31 @@
     })();
   </script>
   <style>
-    .vs-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 16px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
-    .vs-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
-    .vs-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
-    .vs-meta__item { display: flex; flex-direction: column; gap: 2px; }
-    .vs-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
-    .vs-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
-    .vs-speed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; margin-top: 16px; }
-    .vs-speed-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border-radius: 10px; border: 2px solid var(--border); background: var(--input-bg); cursor: pointer; transition: border-color .15s, background .15s; }
-    .vs-speed-btn:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),.06); }
-    .vs-speed-btn.selected { border-color: var(--accent); background: rgba(var(--accent-rgb),.12); }
-    .vs-speed-btn__val { font-size: 1.3rem; font-weight: 800; color: var(--accent); font-family: var(--font-head); }
-    .vs-speed-btn__label { font-size: 0.72rem; color: var(--text-muted); text-align: center; }
-    .vs-custom-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
-    .vs-custom-row label { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
-    .vs-custom-row input[type=range] { flex: 1; accent-color: var(--accent); }
-    .vs-custom-val { font-size: 0.95rem; font-weight: 700; color: var(--accent); min-width: 40px; text-align: right; }
-    .vs-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
-    .vs-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
-    .vs-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
-    .vs-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    .vl-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 16px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
+    .vl-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
+    .vl-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
+    .vl-meta__item { display: flex; flex-direction: column; gap: 2px; }
+    .vl-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+    .vl-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+    .vl-loop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; margin-top: 16px; }
+    .vl-loop-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border-radius: 10px; border: 2px solid var(--border); background: var(--input-bg); cursor: pointer; transition: border-color .15s, background .15s; }
+    .vl-loop-btn:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),.06); }
+    .vl-loop-btn.selected { border-color: var(--accent); background: rgba(var(--accent-rgb),.12); }
+    .vl-loop-btn__val { font-size: 1.4rem; font-weight: 800; color: var(--accent); font-family: var(--font-head); }
+    .vl-loop-btn__label { font-size: 0.72rem; color: var(--text-muted); text-align: center; }
+    .vl-custom-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+    .vl-custom-row label { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
+    .vl-custom-row input[type=number] { width: 80px; text-align: center; }
+    .vl-info-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; padding: 10px 14px; border-radius: 8px; background: rgba(var(--accent-rgb),.06); border: 1px solid rgba(var(--accent-rgb),.2); font-size: 0.825rem; color: var(--text-secondary); }
+    .vl-info-row span { font-weight: 700; color: var(--accent); }
+    .vl-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .vl-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .vl-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .vl-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
     .progress-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; display: none; }
     .progress-bar  { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .3s; }
-    .vs-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #vs-controls { margin-top: 16px; }
+    .vl-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #vl-controls { margin-top: 16px; }
   </style>
 <script type="application/ld+json">
 {
@@ -70,19 +71,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Video Speed Changer",
-      "url": "https://cryptowave-rouge.vercel.app/pages/video-speed.html",
-      "description": "Change video playback speed online. Slow down to 0.25× or speed up to 4×. Powered by FFmpeg.wasm — no upload to server.",
+      "name": "Video Loop Maker",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video-loop.html",
+      "description": "Loop or repeat a video online. Choose 2–10 repetitions and download as a single MP4. Powered by FFmpeg.wasm — no upload to server.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Slow motion 0.25× 0.5× 0.75×", "Speed up 1.5× 2× 3× 4×", "Custom speed slider", "Audio pitch preserved with atempo filter", "Download as MP4", "100% client-side FFmpeg.wasm"]
+      "featureList": ["Repeat video 2 to 10 times", "Custom loop count", "Stream copy — fast and lossless", "Download as MP4", "100% client-side FFmpeg.wasm"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "Video Speed Changer", "item": "https://cryptowave-rouge.vercel.app/pages/video-speed.html" }
+        { "@type": "ListItem", "position": 2, "name": "Video Loop Maker", "item": "https://cryptowave-rouge.vercel.app/pages/video-loop.html" }
       ]
     },
     {
@@ -90,13 +91,13 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Does changing video speed affect the audio?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, this tool adjusts both video and audio speed together using FFmpeg's setpts filter for video and atempo filter for audio, so audio pitch is preserved while staying in sync with the video." }
+          "name": "How does video looping work?",
+          "acceptedAnswer": { "@type": "Answer", "text": "This tool uses FFmpeg.wasm's concat demuxer to join the same video file N times using stream copy — no re-encoding, so it's fast and lossless. The output is a single MP4 file." }
         },
         {
           "@type": "Question",
-          "name": "What speed range is supported?",
-          "acceptedAnswer": { "@type": "Answer", "text": "You can choose preset speeds from 0.25× (slow motion) to 4× (fast forward), or use the custom slider for any value between 0.25× and 4×." }
+          "name": "What is the maximum number of loops?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can choose between 2 and 20 repetitions. Keep in mind the output file will be roughly N times the size of your original video." }
         },
         {
           "@type": "Question",
@@ -148,7 +149,7 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="video-speed.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <a href="video-loop.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="audio.html">🎵 Audio Converter</a>
           <a href="audio-cut.html">✂️ Audio Cutter</a>
@@ -157,8 +158,8 @@
           <a href="video-trim.html">✂️ Video Trimmer</a>
           <a href="video-merge.html">🔗 Video Merger</a>
           <a href="video-rotate.html">🔄 Video Rotate/Flip</a>
-          <a href="video-speed.html" class="active">⏩ Video Speed</a>
-          <a href="video-loop.html">🔁 Video Loop</a>
+          <a href="video-speed.html">⏩ Video Speed</a>
+          <a href="video-loop.html" class="active">🔁 Video Loop</a>
         </div></div>
       </li>
       <li class="dropdown">
@@ -201,8 +202,8 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">⏩ <span>Video Speed Changer</span></h1>
-      <p class="tool-header__sub">Slow down or speed up your video — from 0.25× slow motion to 4× fast forward. Audio stays in sync. No upload required.</p>
+      <h1 class="tool-header__title">🔁 <span>Video Loop Maker</span></h1>
+      <p class="tool-header__sub">Repeat a video 2 to 20 times and download as a single seamless MP4 file. Uses stream copy — fast and lossless.</p>
     </div>
 
     <!-- Drop Zone -->
@@ -211,16 +212,16 @@
         <div class="panel__head-icon">🎬</div>
         <div class="panel__head-title">Upload Video</div>
       </div>
-      <div class="drop-zone" id="vs-drop-zone">
-        <div class="drop-zone__icon">🎬</div>
+      <div class="drop-zone" id="vl-drop-zone">
+        <div class="drop-zone__icon">🔁</div>
         <div class="drop-zone__title">Drop a video file here</div>
         <div class="drop-zone__sub">or click to browse — MP4, MKV, MOV, AVI, WebM supported</div>
-        <input type="file" id="vs-file-input" accept="video/*" style="display:none;" />
+        <input type="file" id="vl-file-input" accept="video/*" style="display:none;" />
       </div>
     </div>
 
     <!-- Controls (hidden until file loaded) -->
-    <div id="vs-controls" class="hidden">
+    <div id="vl-controls" class="hidden">
 
       <!-- Preview -->
       <div class="panel" style="margin-top:16px;">
@@ -228,82 +229,75 @@
           <div class="panel__head-icon">▶</div>
           <div class="panel__head-title">Preview</div>
         </div>
-        <div class="vs-preview-wrap">
-          <video id="vs-preview" controls playsinline></video>
+        <div class="vl-preview-wrap">
+          <video id="vl-preview" controls playsinline></video>
         </div>
-        <div class="vs-meta">
-          <div class="vs-meta__item">
-            <span class="vs-meta__label">File</span>
-            <span class="vs-meta__value" id="vs-filename">—</span>
+        <div class="vl-meta">
+          <div class="vl-meta__item">
+            <span class="vl-meta__label">File</span>
+            <span class="vl-meta__value" id="vl-filename">—</span>
           </div>
-          <div class="vs-meta__item">
-            <span class="vs-meta__label">Size</span>
-            <span class="vs-meta__value" id="vs-filesize">—</span>
+          <div class="vl-meta__item">
+            <span class="vl-meta__label">Size</span>
+            <span class="vl-meta__value" id="vl-filesize">—</span>
           </div>
-          <div class="vs-meta__item">
-            <span class="vs-meta__label">Duration</span>
-            <span class="vs-meta__value" id="vs-duration">—</span>
+          <div class="vl-meta__item">
+            <span class="vl-meta__label">Duration</span>
+            <span class="vl-meta__value" id="vl-duration">—</span>
           </div>
         </div>
       </div>
 
-      <!-- Speed Options -->
+      <!-- Loop Options -->
       <div class="panel" style="margin-top:16px;">
         <div class="panel__head">
-          <div class="panel__head-icon">⏩</div>
-          <div class="panel__head-title">Choose Speed</div>
+          <div class="panel__head-icon">🔁</div>
+          <div class="panel__head-title">Number of Loops</div>
         </div>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px;">How many times should the video repeat in total?</p>
 
-        <div class="vs-speed-grid" id="vs-speed-grid">
-          <button class="vs-speed-btn" data-speed="0.25">
-            <span class="vs-speed-btn__val">0.25×</span>
-            <span class="vs-speed-btn__label">Slow Motion</span>
+        <div class="vl-loop-grid" id="vl-loop-grid">
+          <button class="vl-loop-btn" data-loops="2">
+            <span class="vl-loop-btn__val">2×</span>
+            <span class="vl-loop-btn__label">2 times</span>
           </button>
-          <button class="vs-speed-btn" data-speed="0.5">
-            <span class="vs-speed-btn__val">0.5×</span>
-            <span class="vs-speed-btn__label">Half Speed</span>
+          <button class="vl-loop-btn selected" data-loops="3">
+            <span class="vl-loop-btn__val">3×</span>
+            <span class="vl-loop-btn__label">3 times</span>
           </button>
-          <button class="vs-speed-btn" data-speed="0.75">
-            <span class="vs-speed-btn__val">0.75×</span>
-            <span class="vs-speed-btn__label">Slightly Slow</span>
+          <button class="vl-loop-btn" data-loops="4">
+            <span class="vl-loop-btn__val">4×</span>
+            <span class="vl-loop-btn__label">4 times</span>
           </button>
-          <button class="vs-speed-btn selected" data-speed="1">
-            <span class="vs-speed-btn__val">1×</span>
-            <span class="vs-speed-btn__label">Normal</span>
+          <button class="vl-loop-btn" data-loops="5">
+            <span class="vl-loop-btn__val">5×</span>
+            <span class="vl-loop-btn__label">5 times</span>
           </button>
-          <button class="vs-speed-btn" data-speed="1.25">
-            <span class="vs-speed-btn__val">1.25×</span>
-            <span class="vs-speed-btn__label">Slightly Fast</span>
-          </button>
-          <button class="vs-speed-btn" data-speed="1.5">
-            <span class="vs-speed-btn__val">1.5×</span>
-            <span class="vs-speed-btn__label">Fast</span>
-          </button>
-          <button class="vs-speed-btn" data-speed="2">
-            <span class="vs-speed-btn__val">2×</span>
-            <span class="vs-speed-btn__label">Double Speed</span>
-          </button>
-          <button class="vs-speed-btn" data-speed="4">
-            <span class="vs-speed-btn__val">4×</span>
-            <span class="vs-speed-btn__label">Fast Forward</span>
+          <button class="vl-loop-btn" data-loops="10">
+            <span class="vl-loop-btn__val">10×</span>
+            <span class="vl-loop-btn__label">10 times</span>
           </button>
         </div>
 
-        <div class="vs-custom-row">
-          <label for="vs-custom-slider">Custom:</label>
-          <input type="range" id="vs-custom-slider" min="0.25" max="4" step="0.05" value="1" />
-          <span class="vs-custom-val" id="vs-custom-val">1×</span>
+        <div class="vl-custom-row">
+          <label for="vl-custom-input">Custom:</label>
+          <input type="number" id="vl-custom-input" class="input" min="2" max="20" value="3" />
+          <span style="font-size:0.8rem;color:var(--text-muted);">times (max 20)</span>
+        </div>
+
+        <div class="vl-info-row" id="vl-info-row">
+          Total duration: <span id="vl-total-dur">—</span> &nbsp;·&nbsp; Est. size: <span id="vl-est-size">—</span>
         </div>
 
         <div style="margin-top:20px;">
-          <button class="btn btn--primary btn--lg" id="vs-apply-btn" style="width:100%;">⏩ Apply Speed &amp; Download MP4</button>
+          <button class="btn btn--primary btn--lg" id="vl-apply-btn" style="width:100%;">🔁 Create Loop &amp; Download MP4</button>
         </div>
 
-        <div class="progress-wrap" id="vs-progress">
-          <div class="progress-bar" id="vs-progress-bar"></div>
+        <div class="progress-wrap" id="vl-progress">
+          <div class="progress-bar" id="vl-progress-bar"></div>
         </div>
-        <div class="vs-status" id="vs-status">Select a speed above, then click Apply.</div>
-        <div class="vs-log" id="vs-log"></div>
+        <div class="vl-status" id="vl-status">Select loop count above, then click Create Loop.</div>
+        <div class="vl-log" id="vl-log"></div>
       </div>
 
     </div>
@@ -315,11 +309,11 @@
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This tool uses <strong>FFmpeg.wasm</strong> to change video speed inside your browser. It applies the <code>setpts</code> filter to video frames and the <code>atempo</code> filter to audio, keeping video and audio perfectly in sync at any speed. The output is exported as MP4 (H.264).
+        This tool uses <strong>FFmpeg.wasm</strong> to repeat a video N times inside your browser. It uses the concat demuxer with <strong>stream copy</strong> — no re-encoding — so the process is fast and the output is lossless. The result is a single MP4 file that plays the video back-to-back the chosen number of times.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
         <div class="security-note">🎬 MP4 · MKV · MOV · WebM</div>
-        <div class="security-note">🔊 Audio stays in sync</div>
+        <div class="security-note">⚡ Stream copy — lossless</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -357,7 +351,7 @@
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
-<script src="../js/modules/video-speed.js"></script>
+<script src="../js/modules/video-loop.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
