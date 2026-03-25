@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PDF to Images Online Free — Convert PDF Pages to PNG JPG | CryptoWave</title>
-  <meta name="description" content="Convert PDF pages to images online for free. Upload a PDF and download each page as PNG or JPG — or download all pages as a ZIP. 100% client-side, no upload to server." />
-  <meta name="keywords" content="PDF to image online, PDF to PNG, PDF to JPG, convert PDF pages to images, PDF screenshot, PDF page extractor free" />
+  <title>Video Trimmer Online Free — Cut MP4 MKV in Browser | CryptoWave</title>
+  <meta name="description" content="Trim and cut video files online for free. Upload MP4, MKV, MOV or WebM, set start and end times with a live preview player, and download the trimmed clip. Powered by FFmpeg.wasm — no upload to server." />
+  <meta name="keywords" content="video trimmer online, cut video online free, trim MP4 online, video cutter, clip video browser, ffmpeg online trim" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/pdf-images.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-trim.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/pdf-images.html" />
-  <meta property="og:title"       content="PDF to Images Online Free — Convert PDF Pages to PNG JPG" />
-  <meta property="og:description" content="Convert PDF pages to PNG or JPG images in your browser. Download individually or as a ZIP. No upload required." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-trim.html" />
+  <meta property="og:title"       content="Video Trimmer Online Free — Cut MP4 MKV in Browser" />
+  <meta property="og:description" content="Trim any video file in your browser. Set start/end from live preview, download trimmed clip. No upload required — powered by FFmpeg.wasm." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="PDF to Images Online Free — Convert PDF Pages to PNG JPG" />
-  <meta name="twitter:description" content="Convert PDF pages to PNG or JPG in your browser. Download all as ZIP. No upload required." />
+  <meta name="twitter:title"       content="Video Trimmer Online Free — Cut MP4 MKV in Browser" />
+  <meta name="twitter:description" content="Trim video files in your browser. Live preview, set start/end, download. No upload required." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,24 +39,23 @@
     })();
   </script>
   <style>
-    .pi-info-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
-    .pi-info-item__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: 2px; }
-    .pi-info-item__value { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--accent); }
-    .pi-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    @media (max-width: 480px) { .pi-opts { grid-template-columns: 1fr; } }
-    .pi-btn-row { display: flex; gap: 12px; margin-top: 4px; }
-    .pi-btn-row .btn { flex: 1; }
-    .pi-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
-    .pi-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
-    .pi-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
-    .pi-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    #vt-preview { width: 100%; border-radius: 10px; background: #000; display: block; max-height: 360px; margin-bottom: 16px; }
+    .vt-info-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
+    .vt-info-item__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: 2px; }
+    .vt-info-item__value { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--accent); }
+    .vt-time-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 4px; }
+    @media (max-width: 480px) { .vt-time-row { grid-template-columns: 1fr; } }
+    .vt-time-group { display: flex; gap: 8px; align-items: flex-end; }
+    .vt-time-group input { flex: 1; }
+    .vt-time-group .btn { flex-shrink: 0; white-space: nowrap; }
+    .vt-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .vt-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .vt-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .vt-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
     .progress-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; display: none; }
     .progress-bar  { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .3s; }
-    .pi-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; margin-top: 20px; }
-    .pi-card { background: var(--input-bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-    .pi-thumb { width: 100%; border-radius: 6px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
-    .pi-card__label { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-head); font-weight: 600; }
-    .pi-card .btn { width: 100%; font-size: 0.8rem; padding: 6px 10px; }
+    .vt-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hint-text { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
   </style>
 <script type="application/ld+json">
 {
@@ -64,19 +63,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "PDF to Images",
-      "url": "https://cryptowave-rouge.vercel.app/pages/pdf-images.html",
-      "description": "Convert PDF pages to PNG or JPG images online for free. Upload a PDF, render each page at custom resolution, and download individually or as a ZIP. 100% client-side.",
-      "applicationCategory": "UtilitiesApplication",
+      "name": "Video Trimmer",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video-trim.html",
+      "description": "Trim and cut video files online for free. Upload MP4, MKV, MOV or WebM, set start and end times with a live preview player, and download the trimmed clip. Powered by FFmpeg.wasm.",
+      "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Convert PDF to PNG", "Convert PDF to JPG", "Custom resolution/scale", "Download all pages as ZIP", "100% client-side with pdf.js"]
+      "featureList": ["Trim MP4 MKV MOV WebM", "Live video preview", "Set start/end from playback position", "Download in original format", "Powered by FFmpeg.wasm — 100% client-side"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "PDF to Images", "item": "https://cryptowave-rouge.vercel.app/pages/pdf-images.html" }
+        { "@type": "ListItem", "position": 2, "name": "Video Trimmer", "item": "https://cryptowave-rouge.vercel.app/pages/video-trim.html" }
       ]
     },
     {
@@ -84,18 +83,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I convert a PDF to images?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Upload your PDF using the drop zone, choose image format (PNG or JPG) and resolution, then click Render Pages. Each page will appear as a preview. Click Download on any page or use Download All ZIP to get every page at once." }
+          "name": "What video formats can I trim?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can trim MP4, MKV, MOV, AVI, WebM, and most other common video formats. The output is saved in the same format as the input." }
         },
         {
           "@type": "Question",
-          "name": "What resolution should I choose?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Scale 1x gives screen resolution (72 DPI equivalent). Scale 2x gives double resolution suitable for printing. Scale 3x gives high-resolution output for professional use, but creates larger files." }
+          "name": "How do I set the start and end times?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Play the video preview to find the exact moment you want, then click 'Set Start' or 'Set End' to capture the current playback position. You can also type times manually in seconds." }
         },
         {
           "@type": "Question",
-          "name": "Is my PDF file safe?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. All processing happens entirely inside your browser using Mozilla's pdf.js library. Your PDF is never uploaded to any server." }
+          "name": "Is my video uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All trimming is done inside your browser using FFmpeg.wasm. Your video file never leaves your device." }
         }
       ]
     }
@@ -142,13 +141,13 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <a href="video-trim.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="audio.html">🎵 Audio Converter</a>
           <a href="audio-cut.html">✂️ Audio Cutter</a>
           <a href="audio-merge.html">🔗 Audio Merger</a>
-          <a href="video-trim.html">✂️ Video Trimmer</a>
           <a href="video.html">🎬 Video Converter</a>
+          <a href="video-trim.html" class="active">✂️ Video Trimmer</a>
         </div></div>
       </li>
       <li class="dropdown">
@@ -160,7 +159,7 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="pdf-images.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="password.html">🔑 Password Generator</a>
           <a href="qrcode.html">⬛ QR Code</a>
@@ -170,7 +169,7 @@
           <div class="dropdown__divider"></div>
           <a href="pdf-merge.html">📎 PDF Merger</a>
           <a href="pdf-split.html">✂️ PDF Splitter</a>
-          <a href="pdf-images.html" class="active">🖼️ PDF to Images</a>
+          <a href="pdf-images.html">🖼️ PDF to Images</a>
           <a href="tts.html">🔊 Text to Speech</a>
           <a href="word-count.html">📝 Word Counter</a>
           <a href="base-convert.html">🔢 Base Converter</a>
@@ -191,72 +190,78 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">🖼️ <span>PDF to Images</span></h1>
-      <p class="tool-header__sub">Convert each page of a PDF into a PNG or JPG image. Download individually or grab all pages as a ZIP — no upload required.</p>
+      <h1 class="tool-header__title">✂️ <span>Video Trimmer</span></h1>
+      <p class="tool-header__sub">Cut any video to an exact time range. Use the live preview to set start and end, then download the trimmed clip — no upload required.</p>
     </div>
 
     <!-- Drop Zone -->
     <div class="panel">
       <div class="panel__head">
-        <div class="panel__head-icon">📄</div>
-        <div class="panel__head-title">Upload PDF</div>
+        <div class="panel__head-icon">🎬</div>
+        <div class="panel__head-title">Upload Video</div>
       </div>
-      <div class="drop-zone" id="pi-drop-zone">
-        <div class="drop-zone__icon">📄</div>
-        <div class="drop-zone__title">Drop PDF file here</div>
-        <div class="drop-zone__sub">or click to browse</div>
-        <input type="file" id="pi-file-input" accept="application/pdf" style="display:none;" />
+      <div class="drop-zone" id="vt-drop-zone">
+        <div class="drop-zone__icon">🎬</div>
+        <div class="drop-zone__title">Drop video file here</div>
+        <div class="drop-zone__sub">or click to browse — MP4, MKV, MOV, AVI, WebM supported</div>
+        <input type="file" id="vt-file-input" accept="video/*" style="display:none;" />
       </div>
     </div>
 
     <!-- Controls -->
-    <div class="panel hidden" id="pi-controls" style="margin-top:16px;">
+    <div class="panel hidden" id="vt-controls" style="margin-top:16px;">
       <div class="panel__head">
-        <div class="panel__head-icon">⚙️</div>
-        <div class="panel__head-title">Conversion Settings</div>
+        <div class="panel__head-icon">✂️</div>
+        <div class="panel__head-title">Trim Settings</div>
       </div>
 
-      <div class="pi-info-row">
-        <div class="pi-info-item">
-          <div class="pi-info-item__label">File</div>
-          <div class="pi-info-item__value" id="pi-filename">—</div>
+      <!-- Video preview -->
+      <video id="vt-preview" controls></video>
+
+      <!-- File info -->
+      <div class="vt-info-row">
+        <div class="vt-info-item">
+          <div class="vt-info-item__label">File</div>
+          <div class="vt-info-item__value" id="vt-filename">—</div>
         </div>
-        <div class="pi-info-item">
-          <div class="pi-info-item__label">Pages</div>
-          <div class="pi-info-item__value" id="pi-page-count">—</div>
+        <div class="vt-info-item">
+          <div class="vt-info-item__label">Size</div>
+          <div class="vt-info-item__value" id="vt-filesize">—</div>
+        </div>
+        <div class="vt-info-item">
+          <div class="vt-info-item__label">Duration</div>
+          <div class="vt-info-item__value" id="vt-duration">—</div>
         </div>
       </div>
 
-      <div class="pi-opts">
+      <!-- Time inputs -->
+      <div class="vt-time-row">
         <div>
-          <label class="form-label">IMAGE FORMAT</label>
-          <select id="pi-format" class="input">
-            <option value="image/png">PNG (lossless)</option>
-            <option value="image/jpeg">JPG (smaller file)</option>
-          </select>
+          <label class="form-label">START TIME (seconds)</label>
+          <div class="vt-time-group">
+            <input type="number" id="vt-start" class="input" min="0" step="0.1" value="0" />
+            <button class="btn btn--ghost btn--sm" id="vt-set-start">⏱ Set</button>
+          </div>
         </div>
         <div>
-          <label class="form-label">RESOLUTION</label>
-          <select id="pi-scale" class="input">
-            <option value="1">1× — Screen (72 dpi)</option>
-            <option value="1.5" selected>1.5× — Medium</option>
-            <option value="2">2× — High (144 dpi)</option>
-            <option value="3">3× — Very High (216 dpi)</option>
-          </select>
+          <label class="form-label">END TIME (seconds)</label>
+          <div class="vt-time-group">
+            <input type="number" id="vt-end" class="input" min="0" step="0.1" value="0" />
+            <button class="btn btn--ghost btn--sm" id="vt-set-end">⏱ Set</button>
+          </div>
         </div>
       </div>
+      <p class="hint-text">Play the video above then click ⏱ Set to capture the current playback position.</p>
 
-      <div class="pi-btn-row">
-        <button class="btn btn--primary btn--lg" id="pi-render-btn">🖼️ Render Pages</button>
-        <button class="btn btn--ghost" id="pi-dl-all-btn" disabled>⬇ Download All ZIP</button>
+      <div style="margin-top:20px;">
+        <button class="btn btn--primary btn--lg" id="vt-trim-btn" style="width:100%;">✂️ Trim &amp; Download</button>
       </div>
 
-      <div class="progress-wrap" id="pi-progress">
-        <div class="progress-bar" id="pi-progress-bar"></div>
+      <div class="progress-wrap" id="vt-progress">
+        <div class="progress-bar" id="vt-progress-bar"></div>
       </div>
-      <div class="pi-status" id="pi-status">Ready.</div>
-
-      <div class="pi-gallery" id="pi-gallery"></div>
+      <div class="vt-status" id="vt-status">Ready.</div>
+      <div class="vt-log" id="vt-log"></div>
     </div>
 
     <!-- About -->
@@ -266,11 +271,11 @@
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This tool uses <strong>Mozilla's pdf.js</strong> to render each PDF page onto an HTML canvas, then exports it as PNG or JPG. All processing happens inside your browser — your PDF is never uploaded anywhere. Use the ZIP download to get all pages at once.
+        This tool uses <strong>FFmpeg.wasm</strong> — a WebAssembly port of FFmpeg — to trim your video entirely inside your browser. The output keeps the same format and quality as the original (stream copy, no re-encoding). Your file is never uploaded to any server.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
-        <div class="security-note">🖼️ PNG &amp; JPG output</div>
-        <div class="security-note">📦 ZIP all pages</div>
+        <div class="security-note">🎬 MP4 · MKV · MOV · WebM</div>
+        <div class="security-note">⚡ Stream copy — no re-encode</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -307,9 +312,8 @@
 
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha384-/1qUCSGwTur9vjf/z9lmu/eCUYbpOTgSjmpbMQZ1/CtX2v/WcAIKqRv+U1DUCG6e" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG" crossorigin="anonymous"></script>
-<script src="../js/modules/pdf-images.js"></script>
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
+<script src="../js/modules/video-trim.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
