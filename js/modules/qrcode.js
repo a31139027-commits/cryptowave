@@ -19,54 +19,23 @@ const QRModule = (() => {
     } = options;
 
     return new Promise((resolve, reject) => {
-      if (!window.QRCode) { reject(new Error('QRCode library not loaded')); return; }
+      if (!window.QRious) { reject(new Error('QRious library not loaded')); return; }
       if (!text || !text.trim()) { reject(new Error('Text cannot be empty')); return; }
 
-      // Container must be visible for canvas to render correctly
-      const container = document.createElement('div');
-      container.style.cssText = 'position:fixed;top:-9999px;left:-9999px;width:' + size + 'px;';
-      document.body.appendChild(container);
-
-      let qr;
       try {
-        qr = new window.QRCode(container, {
-          text:         text,
-          width:        size,
-          height:       size,
-          colorDark:    colorDark,
-          colorLight:   colorLight,
-          correctLevel: window.QRCode.CorrectLevel[errorLevel] || window.QRCode.CorrectLevel.H,
+        const canvas = document.createElement('canvas');
+        const qr = new window.QRious({
+          element:    canvas,
+          value:      text,
+          size:       size,
+          level:      errorLevel,
+          foreground: colorDark,
+          background: colorLight,
         });
+        resolve(canvas.toDataURL('image/png'));
       } catch (err) {
-        document.body.removeChild(container);
         reject(err);
-        return;
       }
-
-      // Poll until canvas/img is ready (max 3s)
-      let attempts = 0;
-      const poll = setInterval(() => {
-        attempts++;
-        const canvas = container.querySelector('canvas');
-        const img    = container.querySelector('img');
-        let dataUrl  = null;
-
-        if (canvas && canvas.width > 0) {
-          try { dataUrl = canvas.toDataURL('image/png'); } catch(_) {}
-        } else if (img && img.src && img.complete && img.naturalWidth > 0) {
-          dataUrl = img.src;
-        }
-
-        if (dataUrl) {
-          clearInterval(poll);
-          document.body.removeChild(container);
-          resolve(dataUrl);
-        } else if (attempts > 60) { // 3s timeout
-          clearInterval(poll);
-          document.body.removeChild(container);
-          reject(new Error('QR Code generation timed out. Please try again.'));
-        }
-      }, 50);
     });
   }
 
@@ -314,16 +283,8 @@ const QRModule = (() => {
 
       Utils.setLoading(genBtn, true);
       try {
-        const text = buildVCard({ name, phone, email, org, url, address });
-        // Try progressively lower error correction levels to maximise capacity
-        let dataUrl = null;
-        for (const lvl of ['L', 'M', 'Q', 'H']) {
-          try {
-            dataUrl = await generate(text, { size: 256, errorLevel: lvl });
-            break;
-          } catch (_) { /* try next level */ }
-        }
-        if (!dataUrl) throw new Error('Contact data is too long to encode as a QR Code. Please shorten the fields.');
+        const text    = buildVCard({ name, phone, email, org, url, address });
+        const dataUrl = await generate(text, { size: 256, errorLevel: 'M' });
 
         // Show preview — force display even if panel was hidden
         const preview = document.getElementById('vcard-preview');
