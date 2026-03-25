@@ -40,6 +40,50 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "RSA Encryption & Decryption Online — Key Generator",
+      "url": "https://cryptowave-rouge.vercel.app/pages/rsa.html",
+      "description": "Free RSA encryption and decryption tool. Generate RSA key pairs up to 4096-bit. Supports OAEP and PKCS#1 v1.5 padding. All processing is client-side.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["RSA key generation", "2048-bit key", "4096-bit key", "RSA-OAEP padding", "PKCS#1 v1.5 padding", "Public key encryption", "Private key decryption"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "RSA Encryption / Decryption", "item": "https://cryptowave-rouge.vercel.app/pages/rsa.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What key size should I use for RSA encryption?",
+          "acceptedAnswer": { "@type": "Answer", "text": "2048-bit RSA keys are the current minimum recommended size and suitable for most uses. 4096-bit keys provide additional security margin but are significantly slower. For new applications requiring long-term security, 4096-bit is preferred." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between RSA-OAEP and PKCS#1 v1.5?",
+          "acceptedAnswer": { "@type": "Answer", "text": "RSA-OAEP (Optimal Asymmetric Encryption Padding) is the modern secure standard and is recommended for all new applications. PKCS#1 v1.5 is an older padding scheme with known vulnerabilities (Bleichenbacher attack) and should only be used for legacy compatibility." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are RSA keys generated on the server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All RSA key generation and encryption/decryption runs entirely in your browser using the Web Crypto API. Your keys and data are never sent to any server." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -134,7 +178,7 @@
     <div class="panel">
       <div class="panel__head">
         <div class="panel__head-icon">⚙</div>
-        <div class="panel__head-title">Key Pair Generation</div>
+        <h2 class="panel__head-title">Key Pair Generation</h2>
         <div class="panel__head-badge">RSA</div>
       </div>
       <div class="form-row">

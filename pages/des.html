@@ -40,6 +40,45 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "DES Encryption & Decryption Online",
+      "url": "https://cryptowave-rouge.vercel.app/pages/des.html",
+      "description": "Free DES encryption and decryption tool online. Supports CBC, ECB, CFB, OFB modes. Compatible with legacy systems. Base64 and HEX output. Client-side processing.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["DES-CBC", "DES-ECB", "DES-CFB", "DES-OFB", "Base64 output", "HEX output", "Legacy system compatibility"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "DES Encryption / Decryption", "item": "https://cryptowave-rouge.vercel.app/pages/des.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is DES encryption still secure?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. DES uses a 56-bit key and was publicly broken in under 24 hours in 1999 using specialized hardware. It was officially withdrawn as a standard in 2005 and replaced by AES. This tool provides DES only for compatibility with legacy systems." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is DES (Data Encryption Standard)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The Data Encryption Standard (DES) was published by NIST in 1977 and was widely used until the late 1990s. It uses a 56-bit key and operates on 64-bit data blocks. It has been replaced by AES for all secure applications." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -210,7 +249,7 @@
 
     <!-- Info -->
     <div class="panel">
-      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">About DES</div></div>
+      <div class="panel__head"><div class="panel__head-icon">📖</div><h2 class="panel__head-title">About DES</h2></div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
         The Data Encryption Standard (DES) was published by NIST in 1977 and was widely used until the late 1990s. It uses a 56-bit key and operates on 64-bit blocks. In 1999, it was publicly broken in under 24 hours using specialized hardware. DES was officially withdrawn as a standard in 2005 and replaced by AES. This tool uses <strong>CryptoJS</strong> to provide DES compatibility for legacy systems.
       </p>

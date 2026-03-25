@@ -65,6 +65,50 @@
       min-width: 44px; text-align: center;
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Free Image Compressor & Converter — JPG, PNG, WebP, PDF",
+      "url": "https://cryptowave-rouge.vercel.app/pages/image.html",
+      "description": "Free online image tools. Compress JPG, PNG, WebP images. Convert between image formats. Combine multiple images into a single PDF. 100% client-side, no uploads needed.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Image compression", "JPG compression", "PNG compression", "WebP compression", "Image format conversion", "JPG to PNG", "PNG to WebP", "Image to PDF", "Batch processing", "No file upload required"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Image Tools", "item": "https://cryptowave-rouge.vercel.app/pages/image.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are my images uploaded to a server when compressing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All image compression and conversion uses the browser's native Canvas API. Your images are never uploaded to any server — everything runs locally on your device." }
+        },
+        {
+          "@type": "Question",
+          "name": "What image formats are supported for conversion?",
+          "acceptedAnswer": { "@type": "Answer", "text": "This tool supports converting between JPG, PNG, and WebP formats. You can also combine multiple images into a single PDF file using the image-to-PDF feature." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can I reduce an image file size?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The compression amount depends on the original image and quality setting. JPG and WebP images are lossy and can typically be reduced 50–80% with minimal visible quality loss. PNG compression is lossless, so size reduction is more limited." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -334,7 +378,7 @@
 
     <!-- Info -->
     <div class="panel" style="margin-top:16px;">
-      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">How It Works</div></div>
+      <div class="panel__head"><div class="panel__head-icon">📖</div><h2 class="panel__head-title">How It Works</h2></div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
         All image processing uses the browser's native <strong>Canvas API</strong>. Your images are never uploaded to any server — everything runs locally. The PDF feature uses <strong>jsPDF</strong>, an open-source JavaScript library.
       </p>

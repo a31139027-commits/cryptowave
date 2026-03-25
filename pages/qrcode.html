@@ -97,6 +97,50 @@
       .qr-layout { grid-template-columns: 1fr; }
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Free QR Code Generator & Scanner Online",
+      "url": "https://cryptowave-rouge.vercel.app/pages/qrcode.html",
+      "description": "Free QR code generator and scanner. Create QR codes from URLs, text, WiFi passwords, and contact cards. Scan QR code images to decode content. 100% client-side.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["QR code generator", "QR code scanner", "WiFi QR code", "Contact card vCard QR code", "URL QR code", "Custom colors", "Multiple error correction levels", "PNG download"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "QR Code Generator & Scanner", "item": "https://cryptowave-rouge.vercel.app/pages/qrcode.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much data can a QR code store?",
+          "acceptedAnswer": { "@type": "Answer", "text": "QR codes can store up to approximately 3KB of text data. The actual capacity depends on the error correction level and type of data. Higher error correction levels make the code more scannable when partially damaged but reduce the maximum data capacity." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are QR codes generated locally or sent to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "All QR codes are generated entirely in your browser. Your data never leaves your device and is never sent to any server." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I create a WiFi QR code?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Go to the WiFi tab, enter your network name (SSID), password, and security type (WPA/WEP/Open). Click Generate to create a QR code that phones can scan to automatically connect to your WiFi without typing the password." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -315,7 +359,7 @@
         <div class="panel">
           <div class="panel__head">
             <div class="panel__head-icon">📶</div>
-            <div class="panel__head-title">WiFi QR Code</div>
+            <h2 class="panel__head-title">WiFi QR Code</h2>
           </div>
           <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:20px;">
             Generate a QR code that instantly connects devices to your WiFi — no typing required. Just scan and connect.
@@ -364,7 +408,7 @@
         <div class="panel">
           <div class="panel__head">
             <div class="panel__head-icon">📇</div>
-            <div class="panel__head-title">Contact Card QR Code</div>
+            <h2 class="panel__head-title">Contact Card QR Code</h2>
           </div>
           <p style="font-size:0.875rem;color:var(--text-secondary);margin-bottom:20px;">
             Generate a QR code with your contact info. Scanning it will offer to save the contact directly to the phone's address book.
@@ -417,7 +461,7 @@
 
     <!-- Info -->
     <div class="panel" style="margin-top:16px;">
-      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">About QR Codes</div></div>
+      <div class="panel__head"><div class="panel__head-icon">📖</div><h2 class="panel__head-title">About QR Codes</h2></div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
         QR (Quick Response) codes can store up to ~3KB of text data. Higher error correction levels make the code more scannable even when partially damaged. This tool generates and scans QR codes entirely in your browser — your data never leaves your device.
       </p>

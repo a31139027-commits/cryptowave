@@ -40,6 +40,50 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Free Online Audio Converter — MP3, WAV, FLAC, AAC",
+      "url": "https://cryptowave-rouge.vercel.app/pages/audio.html",
+      "description": "Free online audio converter. Convert MP3, WAV, FLAC, AAC, OGG, OPUS, M4A, AIFF. Extract audio from MP4, MKV, MOV video files. Powered by FFmpeg.wasm in browser.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["MP3 conversion", "WAV conversion", "FLAC conversion", "AAC conversion", "OGG conversion", "OPUS conversion", "M4A conversion", "AIFF conversion", "Extract audio from video", "Bitrate control", "No file upload required"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Audio Converter", "item": "https://cryptowave-rouge.vercel.app/pages/audio.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are audio files uploaded to a server during conversion?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. This converter uses FFmpeg.wasm — a WebAssembly port of FFmpeg that runs entirely in your browser. Your audio files are never uploaded to any server. All conversion happens locally on your device." }
+        },
+        {
+          "@type": "Question",
+          "name": "What audio formats can I convert between?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Supported formats include MP3, WAV, FLAC, AAC, OGG, OPUS, M4A, and AIFF. You can also extract audio tracks from video files in MP4, MKV, and MOV formats." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the first conversion take longer?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The first conversion requires downloading the FFmpeg.wasm binary (approximately 30MB) from a CDN. This file is then cached by your browser, so subsequent conversions start immediately without any additional download." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -235,7 +279,7 @@ Cross-Origin-Embedder-Policy: require-corp</div>
 
     <!-- Info -->
     <div class="panel" style="margin-top:32px;">
-      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">About FFmpeg.wasm</div></div>
+      <div class="panel__head"><div class="panel__head-icon">📖</div><h2 class="panel__head-title">About FFmpeg.wasm</h2></div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;">
         This converter uses <strong>FFmpeg.wasm</strong> — a WebAssembly port of the industry-standard FFmpeg library. All conversion happens entirely in your browser. No files are uploaded to any server. The FFmpeg WASM binary (~30MB) is downloaded once from a CDN and cached by your browser for subsequent conversions.
       </p>

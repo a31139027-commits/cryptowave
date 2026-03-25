@@ -40,6 +40,50 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Free Online Video Converter — MP4, MKV, AVI, WebM, GIF",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video.html",
+      "description": "Free online video converter. Convert between MP4, MKV, MOV, AVI, WebM, FLV, 3GP. Change resolution, quality, FPS. Convert video to GIF. Powered by FFmpeg.wasm.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["MP4 conversion", "MKV conversion", "AVI conversion", "WebM conversion", "MOV conversion", "Video to GIF", "Resolution change", "FPS control", "Quality control", "No file upload required"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Video Converter", "item": "https://cryptowave-rouge.vercel.app/pages/video.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are video files uploaded to a server during conversion?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. This converter uses FFmpeg.wasm — a WebAssembly port of FFmpeg that runs entirely in your browser. Your video files are never uploaded to any server. All processing happens locally on your device." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which video format should I use — MP4, WebM, or MKV?",
+          "acceptedAnswer": { "@type": "Answer", "text": "MP4 (H.264) is the most universally compatible format, supported by virtually all devices and platforms — use this for sharing and general use. WebM is optimized for web playback with excellent browser support. MKV is a flexible container supporting multiple audio and subtitle tracks, ideal for archiving." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert a video to GIF?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Select GIF as the output format to convert any video clip to an animated GIF. You can control the resolution and frame rate to balance quality and file size." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -248,7 +292,7 @@
     <div class="panel" style="margin-top:24px;">
       <div class="panel__head">
         <div class="panel__head-icon">📋</div>
-        <div class="panel__head-title">Format Guide — Which to Choose?</div>
+        <h2 class="panel__head-title">Format Guide — Which to Choose?</h2>
       </div>
       <div style="display:grid;gap:10px;">
 
@@ -282,7 +326,7 @@
 
     <!-- Info -->
     <div class="panel" style="margin-top:14px;">
-      <div class="panel__head"><div class="panel__head-icon">📖</div><div class="panel__head-title">How It Works</div></div>
+      <div class="panel__head"><div class="panel__head-icon">📖</div><h2 class="panel__head-title">How It Works</h2></div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
         This converter uses <strong>FFmpeg.wasm</strong> — a WebAssembly port of the industry-standard FFmpeg library compiled to run entirely in your browser. Your video files are <strong>never uploaded to any server</strong>. All processing happens locally on your device. The FFmpeg WASM binary (~30MB) is downloaded once from a CDN and cached by your browser.
       </p>

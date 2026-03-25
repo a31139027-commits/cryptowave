@@ -40,6 +40,45 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Triple DES (3DES) Encryption & Decryption Online",
+      "url": "https://cryptowave-rouge.vercel.app/pages/tripledes.html",
+      "description": "Free Triple DES (3DES) encryption and decryption tool. Supports CBC and ECB modes with 112-bit or 168-bit keys. Compatible with legacy systems. Client-side only.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["3DES-CBC", "3DES-ECB", "112-bit key", "168-bit key", "Base64 output", "HEX output", "Legacy system compatibility"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Triple DES Encryption / Decryption", "item": "https://cryptowave-rouge.vercel.app/pages/tripledes.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Triple DES (3DES)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Triple DES applies the DES cipher three times to each data block using two or three different keys, providing 112-bit or 168-bit effective security. It was developed as a stopgap when DES became insecure. 3DES has been deprecated by NIST since 2017 and is being phased out in favor of AES." }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I use 3DES or AES?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use AES for all new applications. 3DES is significantly slower than AES and has known vulnerabilities including the SWEET32 attack. Use 3DES only when you need compatibility with legacy systems that do not support AES." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -221,7 +260,7 @@
 
     <!-- Comparison table -->
     <div class="panel">
-      <div class="panel__head"><div class="panel__head-icon">📊</div><div class="panel__head-title">DES vs 3DES vs AES Comparison</div></div>
+      <div class="panel__head"><div class="panel__head-icon">📊</div><h2 class="panel__head-title">DES vs 3DES vs AES Comparison</h2></div>
       <div style="overflow-x:auto;">
         <table style="width:100%;border-collapse:collapse;font-size:0.8375rem;">
           <thead>

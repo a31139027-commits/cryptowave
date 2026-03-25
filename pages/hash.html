@@ -40,6 +40,50 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "SHA-256, MD5, HMAC, Bcrypt Hash Generator Online",
+      "url": "https://cryptowave-rouge.vercel.app/pages/hash.html",
+      "description": "Free online hash generator. Generate SHA-256, SHA-512, SHA-384, MD5, HMAC, and Bcrypt hashes. Verify passwords. All processing client-side — no data sent to servers.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["SHA-256", "SHA-512", "SHA-384", "SHA-1", "MD5", "HMAC-SHA256", "HMAC-SHA512", "Bcrypt hashing", "Password verification", "File hashing"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Hash Generator", "item": "https://cryptowave-rouge.vercel.app/pages/hash.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between SHA-256 and MD5?",
+          "acceptedAnswer": { "@type": "Answer", "text": "SHA-256 produces a 256-bit hash and is cryptographically secure, suitable for security-sensitive applications. MD5 produces a 128-bit hash and is considered broken for cryptographic purposes — it is vulnerable to collision attacks. Use SHA-256 or SHA-512 for security applications and file integrity checks." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is HMAC and when should I use it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "HMAC (Hash-based Message Authentication Code) combines a cryptographic hash function with a secret key to verify both data integrity and authenticity. Use HMAC when you need to verify that a message was not tampered with and came from someone who knows the shared secret key." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why use Bcrypt for password hashing instead of SHA-256?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Bcrypt is specifically designed for password hashing. Unlike SHA-256 which is designed to be fast, Bcrypt is intentionally slow and includes an adjustable cost factor. This makes brute-force and rainbow table attacks much harder. Always use Bcrypt, Argon2, or PBKDF2 for storing passwords — never plain SHA-256 or MD5." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -131,7 +175,7 @@
       <!-- ── SHA / MD5 ── -->
       <div class="tab-panel active" id="tab-hash">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">#</div><div class="panel__head-title">Hash Generator</div></div>
+          <div class="panel__head"><div class="panel__head-icon">#</div><h2 class="panel__head-title">Hash Generator</h2></div>
           <div class="form-row">
             <div class="form-group" style="flex:1;">
               <label for="hash-algo">Algorithm</label>
@@ -165,7 +209,7 @@
       <!-- ── HMAC ── -->
       <div class="tab-panel" id="tab-hmac">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">🛡️</div><div class="panel__head-title">HMAC Generator</div></div>
+          <div class="panel__head"><div class="panel__head-icon">🛡️</div><h2 class="panel__head-title">HMAC Generator</h2></div>
           <div class="alert alert--info" style="margin-bottom:0;">
             <span class="alert__icon">ℹ</span>
             <div>HMAC (Hash-based Message Authentication Code) verifies both data integrity and authenticity using a shared secret key.</div>
@@ -201,7 +245,7 @@
       <!-- ── Bcrypt ── -->
       <div class="tab-panel" id="tab-bcrypt">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">🔑</div><div class="panel__head-title">Bcrypt Password Hashing</div></div>
+          <div class="panel__head"><div class="panel__head-icon">🔑</div><h2 class="panel__head-title">Bcrypt Password Hashing</h2></div>
           <div class="alert alert--info" style="margin-bottom:0;">
             <span class="alert__icon">ℹ</span>
             <div>Bcrypt is designed for hashing passwords. Higher rounds = slower = more secure. Default of 10 is a good balance for most applications.</div>

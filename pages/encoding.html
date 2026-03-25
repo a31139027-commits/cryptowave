@@ -51,6 +51,50 @@
       margin-bottom: 12px;
     }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Base64, Hex, URL Encode & JWT Decoder Online",
+      "url": "https://cryptowave-rouge.vercel.app/pages/encoding.html",
+      "description": "Free online encoding tools. Encode and decode Base64, Hex, URL, HTML entities. Decode JWT tokens and inspect claims. All processing is client-side.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Base64 encode", "Base64 decode", "Hex encode", "Hex decode", "URL encode", "URL decode", "HTML entities encode", "HTML entities decode", "JWT decoder", "JWT claims inspector"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Encoding & Decoding", "item": "https://cryptowave-rouge.vercel.app/pages/encoding.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Base64 encoding and when should I use it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Base64 encodes binary data into ASCII text using 64 printable characters. Use it when you need to transmit binary data (like images or files) over systems designed to handle text, such as email (MIME) or embedding data in JSON. Base64 is not encryption — it is easily reversible by anyone." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a JWT token and how do I decode it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "A JWT (JSON Web Token) is a compact, URL-safe way to represent claims between two parties. It consists of three Base64-encoded parts separated by dots: header, payload, and signature. Decoding a JWT reveals the claims (user ID, expiry, roles, etc.) but does not verify the signature — you need the secret key for verification." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between URL encoding and Base64?",
+          "acceptedAnswer": { "@type": "Answer", "text": "URL encoding (percent-encoding) converts characters not allowed in URLs into a % followed by two hex digits, used to safely include special characters in URLs. Base64 converts arbitrary binary data into 64 ASCII characters for text-safe transmission. They serve different purposes and are not interchangeable." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -144,7 +188,7 @@
       <!-- ── Base64 ── -->
       <div class="tab-panel active" id="tab-b64">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">64</div><div class="panel__head-title">Base64 Encode / Decode</div></div>
+          <div class="panel__head"><div class="panel__head-icon">64</div><h2 class="panel__head-title">Base64 Encode / Decode</h2></div>
           <div class="form-group" style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
             <label class="check-item">
               <input type="checkbox" id="b64-urlsafe" />
@@ -171,7 +215,7 @@
       <!-- ── Hex ── -->
       <div class="tab-panel" id="tab-hex">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">0x</div><div class="panel__head-title">Hex Encode / Decode</div></div>
+          <div class="panel__head"><div class="panel__head-icon">0x</div><h2 class="panel__head-title">Hex Encode / Decode</h2></div>
           <div class="form-group">
             <label for="hex-input">Input</label>
             <textarea id="hex-input" placeholder="Enter text to encode, or hex string to decode (e.g. 48656c6c6f)…" rows="5" spellcheck="false"></textarea>
@@ -191,7 +235,7 @@
       <!-- ── URL ── -->
       <div class="tab-panel" id="tab-url">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">%</div><div class="panel__head-title">URL Encode / Decode</div></div>
+          <div class="panel__head"><div class="panel__head-icon">%</div><h2 class="panel__head-title">URL Encode / Decode</h2></div>
           <div class="form-group">
             <label for="url-input">Input</label>
             <textarea id="url-input" placeholder="Enter text to percent-encode, or encoded string to decode…" rows="5" spellcheck="false"></textarea>
@@ -211,7 +255,7 @@
       <!-- ── HTML Entities ── -->
       <div class="tab-panel" id="tab-html-ent">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">&lt;&gt;</div><div class="panel__head-title">HTML Entities Encode / Decode</div></div>
+          <div class="panel__head"><div class="panel__head-icon">&lt;&gt;</div><h2 class="panel__head-title">HTML Entities Encode / Decode</h2></div>
           <div class="form-group">
             <label for="html-input">Input</label>
             <textarea id="html-input" placeholder="Enter HTML or plain text to encode/decode entities…" rows="5" spellcheck="false"></textarea>
@@ -231,7 +275,7 @@
       <!-- ── JWT ── -->
       <div class="tab-panel" id="tab-jwt">
         <div class="panel">
-          <div class="panel__head"><div class="panel__head-icon">JWT</div><div class="panel__head-title">JWT Decoder</div></div>
+          <div class="panel__head"><div class="panel__head-icon">JWT</div><h2 class="panel__head-title">JWT Decoder</h2></div>
           <div class="alert alert--warning" style="margin-bottom:0;">
             <span class="alert__icon">⚠</span>
             <div>This tool <strong>decodes</strong> JWTs for inspection only — it does <strong>not verify</strong> the signature. Never trust unverified tokens in production.</div>

@@ -40,6 +40,50 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "AES Encryption & Decryption Online",
+      "url": "https://cryptowave-rouge.vercel.app/pages/aes.html",
+      "description": "Free AES encryption and decryption tool online. Supports AES-GCM, CBC, ECB, CTR modes with 128, 192, 256-bit keys. Custom IV, Base64/HEX output. 100% client-side.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["AES-GCM", "AES-CBC", "AES-ECB", "AES-CTR", "128-bit key", "192-bit key", "256-bit key", "Base64 output", "HEX output"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "AES Encryption / Decryption", "item": "https://cryptowave-rouge.vercel.app/pages/aes.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an IV (Initialization Vector) in AES encryption?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The IV (Initialization Vector) is a random value used to ensure that the same plaintext encrypted twice produces different ciphertexts. It does not need to be secret but must be unique per encryption. CryptoWave auto-generates a secure random IV and prepends it to the output, so you only need one string to decrypt." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which AES mode should I use — GCM, CBC, or CTR?",
+          "acceptedAnswer": { "@type": "Answer", "text": "GCM is recommended: it uses a 12-byte IV and provides authenticated encryption, so tampering is detected automatically. CBC uses a 16-byte IV where each block is XORed with the previous ciphertext block. CTR uses a 16-byte counter/nonce and turns AES into a stream cipher — parallelizable with no padding needed." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is AES encryption processed on the server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All AES encryption and decryption runs entirely in your browser using the Web Crypto API. Your data is never sent to any server." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -256,7 +300,7 @@
     <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
         <div class="panel__head-icon">📖</div>
-        <div class="panel__head-title">About AES &amp; IV</div>
+        <h2 class="panel__head-title">About AES &amp; IV</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;margin-bottom:12px;">
         The <strong>IV (Initialization Vector)</strong> is a random value used to ensure that the same plaintext encrypted twice produces different ciphertexts. It does not need to be secret but must be unique per encryption. By default, CryptoWave auto-generates a secure random IV and prepends it to the output — so you only need one string to decrypt.
