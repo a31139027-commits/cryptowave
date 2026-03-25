@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18036940841');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Converter — HEX, RGB, HSL, CMYK Online | CryptoWave</title>
+  <meta name="description" content="Free color converter. Convert between HEX, RGB, HSL, HSV, and CMYK color formats instantly. Includes a color picker and preset swatches." />
+  <meta name="keywords" content="color converter, hex to rgb, rgb to hex, hex to hsl, color code converter, color picker online, cmyk converter, hsl to rgb" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/color-convert.html" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/color-convert.html" />
+  <meta property="og:title"       content="Color Converter — HEX, RGB, HSL, CMYK Online" />
+  <meta property="og:description" content="Convert between HEX, RGB, HSL, HSV and CMYK color formats instantly. Includes color picker and preset swatches." />
+  <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+  <meta property="og:site_name"   content="CryptoWave" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Color Converter — HEX, RGB, HSL, CMYK Online" />
+  <meta name="twitter:description" content="Convert colors between HEX, RGB, HSL, HSV and CMYK in real time." />
+  <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <style>
+    /* Swatch */
+    .cc-swatch-wrap { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+    #cc-swatch { width: 80px; height: 80px; border-radius: 16px; border: 2px solid var(--border); flex-shrink: 0; transition: background .15s; }
+    #cc-picker { width: 48px; height: 48px; border: none; background: none; cursor: pointer; padding: 0; border-radius: 8px; }
+    .cc-swatch-hint { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Input grid */
+    .cc-section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); font-weight: 600; margin: 16px 0 8px; }
+    .cc-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .cc-row__label { min-width: 36px; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-align: right; }
+    .cc-row__input { flex: 1; font-family: var(--font-mono, monospace); font-size: 0.95rem; }
+    .cc-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .cc-3col input { text-align: center; font-family: var(--font-mono, monospace); }
+
+    /* Presets */
+    .cc-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .cc-preset { width: 28px; height: 28px; border-radius: 6px; border: 2px solid transparent; cursor: pointer; transition: transform .1s, border-color .1s; flex-shrink: 0; }
+    .cc-preset:hover { transform: scale(1.2); border-color: var(--text-primary); }
+
+    /* Detail rows */
+    .cc-detail-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.875rem; gap: 10px; }
+    .cc-detail-row:last-child { border-bottom: none; }
+    .cc-detail-label { color: var(--text-secondary); min-width: 60px; }
+    .cc-detail-value { font-family: var(--font-mono, monospace); font-weight: 600; color: var(--text-primary); flex: 1; }
+    .cc-copy-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 2px 8px; font-size: 0.75rem; cursor: pointer; white-space: nowrap; transition: background .15s; }
+    .cc-copy-btn:hover { background: var(--hover-bg); color: var(--text-primary); }
+
+    @media (max-width: 480px) { .cc-3col { grid-template-columns: 1fr 1fr; } }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Color Converter",
+      "url": "https://cryptowave-rouge.vercel.app/pages/color-convert.html",
+      "description": "Free color converter. Convert between HEX, RGB, HSL, HSV, and CMYK color formats instantly.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["HEX to RGB", "RGB to HSL", "HSL to CMYK", "Color picker", "Preset swatches", "Real-time conversion"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Color Converter", "item": "https://cryptowave-rouge.vercel.app/pages/color-convert.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert HEX to RGB?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Type your HEX color code (e.g. #FF5733) into the HEX field above. The RGB, HSL, HSV and CMYK equivalents will appear instantly." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between RGB and HSL?",
+          "acceptedAnswer": { "@type": "Answer", "text": "RGB (Red, Green, Blue) describes colors by mixing three light channels. HSL (Hue, Saturation, Lightness) describes colors more intuitively — hue is the color angle (0-360°), saturation is vividness, and lightness is brightness." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is CMYK used for?",
+          "acceptedAnswer": { "@type": "Answer", "text": "CMYK (Cyan, Magenta, Yellow, Key/Black) is the color model used in color printing. Unlike RGB which adds light, CMYK subtracts light using ink pigments." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="hash.html"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="hash.html">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="hash.html#tab-bcrypt">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-html-ent">&lt;&gt; HTML Entities</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="audio.html">🎵 Audio Converter</a>
+          <a href="video.html">🎬 Video Converter</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html">🗜️ Compress</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="color-convert.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+          <div class="dropdown__divider"></div>
+          <a href="date-diff.html">📅 Date Difference</a>
+          <a href="age.html">🎂 Age Calculator</a>
+          <div class="dropdown__divider"></div>
+          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="word-count.html">📝 Word Counter</a>
+          <a href="base-convert.html">🔢 Base Converter</a>
+          <a href="color-convert.html" class="active">🎨 Color Converter</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">🎨 <span>Color</span> Converter</h1>
+      <p class="tool-header__sub">Convert between HEX, RGB, HSL, HSV and CMYK — type in any field or pick a color.</p>
+    </div>
+
+    <!-- Converter Panel -->
+    <div class="panel">
+      <div class="panel__head">
+        <div class="panel__head-icon">🎨</div>
+        <div class="panel__head-title">Color</div>
+      </div>
+
+      <!-- Swatch + picker -->
+      <div class="cc-swatch-wrap">
+        <div id="cc-swatch"></div>
+        <div>
+          <label class="form-label" style="margin-bottom:6px;">Color Picker</label>
+          <input type="color" id="cc-picker" value="#6366F1" />
+          <div class="cc-swatch-hint" style="margin-top:6px;">Click to open native picker</div>
+        </div>
+      </div>
+
+      <!-- HEX -->
+      <div class="cc-section-title">HEX</div>
+      <div class="cc-row">
+        <span class="cc-row__label">#</span>
+        <input type="text" id="cc-hex" class="input cc-row__input" placeholder="#6366F1" maxlength="7" autocomplete="off" spellcheck="false" />
+      </div>
+
+      <!-- RGB -->
+      <div class="cc-section-title">RGB — Red · Green · Blue (0–255)</div>
+      <div class="cc-3col">
+        <input type="number" id="cc-r" class="input" min="0" max="255" placeholder="R" />
+        <input type="number" id="cc-g" class="input" min="0" max="255" placeholder="G" />
+        <input type="number" id="cc-b" class="input" min="0" max="255" placeholder="B" />
+      </div>
+
+      <!-- HSL -->
+      <div class="cc-section-title">HSL — Hue (0–360°) · Saturation (0–100%) · Lightness (0–100%)</div>
+      <div class="cc-3col">
+        <input type="number" id="cc-h" class="input" min="0" max="360" placeholder="H" />
+        <input type="number" id="cc-s" class="input" min="0" max="100" placeholder="S" />
+        <input type="number" id="cc-l" class="input" min="0" max="100" placeholder="L" />
+      </div>
+
+      <!-- Presets -->
+      <div class="cc-section-title">Presets</div>
+      <div class="cc-presets">
+        <button class="cc-preset" data-hex="#EF4444" style="background:#EF4444;" title="Red"></button>
+        <button class="cc-preset" data-hex="#F97316" style="background:#F97316;" title="Orange"></button>
+        <button class="cc-preset" data-hex="#EAB308" style="background:#EAB308;" title="Yellow"></button>
+        <button class="cc-preset" data-hex="#22C55E" style="background:#22C55E;" title="Green"></button>
+        <button class="cc-preset" data-hex="#06B6D4" style="background:#06B6D4;" title="Cyan"></button>
+        <button class="cc-preset" data-hex="#6366F1" style="background:#6366F1;" title="Indigo"></button>
+        <button class="cc-preset" data-hex="#A855F7" style="background:#A855F7;" title="Purple"></button>
+        <button class="cc-preset" data-hex="#EC4899" style="background:#EC4899;" title="Pink"></button>
+        <button class="cc-preset" data-hex="#FFFFFF" style="background:#FFFFFF;border-color:#ccc;" title="White"></button>
+        <button class="cc-preset" data-hex="#6B7280" style="background:#6B7280;" title="Gray"></button>
+        <button class="cc-preset" data-hex="#000000" style="background:#000000;" title="Black"></button>
+        <button class="cc-preset" data-hex="#FF5733" style="background:#FF5733;" title="#FF5733"></button>
+      </div>
+    </div>
+
+    <!-- Details Panel -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">📋</div>
+        <h2 class="panel__head-title">All Formats</h2>
+      </div>
+
+      <div class="cc-detail-row">
+        <span class="cc-detail-label">HEX</span>
+        <span class="cc-detail-value" id="cc-detail-hex">#6366F1</span>
+        <button class="cc-copy-btn" data-copy="cc-detail-hex">Copy</button>
+      </div>
+      <div class="cc-detail-row">
+        <span class="cc-detail-label">RGB</span>
+        <span class="cc-detail-value" id="cc-detail-rgb">rgb(99, 102, 241)</span>
+        <button class="cc-copy-btn" data-copy="cc-detail-rgb">Copy</button>
+      </div>
+      <div class="cc-detail-row">
+        <span class="cc-detail-label">HSL</span>
+        <span class="cc-detail-value" id="cc-detail-hsl">hsl(239, 84%, 67%)</span>
+        <button class="cc-copy-btn" data-copy="cc-detail-hsl">Copy</button>
+      </div>
+      <div class="cc-detail-row">
+        <span class="cc-detail-label">HSV</span>
+        <span class="cc-detail-value" id="cc-detail-hsv">hsv(239, 59%, 95%)</span>
+        <button class="cc-copy-btn" data-copy="cc-detail-hsv">Copy</button>
+      </div>
+      <div class="cc-detail-row">
+        <span class="cc-detail-label">CMYK</span>
+        <span class="cc-detail-value" id="cc-detail-cmyk">cmyk(59%, 58%, 0%, 5%)</span>
+        <button class="cc-copy-btn" data-copy="cc-detail-cmyk">Copy</button>
+      </div>
+    </div>
+
+    <!-- About Panel -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">📖</div>
+        <h2 class="panel__head-title">About Color Formats</h2>
+      </div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        <strong>HEX</strong> — used in CSS and web design. <strong>RGB</strong> — mixes red, green and blue light (used in screens). <strong>HSL</strong> — intuitive model with hue, saturation and lightness (great for adjustments in CSS). <strong>HSV</strong> — similar to HSL but uses value instead of lightness (common in design apps). <strong>CMYK</strong> — the model used for color printing with ink.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">⚡ Real-time conversion</div>
+        <div class="security-note">🎨 5 color formats</div>
+        <div class="security-note">✓ Zero server transmission</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+      <a href="date-diff.html">Date Diff</a>
+      <a href="age.html">Age Calc</a>
+      <a href="pdf-merge.html">PDF Merge</a>
+      <a href="word-count.html">Word Count</a>
+      <a href="base-convert.html">Base Conv</a>
+      <a href="color-convert.html">Color Conv</a>
+    </nav>
+    <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/color-convert.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
