@@ -132,7 +132,8 @@ const EncodingModule = (() => {
       if (!Utils.requireField(input, 'JWT token')) return;
       try {
         const decoded = jwtDecode(input.value.trim());
-        const html = `<div class="jwt-section"><span class="output-label">HEADER</span>\n${JSON.stringify(decoded.header, null, 2)}\n\n<span class="output-label">PAYLOAD</span>\n${JSON.stringify(decoded.payload, null, 2)}\n\n<span class="output-label">SIGNATURE (not verified)</span>\n${decoded.signature}</div>`;
+        const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        const html = `<div class="jwt-section"><span class="output-label">HEADER</span>\n${esc(JSON.stringify(decoded.header, null, 2))}\n\n<span class="output-label">PAYLOAD</span>\n${esc(JSON.stringify(decoded.payload, null, 2))}\n\n<span class="output-label">SIGNATURE (not verified)</span>\n${esc(decoded.signature)}</div>`;
         outBox.classList.add('output-box--success');
         outBox.innerHTML = html;
       } catch (err) {

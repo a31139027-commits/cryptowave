@@ -270,12 +270,21 @@ const PasswordModule = (() => {
 
     function renderHistory() {
       if (!historyList) return;
-      historyList.innerHTML = history.map((p, i) => `
-        <div class="hist-item">
-          <span class="hist-item__pwd">${Utils.sanitize(p)}</span>
-          <button class="btn btn--sm btn--icon" onclick="Utils.copyToClipboard('${Utils.sanitize(p)}', 'Copied!')">⎘</button>
-        </div>
-      `).join('');
+      historyList.innerHTML = '';
+      history.forEach((p) => {
+        const row = document.createElement('div');
+        row.className = 'hist-item';
+        const span = document.createElement('span');
+        span.className = 'hist-item__pwd';
+        span.textContent = p;
+        const btn = document.createElement('button');
+        btn.className = 'btn btn--sm btn--icon';
+        btn.textContent = '⎘';
+        btn.addEventListener('click', () => Utils.copyToClipboard(p, 'Copied!'));
+        row.appendChild(span);
+        row.appendChild(btn);
+        historyList.appendChild(row);
+      });
     }
   }
 
