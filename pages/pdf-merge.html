@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Age Calculator — Calculate Exact Age from Birthday | CryptoWave</title>
-  <meta name="description" content="Free age calculator. Enter your birthday to find your exact age in years, months, and days. See your next birthday countdown and total days lived." />
-  <meta name="keywords" content="age calculator, calculate age from birthday, how old am I, birthday calculator, exact age calculator, age in days months years" />
+  <title>Merge PDF Online Free — Combine PDF Files | CryptoWave</title>
+  <meta name="description" content="Merge multiple PDF files into one online for free. Drag and drop PDFs, reorder pages, and download the combined file instantly. 100% client-side — no upload, no server." />
+  <meta name="keywords" content="merge PDF online, combine PDF files, join PDF, PDF merger free, merge PDF without upload, combine PDF pages online" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/age.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/pdf-merge.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/age.html" />
-  <meta property="og:title"       content="Age Calculator — Calculate Exact Age from Birthday" />
-  <meta property="og:description" content="Enter your birthday to find your exact age in years, months, and days. See next birthday countdown and total days lived." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/pdf-merge.html" />
+  <meta property="og:title"       content="Merge PDF Online Free — Combine PDF Files" />
+  <meta property="og:description" content="Merge multiple PDF files into one instantly. Drag, drop, reorder and download. No upload required — runs entirely in your browser." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Age Calculator — Exact Age from Birthday" />
-  <meta name="twitter:description" content="Enter your birthday to find your exact age in years, months, and days. Includes next birthday countdown." />
+  <meta name="twitter:title"       content="Merge PDF Online Free — Combine PDF Files" />
+  <meta name="twitter:description" content="Combine multiple PDFs into one. Reorder files, merge instantly and download. 100% client-side." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,20 +39,22 @@
     })();
   </script>
   <style>
-    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 20px; }
-    .stat-card { background: var(--input-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
-    .stat-card__value { font-family: var(--font-head); font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
-    .stat-card__label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
-    .stat-card--highlight .stat-card__value { font-size: 2.5rem; }
-    .breakdown-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-    .breakdown-row:last-child { border-bottom: none; }
-    .breakdown-row__label { color: var(--text-secondary); }
-    .breakdown-row__value { font-weight: 600; color: var(--text-primary); }
-    .birthday-banner { text-align: center; background: linear-gradient(135deg, rgba(var(--accent-rgb),.12), rgba(var(--accent-rgb),.04)); border: 1px solid rgba(var(--accent-rgb),.3); border-radius: 12px; padding: 20px; margin-top: 16px; }
-    .countdown-display { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--accent); }
+    .pdf-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--input-bg); border: 1px solid var(--border); margin-bottom: 8px; }
+    .pdf-row__num { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent); min-width: 24px; text-align: center; }
+    .pdf-row__icon { font-size: 1.25rem; flex-shrink: 0; }
+    .pdf-row__info { flex: 1; min-width: 0; }
+    .pdf-row__name { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pdf-row__size { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .pdf-row__actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .pdf-move-btn { background: var(--panel-bg); border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: background .15s; }
+    .pdf-move-btn:hover:not(:disabled) { background: var(--hover-bg); }
+    .pdf-move-btn:disabled { opacity: 0.3; cursor: default; }
+    .pdf-remove-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: color .15s, background .15s; }
+    .pdf-remove-btn:hover { color: #ef4444; background: rgba(239,68,68,.1); border-color: #ef4444; }
+    .file-count-badge { font-size: 0.8rem; color: var(--text-muted); margin-left: 8px; }
     .placeholder-msg { text-align: center; padding: 32px 0; color: var(--text-muted); font-size: 0.9rem; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+    .merge-actions { display: flex; gap: 12px; margin-top: 20px; }
+    .merge-actions .btn { flex: 1; }
   </style>
 <script type="application/ld+json">
 {
@@ -60,19 +62,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Age Calculator",
-      "url": "https://cryptowave-rouge.vercel.app/pages/age.html",
-      "description": "Free age calculator. Enter your birthday to find your exact age in years, months, and days. See your next birthday countdown and total days lived.",
+      "name": "PDF Merger",
+      "url": "https://cryptowave-rouge.vercel.app/pages/pdf-merge.html",
+      "description": "Merge multiple PDF files into one online for free. Drag and drop PDFs, reorder pages, and download the combined file instantly. 100% client-side.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Age in years months days", "Total days lived", "Next birthday countdown", "Age on specific date", "Leap year handling"]
+      "featureList": ["Merge multiple PDFs", "Drag and drop upload", "Reorder files before merging", "No file size limits", "100% client-side processing"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "Age Calculator", "item": "https://cryptowave-rouge.vercel.app/pages/age.html" }
+        { "@type": "ListItem", "position": 2, "name": "PDF Merger", "item": "https://cryptowave-rouge.vercel.app/pages/pdf-merge.html" }
       ]
     },
     {
@@ -80,18 +82,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I calculate my exact age?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Enter your date of birth in the calculator above and click Calculate Age. The tool will show your exact age in years, months, and days, along with your total days lived and a countdown to your next birthday." }
+          "name": "How do I merge PDF files online for free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Upload two or more PDF files using the drop zone above, arrange them in the order you want, then click Merge & Download PDF. The merged file downloads instantly to your device." }
         },
         {
           "@type": "Question",
-          "name": "How are leap years handled in the age calculation?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Leap years are handled automatically. If you were born on February 29, the calculator uses March 1 as your birthday in non-leap years when counting age milestones." }
+          "name": "Is my PDF data safe when using this tool?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. All processing happens entirely inside your browser using the pdf-lib JavaScript library. Your files are never uploaded to any server, so your data remains completely private." }
         },
         {
           "@type": "Question",
-          "name": "Can I calculate how old I will be on a future date?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the 'Age on a specific date' section to enter any future or past date and see how old you were or will be on that day." }
+          "name": "Is there a file size limit for merging PDFs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "There is no hard limit set by this tool. Practical limits depend on your device's available RAM. For very large PDFs (over 100 MB each), performance depends on your browser and hardware." }
         }
       ]
     }
@@ -153,15 +155,15 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="password.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <a href="pdf-merge.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="password.html">🔑 Password Generator</a>
           <a href="qrcode.html">⬛ QR Code</a>
           <div class="dropdown__divider"></div>
           <a href="date-diff.html">📅 Date Difference</a>
-          <a href="age.html" class="active">🎂 Age Calculator</a>
+          <a href="age.html">🎂 Age Calculator</a>
           <div class="dropdown__divider"></div>
-          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="pdf-merge.html" class="active">📎 PDF Merger</a>
         </div></div>
       </li>
     </ul>
@@ -178,57 +180,54 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">🎂 <span>Age</span> Calculator</h1>
-      <p class="tool-header__sub">Calculate your exact age in years, months, and days — plus next birthday countdown.</p>
+      <h1 class="tool-header__title">📎 <span>PDF Merger</span></h1>
+      <p class="tool-header__sub">Combine multiple PDF files into one. Drag, reorder, and download instantly — no upload, no server.</p>
     </div>
 
-    <!-- Input Panel -->
+    <!-- Drop Zone Panel -->
     <div class="panel">
       <div class="panel__head">
-        <div class="panel__head-icon">🎂</div>
-        <div class="panel__head-title">Enter Birthday</div>
+        <div class="panel__head-icon">📂</div>
+        <div class="panel__head-title">Add PDF Files</div>
       </div>
 
-      <div class="two-col">
-        <div>
-          <label class="form-label">DATE OF BIRTH</label>
-          <input type="date" id="dob-input" class="input" />
-        </div>
-        <div>
-          <label class="form-label">CALCULATE AGE AS OF</label>
-          <input type="date" id="as-of-input" class="input" />
-          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Leave as today or enter any date</p>
-        </div>
-      </div>
-
-      <div style="margin-top:20px;">
-        <button class="btn btn--primary btn--lg" id="age-calc-btn" style="width:100%;">🎂 Calculate Age</button>
+      <div class="drop-zone" id="pdf-drop-zone">
+        <div class="drop-zone__icon">📄</div>
+        <div class="drop-zone__title">Drop PDF files here</div>
+        <div class="drop-zone__sub">or click to browse — you can add multiple files</div>
+        <input type="file" id="pdf-file-input" accept="application/pdf" multiple style="display:none;" />
       </div>
     </div>
 
-    <!-- Results Panel -->
-    <div class="panel" id="age-results-panel" style="margin-top:16px;">
+    <!-- File List Panel -->
+    <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
-        <div class="panel__head-icon">📊</div>
-        <div class="panel__head-title">Result</div>
+        <div class="panel__head-icon">📋</div>
+        <div class="panel__head-title">Files to Merge <span class="file-count-badge" id="pdf-file-count"></span></div>
       </div>
-      <div id="age-results-content">
-        <p class="placeholder-msg">Enter your date of birth above and click Calculate Age.</p>
+
+      <div id="pdf-file-list">
+        <p class="placeholder-msg">No PDF files added yet. Drop files above or click to browse.</p>
+      </div>
+
+      <div class="merge-actions">
+        <button class="btn btn--primary btn--lg" id="pdf-merge-btn" disabled>🔗 Merge & Download PDF</button>
+        <button class="btn btn--ghost" id="pdf-clear-btn" style="max-width:120px;">🗑 Clear</button>
       </div>
     </div>
 
-    <!-- About -->
+    <!-- About Panel -->
     <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
         <div class="panel__head-icon">📖</div>
-        <h2 class="panel__head-title">About This Calculator</h2>
+        <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This calculator determines your exact age using your browser's date engine. It correctly handles leap years, month-length variations, and daylight saving time. You can also calculate how old you were or will be on any specific past or future date using the "As of" field.
+        This tool uses <strong>pdf-lib</strong>, a pure JavaScript PDF library, to merge your files entirely inside your browser. No files are ever sent to any server — your PDFs stay on your device. You can add as many files as you like, drag to reorder them, and download the merged result instantly.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
-        <div class="security-note">🎂 Handles leap years</div>
-        <div class="security-note">📅 Past & future dates</div>
+        <div class="security-note">📎 Combine unlimited PDFs</div>
+        <div class="security-note">↕ Reorder before merging</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -263,7 +262,8 @@
 
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
-<script src="../js/modules/age.js"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="../js/modules/pdf-merge.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
