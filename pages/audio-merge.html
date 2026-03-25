@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Merge PDF Online Free — Combine PDF Files | CryptoWave</title>
-  <meta name="description" content="Merge multiple PDF files into one online for free. Drag and drop PDFs, reorder pages, and download the combined file instantly. 100% client-side — no upload, no server." />
-  <meta name="keywords" content="merge PDF online, combine PDF files, join PDF, PDF merger free, merge PDF without upload, combine PDF pages online" />
+  <title>Audio Merger Online Free — Combine MP3 WAV Files | CryptoWave</title>
+  <meta name="description" content="Merge multiple audio files into one online for free. Upload MP3, WAV, OGG or FLAC files, reorder them, set a gap between tracks, and download the combined audio. 100% client-side." />
+  <meta name="keywords" content="audio merger online, combine audio files, join MP3 online, merge audio free, audio joiner, combine WAV files" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/pdf-merge.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/audio-merge.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/pdf-merge.html" />
-  <meta property="og:title"       content="Merge PDF Online Free — Combine PDF Files" />
-  <meta property="og:description" content="Merge multiple PDF files into one instantly. Drag, drop, reorder and download. No upload required — runs entirely in your browser." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/audio-merge.html" />
+  <meta property="og:title"       content="Audio Merger Online Free — Combine MP3 WAV Files" />
+  <meta property="og:description" content="Combine multiple audio files into one. Upload, reorder, set gap between tracks, download as WAV. No upload to server." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Merge PDF Online Free — Combine PDF Files" />
-  <meta name="twitter:description" content="Combine multiple PDFs into one. Reorder files, merge instantly and download. 100% client-side." />
+  <meta name="twitter:title"       content="Audio Merger Online Free — Combine MP3 WAV Files" />
+  <meta name="twitter:description" content="Merge audio files in your browser. Reorder tracks, set silence gap, download as WAV. 100% client-side." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,22 +39,27 @@
     })();
   </script>
   <style>
-    .pdf-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--input-bg); border: 1px solid var(--border); margin-bottom: 8px; }
-    .pdf-row__num { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent); min-width: 24px; text-align: center; }
-    .pdf-row__icon { font-size: 1.25rem; flex-shrink: 0; }
-    .pdf-row__info { flex: 1; min-width: 0; }
-    .pdf-row__name { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .pdf-row__size { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-    .pdf-row__actions { display: flex; gap: 6px; flex-shrink: 0; }
-    .pdf-move-btn { background: var(--panel-bg); border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: background .15s; }
-    .pdf-move-btn:hover:not(:disabled) { background: var(--hover-bg); }
-    .pdf-move-btn:disabled { opacity: 0.3; cursor: default; }
-    .pdf-remove-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: color .15s, background .15s; }
-    .pdf-remove-btn:hover { color: #ef4444; background: rgba(239,68,68,.1); border-color: #ef4444; }
+    .am-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--input-bg); border: 1px solid var(--border); margin-bottom: 8px; }
+    .am-row__num { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent); min-width: 24px; text-align: center; }
+    .am-row__info { flex: 1; min-width: 0; }
+    .am-row__name { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .am-row__meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .am-row__actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .am-move-btn { background: var(--panel-bg); border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: background .15s; }
+    .am-move-btn:hover:not(:disabled) { background: var(--hover-bg); }
+    .am-move-btn:disabled { opacity: 0.3; cursor: default; }
+    .am-remove-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: color .15s, background .15s; }
+    .am-remove-btn:hover { color: #ef4444; background: rgba(239,68,68,.1); border-color: #ef4444; }
     .file-count-badge { font-size: 0.8rem; color: var(--text-muted); margin-left: 8px; }
     .placeholder-msg { text-align: center; padding: 32px 0; color: var(--text-muted); font-size: 0.9rem; }
-    .merge-actions { display: flex; gap: 12px; margin-top: 20px; }
-    .merge-actions .btn { flex: 1; }
+    .am-actions { display: flex; gap: 12px; margin-top: 20px; }
+    .am-actions .btn { flex: 1; }
+    .am-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .am-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .am-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .am-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    .gap-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .gap-row input { width: 90px; }
   </style>
 <script type="application/ld+json">
 {
@@ -62,19 +67,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "PDF Merger",
-      "url": "https://cryptowave-rouge.vercel.app/pages/pdf-merge.html",
-      "description": "Merge multiple PDF files into one online for free. Drag and drop PDFs, reorder pages, and download the combined file instantly. 100% client-side.",
-      "applicationCategory": "UtilitiesApplication",
+      "name": "Audio Merger",
+      "url": "https://cryptowave-rouge.vercel.app/pages/audio-merge.html",
+      "description": "Merge multiple audio files into one online for free. Upload MP3, WAV, OGG or FLAC, reorder tracks, set silence gap, and download as WAV. 100% client-side.",
+      "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Merge multiple PDFs", "Drag and drop upload", "Reorder files before merging", "No file size limits", "100% client-side processing"]
+      "featureList": ["Merge MP3 WAV OGG FLAC", "Reorder tracks", "Optional silence gap between tracks", "Download as WAV", "100% client-side Web Audio API"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "PDF Merger", "item": "https://cryptowave-rouge.vercel.app/pages/pdf-merge.html" }
+        { "@type": "ListItem", "position": 2, "name": "Audio Merger", "item": "https://cryptowave-rouge.vercel.app/pages/audio-merge.html" }
       ]
     },
     {
@@ -82,18 +87,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I merge PDF files online for free?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Upload two or more PDF files using the drop zone above, arrange them in the order you want, then click Merge & Download PDF. The merged file downloads instantly to your device." }
+          "name": "What audio formats can I merge?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can merge MP3, WAV, OGG, FLAC, AAC, M4A and any other format your browser supports. The output is always WAV (lossless PCM)." }
         },
         {
           "@type": "Question",
-          "name": "Is my PDF data safe when using this tool?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. All processing happens entirely inside your browser using the pdf-lib JavaScript library. Your files are never uploaded to any server, so your data remains completely private." }
+          "name": "Can I add silence between tracks?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the Gap setting to add a configurable silence between each track in seconds." }
         },
         {
           "@type": "Question",
-          "name": "Is there a file size limit for merging PDFs?",
-          "acceptedAnswer": { "@type": "Answer", "text": "There is no hard limit set by this tool. Practical limits depend on your device's available RAM. For very large PDFs (over 100 MB each), performance depends on your browser and hardware." }
+          "name": "Is my audio uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All merging is done entirely inside your browser using the Web Audio API. Your files never leave your device." }
         }
       ]
     }
@@ -140,11 +145,11 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <a href="audio-merge.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="audio.html">🎵 Audio Converter</a>
           <a href="audio-cut.html">✂️ Audio Cutter</a>
-          <a href="audio-merge.html">🔗 Audio Merger</a>
+          <a href="audio-merge.html" class="active">🔗 Audio Merger</a>
           <a href="video.html">🎬 Video Converter</a>
         </div></div>
       </li>
@@ -157,7 +162,7 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="pdf-merge.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="password.html">🔑 Password Generator</a>
           <a href="qrcode.html">⬛ QR Code</a>
@@ -165,7 +170,10 @@
           <a href="date-diff.html">📅 Date Difference</a>
           <a href="age.html">🎂 Age Calculator</a>
           <div class="dropdown__divider"></div>
-          <a href="pdf-merge.html" class="active">📎 PDF Merger</a>
+          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="pdf-split.html">✂️ PDF Splitter</a>
+          <a href="pdf-images.html">🖼️ PDF to Images</a>
+          <a href="tts.html">🔊 Text to Speech</a>
           <a href="word-count.html">📝 Word Counter</a>
           <a href="base-convert.html">🔢 Base Converter</a>
           <a href="color-convert.html">🎨 Color Converter</a>
@@ -185,53 +193,62 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">📎 <span>PDF Merger</span></h1>
-      <p class="tool-header__sub">Combine multiple PDF files into one. Drag, reorder, and download instantly — no upload, no server.</p>
+      <h1 class="tool-header__title">🔗 <span>Audio Merger</span></h1>
+      <p class="tool-header__sub">Combine multiple audio files into one. Reorder tracks, set silence between them, and download as WAV — no upload required.</p>
     </div>
 
-    <!-- Drop Zone Panel -->
+    <!-- Drop Zone -->
     <div class="panel">
       <div class="panel__head">
-        <div class="panel__head-icon">📂</div>
-        <div class="panel__head-title">Add PDF Files</div>
+        <div class="panel__head-icon">🎵</div>
+        <div class="panel__head-title">Add Audio Files</div>
       </div>
-
-      <div class="drop-zone" id="pdf-drop-zone">
-        <div class="drop-zone__icon">📄</div>
-        <div class="drop-zone__title">Drop PDF files here</div>
-        <div class="drop-zone__sub">or click to browse — you can add multiple files</div>
-        <input type="file" id="pdf-file-input" accept="application/pdf" multiple style="display:none;" />
+      <div class="drop-zone" id="am-drop-zone">
+        <div class="drop-zone__icon">🎵</div>
+        <div class="drop-zone__title">Drop audio files here</div>
+        <div class="drop-zone__sub">or click to browse — MP3, WAV, OGG, FLAC, AAC supported</div>
+        <input type="file" id="am-file-input" accept="audio/*" multiple style="display:none;" />
       </div>
     </div>
 
-    <!-- File List Panel -->
+    <!-- File List -->
     <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
         <div class="panel__head-icon">📋</div>
-        <div class="panel__head-title">Files to Merge <span class="file-count-badge" id="pdf-file-count"></span></div>
+        <div class="panel__head-title">Tracks to Merge <span class="file-count-badge" id="am-file-count"></span></div>
       </div>
 
-      <div id="pdf-file-list">
-        <p class="placeholder-msg">No PDF files added yet. Drop files above or click to browse.</p>
+      <div id="am-file-list">
+        <p class="placeholder-msg">No audio files added yet. Drop files above or click to browse.</p>
       </div>
 
-      <div class="merge-actions">
-        <button class="btn btn--primary btn--lg" id="pdf-merge-btn" disabled>🔗 Merge & Download PDF</button>
-        <button class="btn btn--ghost" id="pdf-clear-btn" style="max-width:120px;">🗑 Clear</button>
+      <div style="margin-top:16px;">
+        <label class="form-label">SILENCE GAP BETWEEN TRACKS (seconds)</label>
+        <div class="gap-row">
+          <input type="number" id="am-gap" class="input" min="0" max="10" step="0.1" value="0" />
+          <span style="font-size:0.85rem;color:var(--text-muted);">Set 0 for seamless join</span>
+        </div>
       </div>
+
+      <div class="am-actions">
+        <button class="btn btn--primary btn--lg" id="am-merge-btn" disabled>🔗 Merge &amp; Download WAV</button>
+        <button class="btn btn--ghost" id="am-clear-btn" style="max-width:110px;">🗑 Clear</button>
+      </div>
+
+      <div class="am-status" id="am-status">Ready.</div>
     </div>
 
-    <!-- About Panel -->
+    <!-- About -->
     <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
         <div class="panel__head-icon">📖</div>
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This tool uses <strong>pdf-lib</strong>, a pure JavaScript PDF library, to merge your files entirely inside your browser. No files are ever sent to any server — your PDFs stay on your device. You can add as many files as you like, drag to reorder them, and download the merged result instantly.
+        This tool uses the <strong>Web Audio API</strong> to decode each audio file into raw PCM data, concatenate them in order (with optional silence gaps), and re-encode as a WAV file — all inside your browser. No files are uploaded to any server.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
-        <div class="security-note">📎 Combine unlimited PDFs</div>
+        <div class="security-note">🔗 Concatenate tracks</div>
         <div class="security-note">↕ Reorder before merging</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
@@ -269,8 +286,7 @@
 
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
-<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js" integrity="sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI" crossorigin="anonymous"></script>
-<script src="../js/modules/pdf-merge.js"></script>
+<script src="../js/modules/audio-merge.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
