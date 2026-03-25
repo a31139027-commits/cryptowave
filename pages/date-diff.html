@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18036940841');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Difference Calculator — Days Between Dates | CryptoWave</title>
+  <meta name="description" content="Free date difference calculator. Find the number of days, weeks, months, and years between any two dates. Includes business days count. 100% client-side." />
+  <meta name="keywords" content="date difference calculator, days between dates, date calculator online, how many days between two dates, date duration calculator" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/date-diff.html" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/date-diff.html" />
+  <meta property="og:title"       content="Date Difference Calculator — Days Between Dates" />
+  <meta property="og:description" content="Find the exact number of days, weeks, months, and years between any two dates. Includes business days count." />
+  <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+  <meta property="og:site_name"   content="CryptoWave" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Date Difference Calculator — Days Between Dates" />
+  <meta name="twitter:description" content="Find the exact number of days, weeks, months, and years between any two dates." />
+  <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <style>
+    .date-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: end; }
+    .date-grid__swap { display: flex; align-items: center; justify-content: center; padding-bottom: 6px; }
+    .swap-btn { background: var(--panel-bg); border: 1px solid var(--border); color: var(--text-primary); border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 1rem; transition: background .15s; }
+    .swap-btn:hover { background: var(--hover-bg); }
+    .date-today-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 3px 8px; font-size: 0.75rem; cursor: pointer; margin-top: 4px; transition: background .15s; }
+    .date-today-btn:hover { background: var(--hover-bg); color: var(--text-primary); }
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 20px; }
+    .stat-card { background: var(--input-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
+    .stat-card__value { font-family: var(--font-head); font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
+    .stat-card__label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
+    .breakdown-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-row__label { color: var(--text-secondary); }
+    .breakdown-row__value { font-weight: 600; color: var(--text-primary); }
+    .placeholder-msg { text-align: center; padding: 32px 0; color: var(--text-muted); font-size: 0.9rem; }
+    @media (max-width: 520px) { .date-grid { grid-template-columns: 1fr; } .date-grid__swap { padding: 0; } }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Date Difference Calculator",
+      "url": "https://cryptowave-rouge.vercel.app/pages/date-diff.html",
+      "description": "Free date difference calculator. Find the number of days, weeks, months, and years between any two dates. Includes business days count.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Days between dates", "Weeks between dates", "Months between dates", "Years between dates", "Business days count", "Detailed date breakdown"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Date Difference Calculator", "item": "https://cryptowave-rouge.vercel.app/pages/date-diff.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate the number of days between two dates?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Enter a start date and end date in the calculator above and click Calculate. The tool instantly shows the total number of days, weeks, months, and years between the two dates, along with a detailed breakdown." }
+        },
+        {
+          "@type": "Question",
+          "name": "What counts as a business day?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Business days are weekdays (Monday to Friday), excluding Saturday and Sunday. This calculator counts all weekdays between the two dates. Public holidays are not excluded as they vary by country and region." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator include or exclude the start and end dates?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The calculator counts the number of days between the two dates (exclusive of both endpoints by default). The start date day 0 and the end date is the final day, so the difference between Jan 1 and Jan 2 is 1 day." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="hash.html"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="hash.html">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="hash.html#tab-bcrypt">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-html-ent">&lt;&gt; HTML Entities</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="audio.html">🎵 Audio Converter</a>
+          <a href="video.html">🎬 Video Converter</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html">🗜️ Compress</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="password.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+          <div class="dropdown__divider"></div>
+          <a href="date-diff.html" class="active">📅 Date Difference</a>
+          <a href="age.html">🎂 Age Calculator</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">📅 <span>Date Difference</span> Calculator</h1>
+      <p class="tool-header__sub">Find the exact number of days, weeks, months, and years between any two dates.</p>
+    </div>
+
+    <!-- Input Panel -->
+    <div class="panel">
+      <div class="panel__head">
+        <div class="panel__head-icon">📅</div>
+        <div class="panel__head-title">Select Dates</div>
+      </div>
+
+      <div class="date-grid">
+        <div>
+          <label class="form-label">START DATE</label>
+          <input type="date" id="date-start" class="input" />
+          <br />
+          <button class="date-today-btn" id="start-today-btn">Today</button>
+        </div>
+        <div class="date-grid__swap">
+          <button class="swap-btn" id="swap-btn" title="Swap dates">⇄</button>
+        </div>
+        <div>
+          <label class="form-label">END DATE</label>
+          <input type="date" id="date-end" class="input" />
+          <br />
+          <button class="date-today-btn" id="end-today-btn">Today</button>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;">
+        <button class="btn btn--primary btn--lg" id="calc-btn" style="width:100%;">📅 Calculate Difference</button>
+      </div>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="panel" id="results-panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">📊</div>
+        <div class="panel__head-title">Result</div>
+      </div>
+
+      <div id="results-content">
+        <p class="placeholder-msg">Enter two dates above and click Calculate.</p>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">📖</div>
+        <h2 class="panel__head-title">About This Calculator</h2>
+      </div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        This tool calculates the exact duration between two dates using your browser's local date engine. Results include total days, weeks, business days (Mon–Fri), and a detailed breakdown of years, months, and remaining days. All calculation is done entirely client-side — no data is sent anywhere.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">📅 Handles leap years</div>
+        <div class="security-note">💼 Business days included</div>
+        <div class="security-note">✓ Zero server transmission</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+      <a href="date-diff.html">Date Diff</a>
+      <a href="age.html">Age Calc</a>
+    </nav>
+    <div class="footer__copy">© 2025 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/date-diff.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
