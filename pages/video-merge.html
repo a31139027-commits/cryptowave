@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Trimmer Online Free — Cut MP4 MKV in Browser | CryptoWave</title>
-  <meta name="description" content="Trim and cut video files online for free. Upload MP4, MKV, MOV or WebM, set start and end times with a live preview player, and download the trimmed clip. Powered by FFmpeg.wasm — no upload to server." />
-  <meta name="keywords" content="video trimmer online, cut video online free, trim MP4 online, video cutter, clip video browser, ffmpeg online trim" />
+  <title>Video Merger Online Free — Combine MP4 MKV Files | CryptoWave</title>
+  <meta name="description" content="Merge multiple video files into one online for free. Upload MP4, MKV, MOV or WebM, reorder clips, and download the combined video. Powered by FFmpeg.wasm — no upload to server." />
+  <meta name="keywords" content="video merger online, combine video files, join MP4 online, merge video free, video joiner, combine MKV files browser" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-trim.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-merge.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-trim.html" />
-  <meta property="og:title"       content="Video Trimmer Online Free — Cut MP4 MKV in Browser" />
-  <meta property="og:description" content="Trim any video file in your browser. Set start/end from live preview, download trimmed clip. No upload required — powered by FFmpeg.wasm." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-merge.html" />
+  <meta property="og:title"       content="Video Merger Online Free — Combine MP4 MKV Files" />
+  <meta property="og:description" content="Combine multiple video files into one. Upload, reorder clips, download as MP4. No upload to server — powered by FFmpeg.wasm." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Video Trimmer Online Free — Cut MP4 MKV in Browser" />
-  <meta name="twitter:description" content="Trim video files in your browser. Live preview, set start/end, download. No upload required." />
+  <meta name="twitter:title"       content="Video Merger Online Free — Combine MP4 MKV Files" />
+  <meta name="twitter:description" content="Merge video files in your browser. Reorder clips, download as MP4. 100% client-side." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,23 +39,29 @@
     })();
   </script>
   <style>
-    #vt-preview { width: 100%; border-radius: 10px; background: #000; display: block; max-height: 360px; margin-bottom: 16px; }
-    .vt-info-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px; }
-    .vt-info-item__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: 2px; }
-    .vt-info-item__value { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--accent); }
-    .vt-time-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 4px; }
-    @media (max-width: 480px) { .vt-time-row { grid-template-columns: 1fr; } }
-    .vt-time-group { display: flex; gap: 8px; align-items: flex-end; }
-    .vt-time-group input { flex: 1; }
-    .vt-time-group .btn { flex-shrink: 0; white-space: nowrap; }
-    .vt-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
-    .vt-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
-    .vt-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
-    .vt-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    .vm-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 8px; background: var(--input-bg); border: 1px solid var(--border); margin-bottom: 8px; }
+    .vm-row__num { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent); min-width: 24px; text-align: center; }
+    .vm-row__info { flex: 1; min-width: 0; }
+    .vm-row__name { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .vm-row__meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+    .vm-row__actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .vm-move-btn { background: var(--panel-bg); border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: background .15s; }
+    .vm-move-btn:hover:not(:disabled) { background: var(--hover-bg); }
+    .vm-move-btn:disabled { opacity: 0.3; cursor: default; }
+    .vm-remove-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 0.875rem; transition: color .15s, background .15s; }
+    .vm-remove-btn:hover { color: #ef4444; background: rgba(239,68,68,.1); border-color: #ef4444; }
+    .file-count-badge { font-size: 0.8rem; color: var(--text-muted); margin-left: 8px; }
+    .placeholder-msg { text-align: center; padding: 32px 0; color: var(--text-muted); font-size: 0.9rem; }
+    .vm-actions { display: flex; gap: 12px; margin-top: 20px; }
+    .vm-actions .btn { flex: 1; }
+    .vm-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .vm-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .vm-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .vm-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
     .progress-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; display: none; }
     .progress-bar  { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .3s; }
-    .vt-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .hint-text { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+    .vm-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .method-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; }
   </style>
 <script type="application/ld+json">
 {
@@ -63,19 +69,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Video Trimmer",
-      "url": "https://cryptowave-rouge.vercel.app/pages/video-trim.html",
-      "description": "Trim and cut video files online for free. Upload MP4, MKV, MOV or WebM, set start and end times with a live preview player, and download the trimmed clip. Powered by FFmpeg.wasm.",
+      "name": "Video Merger",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video-merge.html",
+      "description": "Merge multiple video files into one online for free. Upload MP4, MKV, MOV or WebM, reorder clips, and download the combined video. Powered by FFmpeg.wasm.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Trim MP4 MKV MOV WebM", "Live video preview", "Set start/end from playback position", "Download in original format", "Powered by FFmpeg.wasm — 100% client-side"]
+      "featureList": ["Merge MP4 MKV MOV WebM", "Reorder video clips", "Stream copy or re-encode mode", "Download as MP4", "100% client-side FFmpeg.wasm"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "Video Trimmer", "item": "https://cryptowave-rouge.vercel.app/pages/video-trim.html" }
+        { "@type": "ListItem", "position": 2, "name": "Video Merger", "item": "https://cryptowave-rouge.vercel.app/pages/video-merge.html" }
       ]
     },
     {
@@ -83,18 +89,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What video formats can I trim?",
-          "acceptedAnswer": { "@type": "Answer", "text": "You can trim MP4, MKV, MOV, AVI, WebM, and most other common video formats. The output is saved in the same format as the input." }
+          "name": "What video formats can I merge?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can merge MP4, MKV, MOV, AVI, WebM and most common formats. For best results with stream copy mode, use files with the same codec. Use re-encode mode for mixed formats." }
         },
         {
           "@type": "Question",
-          "name": "How do I set the start and end times?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Play the video preview to find the exact moment you want, then click 'Set Start' or 'Set End' to capture the current playback position. You can also type times manually in seconds." }
+          "name": "What is the difference between stream copy and re-encode?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Stream copy is fast and lossless — it joins clips without re-encoding, but requires all files to share the same codec. Re-encode mode works with any mix of formats and codecs, but is slower as it re-encodes everything to H.264 MP4." }
         },
         {
           "@type": "Question",
           "name": "Is my video uploaded to a server?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. All trimming is done inside your browser using FFmpeg.wasm. Your video file never leaves your device." }
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All merging is done inside your browser using FFmpeg.wasm. Your files never leave your device." }
         }
       ]
     }
@@ -141,14 +147,14 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="video-trim.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <a href="video-merge.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="audio.html">🎵 Audio Converter</a>
           <a href="audio-cut.html">✂️ Audio Cutter</a>
           <a href="audio-merge.html">🔗 Audio Merger</a>
           <a href="video.html">🎬 Video Converter</a>
-          <a href="video-trim.html" class="active">✂️ Video Trimmer</a>
-          <a href="video-merge.html">🔗 Video Merger</a>
+          <a href="video-trim.html">✂️ Video Trimmer</a>
+          <a href="video-merge.html" class="active">🔗 Video Merger</a>
         </div></div>
       </li>
       <li class="dropdown">
@@ -191,78 +197,54 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">✂️ <span>Video Trimmer</span></h1>
-      <p class="tool-header__sub">Cut any video to an exact time range. Use the live preview to set start and end, then download the trimmed clip — no upload required.</p>
+      <h1 class="tool-header__title">🔗 <span>Video Merger</span></h1>
+      <p class="tool-header__sub">Combine multiple video clips into one. Add files, reorder them, choose merge mode, and download — no upload required.</p>
     </div>
 
     <!-- Drop Zone -->
     <div class="panel">
       <div class="panel__head">
         <div class="panel__head-icon">🎬</div>
-        <div class="panel__head-title">Upload Video</div>
+        <div class="panel__head-title">Add Video Files</div>
       </div>
-      <div class="drop-zone" id="vt-drop-zone">
+      <div class="drop-zone" id="vm-drop-zone">
         <div class="drop-zone__icon">🎬</div>
-        <div class="drop-zone__title">Drop video file here</div>
+        <div class="drop-zone__title">Drop video files here</div>
         <div class="drop-zone__sub">or click to browse — MP4, MKV, MOV, AVI, WebM supported</div>
-        <input type="file" id="vt-file-input" accept="video/*" style="display:none;" />
+        <input type="file" id="vm-file-input" accept="video/*" multiple style="display:none;" />
       </div>
     </div>
 
-    <!-- Controls -->
-    <div class="panel hidden" id="vt-controls" style="margin-top:16px;">
+    <!-- File List -->
+    <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
-        <div class="panel__head-icon">✂️</div>
-        <div class="panel__head-title">Trim Settings</div>
+        <div class="panel__head-icon">📋</div>
+        <div class="panel__head-title">Clips to Merge <span class="file-count-badge" id="vm-file-count"></span></div>
       </div>
 
-      <!-- Video preview -->
-      <video id="vt-preview" controls></video>
-
-      <!-- File info -->
-      <div class="vt-info-row">
-        <div class="vt-info-item">
-          <div class="vt-info-item__label">File</div>
-          <div class="vt-info-item__value" id="vt-filename">—</div>
-        </div>
-        <div class="vt-info-item">
-          <div class="vt-info-item__label">Size</div>
-          <div class="vt-info-item__value" id="vt-filesize">—</div>
-        </div>
-        <div class="vt-info-item">
-          <div class="vt-info-item__label">Duration</div>
-          <div class="vt-info-item__value" id="vt-duration">—</div>
-        </div>
+      <div id="vm-file-list">
+        <p class="placeholder-msg">No video files added yet. Drop files above or click to browse.</p>
       </div>
 
-      <!-- Time inputs -->
-      <div class="vt-time-row">
-        <div>
-          <label class="form-label">START TIME (seconds)</label>
-          <div class="vt-time-group">
-            <input type="number" id="vt-start" class="input" min="0" step="0.1" value="0" />
-            <button class="btn btn--ghost btn--sm" id="vt-set-start">⏱ Set</button>
-          </div>
-        </div>
-        <div>
-          <label class="form-label">END TIME (seconds)</label>
-          <div class="vt-time-group">
-            <input type="number" id="vt-end" class="input" min="0" step="0.1" value="0" />
-            <button class="btn btn--ghost btn--sm" id="vt-set-end">⏱ Set</button>
-          </div>
-        </div>
-      </div>
-      <p class="hint-text">Play the video above then click ⏱ Set to capture the current playback position.</p>
-
-      <div style="margin-top:20px;">
-        <button class="btn btn--primary btn--lg" id="vt-trim-btn" style="width:100%;">✂️ Trim &amp; Download</button>
+      <div style="margin-top:16px;">
+        <label class="form-label">MERGE MODE</label>
+        <select id="vm-method" class="input">
+          <option value="concat">Stream Copy — Fast, lossless (same codec required)</option>
+          <option value="reencode">Re-encode — Slower, works with any mixed formats</option>
+        </select>
+        <p class="method-note">Use Stream Copy if all clips are the same format. Switch to Re-encode if you get errors.</p>
       </div>
 
-      <div class="progress-wrap" id="vt-progress">
-        <div class="progress-bar" id="vt-progress-bar"></div>
+      <div class="vm-actions">
+        <button class="btn btn--primary btn--lg" id="vm-merge-btn" disabled>🔗 Merge &amp; Download MP4</button>
+        <button class="btn btn--ghost" id="vm-clear-btn" style="max-width:110px;">🗑 Clear</button>
       </div>
-      <div class="vt-status" id="vt-status">Ready.</div>
-      <div class="vt-log" id="vt-log"></div>
+
+      <div class="progress-wrap" id="vm-progress">
+        <div class="progress-bar" id="vm-progress-bar"></div>
+      </div>
+      <div class="vm-status" id="vm-status">Ready.</div>
+      <div class="vm-log" id="vm-log"></div>
     </div>
 
     <!-- About -->
@@ -272,11 +254,11 @@
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This tool uses <strong>FFmpeg.wasm</strong> — a WebAssembly port of FFmpeg — to trim your video entirely inside your browser. The output keeps the same format and quality as the original (stream copy, no re-encoding). Your file is never uploaded to any server.
+        This tool uses <strong>FFmpeg.wasm</strong> to join video clips inside your browser. <strong>Stream Copy</strong> mode is fast and lossless — ideal when all clips share the same codec. <strong>Re-encode</strong> mode is universal — it re-encodes everything to H.264 MP4, handling mixed formats at the cost of processing time.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
         <div class="security-note">🎬 MP4 · MKV · MOV · WebM</div>
-        <div class="security-note">⚡ Stream copy — no re-encode</div>
+        <div class="security-note">↕ Reorder before merging</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -314,7 +296,7 @@
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
-<script src="../js/modules/video-trim.js"></script>
+<script src="../js/modules/video-merge.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
