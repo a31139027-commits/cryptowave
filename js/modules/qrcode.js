@@ -314,8 +314,16 @@ const QRModule = (() => {
 
       Utils.setLoading(genBtn, true);
       try {
-        const text    = buildVCard({ name, phone, email, org, url, address });
-        const dataUrl = await generate(text, { size: 256, errorLevel: 'M' });
+        const text = buildVCard({ name, phone, email, org, url, address });
+        // Try progressively lower error correction levels to maximise capacity
+        let dataUrl = null;
+        for (const lvl of ['L', 'M', 'Q', 'H']) {
+          try {
+            dataUrl = await generate(text, { size: 256, errorLevel: lvl });
+            break;
+          } catch (_) { /* try next level */ }
+        }
+        if (!dataUrl) throw new Error('Contact data is too long to encode as a QR Code. Please shorten the fields.');
 
         // Show preview — force display even if panel was hidden
         const preview = document.getElementById('vcard-preview');
