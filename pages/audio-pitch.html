@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18036940841');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audio Pitch Changer Online Free — Change MP3 Pitch Without Changing Speed | CryptoWave</title>
+  <meta name="description" content="Change audio pitch online for free without changing speed. Shift MP3, WAV, OGG pitch up or down by semitones. Powered by FFmpeg.wasm — 100% client-side, no upload to server." />
+  <meta name="keywords" content="audio pitch changer online, change mp3 pitch, pitch shifter online, raise lower pitch, audio pitch shift free, change pitch without speed" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/audio-pitch.html" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/audio-pitch.html" />
+  <meta property="og:title"       content="Audio Pitch Changer Online Free — Shift MP3 Pitch Up or Down" />
+  <meta property="og:description" content="Change audio pitch without changing speed. No upload required — powered by FFmpeg.wasm." />
+  <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+  <meta property="og:site_name"   content="CryptoWave" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Audio Pitch Changer Online Free" />
+  <meta name="twitter:description" content="Shift audio pitch up or down by semitones without changing speed. 100% client-side, FFmpeg.wasm." />
+  <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <style>
+    .ap-preview-wrap { margin-top: 12px; }
+    .ap-preview-wrap audio { width: 100%; border-radius: 8px; }
+    .ap-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
+    .ap-meta__item { display: flex; flex-direction: column; gap: 2px; }
+    .ap-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+    .ap-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+    .ap-semitone-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; margin-top: 16px; }
+    .ap-semi-btn { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 6px; border-radius: 10px; border: 2px solid var(--border); background: var(--bg-input); cursor: pointer; transition: border-color .15s, background .15s; }
+    .ap-semi-btn:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .ap-semi-btn.selected { border-color: var(--accent); background: var(--accent-dim); }
+    .ap-semi-btn__val { font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; color: var(--accent); }
+    .ap-semi-btn__label { font-size: 0.65rem; color: var(--text-muted); text-align: center; }
+    .ap-custom-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .ap-custom-row label { font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; }
+    .ap-custom-row input[type=range] { flex: 1; accent-color: var(--accent); }
+    .ap-custom-val { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--accent); min-width: 56px; text-align: right; }
+    .ap-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-input); color: var(--text-muted); }
+    .ap-status--working { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+    .ap-status--done    { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
+    .ap-status--error   { color: var(--red);   border-color: var(--red-border);   background: var(--red-dim); }
+    .ap-log { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; min-height: 18px; word-break: break-all; }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Audio Pitch Changer",
+      "url": "https://cryptowave-rouge.vercel.app/pages/audio-pitch.html",
+      "description": "Change audio pitch online for free without changing speed. Shift MP3, WAV, OGG pitch up or down by semitones. 100% client-side.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Shift pitch by semitones", "Speed preserved", "MP3 WAV OGG FLAC support", "FFmpeg.wasm", "100% client-side"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Audio Pitch Changer", "item": "https://cryptowave-rouge.vercel.app/pages/audio-pitch.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="hash.html"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="hash.html">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="hash.html#tab-bcrypt">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-html-ent">&lt;&gt; HTML Entities</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="audio-pitch.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="audio.html">🎵 Audio Converter</a>
+          <a href="audio-cut.html">✂️ Audio Cutter</a>
+          <a href="audio-merge.html">🔗 Audio Merger</a>
+          <a href="audio-volume.html">🔊 Audio Volume</a>
+          <a href="audio-reverse.html">🔄 Audio Reverse</a>
+          <a href="audio-pitch.html" class="active">🎼 Audio Pitch</a>
+          <a href="video.html">🎬 Video Converter</a>
+          <a href="video-trim.html">✂️ Video Trimmer</a>
+          <a href="video-merge.html">🔗 Video Merger</a>
+          <a href="video-rotate.html">🔄 Video Rotate/Flip</a>
+          <a href="video-speed.html">⏩ Video Speed</a>
+          <a href="video-loop.html">🔁 Video Loop</a>
+          <a href="video-volume.html">🔊 Video Volume</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html">🗜️ Compress</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+          <div class="dropdown__divider"></div>
+          <a href="date-diff.html">📅 Date Difference</a>
+          <a href="age.html">🎂 Age Calculator</a>
+          <div class="dropdown__divider"></div>
+          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="pdf-split.html">✂️ PDF Splitter</a>
+          <a href="pdf-images.html">🖼️ PDF to Images</a>
+          <a href="tts.html">🔊 Text to Speech</a>
+          <a href="word-count.html">📝 Word Counter</a>
+          <a href="base-convert.html">🔢 Base Converter</a>
+          <a href="color-convert.html">🎨 Color Converter</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">🎼 <span>Audio Pitch Changer</span></h1>
+      <p class="tool-header__sub">Shift audio pitch up or down by semitones without changing playback speed. All processing runs in your browser.</p>
+    </div>
+
+    <!-- Drop Zone -->
+    <div class="panel">
+      <div class="panel__head">
+        <div class="panel__head-icon">🎵</div>
+        <div class="panel__head-title">Upload Audio</div>
+      </div>
+      <div class="drop-zone" id="ap-drop-zone">
+        <div class="drop-zone__icon">🎼</div>
+        <div class="drop-zone__title">Drop an audio file here</div>
+        <div class="drop-zone__sub">or click to browse — MP3, WAV, OGG, FLAC, AAC, M4A supported</div>
+        <input type="file" id="ap-file-input" accept="audio/*" style="display:none;" />
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div id="ap-controls" class="hidden">
+
+      <!-- Preview -->
+      <div class="panel" style="margin-top:16px;">
+        <div class="panel__head">
+          <div class="panel__head-icon">▶</div>
+          <div class="panel__head-title">Preview Original</div>
+        </div>
+        <div class="ap-preview-wrap">
+          <audio id="ap-preview" controls></audio>
+        </div>
+        <div class="ap-meta">
+          <div class="ap-meta__item">
+            <span class="ap-meta__label">File</span>
+            <span class="ap-meta__value" id="ap-filename">—</span>
+          </div>
+          <div class="ap-meta__item">
+            <span class="ap-meta__label">Size</span>
+            <span class="ap-meta__value" id="ap-filesize">—</span>
+          </div>
+          <div class="ap-meta__item">
+            <span class="ap-meta__label">Duration</span>
+            <span class="ap-meta__value" id="ap-duration">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pitch Options -->
+      <div class="panel" style="margin-top:16px;">
+        <div class="panel__head">
+          <div class="panel__head-icon">🎼</div>
+          <div class="panel__head-title">Choose Pitch Shift</div>
+        </div>
+
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;">Semitones (half steps) — negative = lower pitch, positive = higher pitch</p>
+
+        <div class="ap-semitone-grid" id="ap-semi-grid">
+          <button class="ap-semi-btn" data-semi="-12"><span class="ap-semi-btn__val">−12</span><span class="ap-semi-btn__label">Octave Down</span></button>
+          <button class="ap-semi-btn" data-semi="-8"><span class="ap-semi-btn__val">−8</span><span class="ap-semi-btn__label">Lower</span></button>
+          <button class="ap-semi-btn" data-semi="-5"><span class="ap-semi-btn__val">−5</span><span class="ap-semi-btn__label">Lower</span></button>
+          <button class="ap-semi-btn" data-semi="-3"><span class="ap-semi-btn__val">−3</span><span class="ap-semi-btn__label">Slight ↓</span></button>
+          <button class="ap-semi-btn" data-semi="-2"><span class="ap-semi-btn__val">−2</span><span class="ap-semi-btn__label">Slight ↓</span></button>
+          <button class="ap-semi-btn" data-semi="-1"><span class="ap-semi-btn__val">−1</span><span class="ap-semi-btn__label">−1 step</span></button>
+          <button class="ap-semi-btn selected" data-semi="0"><span class="ap-semi-btn__val">0</span><span class="ap-semi-btn__label">Original</span></button>
+          <button class="ap-semi-btn" data-semi="1"><span class="ap-semi-btn__val">+1</span><span class="ap-semi-btn__label">+1 step</span></button>
+          <button class="ap-semi-btn" data-semi="2"><span class="ap-semi-btn__val">+2</span><span class="ap-semi-btn__label">Slight ↑</span></button>
+          <button class="ap-semi-btn" data-semi="3"><span class="ap-semi-btn__val">+3</span><span class="ap-semi-btn__label">Slight ↑</span></button>
+          <button class="ap-semi-btn" data-semi="5"><span class="ap-semi-btn__val">+5</span><span class="ap-semi-btn__label">Higher</span></button>
+          <button class="ap-semi-btn" data-semi="8"><span class="ap-semi-btn__val">+8</span><span class="ap-semi-btn__label">Higher</span></button>
+          <button class="ap-semi-btn" data-semi="12"><span class="ap-semi-btn__val">+12</span><span class="ap-semi-btn__label">Octave Up</span></button>
+        </div>
+
+        <div class="ap-custom-row">
+          <label for="ap-custom-slider">Custom:</label>
+          <input type="range" id="ap-custom-slider" min="-12" max="12" step="1" value="0" />
+          <span class="ap-custom-val" id="ap-custom-val">0 st</span>
+        </div>
+
+        <div style="margin-top:20px;">
+          <button class="btn btn--primary btn--lg" id="ap-apply-btn" style="width:100%;">🎼 Apply Pitch &amp; Download</button>
+        </div>
+
+        <div class="progress-wrap" id="ap-progress" style="display:none;margin-top:12px;">
+          <div class="progress-bar" id="ap-progress-bar" style="width:0%"></div>
+        </div>
+        <div class="ap-status" id="ap-status">Upload an audio file to get started.</div>
+        <div class="ap-log" id="ap-log"></div>
+      </div>
+
+    </div>
+
+    <!-- About -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">📖</div>
+        <h2 class="panel__head-title">About This Tool</h2>
+      </div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        This tool uses <strong>FFmpeg.wasm</strong> with the <code>asetrate</code> + <code>aresample</code> + <code>atempo</code> filter chain to shift audio pitch while keeping the original playback speed unchanged. Each semitone corresponds to a frequency ratio of 2<sup>1/12</sup> ≈ 1.0595. All processing is done locally — your file is never uploaded.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">🎵 MP3 · WAV · OGG · FLAC · AAC · M4A</div>
+        <div class="security-note">🎼 −12 to +12 semitones</div>
+        <div class="security-note">⏱ Speed unchanged</div>
+        <div class="security-note">✓ Zero server transmission</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+      <a href="date-diff.html">Date Diff</a>
+      <a href="age.html">Age Calc</a>
+      <a href="pdf-merge.html">PDF Merge</a>
+      <a href="word-count.html">Word Count</a>
+      <a href="color-convert.html">Color Conv</a>
+    </nav>
+    <div class="footer__copy">© 2026 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
+<script src="../js/modules/audio-pitch.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
