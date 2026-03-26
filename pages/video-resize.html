@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crop Video Online Free — Trim Edges & Change Aspect Ratio | CryptoWave</title>
-  <meta name="description" content="Crop video online for free. Trim video edges, remove black bars, or change aspect ratio to 16:9, 4:3, square, or portrait. 100% browser-based — no upload." />
-  <meta name="keywords" content="crop video online, trim video edges, remove black bars video, change video aspect ratio, video crop tool, crop mp4 online free" />
+  <title>Resize Video Online Free — Change Video Resolution | CryptoWave</title>
+  <meta name="description" content="Resize video resolution online for free. Scale MP4 to 480p, 720p, 1080p, 4K or any custom size. Aspect ratio lock. 100% browser-based — no upload." />
+  <meta name="keywords" content="resize video online, change video resolution, scale video 720p 1080p, video resizer free, compress video resolution, downscale video browser" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-crop.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-resize.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-crop.html" />
-  <meta property="og:title"       content="Crop Video Online Free — Trim Edges & Change Aspect Ratio" />
-  <meta property="og:description" content="Crop video to any size in your browser. Choose a preset aspect ratio or enter custom pixel dimensions. Powered by FFmpeg.wasm — no upload." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-resize.html" />
+  <meta property="og:title"       content="Resize Video Online Free — Change Video Resolution" />
+  <meta property="og:description" content="Scale your video to 480p, 720p, 1080p, 4K or a custom resolution. Aspect ratio lock keeps proportions correct. Powered by FFmpeg.wasm." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Crop Video Online Free" />
-  <meta name="twitter:description" content="Crop MP4 video in your browser. Preset ratios or custom pixel crop. 100% client-side, FFmpeg.wasm." />
+  <meta name="twitter:title"       content="Resize Video Online Free" />
+  <meta name="twitter:description" content="Change video resolution to 480p, 720p, 1080p, 4K or custom. 100% client-side, FFmpeg.wasm." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,34 +39,33 @@
     })();
   </script>
   <style>
-    .vc-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 16px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
-    .vc-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
-    .vc-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
-    .vc-meta__item { display: flex; flex-direction: column; gap: 2px; }
-    .vc-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
-    .vc-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+    .vrs-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 16px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
+    .vrs-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
+    .vrs-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
+    .vrs-meta__item { display: flex; flex-direction: column; gap: 2px; }
+    .vrs-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+    .vrs-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
     /* Preset buttons */
-    .vc-preset-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .vc-preset-btn { padding: 8px 16px; border-radius: 8px; border: 2px solid var(--border); background: var(--input-bg); cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); transition: border-color .15s, background .15s; }
-    .vc-preset-btn:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),.06); }
-    .vc-preset-btn.selected { border-color: var(--accent); background: rgba(var(--accent-rgb),.12); color: var(--accent); }
-    /* Pixel inputs grid */
-    .vc-inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
-    .vc-input-row { display: flex; flex-direction: column; gap: 6px; }
-    .vc-input-row label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); display: flex; justify-content: space-between; }
-    .vc-input-row label span { color: var(--accent); font-weight: 700; }
-    .vc-input-row input[type=number] { width: 100%; }
+    .vrs-preset-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .vrs-preset-btn { padding: 8px 16px; border-radius: 8px; border: 2px solid var(--border); background: var(--input-bg); cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); transition: border-color .15s, background .15s; }
+    .vrs-preset-btn:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),.06); }
+    .vrs-preset-btn.selected { border-color: var(--accent); background: rgba(var(--accent-rgb),.12); color: var(--accent); }
+    /* Dimension inputs */
+    .vrs-dim-row { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+    .vrs-dim-row .input { width: 100px; text-align: center; }
+    .vrs-dim-sep { font-size: 1.1rem; color: var(--text-muted); font-weight: 700; }
+    .vrs-lock-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 0.85rem; color: var(--text-secondary); }
+    .vrs-lock-row input[type=checkbox] { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
     /* Status */
-    .vc-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
-    .vc-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
-    .vc-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
-    .vc-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    .vrs-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .vrs-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .vrs-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .vrs-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
     .progress-wrap { display: none; align-items: center; gap: 10px; margin-top: 12px; }
     .progress-wrap .progress-bar { flex: 1; height: 6px; background: var(--accent); border-radius: 99px; width: 0%; transition: width .3s; }
     .progress-wrap::after { content: attr(data-pct); font-size: 0.75rem; font-weight: 700; color: var(--accent); font-family: var(--font-head); min-width: 36px; text-align: right; white-space: nowrap; }
-    .vc-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #vc-controls { margin-top: 16px; }
-    .vc-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; }
+    .vrs-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #vrs-controls { margin-top: 16px; }
   </style>
 <script type="application/ld+json">
 {
@@ -74,19 +73,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Video Crop",
-      "url": "https://cryptowave-rouge.vercel.app/pages/video-crop.html",
-      "description": "Crop video online for free. Trim video edges, remove black bars, or change aspect ratio to 16:9, 4:3, square, or portrait. 100% browser-based.",
+      "name": "Video Resize",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video-resize.html",
+      "description": "Resize video resolution online for free. Scale to 480p, 720p, 1080p, 4K or any custom size. Aspect ratio lock. 100% browser-based.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Preset aspect ratios 16:9 4:3 square 9:16", "Custom pixel crop X Y W H", "Remove black bars", "Download as MP4", "100% client-side FFmpeg.wasm"]
+      "featureList": ["Preset resolutions 480p 720p 1080p 4K", "Custom width and height", "Aspect ratio lock", "Download as MP4", "100% client-side FFmpeg.wasm"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "Video Crop", "item": "https://cryptowave-rouge.vercel.app/pages/video-crop.html" }
+        { "@type": "ListItem", "position": 2, "name": "Video Resize", "item": "https://cryptowave-rouge.vercel.app/pages/video-resize.html" }
       ]
     },
     {
@@ -94,13 +93,13 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I crop a video to 16:9 aspect ratio?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Upload your video, click the 16:9 preset button, then click Apply & Download. The tool will automatically crop from the center to the correct 16:9 dimensions." }
+          "name": "How do I resize a video to 1080p?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Upload your video, click the 1080p preset button, then click Apply & Download. With aspect ratio lock on, the height adjusts automatically to match your video's proportions." }
         },
         {
           "@type": "Question",
-          "name": "Can I set a custom crop area?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the X (left offset), Y (top offset), Width, and Height fields to enter any pixel values. The crop area must fit within the original video dimensions." }
+          "name": "Will resizing keep the aspect ratio?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. When the Lock Aspect Ratio checkbox is checked, changing width or height automatically adjusts the other dimension to preserve proportions." }
         },
         {
           "@type": "Question",
@@ -152,7 +151,7 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="video-crop.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <a href="video-resize.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner dropdown__menu-inner--cols">
           <div class="dropdown__col">
             <div class="dropdown__col-head">🎵 Audio</div>
@@ -174,8 +173,8 @@
             <a href="video-speed.html">⏩ Video Speed</a>
             <a href="video-loop.html">🔁 Video Loop</a>
             <a href="video-volume.html">🔊 Video Volume</a>
-            <a href="video-crop.html" class="active">✂️ Video Crop</a>
-            <a href="video-resize.html">📐 Video Resize</a>
+            <a href="video-crop.html">✂️ Video Crop</a>
+            <a href="video-resize.html" class="active">📐 Video Resize</a>
           </div>
         </div></div>
       </li>
@@ -219,8 +218,8 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">✂️ <span>Video Crop</span></h1>
-      <p class="tool-header__sub">Crop your video to a preset aspect ratio or custom pixel dimensions. Remove black bars, reframe shots, all in your browser.</p>
+      <h1 class="tool-header__title">📐 <span>Video Resize</span></h1>
+      <p class="tool-header__sub">Change your video resolution to 480p, 720p, 1080p, 4K or any custom size. Aspect ratio lock keeps proportions correct.</p>
     </div>
 
     <!-- Drop Zone -->
@@ -229,16 +228,16 @@
         <div class="panel__head-icon">🎬</div>
         <div class="panel__head-title">Upload Video</div>
       </div>
-      <div class="drop-zone" id="vc-drop-zone">
+      <div class="drop-zone" id="vrs-drop-zone">
         <div class="drop-zone__icon">🎬</div>
         <div class="drop-zone__title">Drop a video file here</div>
         <div class="drop-zone__sub">or click to browse — MP4, MKV, MOV, AVI, WebM supported</div>
-        <input type="file" id="vc-file-input" accept="video/*" style="display:none;" />
+        <input type="file" id="vrs-file-input" accept="video/*" style="display:none;" />
       </div>
     </div>
 
-    <!-- Controls (hidden until file loaded) -->
-    <div id="vc-controls" class="hidden">
+    <!-- Controls -->
+    <div id="vrs-controls" class="hidden">
 
       <!-- Preview -->
       <div class="panel" style="margin-top:16px;">
@@ -246,73 +245,65 @@
           <div class="panel__head-icon">▶</div>
           <div class="panel__head-title">Preview</div>
         </div>
-        <div class="vc-preview-wrap">
-          <video id="vc-preview" controls playsinline></video>
+        <div class="vrs-preview-wrap">
+          <video id="vrs-preview" controls playsinline></video>
         </div>
-        <div class="vc-meta">
-          <div class="vc-meta__item">
-            <span class="vc-meta__label">File</span>
-            <span class="vc-meta__value" id="vc-filename">—</span>
+        <div class="vrs-meta">
+          <div class="vrs-meta__item">
+            <span class="vrs-meta__label">File</span>
+            <span class="vrs-meta__value" id="vrs-filename">—</span>
           </div>
-          <div class="vc-meta__item">
-            <span class="vc-meta__label">Size</span>
-            <span class="vc-meta__value" id="vc-filesize">—</span>
+          <div class="vrs-meta__item">
+            <span class="vrs-meta__label">Size</span>
+            <span class="vrs-meta__value" id="vrs-filesize">—</span>
           </div>
-          <div class="vc-meta__item">
-            <span class="vc-meta__label">Dimensions</span>
-            <span class="vc-meta__value" id="vc-dimensions">—</span>
+          <div class="vrs-meta__item">
+            <span class="vrs-meta__label">Resolution</span>
+            <span class="vrs-meta__value" id="vrs-dimensions">—</span>
           </div>
         </div>
       </div>
 
-      <!-- Crop Options -->
+      <!-- Resize Options -->
       <div class="panel" style="margin-top:16px;">
         <div class="panel__head">
-          <div class="panel__head-icon">✂️</div>
-          <div class="panel__head-title">Crop Settings</div>
+          <div class="panel__head-icon">📐</div>
+          <div class="panel__head-title">Target Resolution</div>
         </div>
 
-        <!-- Preset buttons -->
-        <label class="form-label">ASPECT RATIO PRESET</label>
-        <div class="vc-preset-grid" id="vc-preset-grid">
-          <button class="vc-preset-btn selected" data-preset="full">Full Frame</button>
-          <button class="vc-preset-btn" data-preset="square">1:1 Square</button>
-          <button class="vc-preset-btn" data-preset="16:9">16:9 Landscape</button>
-          <button class="vc-preset-btn" data-preset="4:3">4:3 Standard</button>
-          <button class="vc-preset-btn" data-preset="9:16">9:16 Portrait</button>
+        <label class="form-label">COMMON PRESETS (WIDTH)</label>
+        <div class="vrs-preset-grid" id="vrs-preset-grid">
+          <button class="vrs-preset-btn" data-preset="426">426 (240p)</button>
+          <button class="vrs-preset-btn" data-preset="640">640 (360p)</button>
+          <button class="vrs-preset-btn" data-preset="854">854 (480p)</button>
+          <button class="vrs-preset-btn" data-preset="1280">1280 (720p)</button>
+          <button class="vrs-preset-btn" data-preset="1920">1920 (1080p)</button>
+          <button class="vrs-preset-btn" data-preset="2560">2560 (1440p)</button>
+          <button class="vrs-preset-btn" data-preset="3840">3840 (4K)</button>
+          <button class="vrs-preset-btn" data-preset="original">Original</button>
         </div>
-        <p class="vc-hint">Presets crop from the center of the video. Use custom fields below to fine-tune.</p>
 
-        <!-- Custom pixel inputs -->
-        <label class="form-label" style="margin-top:20px;">CUSTOM CROP (PIXELS)</label>
-        <div class="vc-inputs-grid">
-          <div class="vc-input-row">
-            <label for="vc-x">X (Left Offset)</label>
-            <input type="number" id="vc-x" class="input" min="0" value="0" />
-          </div>
-          <div class="vc-input-row">
-            <label for="vc-y">Y (Top Offset)</label>
-            <input type="number" id="vc-y" class="input" min="0" value="0" />
-          </div>
-          <div class="vc-input-row">
-            <label for="vc-w">Width <span id="vc-w-label"></span></label>
-            <input type="number" id="vc-w" class="input" min="2" value="1920" />
-          </div>
-          <div class="vc-input-row">
-            <label for="vc-h">Height <span id="vc-h-label"></span></label>
-            <input type="number" id="vc-h" class="input" min="2" value="1080" />
-          </div>
+        <label class="form-label" style="margin-top:20px;">CUSTOM SIZE (PIXELS)</label>
+        <div class="vrs-dim-row">
+          <input type="number" id="vrs-w" class="input" min="2" placeholder="Width" />
+          <span class="vrs-dim-sep">×</span>
+          <input type="number" id="vrs-h" class="input" min="2" placeholder="Height" />
+          <span style="font-size:0.8rem;color:var(--text-muted);">px</span>
+        </div>
+        <div class="vrs-lock-row">
+          <input type="checkbox" id="vrs-lock-ar" checked />
+          <label for="vrs-lock-ar">Lock aspect ratio</label>
         </div>
 
         <div style="margin-top:20px;">
-          <button class="btn btn--primary btn--lg" id="vc-apply-btn" style="width:100%;">✂️ Crop &amp; Download MP4</button>
+          <button class="btn btn--primary btn--lg" id="vrs-apply-btn" style="width:100%;">📐 Resize &amp; Download MP4</button>
         </div>
 
-        <div class="progress-wrap" id="vc-progress">
-          <div class="progress-bar" id="vc-progress-bar"></div>
+        <div class="progress-wrap" id="vrs-progress">
+          <div class="progress-bar" id="vrs-progress-bar"></div>
         </div>
-        <div class="vc-status" id="vc-status">Choose a preset or enter custom values, then click Crop.</div>
-        <div class="vc-log" id="vc-log"></div>
+        <div class="vrs-status" id="vrs-status">Choose a preset or enter custom dimensions, then click Resize.</div>
+        <div class="vrs-log" id="vrs-log"></div>
       </div>
 
     </div>
@@ -324,11 +315,11 @@
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This tool uses <strong>FFmpeg.wasm</strong> to crop video inside your browser using the <code>crop</code> filter. Choose a preset aspect ratio (16:9, 4:3, 1:1 square, 9:16 portrait) for center-cropping, or manually enter X/Y offset and width/height for a precise pixel crop. Output is exported as MP4 (H.264).
+        This tool uses <strong>FFmpeg.wasm</strong> to resize video inside your browser using the <code>scale</code> filter. Select a common resolution preset (240p–4K) or type a custom width and height. Enable the aspect ratio lock to keep proportions correct when changing one dimension. Output is exported as MP4 (H.264).
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
         <div class="security-note">🎬 MP4 · MKV · MOV · WebM</div>
-        <div class="security-note">📐 Preset & custom crop</div>
+        <div class="security-note">📐 240p to 4K presets</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -366,7 +357,7 @@
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
-<script src="../js/modules/video-crop.js"></script>
+<script src="../js/modules/video-resize.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
