@@ -69,6 +69,7 @@
   function setProgress(pct) {
     progressEl.style.display = pct >= 0 && pct < 100 ? 'block' : 'none';
     progressBar.style.width = pct + '%';
+    progressEl.dataset.pct = Math.round(pct) + '%';
   }
 
   function fmtDur(s) {

@@ -212,12 +212,27 @@
   </div>
 </section>
 
+<!-- ══ Filter Bar ═══════════════════════════════════════════ -->
+<section class="tools-section" style="padding-bottom:0;">
+  <div class="container">
+    <div class="filter-bar" id="cw-filter-bar">
+      <button class="filter-pill active" data-filter="all">✦ All Tools</button>
+      <button class="filter-pill" data-filter="crypto">🔐 Crypto</button>
+      <button class="filter-pill" data-filter="hash">＃ Hash</button>
+      <button class="filter-pill" data-filter="encoding">⇄ Encoding</button>
+      <button class="filter-pill" data-filter="media">🎵 Media</button>
+      <button class="filter-pill" data-filter="image">🖼️ Image</button>
+      <button class="filter-pill" data-filter="tools">🔧 Tools</button>
+    </div>
+  </div>
+</section>
+
 <!-- ══ Encryption Tools ═══════════════════════════════════ -->
-<section class="tools-section">
+<section class="tools-section" data-category="crypto">
   <div class="container">
 
     <!-- Crypto -->
-    <div class="section-head">
+    <div class="section-head" data-section="crypto">
       <h2 class="section-head__title">🔐 <span>Encryption</span> &amp; Decryption</h2>
       <div class="section-head__line"></div>
     </div>
@@ -247,7 +262,7 @@
     </div>
 
     <!-- Hashing -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="hash" style="margin-top:48px;">
       <h2 class="section-head__title"># <span>Hashing</span> &amp; Verification</h2>
       <div class="section-head__line"></div>
     </div>
@@ -286,7 +301,7 @@
     </div>
 
     <!-- Encoding -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="encoding" style="margin-top:48px;">
       <h2 class="section-head__title">⇄ <span>Encoding</span> &amp; Decoding</h2>
       <div class="section-head__line"></div>
     </div>
@@ -333,7 +348,7 @@
     </div>
 
     <!-- Video Converter -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="media" style="margin-top:48px;">
       <h2 class="section-head__title">🎬 <span>Video</span> Converter</h2>
       <div class="section-head__line"></div>
     </div>
@@ -422,7 +437,7 @@
     </div>
 
     <!-- Audio -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="media" style="margin-top:48px;">
       <h2 class="section-head__title">🎵 <span>Audio</span> Converter</h2>
       <div class="section-head__line"></div>
     </div>
@@ -500,7 +515,7 @@
     </div>
 
     <!-- DES / 3DES -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="crypto" style="margin-top:48px;">
       <h2 class="section-head__title">🔓 <span>Legacy</span> Encryption</h2>
       <div class="section-head__line"></div>
     </div>
@@ -530,7 +545,7 @@
     </div>
 
     <!-- Image Tools -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="image" style="margin-top:48px;">
       <h2 class="section-head__title">🖼️ <span>Image</span> Tools</h2>
       <div class="section-head__line"></div>
     </div>
@@ -568,7 +583,7 @@
     </div>
 
     <!-- Password -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="tools" style="margin-top:48px;">
       <h2 class="section-head__title">🔑 <span>Password</span> Generator</h2>
       <div class="section-head__line"></div>
     </div>
@@ -596,7 +611,7 @@
     </div>
 
     <!-- Utility Tools -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="tools" style="margin-top:48px;">
       <h2 class="section-head__title">🔧 <span>Utility</span> Tools</h2>
       <div class="section-head__line"></div>
     </div>
@@ -694,7 +709,7 @@
     </div>
 
     <!-- QR Code -->
-    <div class="section-head" style="margin-top:48px;">
+    <div class="section-head" data-section="tools" style="margin-top:48px;">
       <h2 class="section-head__title">⬛ <span>QR Code</span> Tools</h2>
       <div class="section-head__line"></div>
     </div>
@@ -778,6 +793,29 @@
     const nav = document.querySelector('.navbar__nav');
     if (hamburger && nav) hamburger.addEventListener('click', () => nav.classList.toggle('open'));
   });
+</script>
+<script>
+(function () {
+  var bar = document.getElementById('cw-filter-bar');
+  if (!bar) return;
+  bar.addEventListener('click', function (e) {
+    var pill = e.target.closest('.filter-pill');
+    if (!pill) return;
+    var filter = pill.dataset.filter;
+    bar.querySelectorAll('.filter-pill').forEach(function (p) {
+      p.classList.toggle('active', p === pill);
+    });
+    document.querySelectorAll('.section-head[data-section]').forEach(function (head) {
+      var show = filter === 'all' || head.dataset.section === filter;
+      head.style.display = show ? '' : 'none';
+      var el = head.nextElementSibling;
+      while (el && !el.classList.contains('section-head')) {
+        el.style.display = show ? '' : 'none';
+        el = el.nextElementSibling;
+      }
+    });
+  });
+})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
