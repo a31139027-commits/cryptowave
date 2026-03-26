@@ -138,7 +138,7 @@
       await ffmpeg.run(
         '-i', inputName,
         '-af', 'volume=' + vol.toFixed(4),
-        '-c:a', ext === 'mp3' ? 'libmp3lame' : ext === 'ogg' ? 'libvorbis' : 'copy',
+        '-c:a', ext === 'mp3' ? 'libmp3lame' : ext === 'ogg' ? 'libvorbis' : ext === 'flac' ? 'flac' : ext === 'wav' ? 'pcm_s16le' : 'aac',
         outputName
       );
 

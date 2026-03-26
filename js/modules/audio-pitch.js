@@ -37,7 +37,7 @@
     const ratio    = semiToRatio(semi);
     const newRate  = Math.round(BASE_RATE * ratio);
     // atempo must be in 0.5–2.0; counter-factor = 1/ratio
-    const tempo    = (1 / ratio).toFixed(6);
+    const tempo    = Math.max(0.5, Math.min(2.0, 1 / ratio)).toFixed(6);
     return 'asetrate=' + newRate + ',aresample=' + BASE_RATE + ',atempo=' + tempo;
   }
 
@@ -148,7 +148,7 @@
       await ffmpeg.run(
         '-i', inputName,
         '-af', filter,
-        '-c:a', ext === 'mp3' ? 'libmp3lame' : ext === 'ogg' ? 'libvorbis' : 'aac',
+        '-c:a', ext === 'mp3' ? 'libmp3lame' : ext === 'ogg' ? 'libvorbis' : ext === 'flac' ? 'flac' : ext === 'wav' ? 'pcm_s16le' : 'aac',
         outputName
       );
 

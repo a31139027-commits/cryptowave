@@ -179,7 +179,7 @@
       a.href     = url;
       a.download = base + '_loop' + n + '.mp4';
       a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
 
       try { ffmpeg.FS('unlink', inputName);     } catch (_) {}
       try { ffmpeg.FS('unlink', 'filelist.txt'); } catch (_) {}
