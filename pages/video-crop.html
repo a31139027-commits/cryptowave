@@ -11,22 +11,22 @@
   gtag('config', 'AW-18036940841');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Loop Video Online Free — Repeat MP4 Video N Times | CryptoWave</title>
-  <meta name="description" content="Loop or repeat a video online for free. Choose how many times to repeat your MP4, MKV, MOV or WebM and download as a single looped MP4. Powered by FFmpeg.wasm — no upload to server." />
-  <meta name="keywords" content="loop video online, repeat video online, video loop maker, repeat mp4 online, loop video free, video repeater browser" />
+  <title>Crop Video Online Free — Trim Edges & Change Aspect Ratio | CryptoWave</title>
+  <meta name="description" content="Crop video online for free. Trim video edges, remove black bars, or change aspect ratio to 16:9, 4:3, square, or portrait. 100% browser-based — no upload." />
+  <meta name="keywords" content="crop video online, trim video edges, remove black bars video, change video aspect ratio, video crop tool, crop mp4 online free" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-loop.html" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-crop.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-loop.html" />
-  <meta property="og:title"       content="Loop Video Online Free — Repeat MP4 Video N Times" />
-  <meta property="og:description" content="Repeat a video 2–10 times and download as one file. No upload required — powered by FFmpeg.wasm." />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-crop.html" />
+  <meta property="og:title"       content="Crop Video Online Free — Trim Edges & Change Aspect Ratio" />
+  <meta property="og:description" content="Crop video to any size in your browser. Choose a preset aspect ratio or enter custom pixel dimensions. Powered by FFmpeg.wasm — no upload." />
   <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Loop Video Online Free — Repeat MP4 N Times" />
-  <meta name="twitter:description" content="Repeat a video 2–10 times and download as one MP4. 100% client-side, FFmpeg.wasm." />
+  <meta name="twitter:title"       content="Crop Video Online Free" />
+  <meta name="twitter:description" content="Crop MP4 video in your browser. Preset ratios or custom pixel crop. 100% client-side, FFmpeg.wasm." />
   <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
 
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,31 +39,34 @@
     })();
   </script>
   <style>
-    .vl-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 16px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
-    .vl-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
-    .vl-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
-    .vl-meta__item { display: flex; flex-direction: column; gap: 2px; }
-    .vl-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
-    .vl-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
-    .vl-loop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; margin-top: 16px; }
-    .vl-loop-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; border-radius: 10px; border: 2px solid var(--border); background: var(--input-bg); cursor: pointer; transition: border-color .15s, background .15s; }
-    .vl-loop-btn:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),.06); }
-    .vl-loop-btn.selected { border-color: var(--accent); background: rgba(var(--accent-rgb),.12); }
-    .vl-loop-btn__val { font-size: 1.4rem; font-weight: 800; color: var(--accent); font-family: var(--font-head); }
-    .vl-loop-btn__label { font-size: 0.72rem; color: var(--text-muted); text-align: center; }
-    .vl-custom-row { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
-    .vl-custom-row label { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; }
-    .vl-custom-row input[type=number] { width: 80px; text-align: center; }
-    .vl-info-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; padding: 10px 14px; border-radius: 8px; background: rgba(var(--accent-rgb),.06); border: 1px solid rgba(var(--accent-rgb),.2); font-size: 0.825rem; color: var(--text-secondary); }
-    .vl-info-row span { font-weight: 700; color: var(--accent); }
-    .vl-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
-    .vl-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
-    .vl-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
-    .vl-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
-    .progress-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; display: none; }
-    .progress-bar  { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width .3s; }
-    .vl-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #vl-controls { margin-top: 16px; }
+    .vc-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 16px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
+    .vc-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
+    .vc-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
+    .vc-meta__item { display: flex; flex-direction: column; gap: 2px; }
+    .vc-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+    .vc-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+    /* Preset buttons */
+    .vc-preset-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .vc-preset-btn { padding: 8px 16px; border-radius: 8px; border: 2px solid var(--border); background: var(--input-bg); cursor: pointer; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); transition: border-color .15s, background .15s; }
+    .vc-preset-btn:hover { border-color: var(--accent); background: rgba(var(--accent-rgb),.06); }
+    .vc-preset-btn.selected { border-color: var(--accent); background: rgba(var(--accent-rgb),.12); color: var(--accent); }
+    /* Pixel inputs grid */
+    .vc-inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+    .vc-input-row { display: flex; flex-direction: column; gap: 6px; }
+    .vc-input-row label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); display: flex; justify-content: space-between; }
+    .vc-input-row label span { color: var(--accent); font-weight: 700; }
+    .vc-input-row input[type=number] { width: 100%; }
+    /* Status */
+    .vc-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--input-bg); color: var(--text-muted); }
+    .vc-status--working { color: var(--accent); border-color: rgba(var(--accent-rgb),.4); background: rgba(var(--accent-rgb),.06); }
+    .vc-status--done    { color: #22c55e; border-color: rgba(34,197,94,.4); background: rgba(34,197,94,.06); }
+    .vc-status--error   { color: #ef4444; border-color: rgba(239,68,68,.4); background: rgba(239,68,68,.06); }
+    .progress-wrap { display: none; align-items: center; gap: 10px; margin-top: 12px; }
+    .progress-wrap .progress-bar { flex: 1; height: 6px; background: var(--accent); border-radius: 99px; width: 0%; transition: width .3s; }
+    .progress-wrap::after { content: attr(data-pct); font-size: 0.75rem; font-weight: 700; color: var(--accent); font-family: var(--font-head); min-width: 36px; text-align: right; white-space: nowrap; }
+    .vc-log { font-size: 0.7rem; color: var(--text-muted); margin-top: 8px; font-family: monospace; min-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #vc-controls { margin-top: 16px; }
+    .vc-hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; }
   </style>
 <script type="application/ld+json">
 {
@@ -71,19 +74,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Video Loop Maker",
-      "url": "https://cryptowave-rouge.vercel.app/pages/video-loop.html",
-      "description": "Loop or repeat a video online. Choose 2–10 repetitions and download as a single MP4. Powered by FFmpeg.wasm — no upload to server.",
+      "name": "Video Crop",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video-crop.html",
+      "description": "Crop video online for free. Trim video edges, remove black bars, or change aspect ratio to 16:9, 4:3, square, or portrait. 100% browser-based.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Repeat video 2 to 10 times", "Custom loop count", "Stream copy — fast and lossless", "Download as MP4", "100% client-side FFmpeg.wasm"]
+      "featureList": ["Preset aspect ratios 16:9 4:3 square 9:16", "Custom pixel crop X Y W H", "Remove black bars", "Download as MP4", "100% client-side FFmpeg.wasm"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
-        { "@type": "ListItem", "position": 2, "name": "Video Loop Maker", "item": "https://cryptowave-rouge.vercel.app/pages/video-loop.html" }
+        { "@type": "ListItem", "position": 2, "name": "Video Crop", "item": "https://cryptowave-rouge.vercel.app/pages/video-crop.html" }
       ]
     },
     {
@@ -91,13 +94,13 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How does video looping work?",
-          "acceptedAnswer": { "@type": "Answer", "text": "This tool uses FFmpeg.wasm's concat demuxer to join the same video file N times using stream copy — no re-encoding, so it's fast and lossless. The output is a single MP4 file." }
+          "name": "How do I crop a video to 16:9 aspect ratio?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Upload your video, click the 16:9 preset button, then click Apply & Download. The tool will automatically crop from the center to the correct 16:9 dimensions." }
         },
         {
           "@type": "Question",
-          "name": "What is the maximum number of loops?",
-          "acceptedAnswer": { "@type": "Answer", "text": "You can choose between 2 and 20 repetitions. Keep in mind the output file will be roughly N times the size of your original video." }
+          "name": "Can I set a custom crop area?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the X (left offset), Y (top offset), Width, and Height fields to enter any pixel values. The crop area must fit within the original video dimensions." }
         },
         {
           "@type": "Question",
@@ -149,7 +152,7 @@
         </div></div>
       </li>
       <li class="dropdown">
-        <a href="video-loop.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <a href="video-crop.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner dropdown__menu-inner--cols">
           <div class="dropdown__col">
             <div class="dropdown__col-head">🎵 Audio</div>
@@ -171,7 +174,7 @@
             <a href="video-speed.html">⏩ Video Speed</a>
             <a href="video-loop.html">🔁 Video Loop</a>
             <a href="video-volume.html">🔊 Video Volume</a>
-            <a href="video-crop.html">✂️ Video Crop</a>
+            <a href="video-crop.html" class="active">✂️ Video Crop</a>
           </div>
         </div></div>
       </li>
@@ -215,8 +218,8 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">🔁 <span>Video Loop Maker</span></h1>
-      <p class="tool-header__sub">Repeat a video 2 to 20 times and download as a single seamless MP4 file. Uses stream copy — fast and lossless.</p>
+      <h1 class="tool-header__title">✂️ <span>Video Crop</span></h1>
+      <p class="tool-header__sub">Crop your video to a preset aspect ratio or custom pixel dimensions. Remove black bars, reframe shots, all in your browser.</p>
     </div>
 
     <!-- Drop Zone -->
@@ -225,16 +228,16 @@
         <div class="panel__head-icon">🎬</div>
         <div class="panel__head-title">Upload Video</div>
       </div>
-      <div class="drop-zone" id="vl-drop-zone">
-        <div class="drop-zone__icon">🔁</div>
+      <div class="drop-zone" id="vc-drop-zone">
+        <div class="drop-zone__icon">🎬</div>
         <div class="drop-zone__title">Drop a video file here</div>
         <div class="drop-zone__sub">or click to browse — MP4, MKV, MOV, AVI, WebM supported</div>
-        <input type="file" id="vl-file-input" accept="video/*" style="display:none;" />
+        <input type="file" id="vc-file-input" accept="video/*" style="display:none;" />
       </div>
     </div>
 
     <!-- Controls (hidden until file loaded) -->
-    <div id="vl-controls" class="hidden">
+    <div id="vc-controls" class="hidden">
 
       <!-- Preview -->
       <div class="panel" style="margin-top:16px;">
@@ -242,75 +245,73 @@
           <div class="panel__head-icon">▶</div>
           <div class="panel__head-title">Preview</div>
         </div>
-        <div class="vl-preview-wrap">
-          <video id="vl-preview" controls playsinline></video>
+        <div class="vc-preview-wrap">
+          <video id="vc-preview" controls playsinline></video>
         </div>
-        <div class="vl-meta">
-          <div class="vl-meta__item">
-            <span class="vl-meta__label">File</span>
-            <span class="vl-meta__value" id="vl-filename">—</span>
+        <div class="vc-meta">
+          <div class="vc-meta__item">
+            <span class="vc-meta__label">File</span>
+            <span class="vc-meta__value" id="vc-filename">—</span>
           </div>
-          <div class="vl-meta__item">
-            <span class="vl-meta__label">Size</span>
-            <span class="vl-meta__value" id="vl-filesize">—</span>
+          <div class="vc-meta__item">
+            <span class="vc-meta__label">Size</span>
+            <span class="vc-meta__value" id="vc-filesize">—</span>
           </div>
-          <div class="vl-meta__item">
-            <span class="vl-meta__label">Duration</span>
-            <span class="vl-meta__value" id="vl-duration">—</span>
+          <div class="vc-meta__item">
+            <span class="vc-meta__label">Dimensions</span>
+            <span class="vc-meta__value" id="vc-dimensions">—</span>
           </div>
         </div>
       </div>
 
-      <!-- Loop Options -->
+      <!-- Crop Options -->
       <div class="panel" style="margin-top:16px;">
         <div class="panel__head">
-          <div class="panel__head-icon">🔁</div>
-          <div class="panel__head-title">Number of Loops</div>
-        </div>
-        <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px;">How many times should the video repeat in total?</p>
-
-        <div class="vl-loop-grid" id="vl-loop-grid">
-          <button class="vl-loop-btn" data-loops="2">
-            <span class="vl-loop-btn__val">2×</span>
-            <span class="vl-loop-btn__label">2 times</span>
-          </button>
-          <button class="vl-loop-btn selected" data-loops="3">
-            <span class="vl-loop-btn__val">3×</span>
-            <span class="vl-loop-btn__label">3 times</span>
-          </button>
-          <button class="vl-loop-btn" data-loops="4">
-            <span class="vl-loop-btn__val">4×</span>
-            <span class="vl-loop-btn__label">4 times</span>
-          </button>
-          <button class="vl-loop-btn" data-loops="5">
-            <span class="vl-loop-btn__val">5×</span>
-            <span class="vl-loop-btn__label">5 times</span>
-          </button>
-          <button class="vl-loop-btn" data-loops="10">
-            <span class="vl-loop-btn__val">10×</span>
-            <span class="vl-loop-btn__label">10 times</span>
-          </button>
+          <div class="panel__head-icon">✂️</div>
+          <div class="panel__head-title">Crop Settings</div>
         </div>
 
-        <div class="vl-custom-row">
-          <label for="vl-custom-input">Custom:</label>
-          <input type="number" id="vl-custom-input" class="input" min="2" max="20" value="3" />
-          <span style="font-size:0.8rem;color:var(--text-muted);">times (max 20)</span>
+        <!-- Preset buttons -->
+        <label class="form-label">ASPECT RATIO PRESET</label>
+        <div class="vc-preset-grid" id="vc-preset-grid">
+          <button class="vc-preset-btn selected" data-preset="full">Full Frame</button>
+          <button class="vc-preset-btn" data-preset="square">1:1 Square</button>
+          <button class="vc-preset-btn" data-preset="16:9">16:9 Landscape</button>
+          <button class="vc-preset-btn" data-preset="4:3">4:3 Standard</button>
+          <button class="vc-preset-btn" data-preset="9:16">9:16 Portrait</button>
         </div>
+        <p class="vc-hint">Presets crop from the center of the video. Use custom fields below to fine-tune.</p>
 
-        <div class="vl-info-row" id="vl-info-row">
-          Total duration: <span id="vl-total-dur">—</span> &nbsp;·&nbsp; Est. size: <span id="vl-est-size">—</span>
+        <!-- Custom pixel inputs -->
+        <label class="form-label" style="margin-top:20px;">CUSTOM CROP (PIXELS)</label>
+        <div class="vc-inputs-grid">
+          <div class="vc-input-row">
+            <label for="vc-x">X (Left Offset)</label>
+            <input type="number" id="vc-x" class="input" min="0" value="0" />
+          </div>
+          <div class="vc-input-row">
+            <label for="vc-y">Y (Top Offset)</label>
+            <input type="number" id="vc-y" class="input" min="0" value="0" />
+          </div>
+          <div class="vc-input-row">
+            <label for="vc-w">Width <span id="vc-w-label"></span></label>
+            <input type="number" id="vc-w" class="input" min="2" value="1920" />
+          </div>
+          <div class="vc-input-row">
+            <label for="vc-h">Height <span id="vc-h-label"></span></label>
+            <input type="number" id="vc-h" class="input" min="2" value="1080" />
+          </div>
         </div>
 
         <div style="margin-top:20px;">
-          <button class="btn btn--primary btn--lg" id="vl-apply-btn" style="width:100%;">🔁 Create Loop &amp; Download MP4</button>
+          <button class="btn btn--primary btn--lg" id="vc-apply-btn" style="width:100%;">✂️ Crop &amp; Download MP4</button>
         </div>
 
-        <div class="progress-wrap" id="vl-progress">
-          <div class="progress-bar" id="vl-progress-bar"></div>
+        <div class="progress-wrap" id="vc-progress">
+          <div class="progress-bar" id="vc-progress-bar"></div>
         </div>
-        <div class="vl-status" id="vl-status">Select loop count above, then click Create Loop.</div>
-        <div class="vl-log" id="vl-log"></div>
+        <div class="vc-status" id="vc-status">Choose a preset or enter custom values, then click Crop.</div>
+        <div class="vc-log" id="vc-log"></div>
       </div>
 
     </div>
@@ -322,11 +323,11 @@
         <h2 class="panel__head-title">About This Tool</h2>
       </div>
       <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This tool uses <strong>FFmpeg.wasm</strong> to repeat a video N times inside your browser. It uses the concat demuxer with <strong>stream copy</strong> — no re-encoding — so the process is fast and the output is lossless. The result is a single MP4 file that plays the video back-to-back the chosen number of times.
+        This tool uses <strong>FFmpeg.wasm</strong> to crop video inside your browser using the <code>crop</code> filter. Choose a preset aspect ratio (16:9, 4:3, 1:1 square, 9:16 portrait) for center-cropping, or manually enter X/Y offset and width/height for a precise pixel crop. Output is exported as MP4 (H.264).
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
         <div class="security-note">🎬 MP4 · MKV · MOV · WebM</div>
-        <div class="security-note">⚡ Stream copy — lossless</div>
+        <div class="security-note">📐 Preset & custom crop</div>
         <div class="security-note">✓ Zero server transmission</div>
       </div>
     </div>
@@ -364,7 +365,7 @@
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
-<script src="../js/modules/video-loop.js"></script>
+<script src="../js/modules/video-crop.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
