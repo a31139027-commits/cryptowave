@@ -825,6 +825,20 @@ input, textarea, select, .key-box, .drop-zone,
   margin: 4px 6px;
 }
 
+/* ─── Two-column dropdown (Media menu) ──────────────────── */
+.dropdown__menu-inner--cols {
+  display: flex;
+  gap: 4px;
+  min-width: 320px;
+}
+.dropdown__col { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.dropdown__col-head {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--text-muted);
+  padding: 6px 12px 4px;
+}
+.dropdown__col-divider { height: 1px; background: var(--border-subtle); margin: 0 6px 4px; }
+
 /* ─── Homepage Filter Pills ─────────────────────────────── */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .filter-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 99px; border: 1.5px solid var(--border); background: transparent; color: var(--text-secondary); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
