@@ -2,208 +2,208 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/</loc>
+    <loc>https://cryptowaveapp.com/</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/aes.html</loc>
+    <loc>https://cryptowaveapp.com/pages/aes.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/rsa.html</loc>
+    <loc>https://cryptowaveapp.com/pages/rsa.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/hash.html</loc>
-    <lastmod>2026-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/image.html</loc>
-    <lastmod>2026-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/audio.html</loc>
-    <lastmod>2026-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video.html</loc>
+    <loc>https://cryptowaveapp.com/pages/hash.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/password.html</loc>
+    <loc>https://cryptowaveapp.com/pages/image.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/qrcode.html</loc>
+    <loc>https://cryptowaveapp.com/pages/audio.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/encoding.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cryptowaveapp.com/pages/password.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cryptowaveapp.com/pages/qrcode.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cryptowaveapp.com/pages/encoding.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/des.html</loc>
+    <loc>https://cryptowaveapp.com/pages/des.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/tripledes.html</loc>
+    <loc>https://cryptowaveapp.com/pages/tripledes.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/date-diff.html</loc>
+    <loc>https://cryptowaveapp.com/pages/date-diff.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/age.html</loc>
+    <loc>https://cryptowaveapp.com/pages/age.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/pdf-merge.html</loc>
+    <loc>https://cryptowaveapp.com/pages/pdf-merge.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/word-count.html</loc>
+    <loc>https://cryptowaveapp.com/pages/word-count.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/base-convert.html</loc>
+    <loc>https://cryptowaveapp.com/pages/base-convert.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/color-convert.html</loc>
+    <loc>https://cryptowaveapp.com/pages/color-convert.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/pdf-split.html</loc>
+    <loc>https://cryptowaveapp.com/pages/pdf-split.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/pdf-images.html</loc>
+    <loc>https://cryptowaveapp.com/pages/pdf-images.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/tts.html</loc>
+    <loc>https://cryptowaveapp.com/pages/tts.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/audio-cut.html</loc>
+    <loc>https://cryptowaveapp.com/pages/audio-cut.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/audio-merge.html</loc>
+    <loc>https://cryptowaveapp.com/pages/audio-merge.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/audio-volume.html</loc>
+    <loc>https://cryptowaveapp.com/pages/audio-volume.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/audio-reverse.html</loc>
+    <loc>https://cryptowaveapp.com/pages/audio-reverse.html</loc>
     <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/audio-pitch.html</loc>
+    <loc>https://cryptowaveapp.com/pages/audio-pitch.html</loc>
     <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-trim.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video-trim.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-merge.html</loc>
-    <lastmod>2026-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-rotate.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video-merge.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-speed.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video-rotate.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-loop.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video-speed.html</loc>
+    <lastmod>2026-03-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://cryptowaveapp.com/pages/video-loop.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-volume.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video-volume.html</loc>
     <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://cryptowave-rouge.vercel.app/pages/video-crop.html</loc>
+    <loc>https://cryptowaveapp.com/pages/video-crop.html</loc>
     <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
