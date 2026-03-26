@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18036940841');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Volume Changer Online Free — Boost or Lower MP4 Volume | CryptoWave</title>
+  <meta name="description" content="Change video volume online for free. Boost or reduce MP4, MKV, MOV, WebM audio volume up to 200%. Powered by FFmpeg.wasm — 100% client-side, no upload to server." />
+  <meta name="keywords" content="video volume changer online, boost mp4 volume, reduce video volume, increase video audio, mp4 volume booster, video sound adjuster" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cryptowave-rouge.vercel.app/pages/video-volume.html" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cryptowave-rouge.vercel.app/pages/video-volume.html" />
+  <meta property="og:title"       content="Video Volume Changer Online Free — Boost or Lower MP4 Volume" />
+  <meta property="og:description" content="Increase or decrease video audio volume in your browser. No upload required — powered by FFmpeg.wasm." />
+  <meta property="og:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+  <meta property="og:site_name"   content="CryptoWave" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Video Volume Changer Online Free" />
+  <meta name="twitter:description" content="Boost or reduce video audio volume in your browser. 0% to 200%. 100% client-side, FFmpeg.wasm." />
+  <meta name="twitter:image"       content="https://cryptowave-rouge.vercel.app/og-image.png" />
+
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
+  <style>
+    .vv-preview-wrap { background: #000; border-radius: 10px; overflow: hidden; margin-top: 12px; max-height: 320px; display: flex; align-items: center; justify-content: center; }
+    .vv-preview-wrap video { max-width: 100%; max-height: 320px; display: block; }
+    .vv-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 14px; }
+    .vv-meta__item { display: flex; flex-direction: column; gap: 2px; }
+    .vv-meta__label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
+    .vv-meta__value { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+    .vv-vol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 16px; }
+    .vv-vol-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 8px; border-radius: 10px; border: 2px solid var(--border); background: var(--bg-input); cursor: pointer; transition: border-color .15s, background .15s; }
+    .vv-vol-btn:hover { border-color: var(--accent); background: var(--accent-dim); }
+    .vv-vol-btn.selected { border-color: var(--accent); background: var(--accent-dim); }
+    .vv-vol-btn__val { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--accent); }
+    .vv-vol-btn__label { font-size: 0.7rem; color: var(--text-muted); text-align: center; }
+    .vv-custom-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .vv-custom-row label { font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; }
+    .vv-custom-row input[type=range] { flex: 1; accent-color: var(--accent); }
+    .vv-custom-val { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--accent); min-width: 48px; text-align: right; }
+    .vv-status { margin-top: 14px; font-size: 0.875rem; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-input); color: var(--text-muted); }
+    .vv-status--working { color: var(--accent); border-color: var(--accent-border); background: var(--accent-dim); }
+    .vv-status--done    { color: var(--green); border-color: var(--green-border); background: var(--green-dim); }
+    .vv-status--error   { color: var(--red);   border-color: var(--red-border);   background: var(--red-dim); }
+    .vv-log { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-top: 8px; min-height: 18px; word-break: break-all; }
+  </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Video Volume Changer",
+      "url": "https://cryptowave-rouge.vercel.app/pages/video-volume.html",
+      "description": "Change video audio volume online for free. Boost or reduce MP4, MKV, MOV, WebM volume. 100% client-side.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Adjust MP4 MKV MOV WebM volume", "0% to 200% range", "FFmpeg.wasm processing", "100% client-side"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowave-rouge.vercel.app" },
+        { "@type": "ListItem", "position": 2, "name": "Video Volume Changer", "item": "https://cryptowave-rouge.vercel.app/pages/video-volume.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand">
+      <div class="navbar__brand-icon">🔐</div>
+      Crypto<span>Wave</span>
+    </a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="hash.html"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="hash.html">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="hash.html#tab-bcrypt">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-html-ent">&lt;&gt; HTML Entities</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="video-volume.html" class="active">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="audio.html">🎵 Audio Converter</a>
+          <a href="audio-cut.html">✂️ Audio Cutter</a>
+          <a href="audio-merge.html">🔗 Audio Merger</a>
+          <a href="audio-volume.html">🔊 Audio Volume</a>
+          <a href="audio-reverse.html">🔄 Audio Reverse</a>
+          <a href="video.html">🎬 Video Converter</a>
+          <a href="video-trim.html">✂️ Video Trimmer</a>
+          <a href="video-merge.html">🔗 Video Merger</a>
+          <a href="video-rotate.html">🔄 Video Rotate/Flip</a>
+          <a href="video-speed.html">⏩ Video Speed</a>
+          <a href="video-loop.html">🔁 Video Loop</a>
+          <a href="video-volume.html" class="active">🔊 Video Volume</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html">🗜️ Compress</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+        </div></div>
+      </li>
+      <li class="dropdown">
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+          <div class="dropdown__divider"></div>
+          <a href="date-diff.html">📅 Date Difference</a>
+          <a href="age.html">🎂 Age Calculator</a>
+          <div class="dropdown__divider"></div>
+          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="pdf-split.html">✂️ PDF Splitter</a>
+          <a href="pdf-images.html">🖼️ PDF to Images</a>
+          <a href="tts.html">🔊 Text to Speech</a>
+          <a href="word-count.html">📝 Word Counter</a>
+          <a href="base-convert.html">🔢 Base Converter</a>
+          <a href="color-convert.html">🎨 Color Converter</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title">🔊 <span>Video Volume Changer</span></h1>
+      <p class="tool-header__sub">Boost or reduce the audio track of any video — up to 200%. Video quality is untouched. All processing runs in your browser.</p>
+    </div>
+
+    <!-- Drop Zone -->
+    <div class="panel">
+      <div class="panel__head">
+        <div class="panel__head-icon">🎬</div>
+        <div class="panel__head-title">Upload Video</div>
+      </div>
+      <div class="drop-zone" id="vv-drop-zone">
+        <div class="drop-zone__icon">🔊</div>
+        <div class="drop-zone__title">Drop a video file here</div>
+        <div class="drop-zone__sub">or click to browse — MP4, MKV, MOV, WebM, AVI supported</div>
+        <input type="file" id="vv-file-input" accept="video/*" style="display:none;" />
+      </div>
+    </div>
+
+    <!-- Controls (hidden until file loaded) -->
+    <div id="vv-controls" class="hidden">
+
+      <!-- Preview -->
+      <div class="panel" style="margin-top:16px;">
+        <div class="panel__head">
+          <div class="panel__head-icon">▶</div>
+          <div class="panel__head-title">Preview</div>
+        </div>
+        <div class="vv-preview-wrap">
+          <video id="vv-preview" controls muted></video>
+        </div>
+        <div class="vv-meta">
+          <div class="vv-meta__item">
+            <span class="vv-meta__label">File</span>
+            <span class="vv-meta__value" id="vv-filename">—</span>
+          </div>
+          <div class="vv-meta__item">
+            <span class="vv-meta__label">Size</span>
+            <span class="vv-meta__value" id="vv-filesize">—</span>
+          </div>
+          <div class="vv-meta__item">
+            <span class="vv-meta__label">Duration</span>
+            <span class="vv-meta__value" id="vv-duration">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Volume Options -->
+      <div class="panel" style="margin-top:16px;">
+        <div class="panel__head">
+          <div class="panel__head-icon">🔊</div>
+          <div class="panel__head-title">Choose Volume</div>
+        </div>
+
+        <div class="vv-vol-grid" id="vv-vol-grid">
+          <button class="vv-vol-btn" data-vol="0.25">
+            <span class="vv-vol-btn__val">25%</span>
+            <span class="vv-vol-btn__label">Very Quiet</span>
+          </button>
+          <button class="vv-vol-btn" data-vol="0.5">
+            <span class="vv-vol-btn__val">50%</span>
+            <span class="vv-vol-btn__label">Half Volume</span>
+          </button>
+          <button class="vv-vol-btn" data-vol="0.75">
+            <span class="vv-vol-btn__val">75%</span>
+            <span class="vv-vol-btn__label">Slightly Quiet</span>
+          </button>
+          <button class="vv-vol-btn selected" data-vol="1">
+            <span class="vv-vol-btn__val">100%</span>
+            <span class="vv-vol-btn__label">Original</span>
+          </button>
+          <button class="vv-vol-btn" data-vol="1.25">
+            <span class="vv-vol-btn__val">125%</span>
+            <span class="vv-vol-btn__label">Slightly Louder</span>
+          </button>
+          <button class="vv-vol-btn" data-vol="1.5">
+            <span class="vv-vol-btn__val">150%</span>
+            <span class="vv-vol-btn__label">Louder</span>
+          </button>
+          <button class="vv-vol-btn" data-vol="2">
+            <span class="vv-vol-btn__val">200%</span>
+            <span class="vv-vol-btn__label">Double Volume</span>
+          </button>
+        </div>
+
+        <div class="vv-custom-row">
+          <label for="vv-custom-slider">Custom:</label>
+          <input type="range" id="vv-custom-slider" min="0.05" max="2" step="0.05" value="1" />
+          <span class="vv-custom-val" id="vv-custom-val">100%</span>
+        </div>
+
+        <div style="margin-top:20px;">
+          <button class="btn btn--primary btn--lg" id="vv-apply-btn" style="width:100%;">🔊 Apply Volume &amp; Download</button>
+        </div>
+
+        <div class="progress-wrap" id="vv-progress" style="display:none;margin-top:12px;">
+          <div class="progress-bar" id="vv-progress-bar" style="width:0%"></div>
+        </div>
+        <div class="vv-status" id="vv-status">Select a volume level above, then click Apply.</div>
+        <div class="vv-log" id="vv-log"></div>
+      </div>
+
+    </div>
+
+    <!-- About -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">📖</div>
+        <h2 class="panel__head-title">About This Tool</h2>
+      </div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        This tool uses <strong>FFmpeg.wasm</strong> to adjust video audio volume using the <code>volume</code> filter. The video stream is copied without re-encoding, so processing is fast and video quality is preserved. Only the audio track is re-encoded.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">🎬 MP4 · MKV · MOV · WebM · AVI</div>
+        <div class="security-note">🔊 0% to 200% volume range</div>
+        <div class="security-note">⚡ Video stream copied — fast</div>
+        <div class="security-note">✓ Zero server transmission</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+      <a href="date-diff.html">Date Diff</a>
+      <a href="age.html">Age Calc</a>
+      <a href="pdf-merge.html">PDF Merge</a>
+      <a href="word-count.html">Word Count</a>
+      <a href="color-convert.html">Color Conv</a>
+    </nav>
+    <div class="footer__copy">© 2026 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js" integrity="sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA" crossorigin="anonymous"></script>
+<script src="../js/modules/video-volume.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
