@@ -48,7 +48,7 @@ const AudioModule = (() => {
       ffmpeg = createFFmpeg({
         log: false,
         progress: ({ ratio }) => updateProgress(Math.round(ratio * 100)),
-        corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+        corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
       });
       await ffmpeg.load();
       window._fetchFile = fetchFile;

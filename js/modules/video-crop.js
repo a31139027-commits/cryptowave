@@ -53,7 +53,7 @@
     if (!createFFmpeg) { setStatus('FFmpeg failed to load. Please refresh.', 'error'); return false; }
     ffmpeg = createFFmpeg({
       log: false,
-      corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+      corePath: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
       progress: ({ ratio }) => { if (ratio > 0) setProgress(Math.round(ratio * 100)); },
       logger: ({ message }) => { if (logEl) logEl.textContent = message; }
     });
