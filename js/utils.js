@@ -142,6 +142,18 @@ const Utils = (() => {
     if (hamburger && nav) {
       hamburger.addEventListener('click', () => nav.classList.toggle('open'));
     }
+    // Mobile accordion: tap dropdown parent to expand/collapse
+    document.querySelectorAll('.navbar__nav .dropdown > a').forEach(a => {
+      a.addEventListener('click', e => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const li = a.closest('.dropdown');
+          const isOpen = li.classList.contains('mobile-open');
+          document.querySelectorAll('.navbar__nav .dropdown').forEach(d => d.classList.remove('mobile-open'));
+          if (!isOpen) li.classList.add('mobile-open');
+        }
+      });
+    });
     // Active link
     const current = window.location.pathname.split('/').pop();
     document.querySelectorAll('.navbar__nav a').forEach(a => {

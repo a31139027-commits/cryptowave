@@ -525,9 +525,16 @@ select {
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .navbar__nav { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg-overlay); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 10px; z-index: 99; max-height: calc(100vh - 64px); overflow-y: auto; }
+  .navbar__nav { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg-overlay); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 10px; z-index: 99; }
   .navbar__nav.open { display: flex; }
   .hamburger { display: flex; }
+  /* Mobile accordion dropdowns */
+  .navbar__nav .dropdown__menu { display: none; position: static; transform: none; padding-top: 0; z-index: auto; white-space: normal; min-width: 0; }
+  .navbar__nav .dropdown__menu-inner { background: none; border: none; border-radius: 0; box-shadow: none; padding: 0 0 0 12px; }
+  .navbar__nav .dropdown__menu-inner--cols { flex-direction: column; min-width: 0; gap: 0; }
+  .navbar__nav .dropdown__menu::before { display: none; }
+  .navbar__nav .dropdown.mobile-open > .dropdown__menu { display: block; }
+  .navbar__nav .dropdown.mobile-open > a .dropdown__arrow { transform: rotate(180deg); }
   .hero { padding: 52px 0 44px; }
   .hero__title { font-size: 2.3rem; }
   .panel { padding: 20px; }
