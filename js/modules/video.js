@@ -312,7 +312,7 @@ const VideoModule = (() => {
     el.className = ok ? 'alert alert--success' : 'alert alert--warning';
     el.innerHTML = ok
       ? '<span class="alert__icon">✓</span> Cross-Origin Isolation active — FFmpeg.wasm ready.'
-      : '<span class="alert__icon">⚠</span><div><strong>Cross-Origin Isolation Required:</strong> Your server must send <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code> headers. Vercel is already configured via <code>vercel.json</code>.</div>';
+      : '<span class="alert__icon">⚠</span><div><strong>Cross-Origin Isolation Required:</strong> Your server must send <code>Cross-Origin-Opener-Policy: same-origin</code> and <code>Cross-Origin-Embedder-Policy: require-corp</code> headers.</div>';
   }
 
   return { init, convertVideo, INPUT_FORMATS, OUTPUT_FORMATS };
