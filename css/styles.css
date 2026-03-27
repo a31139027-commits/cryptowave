@@ -544,7 +544,19 @@ select {
 }
 @media (max-width: 480px) {
   .btn-group { flex-direction: column; }
-  .btn { justify-content: center; }
+  .btn { justify-content: center; width: 100%; }
+  .btn--lg { padding: 16px 20px; }
+  .drop-zone { padding: 28px 16px; }
+  .drop-zone__icon { font-size: 2rem; margin-bottom: 10px; }
+  .drop-zone__formats { gap: 4px; margin-top: 12px; }
+  .format-badge { font-size: 0.75rem; }
+  .hero__title { font-size: 1.9rem; }
+  .hero__tag { font-size: 0.85rem; }
+  .options-grid { grid-template-columns: 1fr 1fr; }
+  .check-item__box { width: 20px; height: 20px; min-width: 20px; }
+  .file-item__remove { padding: 8px 10px; }
+  .panel { padding: 16px; }
+  .container { padding: 0 14px; }
 }
 
 /* ═══════════════════════════════════════════════════════════
