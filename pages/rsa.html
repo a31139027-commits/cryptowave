@@ -302,6 +302,32 @@
     </div>
 
   </div>
+
+    <!-- FAQ -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">❓</div>
+        <h2 class="panel__head-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What key size should I use?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">2048-bit is the minimum recommended key size for RSA. Use 4096-bit for high-security scenarios where long-term data protection is required. Larger keys are more secure but slower to generate and use.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Is RSA safe for large files?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">RSA is designed for small data — typically only used to encrypt a symmetric key. For bulk data encryption, use AES. A common hybrid approach is to encrypt your data with AES, then encrypt the AES key with RSA.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my keys saved anywhere?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. Keys are generated entirely in your browser and are never stored or transmitted. You must save your private key manually — losing it means losing access to anything encrypted with the corresponding public key.</div>
+        </div>
+
+      </div>
+    </div>
 </main>
 
 <footer class="footer">

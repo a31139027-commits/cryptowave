@@ -316,6 +316,32 @@
     </div>
 
   </div>
+
+    <!-- FAQ -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">❓</div>
+        <h2 class="panel__head-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What is the difference between SHA-256 and MD5?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">SHA-256 produces a 256-bit hash and is cryptographically secure for modern use. MD5 produces a 128-bit hash and is deprecated for security purposes due to known collision vulnerabilities — use SHA-256 or SHA-3 instead.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Can I reverse a hash?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. Hash functions are one-way by design. It is computationally infeasible to recover the original input from a hash output. This is what makes hashing suitable for password storage and data integrity checks.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What is HMAC?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">HMAC (Hash-based Message Authentication Code) combines a hash function with a secret key to produce an authentication code. It verifies both the integrity and authenticity of a message, ensuring it was not altered and came from the expected sender.</div>
+        </div>
+
+      </div>
+    </div>
 </main>
 
 <footer class="footer">

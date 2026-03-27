@@ -73,6 +73,26 @@
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowaveapp.com" },
         { "@type": "ListItem", "position": 2, "name": "Audio Reverser", "item": "https://cryptowaveapp.com/pages/audio-reverse.html" }
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are my audio files uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All audio reversal is done using FFmpeg.wasm which runs entirely in your browser. Your files never leave your device." }
+        },
+        {
+          "@type": "Question",
+          "name": "What formats are supported?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The audio reverser supports MP3, WAV, OGG, FLAC, AAC, M4A, and other common audio formats." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does reversing take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Processing time depends on file size. All processing is done locally in your browser — no internet connection is needed after the page loads." }
+        }
+      ]
     }
   ]
 }
@@ -268,6 +288,32 @@
     </div>
 
   </div>
+
+    <!-- FAQ -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">❓</div>
+        <h2 class="panel__head-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my audio files uploaded to a server?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All audio reversal is done using FFmpeg.wasm which runs entirely in your browser. Your files never leave your device and are never transmitted to any server.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What formats are supported?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">The audio reverser supports MP3, WAV, OGG, FLAC, AAC, M4A, and other common audio formats. FFmpeg.wasm handles a wide range of audio codecs and containers.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">How long does reversing take?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">Processing time depends on the size of your audio file. All processing is done locally in your browser, so longer or higher-quality files will take more time. No internet connection is needed after the page loads.</div>
+        </div>
+
+      </div>
+    </div>
 </main>
 
 <footer class="footer">

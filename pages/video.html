@@ -372,6 +372,32 @@
     </div>
 
   </div>
+
+    <!-- FAQ -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">❓</div>
+        <h2 class="panel__head-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my video files uploaded to a server?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All conversion is done entirely in your browser using FFmpeg.wasm. Your files never leave your device and are never transmitted to any server.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Which format should I convert to?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">MP4 with H.264 encoding offers the best compatibility across devices, browsers, and platforms. Use WebM for web-optimized video or MKV if you need a container that supports multiple audio/subtitle tracks.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Why does conversion take a long time?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">Large files are processed entirely locally in your browser using WebAssembly. Conversion speed depends on your CPU and file size. There is no server to offload the work to, so processing time scales with file complexity.</div>
+        </div>
+
+      </div>
+    </div>
 </main>
 
 <footer class="footer">

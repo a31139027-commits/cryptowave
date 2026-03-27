@@ -333,6 +333,32 @@
     </div>
 
   </div>
+
+    <!-- FAQ -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">❓</div>
+        <h2 class="panel__head-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Is 3DES more secure than DES?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">Yes, Triple DES is significantly more secure than standard DES by applying the cipher three times. However, it is still deprecated by NIST and major standards bodies — use AES-256 for any new encryption needs.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What key size does 3DES use?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">3DES uses a 168-bit key (three 56-bit DES keys), though due to a meet-in-the-middle attack the effective security is approximately 112 bits. This is much weaker than AES-256's 256-bit security.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Should I use 3DES for new projects?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. 3DES is deprecated and should only be used for legacy compatibility purposes. For all new projects, AES-256 is the industry standard and provides superior security and performance.</div>
+        </div>
+
+      </div>
+    </div>
 </main>
 
 <footer class="footer">

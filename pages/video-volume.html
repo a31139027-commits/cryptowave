@@ -83,6 +83,26 @@
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowaveapp.com" },
         { "@type": "ListItem", "position": 2, "name": "Video Volume Changer", "item": "https://cryptowaveapp.com/pages/video-volume.html" }
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are my videos uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All volume adjustment is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much can I boost video volume?",
+          "acceptedAnswer": { "@type": "Answer", "text": "You can boost volume up to 200% of the original level using the slider or preset buttons." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will boosting cause audio distortion?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Distortion (clipping) is possible if you boost already loud audio above 150%. Try a lower boost value if you hear crackling in the output." }
+        }
+      ]
     }
   ]
 }
@@ -314,6 +334,32 @@
     </div>
 
   </div>
+
+    <!-- FAQ -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">❓</div>
+        <h2 class="panel__head-title">Frequently Asked Questions</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my videos uploaded to a server?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All volume adjustment is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">How much can I boost video volume?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">You can boost volume up to 200% of the original level. Use the slider to select a precise level from 0% (muted) to 200% (double the original loudness).</div>
+        </div>
+
+        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
+          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Will boosting cause audio distortion?</div>
+          <div style="font-size:0.8375rem;color:var(--text-secondary);">Distortion (clipping) is possible if you boost already loud audio above 150%. If you hear crackling or distortion in the output, try a lower boost value or reduce the level slightly.</div>
+        </div>
+
+      </div>
+    </div>
 </main>
 
 <footer class="footer">
