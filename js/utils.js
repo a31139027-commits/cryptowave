@@ -154,10 +154,10 @@ const Utils = (() => {
         }
       });
     });
-    // Active link — exact match only (strip hash fragments)
-    const current = window.location.pathname.split('/').pop() || 'index.html';
+    // Active link — normalize both sides (strip .html and #fragment)
+    const current = (window.location.pathname.split('/').pop() || 'index').replace(/\.html$/, '');
     document.querySelectorAll('.navbar__nav a').forEach(a => {
-      const href = a.getAttribute('href').split('#')[0];
+      const href = a.getAttribute('href').split('#')[0].replace(/\.html$/, '');
       if (href === current) {
         a.classList.add('active');
       }
