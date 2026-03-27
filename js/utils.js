@@ -162,6 +162,13 @@ const Utils = (() => {
         a.classList.add('active');
       }
     });
+    // If a dropdown item is active, also activate the parent dropdown trigger
+    document.querySelectorAll('.navbar__nav .dropdown').forEach(li => {
+      if (li.querySelector('.dropdown__menu a.active')) {
+        const trigger = li.querySelector(':scope > a');
+        if (trigger) trigger.classList.add('active');
+      }
+    });
   }
 
   /** Generate cryptographically secure random bytes as hex */
