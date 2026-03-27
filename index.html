@@ -225,7 +225,7 @@
 </section>
 
 <!-- ══ Recently Used ════════════════════════════════════════ -->
-<section class="tools-section" id="cw-recent-section" style="display:none;padding-bottom:0;">
+<section class="tools-section" id="cw-recent-section" style="display:none;">
   <div class="container">
     <div class="section-head">
       <h2 class="section-head__title">🕐 <span>Recently</span> Used</h2>
@@ -882,6 +882,7 @@
       <a href="${r.href}" class="tool-card">
         <div class="tool-card__icon">${r.icon}</div>
         <div class="tool-card__name">${r.name}</div>
+        ${r.desc ? `<p class="tool-card__desc">${r.desc}</p>` : ''}
         <div class="tool-card__meta"><span class="tool-card__arrow">→</span></div>
       </a>`).join('');
     section.style.display = '';

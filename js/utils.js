@@ -177,7 +177,9 @@ const Utils = (() => {
       const href = activeToolLink.getAttribute('href').split('#')[0];
       try {
         const recent = JSON.parse(localStorage.getItem('cw-recent') || '[]');
-        const entry = { name, icon, href, ts: Date.now() };
+        const metaDesc = document.querySelector('meta[name="description"]');
+      const desc = metaDesc ? metaDesc.content.slice(0, 100) : '';
+      const entry = { name, icon, href, desc, ts: Date.now() };
         const filtered = recent.filter(r => r.href !== entry.href);
         filtered.unshift(entry);
         localStorage.setItem('cw-recent', JSON.stringify(filtered.slice(0, 6)));
