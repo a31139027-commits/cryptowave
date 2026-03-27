@@ -62,7 +62,7 @@
     try {
       const { PDFDocument } = PDFLib;
       const buf = await file.arrayBuffer();
-      loadedPdf  = await PDFDocument.load(buf);
+      loadedPdf  = await PDFDocument.load(buf, { ignoreEncryption: true });
       totalPages = loadedPdf.getPageCount();
 
       infoEl.innerHTML = `

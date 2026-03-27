@@ -89,7 +89,7 @@
 
       for (const item of files) {
         const buf = await item.file.arrayBuffer();
-        const doc = await PDFDocument.load(buf);
+        const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
         const pages = await merged.copyPages(doc, doc.getPageIndices());
         pages.forEach(p => merged.addPage(p));
       }
