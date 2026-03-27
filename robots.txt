@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cryptowave-rouge.vercel.app/sitemap.xml
+Sitemap: https://cryptowaveapp.com/sitemap.xml
