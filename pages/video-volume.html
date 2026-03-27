@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon-video.svg" />
@@ -37,7 +37,7 @@
   <script>
     (function(){
       var t = localStorage.getItem('cw-theme');
-      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+      document.documentElement.setAttribute('data-theme', (['light','dark','ocean','forest'].indexOf(t)>-1) ? t : 'light');
     })();
   </script>
   <style>
