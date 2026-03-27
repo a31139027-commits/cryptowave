@@ -1,12 +1,86 @@
-# CryptoWave — Deployment & Development Guide
+# CryptoWave
 
-## Project Overview
+**Free, browser-based developer tools. No uploads. No accounts. No data leaves your device.**
 
-CryptoWave is a **fully client-side** web application combining:
-- 🔐 **Cryptography Tools** (AES, RSA, Hashing, Encoding)
-- 🎵 **Audio Converter** (FFmpeg.wasm in-browser)
+🌐 [cryptowaveapp.com](https://cryptowaveapp.com)
 
-All processing runs in the user's browser. **No data is ever sent to a server.**
+---
+
+## Tools
+
+### 🔐 Encryption
+| Tool | Description |
+|------|-------------|
+| AES Cipher | AES-GCM / CBC / CTR with 128/192/256-bit keys |
+| RSA Cipher | RSA-OAEP / PKCS#1, key pairs up to 4096-bit |
+| DES | Legacy DES encryption |
+| Triple DES | Legacy 3DES encryption |
+
+### # Hashing
+| Tool | Description |
+|------|-------------|
+| Hash Generator | SHA-256, SHA-512, SHA-384, MD5 |
+| HMAC | HMAC with any hash algorithm |
+| Bcrypt | Adaptive password hashing, rounds 4–12 |
+
+### ⇄ Encoding
+| Tool | Description |
+|------|-------------|
+| Base64 | Encode / decode (standard + URL-safe) |
+| Hex | Text ↔ hexadecimal |
+| URL Encode | Percent-encoding (RFC 3986) |
+| HTML Entities | Escape / unescape HTML |
+| JWT Decoder | Inspect header, payload, expiry |
+
+### 🎵 Audio
+| Tool | Description |
+|------|-------------|
+| Audio Converter | MP3, WAV, FLAC, AAC, OGG, OPUS, M4A (FFmpeg.wasm) |
+| Audio Cutter | Trim to exact time range |
+| Audio Merger | Combine multiple tracks |
+| Audio Volume | Boost or reduce 0–200% |
+| Audio Reverse | Reverse any audio file |
+| Audio Pitch | Shift pitch without changing speed |
+| MP4 to MP3 | Extract MP3 from any video file |
+
+### 🎬 Video
+| Tool | Description |
+|------|-------------|
+| Video Converter | MP4, MKV, MOV, AVI, WebM, FLV (FFmpeg.wasm) |
+| Video Trimmer | Cut to exact time range |
+| Video Merger | Combine multiple clips |
+| Video Rotate/Flip | 90°/180° rotate + horizontal/vertical flip |
+| Video Speed | 0.25× slow motion to 4× fast forward |
+| Video Loop | Repeat 2–20 times |
+| Video Volume | Adjust audio track 0–200% |
+| Video Crop | Crop to aspect ratio or custom dimensions |
+
+### 🖼️ Image
+| Tool | Description |
+|------|-------------|
+| Image Compressor | Compress JPG, PNG, WebP |
+| Image Converter | Convert between JPG, PNG, WebP |
+| Image to WebP | Batch convert to WebP with quality control |
+| Image to PDF | Combine images into a single PDF |
+
+### 📄 PDF
+| Tool | Description |
+|------|-------------|
+| PDF Merger | Merge multiple PDFs (supports encrypted files) |
+| PDF Splitter | Extract pages from a PDF |
+| PDF to Images | Export each page as an image |
+
+### 🔧 Tools
+| Tool | Description |
+|------|-------------|
+| Password Generator | Cryptographically secure, custom rules |
+| QR Code | Generate and scan QR codes |
+| Date Difference | Calculate days between two dates |
+| Age Calculator | Calculate exact age |
+| Word Counter | Count words, characters, sentences |
+| Number Base Converter | Binary, octal, decimal, hex |
+| Color Converter | HEX, RGB, HSL, HSV |
+| Text to Speech | Browser-native TTS |
 
 ---
 
@@ -14,177 +88,125 @@ All processing runs in the user's browser. **No data is ever sent to a server.**
 
 ```
 cryptotools/
-├── index.html              ← Main landing page
+├── index.html              ← Landing page with tool grid
+├── favicon.svg             ← Default favicon (🔐)
+├── favicon-media.svg       ← Audio pages favicon (🎵)
+├── favicon-video.svg       ← Video pages favicon (🎬)
+├── robots.txt
+├── sitemap.xml
+├── _headers                ← Cloudflare: COOP/COEP/CSP headers
 ├── css/
-│   └── styles.css          ← Global stylesheet (CSS variables, components)
+│   └── styles.css          ← Design system (CSS variables, all components)
 ├── js/
-│   ├── utils.js            ← Shared utilities (copy, toast, download, etc.)
+│   ├── utils.js            ← Shared utilities (toast, copy, download, navbar, back-to-top)
+│   ├── theme.js            ← Multi-theme picker (6 themes)
 │   └── modules/
-│       ├── aes.js          ← AES-GCM / CBC / CTR (Web Crypto API)
-│       ├── rsa.js          ← RSA-OAEP / PKCS#1 + key generation
-│       ├── hash.js         ← SHA-256/512, MD5, HMAC, Bcrypt
-│       ├── encoding.js     ← Base64, Hex, URL, HTML entities, JWT decode
-│       └── audio.js        ← FFmpeg.wasm audio/video converter
+│       ├── aes.js
+│       ├── rsa.js
+│       ├── des.js
+│       ├── tripledes.js
+│       ├── hash.js
+│       ├── encoding.js
+│       ├── audio.js
+│       ├── video.js
+│       ├── video-trim.js
+│       ├── video-merge.js
+│       ├── video-rotate.js
+│       ├── video-speed.js
+│       ├── video-loop.js
+│       ├── video-volume.js
+│       ├── video-crop.js
+│       ├── mp4-to-mp3.js
+│       ├── image.js
+│       ├── image-webp.js
+│       ├── pdf-merge.js
+│       ├── pdf-split.js
+│       ├── pdf-images.js
+│       ├── password.js
+│       ├── qrcode.js
+│       ├── tts.js
+│       ├── audio-cut.js
+│       ├── audio-merge.js
+│       ├── audio-volume.js
+│       ├── audio-reverse.js
+│       ├── audio-pitch.js
+│       ├── date-diff.js
+│       ├── age.js
+│       ├── word-count.js
+│       ├── base-convert.js
+│       └── color-convert.js
 └── pages/
-    ├── aes.html            ← AES tool page
-    ├── rsa.html            ← RSA tool page
-    ├── hash.html           ← Hash generator page
-    ├── encoding.html       ← Encoding/decoding page
-    └── audio.html          ← Audio converter page
+    └── *.html              ← One HTML file per tool
 ```
 
 ---
 
-## Architecture Decisions
+## Dependencies (CDN, no npm/build step)
 
-### Why separate JS modules?
-Each `pages/*.html` loads only the JS it needs:
-- **Security**: Reduced attack surface per page
-- **Performance**: No unnecessary code loaded
-- **Maintainability**: Each feature is independently editable
-- **Testability**: Modules export functions that can be unit-tested
-
-### Dependencies (loaded via CDN)
-| Library | Version | Used For | Page |
-|---------|---------|----------|------|
-| Web Crypto API | Browser native | AES, RSA, SHA, HMAC | All crypto |
-| CryptoJS | 4.2.0 | MD5 hashing | hash.html |
-| bcryptjs | 2.4.3 | Bcrypt password hashing | hash.html |
-| JSEncrypt | 3.3.2 | RSA PKCS#1 padding | rsa.html |
-| FFmpeg.wasm | 0.11.6 | Audio/video conversion | audio.html |
-
-No npm, no build step required. Drop the folder on any web server.
+| Library | Version | Used For |
+|---------|---------|----------|
+| Web Crypto API | Browser native | AES, RSA, SHA, HMAC |
+| CryptoJS | 4.2.0 | MD5 hashing |
+| bcryptjs | 2.4.3 | Bcrypt |
+| JSEncrypt | 3.3.2 | RSA PKCS#1 |
+| FFmpeg.wasm | 0.11.6 | Audio/video conversion |
+| pdf-lib | 1.17.1 | PDF merge/split |
+| PDF.js | 3.11.174 | PDF to images |
+| QRCode.js | — | QR code generation |
+| html5-qrcode | — | QR code scanning |
 
 ---
 
 ## Deployment
 
-### Option 1: Static File Server (Development)
+Hosted on **Cloudflare Workers** (static assets). The `_headers` file sets the required Cross-Origin Isolation headers for FFmpeg.wasm.
+
+### Local development
 ```bash
-# Python
-python3 -m http.server 8080
-
-# Node.js (with COOP/COEP headers for audio)
+# Requires COOP/COEP headers for FFmpeg.wasm (SharedArrayBuffer)
 npx serve -C .
-
-# Or with proper headers:
-npx serve --cors -p 8080
 ```
 
-### Option 2: Nginx
-```nginx
-server {
-    listen 80;
-    root /var/www/cryptowave;
-    index index.html;
-
-    # Required for FFmpeg.wasm (SharedArrayBuffer)
-    add_header Cross-Origin-Opener-Policy "same-origin";
-    add_header Cross-Origin-Embedder-Policy "require-corp";
-
-    # Cache static assets
-    location ~* \.(css|js|woff2)$ {
-        expires 1y;
-        add_header Cache-Control "public, immutable";
-        add_header Cross-Origin-Opener-Policy "same-origin";
-        add_header Cross-Origin-Embedder-Policy "require-corp";
-    }
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-```
-
-### Option 3: Apache (.htaccess)
-```apache
-<IfModule mod_headers.c>
-    Header always set Cross-Origin-Opener-Policy "same-origin"
-    Header always set Cross-Origin-Embedder-Policy "require-corp"
-</IfModule>
-```
-
-### Option 4: Vercel (vercel.json)
-```json
-{
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" },
-        { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" }
-      ]
-    }
-  ]
-}
-```
-
-### Option 5: Netlify (_headers file)
+### _headers (Cloudflare Workers / Netlify)
 ```
 /*
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Embedder-Policy: require-corp
 ```
 
-### Option 6: Cloudflare Pages (also _headers file)
-Same as Netlify above.
+### Nginx
+```nginx
+add_header Cross-Origin-Opener-Policy "same-origin";
+add_header Cross-Origin-Embedder-Policy "require-corp";
+```
+
+### Apache
+```apache
+Header always set Cross-Origin-Opener-Policy "same-origin"
+Header always set Cross-Origin-Embedder-Policy "require-corp"
+```
 
 ---
 
-## Adding New Tools
+## Themes
 
-1. Create `pages/your-tool.html` using existing pages as a template
-2. Create `js/modules/your-tool.js` with an IIFE module pattern:
-```js
-const YourModule = (() => {
-  function init() {
-    // Query DOM elements, attach event listeners
-  }
-  return { init, /* exported functions */ };
-})();
-document.addEventListener('DOMContentLoaded', () => { YourModule.init(); Utils.initNavbar(); });
-window.YourModule = YourModule;
-```
-3. Link from `index.html` and add to the navbar in all pages
-4. Load only the dependencies your module needs in the HTML
+6 built-in themes, persisted in `localStorage`:
+
+| Key | Label |
+|-----|-------|
+| `light` | ☀️ Light (default) |
+| `dark` | 🌙 Dark |
+| `ocean` | 🌊 Ocean |
+| `ocean-light` | 🏖️ Ocean Light |
+| `forest` | 🌿 Forest |
+| `forest-light` | 🌱 Forest Light |
 
 ---
 
 ## Security Notes
 
-- **All crypto uses the Web Crypto API** — the browser's native implementation, which is FIPS-compliant and runs in a secure context
-- **AES-GCM is default** — authenticated encryption; CBC/CTR available but labeled clearly
-- **RSA keys are generated in-browser** — never transmitted
-- **No localStorage usage** — nothing persists between sessions
-- **No analytics, no tracking, no cookies**
-- XSS prevention: all user-provided text inserted via `textContent`, never `innerHTML`
-- The `Utils.sanitize()` function is available for HTML contexts
-
----
-
-## Browser Support
-
-| Feature | Chrome | Firefox | Safari | Edge |
-|---------|--------|---------|--------|------|
-| Web Crypto API | ✓ 37+ | ✓ 34+ | ✓ 7+ | ✓ 12+ |
-| FFmpeg.wasm (SharedArrayBuffer) | ✓ 92+ | ✓ 79+ | ✓ 15.2+ | ✓ 92+ |
-| WebAssembly | ✓ 57+ | ✓ 52+ | ✓ 11+ | ✓ 16+ |
-
-**Note**: SharedArrayBuffer requires Cross-Origin-Isolation (COOP + COEP headers).
-
----
-
-## Extending the Audio Converter
-
-The `audio.js` module uses FFmpeg.wasm v0.11.x for maximum compatibility.
-To upgrade to v0.12+ (which uses ESM imports):
-
-```html
-<!-- Replace the script tag in audio.html with: -->
-<script type="module">
-  import { FFmpeg } from 'https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js';
-  import { fetchFile, toBlobURL } from 'https://unpkg.com/@ffmpeg/util@0.12.1/dist/esm/index.js';
-  window.FFmpegLib = { FFmpeg, fetchFile, toBlobURL };
-</script>
-```
-Then update `audio.js` to use the new API.
+- All crypto uses the **Web Crypto API** (browser-native, FIPS-compliant)
+- AES-GCM is the default mode (authenticated encryption)
+- RSA keys are generated in-browser, never transmitted
+- `Utils.sanitize()` used for all user content inserted into the DOM
+- No server-side processing of any kind
