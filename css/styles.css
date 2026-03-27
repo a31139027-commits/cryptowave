@@ -525,7 +525,7 @@ select {
 
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .navbar__nav { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg-overlay); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 10px; z-index: 99; }
+  .navbar__nav { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: var(--bg-overlay); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 10px; z-index: 99; max-height: calc(100vh - 64px); overflow-y: auto; }
   .navbar__nav.open { display: flex; }
   .hamburger { display: flex; }
   /* Mobile accordion dropdowns */
