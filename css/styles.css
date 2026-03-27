@@ -1095,6 +1095,21 @@ input, textarea, select, .key-box, .drop-zone,
 }
 .dropdown__col-divider { height: 1px; background: var(--border-subtle); margin: 0 6px 4px; }
 
+/* ─── Back to Top Button ─────────────────────────────────── */
+.back-to-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 500;
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--accent); color: var(--text-inverse);
+  border: none; font-size: 1.1rem; font-weight: 700;
+  cursor: pointer; box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease, background 0.18s ease;
+  transform: translateY(8px);
+}
+.back-to-top--visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.back-to-top:hover { background: var(--accent-light); transform: translateY(-2px); }
+
 /* ─── Homepage Filter Pills ─────────────────────────────── */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
 .filter-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 99px; border: 1.5px solid var(--border); background: transparent; color: var(--text-secondary); font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }

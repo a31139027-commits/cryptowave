@@ -188,6 +188,21 @@ const Utils = (() => {
     }
   }
 
+  /** Back-to-top button */
+  function initBackToTop() {
+    const btn = document.createElement('button');
+    btn.className = 'back-to-top';
+    btn.setAttribute('aria-label', 'Back to top');
+    btn.innerHTML = '↑';
+    document.body.appendChild(btn);
+    window.addEventListener('scroll', function () {
+      btn.classList.toggle('back-to-top--visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   /** Generate cryptographically secure random bytes as hex */
   function randomHex(bytes = 16) {
     const arr = new Uint8Array(bytes);
@@ -231,6 +246,9 @@ const Utils = (() => {
       throw new Error('Invalid Base64 input');
     }
   }
+
+  // Init back-to-top on every page
+  document.addEventListener('DOMContentLoaded', initBackToTop);
 
   return {
     copyToClipboard, showToast, formatBytes, sanitize,
