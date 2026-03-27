@@ -280,13 +280,19 @@ body::after {
 }
 
 /* ─── FAQ ────────────────────────────────────────────────── */
-.faq-list { display: flex; flex-direction: column; }
-.faq-item {
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border-subtle);
+/* Align FAQ panel width with the narrow tool container above */
+.tool-page > .panel {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.faq-item:last-child { border-bottom: none; padding-bottom: 0; }
-.faq-item:first-child { padding-top: 0; }
+.faq-list { display: flex; flex-direction: column; gap: 12px; }
+.faq-item {
+  padding: 14px;
+  background: var(--bg-input);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
 .faq-item__q { font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; }
 .faq-item__a { font-size: 0.8375rem; color: var(--text-secondary); line-height: 1.65; }
 
