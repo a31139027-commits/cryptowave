@@ -176,13 +176,14 @@ const Utils = (() => {
       const name = activeToolLink.textContent.trim().replace(/^.\s/, ''); // rest after emoji
       const href = activeToolLink.getAttribute('href').split('#')[0];
       try {
-        const recent = JSON.parse(localStorage.getItem('cw-recent') || '[]');
         const metaDesc = document.querySelector('meta[name="description"]');
-      const desc = metaDesc ? metaDesc.content.slice(0, 100) : '';
-      const entry = { name, icon, href, desc, ts: Date.now() };
+        const desc = metaDesc ? metaDesc.content.slice(0, 120) : '';
+        const rootHref = window.location.pathname.includes('/pages/') ? 'pages/' + href : href;
+        const entry = { name, icon, href: rootHref, desc, ts: Date.now() };
+        const recent = JSON.parse(localStorage.getItem('cw-recent2') || '[]');
         const filtered = recent.filter(r => r.href !== entry.href);
         filtered.unshift(entry);
-        localStorage.setItem('cw-recent', JSON.stringify(filtered.slice(0, 6)));
+        localStorage.setItem('cw-recent2', JSON.stringify(filtered.slice(0, 6)));
       } catch (_) {}
     }
   }
