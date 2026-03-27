@@ -368,21 +368,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Is AES encryption secure?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Yes. AES-256 is military-grade encryption used by governments and security agencies worldwide. It has no known practical attacks and is considered secure for the foreseeable future.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Is AES encryption secure?</div>
+          <div class="faq-item__a">Yes. AES-256 is military-grade encryption used by governments and security agencies worldwide. It has no known practical attacks and is considered secure for the foreseeable future.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What mode should I use?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">GCM (Galois/Counter Mode) is recommended for most use cases because it provides authenticated encryption — it both encrypts your data and verifies its integrity, protecting against tampering.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">What mode should I use?</div>
+          <div class="faq-item__a">GCM (Galois/Counter Mode) is recommended for most use cases because it provides authenticated encryption — it both encrypts your data and verifies its integrity, protecting against tampering.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my keys stored anywhere?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. Everything runs entirely in your browser. Your encryption keys, plaintext, and ciphertext are never stored, logged, or transmitted anywhere. Closing the page clears everything.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Are my keys stored anywhere?</div>
+          <div class="faq-item__a">No. Everything runs entirely in your browser. Your encryption keys, plaintext, and ciphertext are never stored, logged, or transmitted anywhere. Closing the page clears everything.</div>
         </div>
 
       </div>

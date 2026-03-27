@@ -348,21 +348,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my videos uploaded to a server?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All speed adjustment is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Are my videos uploaded to a server?</div>
+          <div class="faq-item__a">No. All speed adjustment is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Does the audio speed change too?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Yes. Both video and audio are adjusted together to stay in sync. When you change the playback speed, the audio pitch is also adjusted to prevent chipmunk or slowed-down voice effects.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Does the audio speed change too?</div>
+          <div class="faq-item__a">Yes. Both video and audio are adjusted together to stay in sync. When you change the playback speed, the audio pitch is also adjusted to prevent chipmunk or slowed-down voice effects.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What speed range is supported?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">You can adjust video speed from 0.25x (quarter speed slow motion) to 4x (four times speed). Values outside this range may cause audio/video sync issues or encoding errors.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">What speed range is supported?</div>
+          <div class="faq-item__a">You can adjust video speed from 0.25x (quarter speed slow motion) to 4x (four times speed). Values outside this range may cause audio/video sync issues or encoding errors.</div>
         </div>
 
       </div>

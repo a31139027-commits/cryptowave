@@ -301,21 +301,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Is DES still secure?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. DES uses a 56-bit key which is far too short by modern standards and has been broken. It is officially deprecated and should not be used for any security-sensitive purpose. Use AES-256 instead.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Is DES still secure?</div>
+          <div class="faq-item__a">No. DES uses a 56-bit key which is far too short by modern standards and has been broken. It is officially deprecated and should not be used for any security-sensitive purpose. Use AES-256 instead.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Why is DES included if it is broken?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">DES is provided for legacy compatibility only — for example, decrypting old data or working with legacy systems that still require DES. It should never be used for new encryption tasks.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Why is DES included if it is broken?</div>
+          <div class="faq-item__a">DES is provided for legacy compatibility only — for example, decrypting old data or working with legacy systems that still require DES. It should never be used for new encryption tasks.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What modes are supported?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Supported modes include CBC (Cipher Block Chaining), ECB (Electronic Codebook), CFB (Cipher Feedback), and OFB (Output Feedback). CBC is the most commonly used mode for DES legacy systems.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">What modes are supported?</div>
+          <div class="faq-item__a">Supported modes include CBC (Cipher Block Chaining), ECB (Electronic Codebook), CFB (Cipher Feedback), and OFB (Output Feedback). CBC is the most commonly used mode for DES legacy systems.</div>
         </div>
 
       </div>

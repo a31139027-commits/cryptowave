@@ -340,21 +340,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my videos uploaded to a server?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All rotating is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Are my videos uploaded to a server?</div>
+          <div class="faq-item__a">No. All rotating is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Will rotating reduce video quality?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. The video is re-encoded using H.264, which preserves the visual quality of your content. The output will look virtually identical to the original at the rotated angle.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Will rotating reduce video quality?</div>
+          <div class="faq-item__a">No. The video is re-encoded using H.264, which preserves the visual quality of your content. The output will look virtually identical to the original at the rotated angle.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Can I flip the video horizontally?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Yes. In addition to 90°, 180°, and 270° rotation options, you can apply a horizontal flip to mirror the video along its vertical axis.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Can I flip the video horizontally?</div>
+          <div class="faq-item__a">Yes. In addition to 90°, 180°, and 270° rotation options, you can apply a horizontal flip to mirror the video along its vertical axis.</div>
         </div>
 
       </div>

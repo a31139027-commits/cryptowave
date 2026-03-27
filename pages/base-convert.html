@@ -305,21 +305,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What bases are supported?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">The converter supports Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16) — the four most commonly used numeral systems in computing and programming.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">What bases are supported?</div>
+          <div class="faq-item__a">The converter supports Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16) — the four most commonly used numeral systems in computing and programming.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Is there a number size limit?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Very large numbers are supported through JavaScript's BigInt, which handles integers of arbitrary precision. There is no practical size limit for the numbers you can convert.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Is there a number size limit?</div>
+          <div class="faq-item__a">Very large numbers are supported through JavaScript's BigInt, which handles integers of arbitrary precision. There is no practical size limit for the numbers you can convert.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Can I convert negative numbers?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Yes. Decimal to other base conversions support negative numbers. The negative sign is preserved in the output so you can convert any signed integer to its binary, octal, or hexadecimal representation.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Can I convert negative numbers?</div>
+          <div class="faq-item__a">Yes. Decimal to other base conversions support negative numbers. The negative sign is preserved in the output so you can convert any signed integer to its binary, octal, or hexadecimal representation.</div>
         </div>
 
       </div>

@@ -308,21 +308,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my videos uploaded to a server?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All trimming is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Are my videos uploaded to a server?</div>
+          <div class="faq-item__a">No. All trimming is done using FFmpeg.wasm which runs entirely in your browser. Your video files never leave your device and are never transmitted to any server.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What formats are supported?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">The trimmer supports MP4, MKV, MOV, AVI, WebM, and many more common video formats. FFmpeg.wasm handles a wide range of codecs and containers.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">What formats are supported?</div>
+          <div class="faq-item__a">The trimmer supports MP4, MKV, MOV, AVI, WebM, and many more common video formats. FFmpeg.wasm handles a wide range of codecs and containers.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Will trimming reduce quality?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. Stream copy mode is used when possible, which cuts the video without re-encoding. This preserves the original video and audio quality exactly, while also being much faster than re-encoding.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Will trimming reduce quality?</div>
+          <div class="faq-item__a">No. Stream copy mode is used when possible, which cuts the video without re-encoding. This preserves the original video and audio quality exactly, while also being much faster than re-encoding.</div>
         </div>
 
       </div>

@@ -332,27 +332,27 @@
 
         <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
           <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--accent);background:var(--accent-dim);padding:3px 8px;border-radius:4px;white-space:nowrap;">MP4</span>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Best overall compatibility. Works on all devices, browsers, and players. Recommended for sharing and web use.</div>
+          <div class="faq-item__a">Best overall compatibility. Works on all devices, browsers, and players. Recommended for sharing and web use.</div>
         </div>
 
         <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
           <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--green-text);background:var(--green-dim);padding:3px 8px;border-radius:4px;white-space:nowrap;">MKV</span>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Open format, supports multiple audio/subtitle tracks. Great for high-quality video storage and archiving.</div>
+          <div class="faq-item__a">Open format, supports multiple audio/subtitle tracks. Great for high-quality video storage and archiving.</div>
         </div>
 
         <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
           <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--violet);background:var(--violet-dim);padding:3px 8px;border-radius:4px;white-space:nowrap;">MOV</span>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Apple's format. Best for macOS, iOS, and Final Cut Pro workflows. High quality, larger file size.</div>
+          <div class="faq-item__a">Apple's format. Best for macOS, iOS, and Final Cut Pro workflows. High quality, larger file size.</div>
         </div>
 
         <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
           <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--text-secondary);background:var(--bg-card);padding:3px 8px;border-radius:4px;white-space:nowrap;border:1px solid var(--border);">WebM</span>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Google's web format. Smallest file size for web embedding. Supported by Chrome, Firefox, and Edge.</div>
+          <div class="faq-item__a">Google's web format. Smallest file size for web embedding. Supported by Chrome, Firefox, and Edge.</div>
         </div>
 
         <div style="display:flex;gap:14px;align-items:flex-start;padding:12px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
           <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:700;color:var(--orange);background:var(--orange-dim);padding:3px 8px;border-radius:4px;white-space:nowrap;">GIF</span>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Animated image format. No audio, limited colors, large file size. Best for short clips under 10 seconds.</div>
+          <div class="faq-item__a">Animated image format. No audio, limited colors, large file size. Best for short clips under 10 seconds.</div>
         </div>
 
       </div>
@@ -379,21 +379,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my video files uploaded to a server?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All conversion is done entirely in your browser using FFmpeg.wasm. Your files never leave your device and are never transmitted to any server.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Are my video files uploaded to a server?</div>
+          <div class="faq-item__a">No. All conversion is done entirely in your browser using FFmpeg.wasm. Your files never leave your device and are never transmitted to any server.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Which format should I convert to?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">MP4 with H.264 encoding offers the best compatibility across devices, browsers, and platforms. Use WebM for web-optimized video or MKV if you need a container that supports multiple audio/subtitle tracks.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Which format should I convert to?</div>
+          <div class="faq-item__a">MP4 with H.264 encoding offers the best compatibility across devices, browsers, and platforms. Use WebM for web-optimized video or MKV if you need a container that supports multiple audio/subtitle tracks.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Why does conversion take a long time?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Large files are processed entirely locally in your browser using WebAssembly. Conversion speed depends on your CPU and file size. There is no server to offload the work to, so processing time scales with file complexity.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Why does conversion take a long time?</div>
+          <div class="faq-item__a">Large files are processed entirely locally in your browser using WebAssembly. Conversion speed depends on your CPU and file size. There is no server to offload the work to, so processing time scales with file complexity.</div>
         </div>
 
       </div>

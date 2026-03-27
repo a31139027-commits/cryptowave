@@ -279,6 +279,17 @@ body::after {
   background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent-border);
 }
 
+/* ─── FAQ ────────────────────────────────────────────────── */
+.faq-list { display: flex; flex-direction: column; }
+.faq-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+.faq-item:first-child { padding-top: 0; }
+.faq-item__q { font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; }
+.faq-item__a { font-size: 0.8375rem; color: var(--text-secondary); line-height: 1.65; }
+
 /* ─── Form Controls ──────────────────────────────────────── */
 .form-group { margin-bottom: 18px; }
 .form-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(170px,1fr)); gap: 14px; margin-bottom: 18px; }

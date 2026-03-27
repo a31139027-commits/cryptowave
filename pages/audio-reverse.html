@@ -295,21 +295,21 @@
         <div class="panel__head-icon">❓</div>
         <h2 class="panel__head-title">Frequently Asked Questions</h2>
       </div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
+      <div class="faq-list">
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">Are my audio files uploaded to a server?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">No. All audio reversal is done using FFmpeg.wasm which runs entirely in your browser. Your files never leave your device and are never transmitted to any server.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">Are my audio files uploaded to a server?</div>
+          <div class="faq-item__a">No. All audio reversal is done using FFmpeg.wasm which runs entirely in your browser. Your files never leave your device and are never transmitted to any server.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">What formats are supported?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">The audio reverser supports MP3, WAV, OGG, FLAC, AAC, M4A, and other common audio formats. FFmpeg.wasm handles a wide range of audio codecs and containers.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">What formats are supported?</div>
+          <div class="faq-item__a">The audio reverser supports MP3, WAV, OGG, FLAC, AAC, M4A, and other common audio formats. FFmpeg.wasm handles a wide range of audio codecs and containers.</div>
         </div>
 
-        <div style="padding:14px;background:var(--bg-input);border-radius:var(--radius);border:1px solid var(--border);">
-          <div style="font-weight:700;margin-bottom:6px;font-size:0.9rem;">How long does reversing take?</div>
-          <div style="font-size:0.8375rem;color:var(--text-secondary);">Processing time depends on the size of your audio file. All processing is done locally in your browser, so longer or higher-quality files will take more time. No internet connection is needed after the page loads.</div>
+        <div class="faq-item">
+          <div class="faq-item__q">How long does reversing take?</div>
+          <div class="faq-item__a">Processing time depends on the size of your audio file. All processing is done locally in your browser, so longer or higher-quality files will take more time. No internet connection is needed after the page loads.</div>
         </div>
 
       </div>
