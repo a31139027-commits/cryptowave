@@ -154,10 +154,11 @@ const Utils = (() => {
         }
       });
     });
-    // Active link
-    const current = window.location.pathname.split('/').pop();
+    // Active link — exact match only (strip hash fragments)
+    const current = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.navbar__nav a').forEach(a => {
-      if (a.getAttribute('href') === current || a.getAttribute('href').includes(current)) {
+      const href = a.getAttribute('href').split('#')[0];
+      if (href === current) {
         a.classList.add('active');
       }
     });
