@@ -282,7 +282,7 @@ body::after {
 /* ─── FAQ ────────────────────────────────────────────────── */
 /* Align FAQ panel width with the narrow tool container above */
 .tool-page > .panel {
-  max-width: 860px;
+  max-width: 804px;
   margin-left: auto;
   margin-right: auto;
 }
