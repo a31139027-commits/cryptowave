@@ -205,28 +205,6 @@
       Checking browser capabilities…
     </div>
 
-    <!-- Server Header Setup Notice -->
-    <div class="panel" style="margin-bottom:0;">
-      <div class="panel__head">
-        <div class="panel__head-icon">⚙</div>
-        <div class="panel__head-title">Server Setup Required</div>
-        <div class="panel__head-badge">One-time</div>
-      </div>
-      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.7;margin-bottom:12px;">
-        FFmpeg.wasm requires <strong>Cross-Origin Isolation</strong> to access <code>SharedArrayBuffer</code>. Your web server must send these HTTP headers on all pages:
-      </p>
-      <div class="output-box" style="margin-bottom:12px;font-size:0.8rem;">Cross-Origin-Opener-Policy: same-origin
-Cross-Origin-Embedder-Policy: require-corp</div>
-      <p style="font-size:0.8125rem;color:var(--text-secondary);">
-        <strong>Local dev:</strong> <code>npx serve -C .</code> &nbsp;|&nbsp;
-        <strong>Nginx:</strong> Add to <code>server</code> block &nbsp;|&nbsp;
-        <strong>Apache:</strong> Add to <code>.htaccess</code> &nbsp;|&nbsp;
-        <strong>Vercel/Netlify:</strong> Add to <code>vercel.json</code> or <code>_headers</code> file
-      </p>
-    </div>
-
-    <div class="divider"></div>
-
     <!-- Drop Zone -->
     <div id="audio-drop-zone" class="drop-zone">
       <div class="drop-zone__icon">🎵</div>
