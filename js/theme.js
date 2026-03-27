@@ -1,13 +1,15 @@
 /**
- * theme.js — Multi-theme picker (Light / Dark / Ocean / Forest)
+ * theme.js — Multi-theme picker (Light / Dark / Ocean / Ocean Light / Forest / Forest Light)
  */
 (function () {
   var KEY = 'cw-theme';
   var THEMES = [
-    { name: 'light',  icon: '☀️', label: 'Light'  },
-    { name: 'dark',   icon: '🌙', label: 'Dark'   },
-    { name: 'ocean',  icon: '🌊', label: 'Ocean'  },
-    { name: 'forest', icon: '🌿', label: 'Forest' },
+    { name: 'light',        icon: '☀️', label: 'Light'         },
+    { name: 'dark',         icon: '🌙', label: 'Dark'          },
+    { name: 'ocean',        icon: '🌊', label: 'Ocean'         },
+    { name: 'ocean-light',  icon: '🏖️', label: 'Ocean Light'  },
+    { name: 'forest',       icon: '🌿', label: 'Forest'        },
+    { name: 'forest-light', icon: '🌱', label: 'Forest Light'  },
   ];
   var VALID = THEMES.map(function(t) { return t.name; });
 

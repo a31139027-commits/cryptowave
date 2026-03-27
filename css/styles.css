@@ -698,6 +698,61 @@ select {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   OCEAN LIGHT THEME — [data-theme="ocean-light"]
+   ═══════════════════════════════════════════════════════════ */
+[data-theme="ocean-light"] {
+  --bg-base:        #eef6ff;
+  --bg-surface:     #e0effd;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f5faff;
+  --bg-input:       #e8f4fe;
+  --bg-overlay:     rgba(238,246,255,0.92);
+  --border:         #bfdbfe;
+  --border-subtle:  #dbeafe;
+  --border-focus:   #0284c7;
+  --border-strong:  #93c5fd;
+  --accent:         #0284c7;
+  --accent-light:   #0ea5e9;
+  --accent-dim:     rgba(2,132,199,0.09);
+  --accent-glow:    rgba(2,132,199,0.18);
+  --accent-border:  rgba(2,132,199,0.25);
+  --green:          #0891b2;
+  --green-dim:      rgba(8,145,178,0.08);
+  --green-border:   rgba(8,145,178,0.22);
+  --green-text:     #0e7490;
+  --red:            #dc2626;
+  --red-dim:        rgba(220,38,38,0.07);
+  --red-border:     rgba(220,38,38,0.22);
+  --orange:         #ea580c;
+  --orange-dim:     rgba(234,88,12,0.08);
+  --orange-border:  rgba(234,88,12,0.22);
+  --text-primary:   #0c1f35;
+  --text-secondary: #3a6b90;
+  --text-muted:     #93b8d0;
+  --text-inverse:   #ffffff;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow:      0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,0.14), 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 0 1px var(--accent-border), 0 4px 24px var(--accent-glow);
+  --shadow-card: 0 0 0 1px var(--border);
+}
+[data-theme="ocean-light"] body::after {
+  background: radial-gradient(ellipse at center,
+    rgba(2,132,199,0.06) 0%, rgba(2,132,199,0.02) 40%, transparent 68%);
+}
+[data-theme="ocean-light"] input[type="text"],
+[data-theme="ocean-light"] input[type="password"],
+[data-theme="ocean-light"] input[type="number"],
+[data-theme="ocean-light"] input[type="email"],
+[data-theme="ocean-light"] textarea,
+[data-theme="ocean-light"] select,
+[data-theme="ocean-light"] input:focus,
+[data-theme="ocean-light"] textarea:focus,
+[data-theme="ocean-light"] select:focus,
+[data-theme="ocean-light"] .output-box,
+[data-theme="ocean-light"] .key-box__textarea { background: #ffffff; }
+
+/* ═══════════════════════════════════════════════════════════
    FOREST THEME — [data-theme="forest"]
    ═══════════════════════════════════════════════════════════ */
 [data-theme="forest"] {
@@ -740,6 +795,61 @@ select {
   background: radial-gradient(ellipse at center,
     rgba(74,222,128,0.055) 0%, rgba(74,222,128,0.018) 40%, transparent 68%);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FOREST LIGHT THEME — [data-theme="forest-light"]
+   ═══════════════════════════════════════════════════════════ */
+[data-theme="forest-light"] {
+  --bg-base:        #edfaf3;
+  --bg-surface:     #dff5ea;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f4fbf7;
+  --bg-input:       #e6f7ed;
+  --bg-overlay:     rgba(237,250,243,0.92);
+  --border:         #bbf7d0;
+  --border-subtle:  #d1fae5;
+  --border-focus:   #16a34a;
+  --border-strong:  #86efac;
+  --accent:         #16a34a;
+  --accent-light:   #22c55e;
+  --accent-dim:     rgba(22,163,74,0.09);
+  --accent-glow:    rgba(22,163,74,0.18);
+  --accent-border:  rgba(22,163,74,0.25);
+  --green:          #16a34a;
+  --green-dim:      rgba(22,163,74,0.08);
+  --green-border:   rgba(22,163,74,0.22);
+  --green-text:     #15803d;
+  --red:            #dc2626;
+  --red-dim:        rgba(220,38,38,0.07);
+  --red-border:     rgba(220,38,38,0.22);
+  --orange:         #ea580c;
+  --orange-dim:     rgba(234,88,12,0.08);
+  --orange-border:  rgba(234,88,12,0.22);
+  --text-primary:   #0c1f14;
+  --text-secondary: #2e6b45;
+  --text-muted:     #86c49a;
+  --text-inverse:   #ffffff;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow:      0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:   0 12px 40px rgba(0,0,0,0.14), 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 0 1px var(--accent-border), 0 4px 24px var(--accent-glow);
+  --shadow-card: 0 0 0 1px var(--border);
+}
+[data-theme="forest-light"] body::after {
+  background: radial-gradient(ellipse at center,
+    rgba(22,163,74,0.06) 0%, rgba(22,163,74,0.02) 40%, transparent 68%);
+}
+[data-theme="forest-light"] input[type="text"],
+[data-theme="forest-light"] input[type="password"],
+[data-theme="forest-light"] input[type="number"],
+[data-theme="forest-light"] input[type="email"],
+[data-theme="forest-light"] textarea,
+[data-theme="forest-light"] select,
+[data-theme="forest-light"] input:focus,
+[data-theme="forest-light"] textarea:focus,
+[data-theme="forest-light"] select:focus,
+[data-theme="forest-light"] .output-box,
+[data-theme="forest-light"] .key-box__textarea { background: #ffffff; }
 
 /* ─── Theme Toggle Button ───────────────────────────────── */
 .theme-toggle {
