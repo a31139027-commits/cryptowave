@@ -169,6 +169,20 @@ const Utils = (() => {
         if (trigger) trigger.classList.add('active');
       }
     });
+    // Track recently used tool
+    const activeToolLink = document.querySelector('.navbar__nav .dropdown__menu a.active');
+    if (activeToolLink) {
+      const icon = activeToolLink.textContent.trim().split(' ')[0]; // first emoji
+      const name = activeToolLink.textContent.trim().replace(/^.\s/, ''); // rest after emoji
+      const href = activeToolLink.getAttribute('href').split('#')[0];
+      try {
+        const recent = JSON.parse(localStorage.getItem('cw-recent') || '[]');
+        const entry = { name, icon, href, ts: Date.now() };
+        const filtered = recent.filter(r => r.href !== entry.href);
+        filtered.unshift(entry);
+        localStorage.setItem('cw-recent', JSON.stringify(filtered.slice(0, 6)));
+      } catch (_) {}
+    }
   }
 
   /** Generate cryptographically secure random bytes as hex */

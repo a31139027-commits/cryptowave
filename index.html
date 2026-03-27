@@ -168,6 +168,7 @@
           <a href="pages/image.html">🗜️ Compress</a>
           <a href="pages/image.html#convert">⇄ Convert Format</a>
           <a href="pages/image.html#pdf">📄 Image to PDF</a>
+          <a href="pages/image-webp.html">🌐 Image to WebP</a>
         </div></div>
       </li>
 
@@ -220,6 +221,17 @@
       <span class="hero__tag"><span class="hero__tag-dot"></span>Base64 · Hex · JWT</span>
       <span class="hero__tag"><span class="hero__tag-dot"></span>MP3 / WAV / FLAC / AAC</span>
     </div>
+  </div>
+</section>
+
+<!-- ══ Recently Used ════════════════════════════════════════ -->
+<section class="tools-section" id="cw-recent-section" style="display:none;padding-bottom:0;">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-head__title">🕐 <span>Recently</span> Used</h2>
+      <div class="section-head__line"></div>
+    </div>
+    <div class="tools-grid" id="cw-recent-grid"></div>
   </div>
 </section>
 
@@ -610,6 +622,16 @@
           <span class="tool-card__arrow">→</span>
         </div>
       </a>
+      <a href="pages/image-webp.html" class="tool-card">
+        <div class="tool-card__icon">🌐</div>
+        <div class="tool-card__name">Image to WebP</div>
+        <p class="tool-card__desc">Convert JPG, PNG, GIF, and AVIF images to WebP format. Batch convert multiple files with quality control. 25–35% smaller than JPEG with better quality.</p>
+        <div class="tool-card__meta">
+          <span class="tool-card__tag tool-card__tag--green">Canvas API</span>
+          <span class="tool-card__tag">Batch</span>
+          <span class="tool-card__arrow">→</span>
+        </div>
+      </a>
     </div>
 
     <!-- Password -->
@@ -848,5 +870,23 @@
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+(function() {
+  try {
+    const recent = JSON.parse(localStorage.getItem('cw-recent') || '[]');
+    if (!recent.length) return;
+    const section = document.getElementById('cw-recent-section');
+    const grid = document.getElementById('cw-recent-grid');
+    if (!section || !grid) return;
+    grid.innerHTML = recent.map(r => `
+      <a href="${r.href}" class="tool-card">
+        <div class="tool-card__icon">${r.icon}</div>
+        <div class="tool-card__name">${r.name}</div>
+        <div class="tool-card__meta"><span class="tool-card__arrow">→</span></div>
+      </a>`).join('');
+    section.style.display = '';
+  } catch (_) {}
+})();
+</script>
 </body>
 </html>

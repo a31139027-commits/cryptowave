@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
+    })();
+  </script>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
 <script>
@@ -13,48 +19,46 @@
   gtag('config', 'G-DMKQ5TY77T');
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Age Calculator — Calculate Exact Age from Birthday | CryptoWave</title>
-  <meta name="description" content="Free age calculator. Enter your birthday to find your exact age in years, months, and days. See your next birthday countdown and total days lived." />
-  <meta name="keywords" content="age calculator, calculate age from birthday, how old am I, birthday calculator, exact age calculator, age in days months years" />
+  <title>Image to WebP Converter — Free Online Tool | CryptoWave</title>
+  <meta name="description" content="Convert JPG, PNG, GIF images to WebP format online. Free, client-side, no upload." />
+  <meta name="keywords" content="image to webp, convert to webp online, jpg to webp, png to webp, gif to webp, webp converter, free online webp converter" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://cryptowaveapp.com/pages/age.html" />
+  <link rel="canonical" href="https://cryptowaveapp.com/pages/image-webp.html" />
 
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cryptowaveapp.com/pages/age.html" />
-  <meta property="og:title"       content="Age Calculator — Calculate Exact Age from Birthday" />
-  <meta property="og:description" content="Enter your birthday to find your exact age in years, months, and days. See next birthday countdown and total days lived." />
+  <meta property="og:url"         content="https://cryptowaveapp.com/pages/image-webp.html" />
+  <meta property="og:title"       content="Image to WebP Converter — Free Online Tool" />
+  <meta property="og:description" content="Convert JPG, PNG, GIF images to WebP format online. Free, client-side, no upload." />
   <meta property="og:image"       content="https://cryptowaveapp.com/og-image.png" />
   <meta property="og:site_name"   content="CryptoWave" />
 
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Age Calculator — Exact Age from Birthday" />
-  <meta name="twitter:description" content="Enter your birthday to find your exact age in years, months, and days. Includes next birthday countdown." />
+  <meta name="twitter:title"       content="Image to WebP Converter — Free Online Tool" />
+  <meta name="twitter:description" content="Convert JPG, PNG, GIF images to WebP format online. Free, client-side, no upload." />
   <meta name="twitter:image"       content="https://cryptowaveapp.com/og-image.png" />
-
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <script>
-    (function(){
-      var t = localStorage.getItem('cw-theme');
-      document.documentElement.setAttribute('data-theme', (t==='light'||t==='dark') ? t : 'dark');
-    })();
-  </script>
   <style>
-    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 20px; }
-    .stat-card { background: var(--input-bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
-    .stat-card__value { font-family: var(--font-head); font-size: 1.75rem; font-weight: 700; color: var(--accent); line-height: 1.1; }
-    .stat-card__label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
-    .stat-card--highlight .stat-card__value { font-size: 2.5rem; }
-    .breakdown-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-    .breakdown-row:last-child { border-bottom: none; }
-    .breakdown-row__label { color: var(--text-secondary); }
-    .breakdown-row__value { font-weight: 600; color: var(--text-primary); }
-    .birthday-banner { text-align: center; background: linear-gradient(135deg, rgba(var(--accent-rgb),.12), rgba(var(--accent-rgb),.04)); border: 1px solid rgba(var(--accent-rgb),.3); border-radius: 12px; padding: 20px; margin-top: 16px; }
-    .countdown-display { font-family: var(--font-head); font-size: 2rem; font-weight: 700; color: var(--accent); }
-    .placeholder-msg { text-align: center; padding: 32px 0; color: var(--text-muted); font-size: 0.9rem; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+    .quality-row {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .quality-row input[type="range"] {
+      flex: 1; -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 99px;
+      background: var(--border-strong); border: none;
+      padding: 0; cursor: pointer; outline: none;
+    }
+    .quality-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim); cursor: pointer;
+    }
+    .quality-val {
+      font-family: var(--font-mono); font-size: 1rem;
+      font-weight: 700; color: var(--accent);
+      min-width: 44px; text-align: center;
+    }
   </style>
 <script type="application/ld+json">
 {
@@ -62,19 +66,19 @@
   "@graph": [
     {
       "@type": "WebApplication",
-      "name": "Age Calculator",
-      "url": "https://cryptowaveapp.com/pages/age.html",
-      "description": "Free age calculator. Enter your birthday to find your exact age in years, months, and days. See your next birthday countdown and total days lived.",
-      "applicationCategory": "UtilitiesApplication",
+      "name": "Image to WebP Converter",
+      "url": "https://cryptowaveapp.com/pages/image-webp.html",
+      "description": "Convert JPG, PNG, GIF, AVIF, BMP, TIFF images to WebP format online. Free, client-side, no upload required.",
+      "applicationCategory": "MultimediaApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": ["Age in years months days", "Total days lived", "Next birthday countdown", "Age on specific date", "Leap year handling"]
+      "featureList": ["JPG to WebP", "PNG to WebP", "GIF to WebP", "AVIF to WebP", "BMP to WebP", "Batch conversion", "Quality control", "No file upload", "Canvas API"]
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowaveapp.com" },
-        { "@type": "ListItem", "position": 2, "name": "Age Calculator", "item": "https://cryptowaveapp.com/pages/age.html" }
+        { "@type": "ListItem", "position": 2, "name": "Image to WebP", "item": "https://cryptowaveapp.com/pages/image-webp.html" }
       ]
     },
     {
@@ -82,18 +86,18 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do I calculate my exact age?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Enter your date of birth in the calculator above and click Calculate Age. The tool will show your exact age in years, months, and days, along with your total days lived and a countdown to your next birthday." }
+          "name": "Does converting to WebP reduce image quality?",
+          "acceptedAnswer": { "@type": "Answer", "text": "WebP uses lossy compression similar to JPEG but more efficiently. At 85% quality (the default), images look virtually identical to the original but are 25–35% smaller. You can increase quality to 95–100% for lossless-like results." }
         },
         {
           "@type": "Question",
-          "name": "How are leap years handled in the age calculation?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Leap years are handled automatically. If you were born on February 29, the calculator uses March 1 as your birthday in non-leap years when counting age milestones." }
+          "name": "Is WebP supported in all browsers?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. WebP is supported in all modern browsers including Chrome, Firefox, Safari (since v14), Edge, and Opera. It is the recommended format for web images." }
         },
         {
           "@type": "Question",
-          "name": "Can I calculate how old I will be on a future date?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the 'Age on a specific date' section to enter any future or past date and see how old you were or will be on that day." }
+          "name": "Are my images uploaded to a server?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All conversion happens entirely in your browser using the Canvas API. Your images never leave your device." }
         }
       ]
     }
@@ -111,6 +115,7 @@
     </a>
     <ul class="navbar__nav">
       <li><a href="../index.html">🏠 Home</a></li>
+
       <li class="dropdown">
         <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
@@ -121,6 +126,7 @@
           <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
         </div></div>
       </li>
+
       <li class="dropdown">
         <a href="hash.html"># Hash <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
@@ -129,6 +135,7 @@
           <a href="hash.html#tab-bcrypt">🔑 Bcrypt</a>
         </div></div>
       </li>
+
       <li class="dropdown">
         <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
@@ -139,6 +146,7 @@
           <a href="encoding.html#tab-jwt">JWT Decoder</a>
         </div></div>
       </li>
+
       <li class="dropdown">
         <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner dropdown__menu-inner--cols">
@@ -167,23 +175,25 @@
           </div>
         </div></div>
       </li>
+
       <li class="dropdown">
-        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <a href="image.html" class="active">🖼️ Image <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="image.html">🗜️ Compress</a>
           <a href="image.html#convert">⇄ Convert Format</a>
           <a href="image.html#pdf">📄 Image to PDF</a>
-          <a href="image-webp.html">🌐 Image to WebP</a>
+          <a href="image-webp.html" class="active">🌐 Image to WebP</a>
         </div></div>
       </li>
+
       <li class="dropdown">
-        <a href="password.html" class="active">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
         <div class="dropdown__menu"><div class="dropdown__menu-inner">
           <a href="password.html">🔑 Password Generator</a>
           <a href="qrcode.html">⬛ QR Code</a>
           <div class="dropdown__divider"></div>
           <a href="date-diff.html">📅 Date Difference</a>
-          <a href="age.html" class="active">🎂 Age Calculator</a>
+          <a href="age.html">🎂 Age Calculator</a>
           <div class="dropdown__divider"></div>
           <a href="pdf-merge.html">📎 PDF Merger</a>
           <a href="pdf-split.html">✂️ PDF Splitter</a>
@@ -208,62 +218,57 @@
 
     <div class="tool-header">
       <a href="../index.html" class="tool-header__back">← Back to all tools</a>
-      <h1 class="tool-header__title">🎂 <span>Age</span> Calculator</h1>
-      <p class="tool-header__sub">Calculate your exact age in years, months, and days — plus next birthday countdown.</p>
+      <h1 class="tool-header__title">🌐 <span>Image to</span> WebP</h1>
+      <p class="tool-header__sub">Convert JPG, PNG, GIF, AVIF, BMP, TIFF, and WebP images to WebP format. Batch convert with quality control. 100% client-side — your images never leave your device.</p>
     </div>
 
-    <!-- Input Panel -->
-    <div class="panel">
-      <div class="panel__head">
-        <div class="panel__head-icon">🎂</div>
-        <div class="panel__head-title">Enter Birthday</div>
-      </div>
-
-      <div class="two-col">
-        <div>
-          <label class="form-label">DATE OF BIRTH</label>
-          <input type="date" id="dob-input" class="input" />
-        </div>
-        <div>
-          <label class="form-label">CALCULATE AGE AS OF</label>
-          <input type="date" id="as-of-input" class="input" />
-          <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Leave as today or enter any date</p>
-        </div>
-      </div>
-
-      <div style="margin-top:20px;">
-        <button class="btn btn--primary btn--lg" id="age-calc-btn" style="width:100%;">🎂 Calculate Age</button>
+    <!-- Drop Zone -->
+    <div class="drop-zone" id="webp-drop-zone">
+      <div class="drop-zone__icon">🌐</div>
+      <div class="drop-zone__title">Drop images here to convert to WebP</div>
+      <div class="drop-zone__sub">or tap / click to browse — multiple files supported</div>
+      <input type="file" id="webp-file-input" accept="image/*" multiple style="display:none;" />
+      <div class="drop-zone__formats">
+        <span class="format-badge">JPG</span>
+        <span class="format-badge">PNG</span>
+        <span class="format-badge">GIF</span>
+        <span class="format-badge">BMP</span>
+        <span class="format-badge">AVIF</span>
+        <span class="format-badge">TIFF</span>
+        <span class="format-badge">WebP</span>
       </div>
     </div>
 
-    <!-- Results Panel -->
-    <div class="panel" id="age-results-panel" style="margin-top:16px;">
-      <div class="panel__head">
-        <div class="panel__head-icon">📊</div>
-        <div class="panel__head-title">Result</div>
-      </div>
-      <div id="age-results-content">
-        <p class="placeholder-msg">Enter your date of birth above and click Calculate Age.</p>
-      </div>
-    </div>
-
-    <!-- About -->
+    <!-- File List -->
     <div class="panel" style="margin-top:16px;">
       <div class="panel__head">
-        <div class="panel__head-icon">📖</div>
-        <h2 class="panel__head-title">About This Calculator</h2>
+        <div class="panel__head-icon">📋</div>
+        <div class="panel__head-title">Selected Files</div>
       </div>
-      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
-        This calculator determines your exact age using your browser's date engine. It correctly handles leap years, month-length variations, and daylight saving time. You can also calculate how old you were or will be on any specific past or future date using the "As of" field.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
-        <div class="security-note">🎂 Handles leap years</div>
-        <div class="security-note">📅 Past & future dates</div>
-        <div class="security-note">✓ Zero server transmission</div>
+      <div id="webp-file-list"></div>
+    </div>
+
+    <!-- Quality Slider -->
+    <div class="panel" style="margin-top:14px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">⚙</div>
+        <div class="panel__head-title">Quality Settings</div>
+      </div>
+      <div class="form-group">
+        <label for="webp-quality">WebP Quality</label>
+        <div class="quality-row">
+          <input type="range" id="webp-quality" min="50" max="100" step="1" value="85" />
+          <span class="quality-val" id="webp-quality-val">85%</span>
+        </div>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;">85% is recommended — visually indistinguishable from the original with 25–35% smaller file size.</p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn--primary btn--lg" id="webp-convert-btn" disabled>🌐 Convert to WebP</button>
       </div>
     </div>
 
-  </div>
+    <!-- Results -->
+    <div id="webp-results" style="margin-top:14px;"></div>
 
     <!-- FAQ -->
     <div class="panel" style="margin-top:24px;">
@@ -274,22 +279,37 @@
       <div class="faq-list">
 
         <div class="faq-item">
-          <div class="faq-item__q">How is age calculated?</div>
-          <div class="faq-item__a">Age is calculated from your birth date to today's date, or to a target date you specify. The result reflects the exact completed years, accounting for whether your birthday has occurred in the current year.</div>
+          <div class="faq-item__q">Does converting to WebP reduce image quality?</div>
+          <div class="faq-item__a">WebP uses lossy compression similar to JPEG but more efficiently. At 85% quality (the default), images look virtually identical to the original but are 25–35% smaller. You can increase quality to 95–100% for lossless-like results.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-item__q">Is time zone factored into the age calculation?</div>
-          <div class="faq-item__a">The calculation is date-only and does not factor in time zones. Both the birth date and target date are treated as calendar dates, giving a consistent result regardless of your location.</div>
+          <div class="faq-item__q">Is WebP supported in all browsers?</div>
+          <div class="faq-item__a">Yes. WebP is supported in all modern browsers including Chrome, Firefox, Safari (since v14), Edge, and Opera. It is the recommended format for web images.</div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-item__q">Can I see my age in months and days?</div>
-          <div class="faq-item__a">Yes. In addition to years, the calculator shows the precise breakdown of your age in years, months, and remaining days, giving you an exact measure of how old you are to the day.</div>
+          <div class="faq-item__q">Are my images uploaded to a server?</div>
+          <div class="faq-item__a">No. All conversion happens entirely in your browser using the Canvas API. Your images never leave your device.</div>
         </div>
 
       </div>
     </div>
+
+    <!-- How It Works -->
+    <div class="panel" style="margin-top:14px;">
+      <div class="panel__head"><div class="panel__head-icon">📖</div><h2 class="panel__head-title">How It Works</h2></div>
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.75;">
+        This tool uses the browser's native <strong>Canvas API</strong> to draw each image and re-encode it as WebP. The quality slider maps directly to the <code>canvas.toBlob()</code> quality parameter. Your files are <strong>never uploaded</strong> to any server — everything happens locally.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;">
+        <div class="security-note">🎨 Canvas API</div>
+        <div class="security-note">🔒 Files never leave device</div>
+        <div class="security-note">⚡ Batch processing</div>
+      </div>
+    </div>
+
+  </div>
 </main>
 
 <footer class="footer">
@@ -306,14 +326,12 @@
       <a href="encoding.html">Encoding</a>
       <a href="audio.html">Audio</a>
       <a href="video.html">Video</a>
+      <a href="mp4-to-mp3.html">MP4 to MP3</a>
       <a href="image.html">Image</a>
+      <a href="image-webp.html">Image to WebP</a>
       <a href="password.html">Password</a>
       <a href="qrcode.html">QR Code</a>
-      <a href="date-diff.html">Date Diff</a>
-      <a href="age.html">Age Calc</a>
       <a href="pdf-merge.html">PDF Merge</a>
-      <a href="word-count.html">Word Count</a>
-      <a href="color-convert.html">Color Conv</a>
     </nav>
     <div class="footer__copy">© 2026 CryptoWave · No cookies · No tracking</div>
   </div>
@@ -321,7 +339,6 @@
 
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
-<script src="../js/modules/age.js"></script>
-<script defer src="/_vercel/insights/script.js"></script>
+<script src="../js/modules/image-webp.js"></script>
 </body>
 </html>
