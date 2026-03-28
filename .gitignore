@@ -9,3 +9,10 @@ Thumbs.db
 *.swp
 *.swo
 .vscode/settings.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
