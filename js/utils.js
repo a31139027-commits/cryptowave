@@ -247,8 +247,32 @@ const Utils = (() => {
     }
   }
 
+  /** Send a GA4 event if gtag is available */
+  function trackEvent(eventName, params = {}) {
+    if (typeof gtag === 'function') {
+      gtag('event', eventName, params);
+    }
+  }
+
+  /** Auto-track primary action button clicks across all tool pages */
+  function initAnalytics() {
+    const page = window.location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+    document.addEventListener('click', function (e) {
+      const btn = e.target.closest('button[id]');
+      if (!btn) return;
+      const cls = btn.classList;
+      if (!cls.contains('btn--primary') && !cls.contains('btn--ghost')) return;
+      trackEvent('tool_used', {
+        tool_page: page,
+        button_id: btn.id,
+        button_label: btn.textContent.trim().slice(0, 50),
+      });
+    });
+  }
+
   // Init back-to-top on every page
   document.addEventListener('DOMContentLoaded', initBackToTop);
+  document.addEventListener('DOMContentLoaded', initAnalytics);
 
   return {
     copyToClipboard, showToast, formatBytes, sanitize,
