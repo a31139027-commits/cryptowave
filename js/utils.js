@@ -270,9 +270,64 @@ const Utils = (() => {
     });
   }
 
+  /** Inject related tools section before footer */
+  function initRelatedTools() {
+    var RELATED = {
+      'aes':           [['🔑 DES Encryption','des.html'],['🔐 3DES Encryption','tripledes.html'],['🔒 RSA Encryption','rsa.html'],['# Hash Generator','hash.html']],
+      'des':           [['🔐 AES Encryption','aes.html'],['🔐 3DES Encryption','tripledes.html'],['🔒 RSA Encryption','rsa.html'],['# Hash Generator','hash.html']],
+      'tripledes':     [['🔐 AES Encryption','aes.html'],['🔑 DES Encryption','des.html'],['🔒 RSA Encryption','rsa.html'],['# Hash Generator','hash.html']],
+      'rsa':           [['🔐 AES Encryption','aes.html'],['🔑 DES Encryption','des.html'],['# Hash Generator','hash.html'],['🔑 Password Gen','password.html']],
+      'hash':          [['🔐 AES Encryption','aes.html'],['🔒 RSA Encryption','rsa.html'],['⇌ Encoding','encoding.html'],['🔑 Password Gen','password.html']],
+      'encoding':      [['# Hash Generator','hash.html'],['🔐 AES Encryption','aes.html'],['⬡ Base Convert','base-convert.html'],['🔑 Password Gen','password.html']],
+      'password':      [['🔐 AES Encryption','aes.html'],['# Hash Generator','hash.html'],['⊞ QR Code','qrcode.html'],['🔒 RSA Encryption','rsa.html']],
+      'qrcode':        [['🔑 Password Gen','password.html'],['🖼 Image Compress','image.html'],['⇌ Encoding','encoding.html']],
+      'age':           [['📅 Date Diff','date-diff.html'],['📝 Word Count','word-count.html']],
+      'date-diff':     [['🎂 Age Calc','age.html'],['📝 Word Count','word-count.html']],
+      'base-convert':  [['⇌ Encoding','encoding.html'],['# Hash Generator','hash.html'],['🔐 AES Encryption','aes.html']],
+      'color-convert': [['🖼 Image Compress','image.html'],['⊞ QR Code','qrcode.html'],['⇌ Encoding','encoding.html']],
+      'word-count':    [['⇌ Encoding','encoding.html'],['📅 Date Diff','date-diff.html'],['🗣 TTS','tts.html']],
+      'image':         [['🌐 Image to WebP','image-webp.html'],['📄 PDF Merge','pdf-merge.html'],['⊞ QR Code','qrcode.html']],
+      'image-webp':    [['🖼 Image Compress','image.html'],['📄 PDF Merge','pdf-merge.html'],['⊞ QR Code','qrcode.html']],
+      'audio':         [['✂ Audio Cutter','audio-cut.html'],['🔀 Audio Merge','audio-merge.html'],['🎵 MP4 to MP3','mp4-to-mp3.html'],['🔊 Volume Adjust','audio-volume.html']],
+      'audio-cut':     [['🔀 Audio Merge','audio-merge.html'],['🔊 Volume Adjust','audio-volume.html'],['⏪ Audio Reverse','audio-reverse.html'],['🎵 MP4 to MP3','mp4-to-mp3.html']],
+      'audio-merge':   [['✂ Audio Cutter','audio-cut.html'],['🔊 Volume Adjust','audio-volume.html'],['🎵 MP4 to MP3','mp4-to-mp3.html']],
+      'audio-pitch':   [['✂ Audio Cutter','audio-cut.html'],['⏪ Audio Reverse','audio-reverse.html'],['🔊 Volume Adjust','audio-volume.html']],
+      'audio-reverse': [['✂ Audio Cutter','audio-cut.html'],['🎚 Pitch Shift','audio-pitch.html'],['🔊 Volume Adjust','audio-volume.html']],
+      'audio-volume':  [['✂ Audio Cutter','audio-cut.html'],['🔀 Audio Merge','audio-merge.html'],['🎵 MP4 to MP3','mp4-to-mp3.html']],
+      'mp4-to-mp3':    [['✂ Audio Cutter','audio-cut.html'],['🔊 Volume Adjust','audio-volume.html'],['🎬 Video Converter','video.html']],
+      'tts':           [['✂ Audio Cutter','audio-cut.html'],['🎵 MP4 to MP3','mp4-to-mp3.html'],['📝 Word Count','word-count.html']],
+      'video':         [['✂ Video Trim','video-trim.html'],['🔄 Video Rotate','video-rotate.html'],['⚡ Video Speed','video-speed.html'],['🎵 MP4 to MP3','mp4-to-mp3.html']],
+      'video-trim':    [['🔄 Video Rotate','video-rotate.html'],['⚡ Video Speed','video-speed.html'],['🔀 Video Merge','video-merge.html'],['🎵 MP4 to MP3','mp4-to-mp3.html']],
+      'video-rotate':  [['✂ Video Trim','video-trim.html'],['⚡ Video Speed','video-speed.html'],['✂ Video Crop','video-crop.html']],
+      'video-merge':   [['✂ Video Trim','video-trim.html'],['⚡ Video Speed','video-speed.html'],['🔁 Video Loop','video-loop.html']],
+      'video-speed':   [['✂ Video Trim','video-trim.html'],['🔄 Video Rotate','video-rotate.html'],['🔁 Video Loop','video-loop.html']],
+      'video-loop':    [['✂ Video Trim','video-trim.html'],['🔀 Video Merge','video-merge.html'],['⚡ Video Speed','video-speed.html']],
+      'video-crop':    [['🔄 Video Rotate','video-rotate.html'],['✂ Video Trim','video-trim.html'],['🖼 Image Compress','image.html']],
+      'video-volume':  [['✂ Video Trim','video-trim.html'],['🔊 Audio Volume','audio-volume.html'],['🎵 MP4 to MP3','mp4-to-mp3.html']],
+      'pdf-merge':     [['✂ PDF Split','pdf-split.html'],['🖼 PDF to Images','pdf-images.html'],['🖼 Image Compress','image.html']],
+      'pdf-split':     [['📄 PDF Merge','pdf-merge.html'],['🖼 PDF to Images','pdf-images.html'],['🖼 Image Compress','image.html']],
+      'pdf-images':    [['📄 PDF Merge','pdf-merge.html'],['✂ PDF Split','pdf-split.html'],['🖼 Image Compress','image.html']],
+    };
+    var page = (window.location.pathname.split('/').pop() || '').replace(/\.html$/, '');
+    var tools = RELATED[page];
+    if (!tools || !tools.length) return;
+    var footer = document.querySelector('footer');
+    if (!footer) return;
+    var sec = document.createElement('section');
+    sec.className = 'related-tools';
+    var html = '<div class="container"><p class="related-tools__label">Related Tools</p><div class="related-tools__grid">';
+    tools.forEach(function(t) {
+      html += '<a href="' + t[1] + '" class="related-tools__item">' + t[0] + '</a>';
+    });
+    html += '</div></div>';
+    sec.innerHTML = html;
+    footer.before(sec);
+  }
+
   // Init back-to-top on every page
   document.addEventListener('DOMContentLoaded', initBackToTop);
   document.addEventListener('DOMContentLoaded', initAnalytics);
+  document.addEventListener('DOMContentLoaded', initRelatedTools);
 
   return {
     copyToClipboard, showToast, formatBytes, sanitize,
