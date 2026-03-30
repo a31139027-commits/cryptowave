@@ -418,9 +418,9 @@ select {
   padding: 13px 16px; border-radius: var(--radius-lg);
   font-size: 0.84rem; line-height: 1.6; margin-bottom: 16px;
 }
-.alert--info    { background: var(--accent-dim); border: 1px solid var(--accent-border); color: #f5dec8; }
+.alert--info    { background: var(--accent-dim); border: 1px solid var(--accent-border); color: var(--text-primary); }
 .alert--info    strong { color: var(--accent); }
-.alert--warning { background: var(--orange-dim); border: 1px solid var(--orange-border); color: #fddcc5; }
+.alert--warning { background: var(--orange-dim); border: 1px solid var(--orange-border); color: var(--text-primary); }
 .alert--warning strong { color: var(--orange); }
 .alert--success { background: var(--green-dim); border: 1px solid var(--green-border); color: var(--green-text); }
 .alert__icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; opacity: 0.8; }
