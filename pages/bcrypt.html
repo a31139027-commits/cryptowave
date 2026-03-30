@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" href="../favicon.png" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (['light','dark','ocean','ocean-light','forest','forest-light'].indexOf(t)>-1) ? t : 'light');
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18036940841');
+  gtag('config', 'G-DMKQ5TY77T');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bcrypt Hash Generator Online — Free, Client-Side | CryptoWave</title>
+  <meta name="description" content="Free online Bcrypt hash generator and verifier. Hash passwords with adjustable cost factor (4–12). Verify bcrypt hashes instantly. 100% client-side — no data sent to servers." />
+  <meta name="keywords" content="bcrypt generator online, bcrypt hash, bcrypt password hashing, bcrypt verifier, password hash online, bcrypt rounds, secure password storage" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cryptowaveapp.com/pages/bcrypt" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cryptowaveapp.com/pages/bcrypt" />
+  <meta property="og:title"       content="Bcrypt Hash Generator Online — Free & Client-Side" />
+  <meta property="og:description" content="Generate and verify bcrypt password hashes online. Adjustable cost factor. All processing in your browser — no upload required." />
+  <meta property="og:image"       content="https://cryptowaveapp.com/og-image2.png" />
+  <meta property="og:site_name"   content="CryptoWave" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Bcrypt Hash Generator Online — Free & Client-Side" />
+  <meta name="twitter:description" content="Generate and verify bcrypt password hashes online. Adjustable cost factor. All processing in your browser." />
+  <meta name="twitter:image"       content="https://cryptowaveapp.com/og-image2.png" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Bcrypt Hash Generator Online",
+      "url": "https://cryptowaveapp.com/pages/bcrypt",
+      "description": "Free online Bcrypt password hash generator and verifier. Adjustable cost factor 4–12. All processing client-side.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["Bcrypt hashing", "Bcrypt verification", "Adjustable cost factor", "No file upload", "Client-side processing"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowaveapp.com" },
+        { "@type": "ListItem", "position": 2, "name": "Hash Generator", "item": "https://cryptowaveapp.com/pages/hash" },
+        { "@type": "ListItem", "position": 3, "name": "Bcrypt Generator", "item": "https://cryptowaveapp.com/pages/bcrypt" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Bcrypt and why use it for passwords?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Bcrypt is a password hashing function designed to be slow and computationally expensive, making brute-force attacks impractical. Unlike SHA-256 (which is fast), Bcrypt's adjustable cost factor lets you increase hashing time as hardware gets faster. Always use Bcrypt, Argon2, or PBKDF2 for storing passwords — never plain SHA-256 or MD5." }
+        },
+        {
+          "@type": "Question",
+          "name": "What cost factor should I use for Bcrypt?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Cost factor 10 is the recommended default for most applications — it takes roughly 100ms to hash on modern hardware. Use 12 for high-security applications where you can afford ~400ms per hash. Use 4 only for testing. Increase the cost factor over time as hardware improves." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can two identical passwords produce different Bcrypt hashes?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Bcrypt automatically generates a unique random salt for each hash, so the same password will produce a different hash every time. This is by design — it prevents rainbow table attacks. When verifying, Bcrypt extracts the salt from the stored hash automatically." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my password sent to a server when I use this tool?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All Bcrypt hashing and verification runs entirely in your browser using the bcryptjs library. Your passwords are never transmitted to any server." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the maximum password length for Bcrypt?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Bcrypt has a maximum input length of 72 bytes. Passwords longer than 72 characters are silently truncated. If you need to hash longer inputs, pre-hash the password with SHA-256 before passing it to Bcrypt." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I verify a Bcrypt hash?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Enter the original password in the password field, paste the stored Bcrypt hash in the verification field, and click Verify Hash. The tool will compare them and tell you if they match." }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Generate a Bcrypt Hash Online",
+      "description": "Step-by-step guide to hash and verify passwords using Bcrypt in your browser.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Enter your password", "text": "Type the password you want to hash into the Password field." },
+        { "@type": "HowToStep", "position": 2, "name": "Choose cost factor", "text": "Select a work factor. Cost 10 is recommended. Higher = more secure but slower." },
+        { "@type": "HowToStep", "position": 3, "name": "Generate hash", "text": "Click Hash Password. The Bcrypt hash will appear in the output box." },
+        { "@type": "HowToStep", "position": 4, "name": "Copy the hash", "text": "Copy the output hash to store in your database." },
+        { "@type": "HowToStep", "position": 5, "name": "Verify (optional)", "text": "To verify, paste an existing hash into the verification field and click Verify Hash." }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand"><div class="navbar__brand-icon"><img src="../og-image2-removebg-preview.png" alt="CryptoWave" /></div>Crypto<span>Wave</span></a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="hash.html" class="active"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="sha256.html">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="bcrypt.html" class="active">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-html-ent">&lt;&gt; HTML Entities</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner dropdown__menu-inner--cols">
+          <div class="dropdown__col">
+            <div class="dropdown__col-head">🎵 Audio</div>
+            <div class="dropdown__col-divider"></div>
+            <a href="audio.html">🎵 Audio Converter</a>
+            <a href="audio-cut.html">✂️ Audio Cutter</a>
+            <a href="audio-merge.html">🔗 Audio Merger</a>
+            <a href="audio-volume.html">🔊 Audio Volume</a>
+            <a href="audio-reverse.html">🔄 Audio Reverse</a>
+            <a href="audio-pitch.html">🎼 Audio Pitch</a>
+            <a href="mp4-to-mp3.html">🎵 MP4 to MP3</a>
+          </div>
+          <div class="dropdown__col">
+            <div class="dropdown__col-head">🎬 Video</div>
+            <div class="dropdown__col-divider"></div>
+            <a href="video.html">🎬 Video Converter</a>
+            <a href="video-trim.html">✂️ Video Trimmer</a>
+            <a href="video-merge.html">🔗 Video Merger</a>
+            <a href="video-rotate.html">🔄 Video Rotate/Flip</a>
+            <a href="video-speed.html">⏩ Video Speed</a>
+            <a href="video-loop.html">🔁 Video Loop</a>
+            <a href="video-volume.html">🔊 Video Volume</a>
+            <a href="video-crop.html">✂️ Video Crop</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html">🗜️ Compress</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+          <a href="image-webp.html">🌐 Image to WebP</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+          <div class="dropdown__divider"></div>
+          <a href="date-diff.html">📅 Date Difference</a>
+          <a href="age.html">🎂 Age Calculator</a>
+          <div class="dropdown__divider"></div>
+          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="pdf-split.html">✂️ PDF Splitter</a>
+          <a href="pdf-images.html">🖼️ PDF to Images</a>
+          <a href="tts.html">🔊 Text to Speech</a>
+          <a href="word-count.html">📝 Word Counter</a>
+          <a href="base-convert.html">🔢 Base Converter</a>
+          <a href="color-convert.html">🎨 Color Converter</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title"><span>Bcrypt</span> Hash Generator</h1>
+      <p class="tool-header__sub">Hash and verify passwords using Bcrypt — the industry standard for secure password storage.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel__head"><div class="panel__head-icon">🔑</div><h2 class="panel__head-title">Bcrypt Password Hashing</h2></div>
+      <div class="alert alert--info" style="margin-bottom:0;">
+        <span class="alert__icon">ℹ</span>
+        <div>Bcrypt is designed for hashing passwords. Higher rounds = slower = more secure. Default of 10 is a good balance for most applications.</div>
+      </div>
+      <div class="divider"></div>
+      <div class="form-group">
+        <label for="bcrypt-input">Password / Text <span class="required">*</span></label>
+        <input type="password" id="bcrypt-input" placeholder="Enter password to hash" autocomplete="off" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="bcrypt-rounds">Work Factor (rounds)</label>
+          <select id="bcrypt-rounds">
+            <option value="4">4 (Very Fast — Testing only)</option>
+            <option value="8">8 (Fast)</option>
+            <option value="10" selected>10 (Recommended)</option>
+            <option value="12">12 (Slow — High Security)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="bcrypt-hash-field">Bcrypt Hash (for verification)</label>
+        <input type="text" id="bcrypt-hash-field" placeholder="Paste existing bcrypt hash here to verify…" spellcheck="false" />
+      </div>
+      <div class="btn-group">
+        <button class="btn btn--primary" id="bcrypt-btn">⚡ Hash Password</button>
+        <button class="btn btn--ghost" id="bcrypt-verify-btn">✓ Verify Hash</button>
+      </div>
+      <div class="divider"></div>
+      <div class="output-header"><span class="output-label">Output</span></div>
+      <div class="output-box" id="bcrypt-output"><span class="placeholder">Bcrypt hash or verification result will appear here…</span></div>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="panel" style="margin-top:24px;">
+    <div class="panel__head">
+      <div class="panel__head-icon">❓</div>
+      <h2 class="panel__head-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-item__q">What is Bcrypt and why use it for passwords?</div>
+        <div class="faq-item__a">Bcrypt is a password hashing function designed to be slow, making brute-force attacks impractical. Unlike SHA-256 (fast by design), Bcrypt's adjustable cost factor lets you increase hashing time as hardware improves. Always use Bcrypt, Argon2, or PBKDF2 for passwords — never plain MD5 or SHA.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">What cost factor should I use?</div>
+        <div class="faq-item__a">Cost 10 is recommended for most applications (~100ms per hash). Use 12 for high-security scenarios (~400ms). Use 4 for testing only. Increase the cost factor as hardware gets faster — re-hashing passwords at login time is the standard approach.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Why does the same password produce different hashes each time?</div>
+        <div class="faq-item__a">Bcrypt automatically generates a unique random salt for every hash. The salt is embedded in the hash output, so verification works without storing the salt separately. This prevents rainbow table attacks.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Is my password sent to a server?</div>
+        <div class="faq-item__a">No. All Bcrypt hashing runs entirely in your browser using the bcryptjs JavaScript library. Your passwords are never transmitted anywhere.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">What is the maximum password length for Bcrypt?</div>
+        <div class="faq-item__a">Bcrypt silently truncates input at 72 bytes. If you need to hash longer passwords, pre-hash with SHA-256 first. This limitation is a known quirk of the original Bcrypt specification.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Should I use Bcrypt or Argon2?</div>
+        <div class="faq-item__a">Both are excellent choices. Argon2 (winner of the Password Hashing Competition) is newer and more resistant to GPU attacks. Bcrypt is battle-tested with 25+ years of use. If your platform supports Argon2, prefer it. Bcrypt is a solid fallback with wide library support.</div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+      <a href="date-diff.html">Date Diff</a>
+      <a href="age.html">Age Calc</a>
+      <a href="pdf-merge.html">PDF Merge</a>
+      <a href="word-count.html">Word Count</a>
+      <a href="color-convert.html">Color Conv</a>
+    </nav>
+    <div class="footer__copy">© 2026 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js" integrity="sha384-qGFE4FIJLgCFuYs3nzg39XpCtvT5AZUhaBdjB3e1+vpKQa03AkyWOyBSFb9OcQ/g" crossorigin="anonymous"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/hash.js"></script>
+</body>
+</html>

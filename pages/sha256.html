@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="apple-touch-icon" href="../favicon.png" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('cw-theme');
+      document.documentElement.setAttribute('data-theme', (['light','dark','ocean','ocean-light','forest','forest-light'].indexOf(t)>-1) ? t : 'light');
+    })();
+  </script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18036940841');
+  gtag('config', 'G-DMKQ5TY77T');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHA-256 Generator Online — Free SHA-512, MD5 Hash Tool | CryptoWave</title>
+  <meta name="description" content="Free online SHA-256 hash generator. Generate SHA-256, SHA-512, SHA-384, SHA-1, and MD5 hashes instantly. File hashing supported. 100% client-side — no data sent to servers." />
+  <meta name="keywords" content="SHA-256 generator, SHA-256 online, SHA-512 generator, MD5 hash generator, SHA hash online, checksum generator, file hash checker, SHA-256 calculator" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cryptowaveapp.com/pages/sha256" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cryptowaveapp.com/pages/sha256" />
+  <meta property="og:title"       content="SHA-256 Hash Generator Online — Free & Instant" />
+  <meta property="og:description" content="Generate SHA-256, SHA-512, MD5 hashes online. Free, instant, and fully client-side. No data sent to servers." />
+  <meta property="og:image"       content="https://cryptowaveapp.com/og-image2.png" />
+  <meta property="og:site_name"   content="CryptoWave" />
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="SHA-256 Hash Generator Online — Free & Instant" />
+  <meta name="twitter:description" content="Generate SHA-256, SHA-512, MD5 hashes online. Free, instant, and fully client-side." />
+  <meta name="twitter:image"       content="https://cryptowaveapp.com/og-image2.png" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "SHA-256 Hash Generator Online",
+      "url": "https://cryptowaveapp.com/pages/sha256",
+      "description": "Free online SHA-256, SHA-512, SHA-384, SHA-1 and MD5 hash generator. All processing client-side.",
+      "applicationCategory": "SecurityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": ["SHA-256", "SHA-512", "SHA-384", "SHA-1", "MD5", "File hashing", "Real-time hashing", "No file upload"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cryptowaveapp.com" },
+        { "@type": "ListItem", "position": 2, "name": "Hash Generator", "item": "https://cryptowaveapp.com/pages/hash" },
+        { "@type": "ListItem", "position": 3, "name": "SHA-256 Generator", "item": "https://cryptowaveapp.com/pages/sha256" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is SHA-256 and what is it used for?",
+          "acceptedAnswer": { "@type": "Answer", "text": "SHA-256 (Secure Hash Algorithm 256-bit) is a cryptographic hash function that produces a fixed 256-bit (32-byte) output. It is used for data integrity verification, digital signatures, certificate fingerprinting, password hashing (as part of PBKDF2), and blockchain (Bitcoin uses SHA-256). It is considered cryptographically secure with no known practical attacks." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between SHA-256 and SHA-512?",
+          "acceptedAnswer": { "@type": "Answer", "text": "SHA-256 produces a 256-bit (64 hex character) output and is faster on 32-bit systems. SHA-512 produces a 512-bit (128 hex character) output and is faster on 64-bit systems due to its 64-bit word operations. Both are equally secure for current use. SHA-512 provides a larger security margin for future-proofing." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is MD5 still safe to use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "MD5 is not cryptographically secure for security applications — collision attacks are practical and fast. Do not use MD5 for digital signatures, certificates, or password hashing. MD5 is still acceptable for non-security uses like generating checksums to detect accidental data corruption (not malicious tampering)." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I hash a file with this tool?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The hash generator supports file hashing — your file is read in your browser and hashed locally without uploading. This is useful for verifying file integrity by comparing the generated hash against a known-good hash published by the file source." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the same input always produce the same hash?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. SHA-256 is deterministic — the same input always produces the same output. However, even a single character change completely alters the output (avalanche effect). This property makes SHA-256 ideal for integrity checking." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my data sent to a server when I hash it?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. All hashing runs entirely in your browser using the Web Crypto API (for SHA-256, SHA-512, SHA-384, SHA-1) and CryptoJS (for MD5). Your data never leaves your device." }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Generate a SHA-256 Hash Online",
+      "description": "Step-by-step guide to hash text or files using SHA-256 in your browser.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Select algorithm", "text": "Choose SHA-256 (recommended), SHA-512, SHA-384, SHA-1, or MD5 from the dropdown." },
+        { "@type": "HowToStep", "position": 2, "name": "Enter text or upload file", "text": "Type or paste text in the input field, or switch to file mode to hash a file." },
+        { "@type": "HowToStep", "position": 3, "name": "Generate hash", "text": "Click Generate Hash. The hash updates in real-time as you type." },
+        { "@type": "HowToStep", "position": 4, "name": "Copy the result", "text": "Click Copy to copy the hex hash to your clipboard." }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar__inner">
+    <a href="../index.html" class="navbar__brand"><div class="navbar__brand-icon"><img src="../og-image2-removebg-preview.png" alt="CryptoWave" /></div>Crypto<span>Wave</span></a>
+    <ul class="navbar__nav">
+      <li><a href="../index.html">🏠 Home</a></li>
+
+      <li class="dropdown">
+        <a href="aes.html">🔐 Crypto <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="aes.html">🔒 AES Encryption</a>
+          <a href="rsa.html">🗝️ RSA Encryption</a>
+          <div class="dropdown__divider"></div>
+          <a href="des.html">🔓 DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+          <a href="tripledes.html">🔐 Triple DES <span style="font-size:0.7rem;color:var(--text-muted);margin-left:4px;">Legacy</span></a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="hash.html" class="active"># Hash <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="sha256.html" class="active">🔏 SHA / MD5</a>
+          <a href="hash.html#tab-hmac">🛡️ HMAC</a>
+          <a href="bcrypt.html">🔑 Bcrypt</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="encoding.html">⇄ Encoding <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="encoding.html">64 Base64</a>
+          <a href="encoding.html#tab-hex">0x Hex</a>
+          <a href="encoding.html#tab-url">% URL Encode</a>
+          <a href="encoding.html#tab-html-ent">&lt;&gt; HTML Entities</a>
+          <a href="encoding.html#tab-jwt">JWT Decoder</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="audio.html">🎵 Media <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner dropdown__menu-inner--cols">
+          <div class="dropdown__col">
+            <div class="dropdown__col-head">🎵 Audio</div>
+            <div class="dropdown__col-divider"></div>
+            <a href="audio.html">🎵 Audio Converter</a>
+            <a href="audio-cut.html">✂️ Audio Cutter</a>
+            <a href="audio-merge.html">🔗 Audio Merger</a>
+            <a href="audio-volume.html">🔊 Audio Volume</a>
+            <a href="audio-reverse.html">🔄 Audio Reverse</a>
+            <a href="audio-pitch.html">🎼 Audio Pitch</a>
+            <a href="mp4-to-mp3.html">🎵 MP4 to MP3</a>
+          </div>
+          <div class="dropdown__col">
+            <div class="dropdown__col-head">🎬 Video</div>
+            <div class="dropdown__col-divider"></div>
+            <a href="video.html">🎬 Video Converter</a>
+            <a href="video-trim.html">✂️ Video Trimmer</a>
+            <a href="video-merge.html">🔗 Video Merger</a>
+            <a href="video-rotate.html">🔄 Video Rotate/Flip</a>
+            <a href="video-speed.html">⏩ Video Speed</a>
+            <a href="video-loop.html">🔁 Video Loop</a>
+            <a href="video-volume.html">🔊 Video Volume</a>
+            <a href="video-crop.html">✂️ Video Crop</a>
+          </div>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="image.html">🖼️ Image <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="image.html">🗜️ Compress</a>
+          <a href="image.html#convert">⇄ Convert Format</a>
+          <a href="image.html#pdf">📄 Image to PDF</a>
+          <a href="image-webp.html">🌐 Image to WebP</a>
+        </div></div>
+      </li>
+
+      <li class="dropdown">
+        <a href="password.html">🔧 Tools <span class="dropdown__arrow">▾</span></a>
+        <div class="dropdown__menu"><div class="dropdown__menu-inner">
+          <a href="password.html">🔑 Password Generator</a>
+          <a href="qrcode.html">⬛ QR Code</a>
+          <div class="dropdown__divider"></div>
+          <a href="date-diff.html">📅 Date Difference</a>
+          <a href="age.html">🎂 Age Calculator</a>
+          <div class="dropdown__divider"></div>
+          <a href="pdf-merge.html">📎 PDF Merger</a>
+          <a href="pdf-split.html">✂️ PDF Splitter</a>
+          <a href="pdf-images.html">🖼️ PDF to Images</a>
+          <a href="tts.html">🔊 Text to Speech</a>
+          <a href="word-count.html">📝 Word Counter</a>
+          <a href="base-convert.html">🔢 Base Converter</a>
+          <a href="color-convert.html">🎨 Color Converter</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
+      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__label">Light</span>
+    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main class="tool-page">
+  <div class="container container--narrow">
+    <div class="tool-header">
+      <a href="../index.html" class="tool-header__back">← Back to all tools</a>
+      <h1 class="tool-header__title"><span>SHA-256</span> Hash Generator</h1>
+      <p class="tool-header__sub">Generate SHA-256, SHA-512, SHA-384, SHA-1, and MD5 hashes. All processing runs client-side.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel__head"><div class="panel__head-icon">#</div><h2 class="panel__head-title">Hash Generator</h2></div>
+      <div class="form-row">
+        <div class="form-group" style="flex:1;">
+          <label for="hash-algo">Algorithm</label>
+          <select id="hash-algo">
+            <option value="SHA-256" selected>SHA-256 (Recommended)</option>
+            <option value="SHA-512">SHA-512</option>
+            <option value="SHA-384">SHA-384</option>
+            <option value="SHA-1">SHA-1 (Legacy)</option>
+            <option value="MD5">MD5 (Not cryptographic)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="hash-input">Input Text <span class="required">*</span></label>
+        <textarea id="hash-input" placeholder="Enter text to hash…" rows="5" spellcheck="false"></textarea>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn--primary" id="hash-btn">⚡ Generate Hash</button>
+        <button class="btn btn--secondary" id="hash-clear">✕ Clear</button>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="output-header">
+        <span class="output-label">Hash Output</span>
+        <button class="btn btn--sm btn--icon" id="hash-copy">⎘ Copy</button>
+      </div>
+      <div class="output-box" id="hash-output"><span class="placeholder">Hash will appear here — updates as you type…</span></div>
+    </div>
+
+  </div>
+
+  <!-- FAQ -->
+  <div class="panel" style="margin-top:24px;">
+    <div class="panel__head">
+      <div class="panel__head-icon">❓</div>
+      <h2 class="panel__head-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-item__q">What is SHA-256 used for?</div>
+        <div class="faq-item__a">SHA-256 is used for data integrity checks, digital signatures, TLS/HTTPS certificates, blockchain (Bitcoin), and as a component in PBKDF2 for key derivation. It is the most widely deployed cryptographic hash function.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">What is the difference between SHA-256 and SHA-512?</div>
+        <div class="faq-item__a">SHA-256 produces a 64-character hex output; SHA-512 produces 128 characters. SHA-512 is faster on 64-bit hardware. Both are equally secure for current applications. Use SHA-512 if you want a larger security margin for long-term data.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Is MD5 still safe to use?</div>
+        <div class="faq-item__a">MD5 is not cryptographically secure for security applications — practical collision attacks exist. Avoid MD5 for digital signatures, certificates, and password hashing. It is still acceptable for non-security checksums to detect accidental corruption.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Can I reverse a SHA-256 hash?</div>
+        <div class="faq-item__a">No. SHA-256 is a one-way function — it is computationally infeasible to recover the original input from the hash output. This is the fundamental property that makes it useful for integrity checking and digital signatures.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Is SHA-256 good for password hashing?</div>
+        <div class="faq-item__a">No. SHA-256 is too fast for password hashing — a GPU can compute billions of SHA-256 hashes per second. Use Bcrypt, Argon2, or PBKDF2 instead, which are intentionally slow and resistant to brute-force attacks.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-item__q">Is my data sent to a server?</div>
+        <div class="faq-item__a">No. All hashing uses the browser's built-in Web Crypto API (SHA-256, SHA-512, SHA-384, SHA-1) and CryptoJS (MD5). Your data never leaves your device.</div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand">Crypto<span>Wave</span></div>
+      <div class="footer__tagline">Free, private developer tools</div>
+    </div>
+    <nav class="footer__links">
+      <a href="../index.html">Home</a>
+      <a href="aes.html">AES</a>
+      <a href="rsa.html">RSA</a>
+      <a href="hash.html">Hash</a>
+      <a href="encoding.html">Encoding</a>
+      <a href="audio.html">Audio</a>
+      <a href="video.html">Video</a>
+      <a href="image.html">Image</a>
+      <a href="password.html">Password</a>
+      <a href="qrcode.html">QR Code</a>
+      <a href="date-diff.html">Date Diff</a>
+      <a href="age.html">Age Calc</a>
+      <a href="pdf-merge.html">PDF Merge</a>
+      <a href="word-count.html">Word Count</a>
+      <a href="color-convert.html">Color Conv</a>
+    </nav>
+    <div class="footer__copy">© 2026 CryptoWave · No cookies · No tracking</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha384-mgWScxWVKP8F7PBbpNp7i/aSb17kN0LcifBpahAplF3Mn0GR4/u1oMpWIm2rD8yY" crossorigin="anonymous"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/modules/hash.js"></script>
+</body>
+</html>

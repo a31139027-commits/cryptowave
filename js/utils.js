@@ -278,6 +278,8 @@ const Utils = (() => {
       'tripledes':     [['🔐 AES Encryption','aes.html'],['🔑 DES Encryption','des.html'],['🔒 RSA Encryption','rsa.html'],['# Hash Generator','hash.html']],
       'rsa':           [['🔐 AES Encryption','aes.html'],['🔑 DES Encryption','des.html'],['# Hash Generator','hash.html'],['🔑 Password Gen','password.html']],
       'hash':          [['🔐 AES Encryption','aes.html'],['🔒 RSA Encryption','rsa.html'],['⇌ Encoding','encoding.html'],['🔑 Password Gen','password.html']],
+      'sha256':        [['🔐 AES Encryption','aes.html'],['🔒 RSA Encryption','rsa.html'],['🔑 Bcrypt Hash','bcrypt.html'],['🔑 Password Gen','password.html']],
+      'bcrypt':        [['# SHA/MD5 Hash','sha256.html'],['🔐 AES Encryption','aes.html'],['🔑 Password Gen','password.html'],['⇌ Encoding','encoding.html']],
       'encoding':      [['# Hash Generator','hash.html'],['🔐 AES Encryption','aes.html'],['⬡ Base Convert','base-convert.html'],['🔑 Password Gen','password.html']],
       'password':      [['🔐 AES Encryption','aes.html'],['# Hash Generator','hash.html'],['⊞ QR Code','qrcode.html'],['🔒 RSA Encryption','rsa.html']],
       'qrcode':        [['🔑 Password Gen','password.html'],['🖼 Image Compress','image.html'],['⇌ Encoding','encoding.html']],
