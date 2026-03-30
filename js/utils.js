@@ -317,7 +317,7 @@ const Utils = (() => {
     if (!footer) return;
     var sec = document.createElement('section');
     sec.className = 'related-tools';
-    var html = '<div class="container"><p class="related-tools__label">Related Tools</p><div class="related-tools__grid">';
+    var html = '<div class="container container--narrow"><p class="related-tools__label">Related Tools</p><div class="related-tools__grid">';
     tools.forEach(function(t) {
       html += '<a href="' + t[1] + '" class="related-tools__item">' + t[0] + '</a>';
     });
