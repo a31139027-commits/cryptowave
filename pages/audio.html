@@ -83,6 +83,17 @@
           "acceptedAnswer": { "@type": "Answer", "text": "The first conversion requires downloading the FFmpeg.wasm binary (approximately 30MB) from a CDN. This file is then cached by your browser, so subsequent conversions start immediately without any additional download." }
         }
       ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Convert Audio Files Online Free",
+      "description": "Step-by-step guide to convert MP3, WAV, FLAC and other audio formats in your browser.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Select audio file", "text": "Click Choose File or drag and drop your audio file (MP3, WAV, FLAC, MP4, etc.) onto the drop zone." },
+        { "@type": "HowToStep", "position": 2, "name": "Choose output format", "text": "Select the target format: MP3, WAV, FLAC, AAC, OGG, OPUS, M4A, or AIFF." },
+        { "@type": "HowToStep", "position": 3, "name": "Set bitrate", "text": "Choose an audio bitrate. 192 kbps is recommended for music; 128 kbps for voice recordings." },
+        { "@type": "HowToStep", "position": 4, "name": "Convert and download", "text": "Click Convert. When done, click Download to save the converted audio file." }
+      ]
     }
   ]
 }
@@ -327,6 +338,21 @@
         <div class="faq-item">
           <div class="faq-item__q">What is the best format for music?</div>
           <div class="faq-item__a">Use FLAC for lossless archival quality with no audio degradation. For general use and sharing, MP3 at 192kbps provides a good balance of file size and audio fidelity that is widely supported.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">What is the difference between MP3 and AAC?</div>
+          <div class="faq-item__a">Both are lossy compressed formats. AAC (Advanced Audio Coding) is the successor to MP3 and generally provides better sound quality at the same bitrate. AAC is used by Apple devices and YouTube. MP3 is still more universally supported. For new projects, AAC at 192 kbps is a great choice.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">Can I convert FLAC to MP3 without quality loss?</div>
+          <div class="faq-item__a">Converting FLAC (lossless) to MP3 (lossy) always involves some quality reduction because MP3 discards audio data. However, at 320 kbps, the difference is inaudible to most people. The reverse — converting MP3 back to FLAC — does not recover the lost quality.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">Why does the converter take time to load the first time?</div>
+          <div class="faq-item__a">The first use downloads the FFmpeg.wasm binary (~30 MB) from a CDN. This happens once and is cached by your browser. After the first load, conversions start instantly without any additional download.</div>
         </div>
 
       </div>

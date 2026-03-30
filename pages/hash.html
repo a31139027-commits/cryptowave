@@ -84,6 +84,17 @@
         }
       ]
     }
+    ,{
+      "@type": "HowTo",
+      "name": "How to Generate a SHA-256 Hash Online",
+      "description": "Step-by-step guide to generate cryptographic hashes using SHA-256, MD5, HMAC, or Bcrypt.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Select algorithm", "text": "Choose SHA-256 (recommended), SHA-512, MD5, or another algorithm from the dropdown." },
+        { "@type": "HowToStep", "position": 2, "name": "Enter your text", "text": "Type or paste the text you want to hash into the Input Text field." },
+        { "@type": "HowToStep", "position": 3, "name": "Generate hash", "text": "Click Generate Hash. The hash output will appear instantly." },
+        { "@type": "HowToStep", "position": 4, "name": "Copy the hash", "text": "Click Copy to copy the hash to your clipboard." }
+      ]
+    }
   ]
 }
 </script>
@@ -340,6 +351,19 @@
         <div class="faq-item">
           <div class="faq-item__q">What is HMAC?</div>
           <div class="faq-item__a">HMAC (Hash-based Message Authentication Code) combines a hash function with a secret key to produce an authentication code. It verifies both the integrity and authenticity of a message, ensuring it was not altered and came from the expected sender.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">Is SHA-1 still safe to use?</div>
+          <div class="faq-item__a">SHA-1 is no longer considered cryptographically secure — collision attacks have been demonstrated. It should not be used for security-sensitive applications like digital signatures or certificate signing. Use SHA-256 or SHA-3 instead. SHA-1 is still acceptable for non-security uses like checksums.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">How do I verify a file's integrity using a hash?</div>
+          <div class="faq-item__a">Hash the file and compare the output to the expected hash provided by the file source. If the hashes match, the file is intact and unmodified. This is commonly used to verify downloaded software and backups.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">What is the Bcrypt cost factor?</div>
+          <div class="faq-item__a">The cost factor (also called work factor or rounds) controls how slow the hashing operation is. A higher cost factor means more computational work, making brute-force attacks harder. Cost 10 is the recommended default. Increase it as hardware gets faster.</div>
         </div>
 
       </div>

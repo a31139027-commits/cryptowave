@@ -84,6 +84,17 @@
         }
       ]
     }
+    ,{
+      "@type": "HowTo",
+      "name": "How to Generate RSA Keys and Encrypt Data Online",
+      "description": "Step-by-step guide to generate RSA key pairs and encrypt or decrypt data in your browser.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Generate a key pair", "text": "Select key size (2048 or 4096-bit) and click Generate Keys to create a public/private key pair." },
+        { "@type": "HowToStep", "position": 2, "name": "Save your private key", "text": "Copy or download your private key and store it securely. Never share your private key." },
+        { "@type": "HowToStep", "position": 3, "name": "Encrypt with public key", "text": "Paste the recipient's public key, enter the plaintext, and click Encrypt." },
+        { "@type": "HowToStep", "position": 4, "name": "Decrypt with private key", "text": "Paste your private key and the ciphertext, then click Decrypt to recover the original message." }
+      ]
+    }
   ]
 }
 </script>
@@ -326,6 +337,19 @@
         <div class="faq-item">
           <div class="faq-item__q">Are my keys saved anywhere?</div>
           <div class="faq-item__a">No. Keys are generated entirely in your browser and are never stored or transmitted. You must save your private key manually — losing it means losing access to anything encrypted with the corresponding public key.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">What is the difference between a public key and a private key?</div>
+          <div class="faq-item__a">The public key can be shared with anyone and is used to encrypt data. Only the matching private key can decrypt what was encrypted with the public key. This asymmetric design means you can receive encrypted messages from anyone without ever sharing a secret.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">Why can't RSA encrypt large files?</div>
+          <div class="faq-item__a">RSA can only encrypt data smaller than its key size (e.g. ~245 bytes for a 2048-bit key with OAEP). For large data, use a hybrid approach: encrypt the data with AES, then use RSA to encrypt only the AES key. This is how TLS/HTTPS works.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">What padding scheme should I use with RSA?</div>
+          <div class="faq-item__a">Use RSA-OAEP for all new applications — it is the modern secure standard. Avoid PKCS#1 v1.5 padding which is vulnerable to padding oracle attacks (Bleichenbacher attack). Most browsers support RSA-OAEP natively via the Web Crypto API.</div>
         </div>
 
       </div>

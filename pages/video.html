@@ -83,6 +83,17 @@
           "acceptedAnswer": { "@type": "Answer", "text": "Yes. Select GIF as the output format to convert any video clip to an animated GIF. You can control the resolution and frame rate to balance quality and file size." }
         }
       ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Convert Video Files Online Free",
+      "description": "Step-by-step guide to convert MP4, MKV, MOV and other video formats in your browser.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Select video file", "text": "Click Choose File or drag and drop your video (MP4, MKV, MOV, AVI, WebM, etc.) onto the upload area." },
+        { "@type": "HowToStep", "position": 2, "name": "Choose output format", "text": "Select the target format: MP4, WebM, MKV, MOV, AVI, or GIF." },
+        { "@type": "HowToStep", "position": 3, "name": "Convert", "text": "Click Convert. FFmpeg.wasm processes the file locally — no upload required." },
+        { "@type": "HowToStep", "position": 4, "name": "Download", "text": "Click Download to save the converted video to your device." }
+      ]
     }
   ]
 }
@@ -396,6 +407,21 @@
         <div class="faq-item">
           <div class="faq-item__q">Why does conversion take a long time?</div>
           <div class="faq-item__a">Large files are processed entirely locally in your browser using WebAssembly. Conversion speed depends on your CPU and file size. There is no server to offload the work to, so processing time scales with file complexity.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">What is the best video format for web?</div>
+          <div class="faq-item__a">MP4 with H.264 codec has the widest browser and device compatibility. WebM (VP9) offers smaller file sizes for web streaming. For modern web delivery, H.265/HEVC offers better compression than H.264 but has limited browser support.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">Can I convert MOV to MP4 online without uploading?</div>
+          <div class="faq-item__a">Yes. This converter processes MOV, AVI, MKV, WebM, and other formats entirely in your browser using FFmpeg.wasm. No file upload is required — your video stays on your device throughout the conversion.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-item__q">Is there a file size limit for video conversion?</div>
+          <div class="faq-item__a">There is no server-imposed size limit since conversion happens locally. The practical limit is your device's available RAM. Very large files (2 GB+) may be slow or cause browser memory issues on older devices.</div>
         </div>
 
       </div>
