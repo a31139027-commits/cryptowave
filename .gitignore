@@ -12,4 +12,5 @@ Thumbs.db
 # Editor
 *.swp
 *.swo
-.vscode/
+.vscode/*
+!.vscode/settings.json
