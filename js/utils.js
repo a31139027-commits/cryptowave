@@ -248,7 +248,7 @@ const Utils = (() => {
   }
 
   // Cloudflare Worker URL — update after deployment
-  const COUNTS_API = 'https://cryptowave-api.a31139027.workers.dev';
+  const COUNTS_API = 'https://cryptowaveapp.com/api';
 
   /** Send a GA4 event if gtag is available */
   function trackEvent(eventName, params = {}) {

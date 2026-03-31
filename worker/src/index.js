@@ -22,8 +22,10 @@ export default {
       return new Response(null, { status: 204, headers: CORS });
     }
 
+    const path = url.pathname.replace(/^\/api/, '');
+
     // GET /counts — return all counts
-    if (request.method === 'GET' && url.pathname === '/counts') {
+    if (request.method === 'GET' && path === '/counts') {
       const { results } = await env.DB.prepare(
         'SELECT button_id, count FROM button_counts ORDER BY count DESC'
       ).all();
@@ -33,7 +35,7 @@ export default {
     }
 
     // POST /increment — increment a button count
-    if (request.method === 'POST' && url.pathname === '/increment') {
+    if (request.method === 'POST' && path === '/increment') {
       let body;
       try { body = await request.json(); } catch { return new Response('Bad Request', { status: 400, headers: CORS }); }
 
