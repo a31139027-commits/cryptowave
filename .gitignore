@@ -1,6 +1,10 @@
 # Claude Code local files
 .claude/
 
+# Wrangler cache (contains account info)
+.wrangler/
+worker/.wrangler/
+
 # OS
 .DS_Store
 Thumbs.db
