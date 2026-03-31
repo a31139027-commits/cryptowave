@@ -247,11 +247,46 @@ const Utils = (() => {
     }
   }
 
+  // Cloudflare Worker URL — update after deployment
+  const COUNTS_API = 'https://cryptowave-api.a31139027.workers.dev';
+
   /** Send a GA4 event if gtag is available */
   function trackEvent(eventName, params = {}) {
     if (typeof gtag === 'function') {
       gtag('event', eventName, params);
     }
+  }
+
+  /** Fetch all button counts from Worker and show badges */
+  async function fetchAndDisplayCounts() {
+    try {
+      const res = await fetch(`${COUNTS_API}/counts`);
+      if (!res.ok) return;
+      const data = await res.json();
+      data.forEach(({ button_id, count }) => {
+        if (!count) return;
+        const btn = document.getElementById(button_id);
+        if (!btn) return;
+        let badge = btn.querySelector('.btn-use-count');
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'btn-use-count';
+          btn.appendChild(badge);
+        }
+        badge.textContent = count >= 1000
+          ? (count / 1000).toFixed(1) + 'k'
+          : count;
+      });
+    } catch (_) {}
+  }
+
+  /** Increment button count on Worker */
+  function incrementCount(button_id) {
+    fetch(`${COUNTS_API}/increment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ button_id }),
+    }).catch(() => {});
   }
 
   /** Auto-track primary action button clicks across all tool pages */
@@ -262,11 +297,29 @@ const Utils = (() => {
       if (!btn) return;
       const cls = btn.classList;
       if (!cls.contains('btn--primary') && !cls.contains('btn--ghost')) return;
+
+      // GA4 event
       trackEvent('tool_used', {
         tool_page: page,
         button_id: btn.id,
         button_label: btn.textContent.trim().slice(0, 50),
       });
+
+      // Global counter
+      incrementCount(btn.id);
+
+      // Update badge immediately (optimistic)
+      let badge = btn.querySelector('.btn-use-count');
+      if (!badge) {
+        badge = document.createElement('span');
+        badge.className = 'btn-use-count';
+        btn.appendChild(badge);
+      }
+      const current = parseInt(badge.textContent.replace('k', '')) || 0;
+      const newCount = current + 1;
+      badge.textContent = newCount >= 1000
+        ? (newCount / 1000).toFixed(1) + 'k'
+        : newCount;
     });
   }
 
@@ -330,6 +383,7 @@ const Utils = (() => {
   document.addEventListener('DOMContentLoaded', initBackToTop);
   document.addEventListener('DOMContentLoaded', initAnalytics);
   document.addEventListener('DOMContentLoaded', initRelatedTools);
+  document.addEventListener('DOMContentLoaded', fetchAndDisplayCounts);
 
   return {
     copyToClipboard, showToast, formatBytes, sanitize,

@@ -1,0 +1,8 @@
+name = "cryptowave-api"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cryptowave-counts"
+database_id = "d12027f6-2e4e-464d-8c42-87890bb33c9a"
