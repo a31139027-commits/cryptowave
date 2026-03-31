@@ -357,15 +357,10 @@ select {
   cursor: pointer; text-decoration: none; border: 1px solid transparent;
   transition: all var(--transition); white-space: nowrap;
   letter-spacing: -0.01em; line-height: 1;
-  position: relative;
 }
 .btn-use-count {
-  position: absolute; top: -8px; right: -8px;
-  background: var(--bg-surface); color: var(--text-muted);
-  border: 1px solid var(--border); border-radius: 999px;
-  font-size: 0.65rem; font-family: var(--font-mono);
-  padding: 1px 5px; line-height: 1.4;
-  pointer-events: none; white-space: nowrap;
+  font-size: 0.75rem; font-family: var(--font-mono);
+  color: var(--text-muted); white-space: nowrap; align-self: center;
 }
 .btn--primary {
   background: var(--accent); color: var(--text-inverse); border-color: var(--accent); font-weight: 700;

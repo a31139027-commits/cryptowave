@@ -267,15 +267,14 @@ const Utils = (() => {
         if (!count) return;
         const btn = document.getElementById(button_id);
         if (!btn) return;
-        let badge = btn.querySelector('.btn-use-count');
+        let badge = document.getElementById(`cw-count-${button_id}`);
         if (!badge) {
           badge = document.createElement('span');
+          badge.id = `cw-count-${button_id}`;
           badge.className = 'btn-use-count';
-          btn.appendChild(badge);
+          btn.insertAdjacentElement('afterend', badge);
         }
-        badge.textContent = count >= 1000
-          ? (count / 1000).toFixed(1) + 'k'
-          : count;
+        badge.textContent = `已使用 ${count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count} 次`;
       });
     } catch (_) {}
   }
@@ -308,18 +307,17 @@ const Utils = (() => {
       // Global counter
       incrementCount(btn.id);
 
-      // Update badge immediately (optimistic)
-      let badge = btn.querySelector('.btn-use-count');
+      // Update label immediately (optimistic)
+      let badge = document.getElementById(`cw-count-${btn.id}`);
       if (!badge) {
         badge = document.createElement('span');
+        badge.id = `cw-count-${btn.id}`;
         badge.className = 'btn-use-count';
-        btn.appendChild(badge);
+        btn.insertAdjacentElement('afterend', badge);
       }
-      const current = parseInt(badge.textContent.replace('k', '')) || 0;
+      const current = parseInt(badge.textContent.replace(/[^0-9]/g, '')) || 0;
       const newCount = current + 1;
-      badge.textContent = newCount >= 1000
-        ? (newCount / 1000).toFixed(1) + 'k'
-        : newCount;
+      badge.textContent = `已使用 ${newCount >= 1000 ? (newCount / 1000).toFixed(1) + 'k' : newCount} 次`;
     });
   }
 
