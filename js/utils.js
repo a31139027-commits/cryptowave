@@ -267,6 +267,7 @@ const Utils = (() => {
         if (!count) return;
         const btn = document.getElementById(button_id);
         if (!btn) return;
+        if (btn.classList.contains('btn--sm') || btn.classList.contains('btn--icon')) return;
         let badge = document.getElementById(`cw-count-${button_id}`);
         if (!badge) {
           badge = document.createElement('span');
@@ -296,6 +297,7 @@ const Utils = (() => {
       if (!btn) return;
       const cls = btn.classList;
       if (!cls.contains('btn--primary') && !cls.contains('btn--ghost')) return;
+      if (cls.contains('btn--sm') || cls.contains('btn--icon')) return; // 排除 Copy/Download 等小按鈕
 
       // GA4 event
       trackEvent('tool_used', {
