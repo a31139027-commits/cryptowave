@@ -257,6 +257,21 @@ const Utils = (() => {
     }
   }
 
+  /** 找到放置計數的容器（btn-group 下方，不干擾排版） */
+  function getCountContainer(btn) {
+    const group = btn.closest('.btn-group');
+    const anchor = group || btn;
+    const containerId = `cw-count-container-${btn.id}`;
+    let container = document.getElementById(containerId);
+    if (!container) {
+      container = document.createElement('div');
+      container.id = containerId;
+      container.className = 'btn-use-count';
+      anchor.insertAdjacentElement('afterend', container);
+    }
+    return container;
+  }
+
   /** Fetch all button counts from Worker and show badges */
   async function fetchAndDisplayCounts() {
     try {
@@ -268,14 +283,8 @@ const Utils = (() => {
         const btn = document.getElementById(button_id);
         if (!btn) return;
         if (btn.classList.contains('btn--sm') || btn.classList.contains('btn--icon')) return;
-        let badge = document.getElementById(`cw-count-${button_id}`);
-        if (!badge) {
-          badge = document.createElement('span');
-          badge.id = `cw-count-${button_id}`;
-          badge.className = 'btn-use-count';
-          btn.insertAdjacentElement('afterend', badge);
-        }
-        badge.textContent = `已使用 ${count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count} 次`;
+        const container = getCountContainer(btn);
+        container.textContent = `${btn.textContent.trim().replace(/^[^\w]+/, '')} 已被使用 ${count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count} 次`;
       });
     } catch (_) {}
   }
@@ -310,16 +319,10 @@ const Utils = (() => {
       incrementCount(btn.id);
 
       // Update label immediately (optimistic)
-      let badge = document.getElementById(`cw-count-${btn.id}`);
-      if (!badge) {
-        badge = document.createElement('span');
-        badge.id = `cw-count-${btn.id}`;
-        badge.className = 'btn-use-count';
-        btn.insertAdjacentElement('afterend', badge);
-      }
-      const current = parseInt(badge.textContent.replace(/[^0-9]/g, '')) || 0;
+      const container = getCountContainer(btn);
+      const current = parseInt(container.textContent.replace(/[^0-9]/g, '')) || 0;
       const newCount = current + 1;
-      badge.textContent = `已使用 ${newCount >= 1000 ? (newCount / 1000).toFixed(1) + 'k' : newCount} 次`;
+      container.textContent = `${btn.textContent.trim().replace(/^[^\w]+/, '')} 已被使用 ${newCount >= 1000 ? (newCount / 1000).toFixed(1) + 'k' : newCount} 次`;
     });
   }
 
