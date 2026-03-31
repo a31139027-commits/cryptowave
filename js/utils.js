@@ -173,7 +173,7 @@ const Utils = (() => {
     const activeToolLink = document.querySelector('.navbar__nav .dropdown__menu a.active');
     if (activeToolLink) {
       const icon = activeToolLink.textContent.trim().split(' ')[0]; // first emoji
-      const name = activeToolLink.textContent.trim().replace(/^.\s/, ''); // rest after emoji
+      const name = activeToolLink.textContent.trim().replace(/^\p{Emoji}\s*/u, ''); // rest after emoji
       const href = activeToolLink.getAttribute('href').split('#')[0];
       try {
         const metaDesc = document.querySelector('meta[name="description"]');
