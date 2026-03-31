@@ -284,7 +284,7 @@ const Utils = (() => {
         if (!btn) return;
         if (btn.classList.contains('btn--sm') || btn.classList.contains('btn--icon')) return;
         const container = getCountContainer(btn);
-        container.textContent = `${btn.textContent.trim().replace(/^[^\w]+/, '')} 已被使用 ${count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count} 次`;
+        container.textContent = `${btn.textContent.trim().replace(/^[^\w]+/, '')} used ${count >= 1000 ? (count / 1000).toFixed(1) + 'k' : count} times`;
       });
     } catch (_) {}
   }
@@ -322,7 +322,7 @@ const Utils = (() => {
       const container = getCountContainer(btn);
       const current = parseInt(container.textContent.replace(/[^0-9]/g, '')) || 0;
       const newCount = current + 1;
-      container.textContent = `${btn.textContent.trim().replace(/^[^\w]+/, '')} 已被使用 ${newCount >= 1000 ? (newCount / 1000).toFixed(1) + 'k' : newCount} 次`;
+      container.textContent = `${btn.textContent.trim().replace(/^[^\w]+/, '')} used ${newCount >= 1000 ? (newCount / 1000).toFixed(1) + 'k' : newCount} times`;
     });
   }
 
