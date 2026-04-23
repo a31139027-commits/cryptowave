@@ -31,19 +31,23 @@ const PasswordModule = (() => {
       mustIncludeEach   = true,
     } = options;
 
+    function filterCharset(cs) {
+      let s = cs;
+      if (excludeSimilar)   s = [...s].filter(c => !CHARSETS.similar.includes(c)).join('');
+      if (excludeAmbiguous) s = [...s].filter(c => !CHARSETS.ambiguous.includes(c)).join('');
+      return s;
+    }
+
     let pool = '';
     const required = [];
 
-    if (upper)   { pool += CHARSETS.upper;   if (mustIncludeEach) required.push(pickOne(CHARSETS.upper)); }
-    if (lower)   { pool += CHARSETS.lower;   if (mustIncludeEach) required.push(pickOne(CHARSETS.lower)); }
-    if (digits)  { pool += CHARSETS.digits;  if (mustIncludeEach) required.push(pickOne(CHARSETS.digits)); }
-    if (symbols) { pool += CHARSETS.symbols; if (mustIncludeEach) required.push(pickOne(CHARSETS.symbols)); }
+    if (upper)   { const cs = filterCharset(CHARSETS.upper);   if (cs) { pool += cs; if (mustIncludeEach) required.push(pickOne(cs)); } }
+    if (lower)   { const cs = filterCharset(CHARSETS.lower);   if (cs) { pool += cs; if (mustIncludeEach) required.push(pickOne(cs)); } }
+    if (digits)  { const cs = filterCharset(CHARSETS.digits);  if (cs) { pool += cs; if (mustIncludeEach) required.push(pickOne(cs)); } }
+    if (symbols) { const cs = filterCharset(CHARSETS.symbols); if (cs) { pool += cs; if (mustIncludeEach) required.push(pickOne(cs)); } }
 
     if (!pool) throw new Error('Please select at least one character type.');
     if (length < required.length) throw new Error(`Length must be at least ${required.length} when "include each type" is on.`);
-
-    if (excludeSimilar)   pool = [...pool].filter(c => !CHARSETS.similar.includes(c)).join('');
-    if (excludeAmbiguous) pool = [...pool].filter(c => !CHARSETS.ambiguous.includes(c)).join('');
     if (!pool) throw new Error('Character pool is empty after exclusions.');
 
     // Fill remaining slots with random pool chars

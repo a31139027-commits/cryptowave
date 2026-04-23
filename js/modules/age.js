@@ -34,7 +34,7 @@
 
   function nextBirthday(dob, asOf) {
     let next = new Date(asOf.getFullYear(), dob.getMonth(), dob.getDate());
-    if (next <= asOf) next.setFullYear(next.getFullYear() + 1);
+    if (next < asOf) next.setFullYear(next.getFullYear() + 1);
 
     // Handle Feb 29 → Mar 1 in non-leap years
     if (dob.getMonth() === 1 && dob.getDate() === 29) {
@@ -65,7 +65,7 @@
     const { years, months, days, totalDays, totalMonths } = calcAge(dob, asOf);
     const { date: bdayDate, daysUntil } = nextBirthday(dob, asOf);
 
-    const isBirthdayToday = daysUntil === 365 || daysUntil === 366;
+    const isBirthdayToday = daysUntil === 0;
     const birthdayMsg = isBirthdayToday
       ? '🎉 Happy Birthday!'
       : `${daysUntil} day${daysUntil !== 1 ? 's' : ''} until your next birthday`;

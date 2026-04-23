@@ -71,8 +71,12 @@ const QRModule = (() => {
 
   /* ── WiFi String Builder ──────────────────────────────── */
 
+  function wifiEscape(str) {
+    return str.replace(/([\\;,":"])/g, '\\$1');
+  }
+
   function buildWifiString(ssid, password, type = 'WPA', hidden = false) {
-    return `WIFI:T:${type};S:${ssid};P:${password};H:${hidden ? 'true' : 'false'};;`;
+    return `WIFI:T:${type};S:${wifiEscape(ssid)};P:${wifiEscape(password)};H:${hidden ? 'true' : 'false'};;`;
   }
 
   /* ── vCard Builder ────────────────────────────────────── */

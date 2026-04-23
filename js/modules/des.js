@@ -170,6 +170,13 @@ const DESModule = (() => {
       if (!Utils.requireField(keyEl, 'Secret key')) return;
       Utils.setLoading(encBtn, true);
       try {
+        // Auto-fill IV if empty (so user can reuse it for decryption)
+        if (ivEl && !ivEl.value.trim() && modeEl?.value !== 'ECB') {
+          const bytes = new Uint8Array(8);
+          crypto.getRandomValues(bytes);
+          ivEl.value = Array.from(bytes).map(b => b.toString(16).padStart(2,'0')).join('').slice(0, 8);
+          Utils.showToast('🔀 IV auto-generated — save it for decryption');
+        }
         const result = encryptFn(inputEl.value, keyEl.value, {
           mode:         modeEl?.value || 'CBC',
           outputFormat: fmtEl?.value  || 'Base64',

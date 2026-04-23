@@ -14,19 +14,27 @@
   function convert(valueStr, fromBase) {
     if (!valueStr || valueStr === '-') return null;
     const negative = valueStr.startsWith('-');
-    const digits = negative ? valueStr.slice(1) : valueStr;
+    const digits = (negative ? valueStr.slice(1) : valueStr).toLowerCase();
     if (!digits) return null;
 
-    const decimal = parseInt(digits, fromBase);
-    if (isNaN(decimal)) return null;
-
-    return negative ? -decimal : decimal;
+    try {
+      const base = BigInt(fromBase);
+      let result = 0n;
+      for (const ch of digits) {
+        const d = BigInt(parseInt(ch, fromBase));
+        if (d >= base) return null;
+        result = result * base + d;
+      }
+      return negative ? -result : result;
+    } catch {
+      return null;
+    }
   }
 
   function toBaseStr(num, toBase) {
     if (num === null || num === undefined) return '';
-    const negative = num < 0;
-    const abs = Math.abs(num);
+    const negative = num < 0n;
+    const abs = negative ? -num : num;
     const str = abs.toString(toBase).toUpperCase();
     return negative ? '-' + str : str;
   }
@@ -60,12 +68,14 @@
       infoEl.innerHTML = '';
       return;
     }
-    const abs = Math.abs(decimal);
-    const bits = abs === 0 ? 1 : Math.floor(Math.log2(abs)) + 1;
+    const neg = decimal < 0n;
+    const abs = neg ? -decimal : decimal;
+    const binStr = abs.toString(2);
+    const bits = binStr.length;
     infoEl.innerHTML = `
       <div class="breakdown-row">
         <span class="breakdown-row__label">Decimal value</span>
-        <span class="breakdown-row__value">${decimal.toLocaleString()}</span>
+        <span class="breakdown-row__value">${decimal.toString()}</span>
       </div>
       <div class="breakdown-row">
         <span class="breakdown-row__label">Bits needed</span>
@@ -73,11 +83,11 @@
       </div>
       <div class="breakdown-row">
         <span class="breakdown-row__label">Hex (with prefix)</span>
-        <span class="breakdown-row__value">${decimal < 0 ? '-' : ''}0x${Math.abs(decimal).toString(16).toUpperCase()}</span>
+        <span class="breakdown-row__value">${neg ? '-' : ''}0x${abs.toString(16).toUpperCase()}</span>
       </div>
       <div class="breakdown-row">
         <span class="breakdown-row__label">Binary (with prefix)</span>
-        <span class="breakdown-row__value">${decimal < 0 ? '-' : ''}0b${Math.abs(decimal).toString(2)}</span>
+        <span class="breakdown-row__value">${neg ? '-' : ''}0b${binStr}</span>
       </div>
     `;
   }
