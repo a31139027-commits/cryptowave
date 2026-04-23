@@ -258,6 +258,25 @@
 
   </div>
 
+  <!-- How it works -->
+  <div class="panel" style="margin-top:24px;">
+    <div class="panel__head">
+      <div class="panel__head-icon">⚙️</div>
+      <h2 class="panel__head-title">How SHA-256 Hashing Works</h2>
+    </div>
+    <div style="padding:16px 20px;font-size:0.875rem;line-height:1.75;color:var(--text-secondary);">
+      <p>A cryptographic hash function takes any input and produces a fixed-length fingerprint. SHA-256 always outputs a 256-bit (64 character hex) digest. The same input always produces the same hash, but even a single character change produces a completely different result — this is called the avalanche effect.</p>
+      <p style="margin-top:12px;">Hashing is <strong>one-way</strong>: you cannot reverse a hash back to the original input. This tool uses the browser's built-in <strong>Web Crypto API</strong> for SHA algorithms and <strong>CryptoJS</strong> for MD5 — no data is sent to any server.</p>
+      <p style="margin-top:16px;font-weight:600;color:var(--text-primary);">Common use cases</p>
+      <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+        <li>Verifying file integrity after download — compare hashes to detect corruption</li>
+        <li>Generating checksums for software releases</li>
+        <li>Storing a fingerprint of data without storing the data itself</li>
+        <li>Comparing whether two files are identical without transferring them</li>
+      </ul>
+    </div>
+  </div>
+
   <!-- FAQ -->
   <div class="panel" style="margin-top:24px;">
     <div class="panel__head">

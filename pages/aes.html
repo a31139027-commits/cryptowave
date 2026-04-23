@@ -376,6 +376,25 @@
 
   </div>
 
+    <!-- How it works -->
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">⚙️</div>
+        <h2 class="panel__head-title">How AES Encryption Works</h2>
+      </div>
+      <div style="padding:16px 20px;font-size:0.875rem;line-height:1.75;color:var(--text-secondary);">
+        <p>AES (Advanced Encryption Standard) is a symmetric block cipher that encrypts data in fixed 128-bit blocks using a secret key of 128, 192, or 256 bits. This tool runs entirely in your browser using the <strong>Web Crypto API</strong> — your key and data never leave your device.</p>
+        <p style="margin-top:12px;">AES-GCM is the recommended mode as it provides both encryption and authentication, detecting any tampering with the ciphertext. CBC and CTR modes are available for compatibility with legacy systems.</p>
+        <p style="margin-top:16px;font-weight:600;color:var(--text-primary);">Common use cases</p>
+        <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+          <li>Encrypting sensitive notes or credentials before storing them</li>
+          <li>Sharing confidential text with a shared passphrase</li>
+          <li>Testing AES implementations and verifying cipher outputs</li>
+          <li>Learning how symmetric encryption works in practice</li>
+        </ul>
+      </div>
+    </div>
+
     <!-- FAQ -->
     <div class="panel" style="margin-top:24px;">
       <div class="panel__head">

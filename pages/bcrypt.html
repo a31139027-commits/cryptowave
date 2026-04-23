@@ -263,6 +263,25 @@
 
   </div>
 
+  <!-- How it works -->
+  <div class="panel" style="margin-top:24px;">
+    <div class="panel__head">
+      <div class="panel__head-icon">⚙️</div>
+      <h2 class="panel__head-title">How Bcrypt Hashing Works</h2>
+    </div>
+    <div style="padding:16px 20px;font-size:0.875rem;line-height:1.75;color:var(--text-secondary);">
+      <p>Bcrypt is a password hashing algorithm designed to be intentionally slow. Unlike SHA-256 which executes in microseconds, Bcrypt's <strong>cost factor</strong> lets you control how long each hash takes — making brute-force attacks exponentially harder as hardware improves.</p>
+      <p style="margin-top:12px;">Each Bcrypt hash includes a random <strong>salt</strong> automatically, so two identical passwords always produce different hashes. This prevents rainbow table attacks. This tool uses <strong>bcrypt.js</strong> running entirely in your browser — no passwords are transmitted anywhere.</p>
+      <p style="margin-top:16px;font-weight:600;color:var(--text-primary);">Common use cases</p>
+      <ul style="margin-top:8px;padding-left:20px;display:flex;flex-direction:column;gap:6px;">
+        <li>Hashing passwords before storing them in a database</li>
+        <li>Verifying a plaintext password against a stored Bcrypt hash</li>
+        <li>Testing Bcrypt cost factors to balance security and performance</li>
+        <li>Learning how password hashing works in web applications</li>
+      </ul>
+    </div>
+  </div>
+
   <!-- FAQ -->
   <div class="panel" style="margin-top:24px;">
     <div class="panel__head">
