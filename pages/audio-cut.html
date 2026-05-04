@@ -95,6 +95,17 @@
           "acceptedAnswer": { "@type": "Answer", "text": "The Web Audio API decodes audio into raw PCM data which is re-encoded as WAV — a lossless format. WAV files are universally compatible and require no additional encoding libraries." }
         }
       ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Cut Audio Online",
+      "description": "Trim an audio file in your browser by selecting a start and end time, previewing the clip, and downloading the result.",
+      "step": [
+        { "@type": "HowToStep", "position": 1, "name": "Upload an audio file", "text": "Choose an MP3, WAV, OGG, FLAC, AAC, M4A, or other supported audio file." },
+        { "@type": "HowToStep", "position": 2, "name": "Set start and end times", "text": "Use the waveform and time inputs to choose the part of the audio you want to keep." },
+        { "@type": "HowToStep", "position": 3, "name": "Preview the clip", "text": "Play the selected range to confirm the cut before creating the output file." },
+        { "@type": "HowToStep", "position": 4, "name": "Cut and download", "text": "Click Cut Audio and download the trimmed WAV file after local processing finishes." }
+      ]
     }
   ]
 }
@@ -288,6 +299,32 @@
       </div>
     </div>
 
+    <!-- How To -->
+    <div class="panel" style="margin-top:16px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">1</div>
+        <h2 class="panel__head-title">How to Cut Audio Online</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-item__q">1. Upload an audio file</div>
+          <div class="faq-item__a">Choose an MP3, WAV, OGG, FLAC, AAC, M4A, or other supported audio file.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">2. Set start and end times</div>
+          <div class="faq-item__a">Use the waveform and time inputs to choose the part of the audio you want to keep.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">3. Preview the clip</div>
+          <div class="faq-item__a">Play the selected range to confirm the cut before creating the output file.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-item__q">4. Cut and download</div>
+          <div class="faq-item__a">Click Cut Audio and download the trimmed WAV file after local processing finishes.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
     <!-- FAQ -->
@@ -300,17 +337,17 @@
 
         <div class="faq-item">
           <div class="faq-item__q">Is my audio uploaded to a server?</div>
-          <div class="faq-item__a">No. All audio cutting is done using FFmpeg.wasm which runs entirely in your browser. Your files never leave your device and are never transmitted to any server.</div>
+          <div class="faq-item__a">No. All audio cutting is done using the Web Audio API which runs entirely in your browser. Your files never leave your device and are never transmitted to any server.</div>
         </div>
 
         <div class="faq-item">
           <div class="faq-item__q">What formats are supported?</div>
-          <div class="faq-item__a">The audio cutter supports MP3, WAV, OGG, FLAC, AAC, M4A, and other common audio formats. FFmpeg.wasm handles a wide range of audio codecs and containers.</div>
+          <div class="faq-item__a">The audio cutter supports MP3, WAV, OGG, FLAC, AAC, M4A, and other common audio formats that your browser can decode.</div>
         </div>
 
         <div class="faq-item">
           <div class="faq-item__q">Will cutting reduce audio quality?</div>
-          <div class="faq-item__a">No. The audio cutter uses stream copy mode to cut without re-encoding, preserving the original audio quality exactly. Your trimmed audio will be identical in quality to the original.</div>
+          <div class="faq-item__a">The selected range is exported as lossless WAV audio. This avoids extra lossy compression, though the downloaded file may be larger than the original MP3 or AAC file.</div>
         </div>
 
       </div>
