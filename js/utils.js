@@ -172,8 +172,11 @@ const Utils = (() => {
     // Track recently used tool
     const activeToolLink = document.querySelector('.navbar__nav .dropdown__menu a.active');
     if (activeToolLink) {
-      const icon = activeToolLink.textContent.trim().split(' ')[0]; // first emoji
-      const name = activeToolLink.textContent.trim().replace(/^\p{Emoji}\s*/u, ''); // rest after emoji
+      const iconEl = activeToolLink.querySelector('.nav-icon');
+      const icon = iconEl ? iconEl.textContent.trim() : activeToolLink.textContent.trim().split(' ')[0];
+      const name = iconEl
+        ? activeToolLink.textContent.trim().replace(icon, '').trim()
+        : activeToolLink.textContent.trim().replace(/^\p{Emoji}\s*/u, '').trim();
       const href = activeToolLink.getAttribute('href').split('#')[0];
       try {
         const metaDesc = document.querySelector('meta[name="description"]');

@@ -199,7 +199,7 @@
       </li>
     </ul>
     <button class="theme-toggle" onclick="cwToggle()" aria-label="Toggle theme">
-      <span class="theme-toggle__icon">☀️</span>
+      <span class="theme-toggle__icon">LT</span>
       <span class="theme-toggle__label">Light</span>
     </button>
     <button class="hamburger" aria-label="Menu">
@@ -248,7 +248,7 @@
 <section class="tools-section" id="cw-recent-section" style="display:none;">
   <div class="container">
     <div class="section-head">
-      <h2 class="section-head__title">🕐 <span>Recently</span> Used</h2>
+      <h2 class="section-head__title"><span class="section-token">REC</span><span>Recently</span> Used</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid" id="cw-recent-grid"></div>
@@ -277,12 +277,12 @@
 
     <!-- Crypto -->
     <div class="section-head" data-section="crypto">
-      <h2 class="section-head__title">🔐 <span>Encryption</span> &amp; Decryption</h2>
+      <h2 class="section-head__title"><span class="section-token">CR</span><span>Encryption</span> &amp; Decryption</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/aes" class="tool-card">
-        <div class="tool-card__icon">🔒</div>
+        <div class="tool-card__icon">AES</div>
         <div class="tool-card__name">AES Cipher</div>
         <p class="tool-card__desc">Advanced Encryption Standard with GCM, CBC, and CTR modes. Supports 128, 192, and 256-bit keys. NIST-approved.</p>
         <div class="tool-card__meta">
@@ -293,7 +293,7 @@
         </div>
       </a>
       <a href="pages/rsa" class="tool-card">
-        <div class="tool-card__icon">🗝️</div>
+        <div class="tool-card__icon">RSA</div>
         <div class="tool-card__name">RSA Cipher</div>
         <p class="tool-card__desc">Asymmetric encryption with OAEP and PKCS#1 padding. Generate key pairs from 1024 to 4096 bits.</p>
         <div class="tool-card__meta">
@@ -307,12 +307,12 @@
 
     <!-- Hashing -->
     <div class="section-head" data-section="hash" style="margin-top:48px;">
-      <h2 class="section-head__title"># <span>Hashing</span> &amp; Verification</h2>
+      <h2 class="section-head__title"><span class="section-token">#</span><span>Hashing</span> &amp; Verification</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/sha256" class="tool-card">
-        <div class="tool-card__icon">🔏</div>
+        <div class="tool-card__icon">SHA</div>
         <div class="tool-card__name">Hash Generator</div>
         <p class="tool-card__desc">Generate cryptographic hashes with SHA-256, SHA-512, MD5, and more. Verify data integrity instantly.</p>
         <div class="tool-card__meta">
@@ -323,7 +323,7 @@
         </div>
       </a>
       <a href="pages/hash#hmac" class="tool-card">
-        <div class="tool-card__icon">🛡️</div>
+        <div class="tool-card__icon">HMAC</div>
         <div class="tool-card__name">HMAC Generator</div>
         <p class="tool-card__desc">Hash-based Message Authentication Code for verifying message integrity and authenticity with a shared secret.</p>
         <div class="tool-card__meta">
@@ -333,7 +333,7 @@
         </div>
       </a>
       <a href="pages/bcrypt" class="tool-card">
-        <div class="tool-card__icon">🔑</div>
+        <div class="tool-card__icon">BC</div>
         <div class="tool-card__name">Bcrypt</div>
         <p class="tool-card__desc">Adaptive password hashing with configurable work factor. Industry standard for secure password storage.</p>
         <div class="tool-card__meta">
@@ -346,12 +346,12 @@
 
     <!-- Encoding -->
     <div class="section-head" data-section="encoding" style="margin-top:48px;">
-      <h2 class="section-head__title">⇄ <span>Encoding</span> &amp; Decoding</h2>
+      <h2 class="section-head__title"><span class="section-token">EN</span><span>Encoding</span> &amp; Decoding</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/encoding" class="tool-card">
-        <div class="tool-card__icon">64</div>
+        <div class="tool-card__icon">B64</div>
         <div class="tool-card__name">Base64</div>
         <p class="tool-card__desc">Encode and decode text or binary data using standard Base64 or URL-safe Base64 format.</p>
         <div class="tool-card__meta">
@@ -361,7 +361,7 @@
         </div>
       </a>
       <a href="pages/encoding#hex" class="tool-card">
-        <div class="tool-card__icon">0x</div>
+        <div class="tool-card__icon">HEX</div>
         <div class="tool-card__name">Hex Encoder</div>
         <p class="tool-card__desc">Convert text to hexadecimal representation and back. Essential for binary data inspection.</p>
         <div class="tool-card__meta">
@@ -371,7 +371,7 @@
         </div>
       </a>
       <a href="pages/encoding#url" class="tool-card">
-        <div class="tool-card__icon">%</div>
+        <div class="tool-card__icon">URL</div>
         <div class="tool-card__name">URL Encode</div>
         <p class="tool-card__desc">Percent-encode strings for safe use in URLs and query parameters. RFC 3986 compliant.</p>
         <div class="tool-card__meta">
@@ -393,12 +393,12 @@
 
     <!-- Video Converter -->
     <div class="section-head" data-section="media" style="margin-top:48px;">
-      <h2 class="section-head__title">🎬 <span>Video</span> Converter</h2>
+      <h2 class="section-head__title"><span class="section-token">VID</span><span>Video</span> Converter</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/video" class="tool-card">
-        <div class="tool-card__icon">🎬</div>
+        <div class="tool-card__icon">VID</div>
         <div class="tool-card__name">Video Format Converter</div>
         <p class="tool-card__desc">Convert between MP4, AVI, MKV, MOV, WebM, FLV, 3GP, and GIF. Change resolution, quality, and FPS. All in-browser with FFmpeg.wasm.</p>
         <div class="tool-card__meta">
@@ -408,7 +408,7 @@
         </div>
       </a>
       <a href="pages/video" class="tool-card">
-        <div class="tool-card__icon">🖼️</div>
+        <div class="tool-card__icon">VID</div>
         <div class="tool-card__name">Video to GIF</div>
         <p class="tool-card__desc">Convert any video clip into an animated GIF with custom frame rate and resolution. Perfect for sharing short clips without audio.</p>
         <div class="tool-card__meta">
@@ -418,7 +418,7 @@
         </div>
       </a>
       <a href="pages/video-trim" class="tool-card">
-        <div class="tool-card__icon">✂️</div>
+        <div class="tool-card__icon">TRM</div>
         <div class="tool-card__name">Video Trimmer</div>
         <p class="tool-card__desc">Cut any video to an exact time range. Use the live preview player to set start and end times, then download the trimmed clip in the original format.</p>
         <div class="tool-card__meta">
@@ -428,7 +428,7 @@
         </div>
       </a>
       <a href="pages/video-merge" class="tool-card">
-        <div class="tool-card__icon">🔗</div>
+        <div class="tool-card__icon">MRG</div>
         <div class="tool-card__name">Video Merger</div>
         <p class="tool-card__desc">Combine multiple video clips into one MP4. Add files, reorder, choose fast stream-copy or universal re-encode mode, and download — no upload needed.</p>
         <div class="tool-card__meta">
@@ -438,7 +438,7 @@
         </div>
       </a>
       <a href="pages/video-rotate" class="tool-card">
-        <div class="tool-card__icon">🔄</div>
+        <div class="tool-card__icon">ROT</div>
         <div class="tool-card__name">Video Rotate &amp; Flip</div>
         <p class="tool-card__desc">Rotate video 90°, 180° or flip horizontally/vertically. Combine rotation and flip, then download as MP4 — all inside your browser, no upload required.</p>
         <div class="tool-card__meta">
@@ -448,7 +448,7 @@
         </div>
       </a>
       <a href="pages/video-speed" class="tool-card">
-        <div class="tool-card__icon">⏩</div>
+        <div class="tool-card__icon">SPD</div>
         <div class="tool-card__name">Video Speed Changer</div>
         <p class="tool-card__desc">Slow down to 0.25× slow motion or speed up to 4× fast forward. Audio stays perfectly in sync. Choose a preset or use the custom slider — no upload needed.</p>
         <div class="tool-card__meta">
@@ -458,7 +458,7 @@
         </div>
       </a>
       <a href="pages/video-loop" class="tool-card">
-        <div class="tool-card__icon">🔁</div>
+        <div class="tool-card__icon">LOOP</div>
         <div class="tool-card__name">Video Loop Maker</div>
         <p class="tool-card__desc">Repeat a video 2–20 times and download as a single seamless MP4. Uses stream copy — fast and lossless. Perfect for making looping clips.</p>
         <div class="tool-card__meta">
@@ -468,7 +468,7 @@
         </div>
       </a>
       <a href="pages/video-volume" class="tool-card">
-        <div class="tool-card__icon">🔊</div>
+        <div class="tool-card__icon">VOL</div>
         <div class="tool-card__name">Video Volume</div>
         <p class="tool-card__desc">Boost or reduce the audio track of any video from 0% to 200%. Video stream is copied without re-encoding — fast and lossless.</p>
         <div class="tool-card__meta">
@@ -478,7 +478,7 @@
         </div>
       </a>
       <a href="pages/video-crop" class="tool-card">
-        <div class="tool-card__icon">✂️</div>
+        <div class="tool-card__icon">CROP</div>
         <div class="tool-card__name">Video Crop</div>
         <p class="tool-card__desc">Crop your video to any aspect ratio — 16:9, 4:3, square, portrait, or custom pixel dimensions. Remove black bars and reframe shots.</p>
         <div class="tool-card__meta">
@@ -492,12 +492,12 @@
 
     <!-- Audio -->
     <div class="section-head" data-section="media" style="margin-top:48px;">
-      <h2 class="section-head__title">🎵 <span>Audio</span> Converter</h2>
+      <h2 class="section-head__title"><span class="section-token">AUD</span><span>Audio</span> Converter</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/mp4-to-mp3" class="tool-card">
-        <div class="tool-card__icon">🎵</div>
+        <div class="tool-card__icon">MP3</div>
         <div class="tool-card__name">MP4 to MP3</div>
         <p class="tool-card__desc">Extract MP3 audio from MP4, MKV, MOV, AVI, WebM and any video file. Choose bitrate (128–320 kbps). No upload, no server, runs in browser.</p>
         <div class="tool-card__meta">
@@ -506,7 +506,7 @@
         </div>
       </a>
       <a href="pages/audio" class="tool-card">
-        <div class="tool-card__icon">🎵</div>
+        <div class="tool-card__icon">AUD</div>
         <div class="tool-card__name">Audio Format Converter</div>
         <p class="tool-card__desc">Convert audio between MP3, WAV, FLAC, AAC, OGG, OPUS, M4A, and AIFF. Extract audio from video files too.</p>
         <div class="tool-card__meta">
@@ -516,7 +516,7 @@
         </div>
       </a>
       <a href="pages/audio-cut" class="tool-card">
-        <div class="tool-card__icon">✂️</div>
+        <div class="tool-card__icon">CUT</div>
         <div class="tool-card__name">Audio Cutter</div>
         <p class="tool-card__desc">Trim any audio file to an exact time range. Upload MP3, WAV, OGG or FLAC, set start and end, preview and download — no upload required.</p>
         <div class="tool-card__meta">
@@ -526,7 +526,7 @@
         </div>
       </a>
       <a href="pages/audio#extract" class="tool-card">
-        <div class="tool-card__icon">🎬</div>
+        <div class="tool-card__icon">EXT</div>
         <div class="tool-card__name">Video → Audio</div>
         <p class="tool-card__desc">Extract audio tracks from MP4, MKV, MOV, AVI, and WebM video files without any quality loss.</p>
         <div class="tool-card__meta">
@@ -536,7 +536,7 @@
         </div>
       </a>
       <a href="pages/audio-merge" class="tool-card">
-        <div class="tool-card__icon">🔗</div>
+        <div class="tool-card__icon">MRG</div>
         <div class="tool-card__name">Audio Merger</div>
         <p class="tool-card__desc">Combine multiple audio tracks into one. Upload MP3, WAV, OGG or FLAC, reorder them, set a silence gap between tracks, and download as WAV.</p>
         <div class="tool-card__meta">
@@ -546,7 +546,7 @@
         </div>
       </a>
       <a href="pages/audio-volume" class="tool-card">
-        <div class="tool-card__icon">🔊</div>
+        <div class="tool-card__icon">VOL</div>
         <div class="tool-card__name">Audio Volume</div>
         <p class="tool-card__desc">Boost or reduce audio volume from 0% to 200%. Works with MP3, WAV, OGG, FLAC, AAC, M4A. FFmpeg.wasm — 100% client-side.</p>
         <div class="tool-card__meta">
@@ -556,7 +556,7 @@
         </div>
       </a>
       <a href="pages/audio-reverse" class="tool-card">
-        <div class="tool-card__icon">🔄</div>
+        <div class="tool-card__icon">REV</div>
         <div class="tool-card__name">Audio Reverse</div>
         <p class="tool-card__desc">Flip any audio file backwards. Reverse MP3, WAV, OGG, FLAC for creative effects or sound design. FFmpeg.wasm — 100% client-side.</p>
         <div class="tool-card__meta">
@@ -566,7 +566,7 @@
         </div>
       </a>
       <a href="pages/audio-pitch" class="tool-card">
-        <div class="tool-card__icon">🎼</div>
+        <div class="tool-card__icon">PIT</div>
         <div class="tool-card__name">Audio Pitch Changer</div>
         <p class="tool-card__desc">Shift audio pitch up or down by semitones without changing playback speed. −12 to +12 semitones. FFmpeg.wasm — 100% client-side.</p>
         <div class="tool-card__meta">
@@ -579,12 +579,12 @@
 
     <!-- DES / 3DES -->
     <div class="section-head" data-section="crypto" style="margin-top:48px;">
-      <h2 class="section-head__title">🔓 <span>Legacy</span> Encryption</h2>
+      <h2 class="section-head__title"><span class="section-token">LEG</span><span>Legacy</span> Encryption</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/des" class="tool-card">
-        <div class="tool-card__icon">🔓</div>
+        <div class="tool-card__icon">DES</div>
         <div class="tool-card__name">DES Cipher</div>
         <p class="tool-card__desc">Data Encryption Standard — CBC, ECB, CFB, OFB modes. Legacy compatibility tool. Not recommended for new projects.</p>
         <div class="tool-card__meta">
@@ -595,7 +595,7 @@
         </div>
       </a>
       <a href="pages/tripledes" class="tool-card">
-        <div class="tool-card__icon">🔐</div>
+        <div class="tool-card__icon">3D</div>
         <div class="tool-card__name">Triple DES (3DES)</div>
         <p class="tool-card__desc">Applies DES three times per block — stronger than DES but deprecated by NIST in 2023. For legacy system compatibility only.</p>
         <div class="tool-card__meta">
@@ -609,12 +609,12 @@
 
     <!-- Image Tools -->
     <div class="section-head" data-section="image" style="margin-top:48px;">
-      <h2 class="section-head__title">🖼️ <span>Image</span> Tools</h2>
+      <h2 class="section-head__title"><span class="section-token">IMG</span><span>Image</span> Tools</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/image" class="tool-card">
-        <div class="tool-card__icon">🗜️</div>
+        <div class="tool-card__icon">IMG</div>
         <div class="tool-card__name">Image Compressor</div>
         <p class="tool-card__desc">Compress JPG, PNG, and WebP images with custom quality and max resolution. See exactly how much space you save before downloading.</p>
         <div class="tool-card__meta">
@@ -624,7 +624,7 @@
         </div>
       </a>
       <a href="pages/image#convert" class="tool-card">
-        <div class="tool-card__icon">⇄</div>
+        <div class="tool-card__icon">CVT</div>
         <div class="tool-card__name">Image Format Converter</div>
         <p class="tool-card__desc">Convert between JPG, PNG, WebP, and BMP formats. Batch convert multiple images at once with custom quality settings.</p>
         <div class="tool-card__meta">
@@ -634,7 +634,7 @@
         </div>
       </a>
       <a href="pages/image#pdf" class="tool-card">
-        <div class="tool-card__icon">📄</div>
+        <div class="tool-card__icon">PDF</div>
         <div class="tool-card__name">Image to PDF</div>
         <p class="tool-card__desc">Combine multiple images into a single PDF document. Choose page size, orientation, and margin. Each image becomes one page.</p>
         <div class="tool-card__meta">
@@ -644,7 +644,7 @@
         </div>
       </a>
       <a href="pages/image-webp" class="tool-card">
-        <div class="tool-card__icon">🌐</div>
+        <div class="tool-card__icon">WEBP</div>
         <div class="tool-card__name">Image to WebP</div>
         <p class="tool-card__desc">Convert JPG, PNG, GIF, and AVIF images to WebP format. Batch convert multiple files with quality control. 25–35% smaller than JPEG with better quality.</p>
         <div class="tool-card__meta">
@@ -657,12 +657,12 @@
 
     <!-- Password -->
     <div class="section-head" data-section="tools" style="margin-top:48px;">
-      <h2 class="section-head__title">🔑 <span>Password</span> Generator</h2>
+      <h2 class="section-head__title"><span class="section-token">PWD</span><span>Password</span> Generator</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/password" class="tool-card">
-        <div class="tool-card__icon">🔑</div>
+        <div class="tool-card__icon">PWD</div>
         <div class="tool-card__name">Password Generator</div>
         <p class="tool-card__desc">Generate cryptographically secure passwords with custom length, character sets, and strength meter. Bulk generate up to 100 passwords at once.</p>
         <div class="tool-card__meta">
@@ -672,7 +672,7 @@
         </div>
       </a>
       <a href="pages/password#tab-passphrase" class="tool-card">
-        <div class="tool-card__icon">💬</div>
+        <div class="tool-card__icon">PHR</div>
         <div class="tool-card__name">Passphrase Generator</div>
         <p class="tool-card__desc">Generate memorable multi-word passphrases — easier to remember than random passwords and often stronger.</p>
         <div class="tool-card__meta">
@@ -685,12 +685,12 @@
 
     <!-- Utility Tools -->
     <div class="section-head" data-section="tools" style="margin-top:48px;">
-      <h2 class="section-head__title">🔧 <span>Utility</span> Tools</h2>
+      <h2 class="section-head__title"><span class="section-token">TL</span><span>Utility</span> Tools</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/date-diff" class="tool-card">
-        <div class="tool-card__icon">📅</div>
+        <div class="tool-card__icon">DATE</div>
         <div class="tool-card__name">Date Difference Calculator</div>
         <p class="tool-card__desc">Find the exact number of days, weeks, months, and years between any two dates. Includes business days count.</p>
         <div class="tool-card__meta">
@@ -700,7 +700,7 @@
         </div>
       </a>
       <a href="pages/age" class="tool-card">
-        <div class="tool-card__icon">🎂</div>
+        <div class="tool-card__icon">AGE</div>
         <div class="tool-card__name">Age Calculator</div>
         <p class="tool-card__desc">Calculate your exact age in years, months, and days from your birthday. Includes next birthday countdown and age on any date.</p>
         <div class="tool-card__meta">
@@ -710,7 +710,7 @@
         </div>
       </a>
       <a href="pages/pdf-merge" class="tool-card">
-        <div class="tool-card__icon">📎</div>
+        <div class="tool-card__icon">PDF</div>
         <div class="tool-card__name">PDF Merger</div>
         <p class="tool-card__desc">Combine multiple PDF files into one. Drag, drop and reorder your files, then download the merged PDF instantly — no upload required.</p>
         <div class="tool-card__meta">
@@ -720,7 +720,7 @@
         </div>
       </a>
       <a href="pages/pdf-split" class="tool-card">
-        <div class="tool-card__icon">✂️</div>
+        <div class="tool-card__icon">PDF</div>
         <div class="tool-card__name">PDF Splitter</div>
         <p class="tool-card__desc">Split a PDF into individual pages or extract a custom page range. Download each page separately or as a new combined PDF — all in-browser.</p>
         <div class="tool-card__meta">
@@ -730,7 +730,7 @@
         </div>
       </a>
       <a href="pages/pdf-images" class="tool-card">
-        <div class="tool-card__icon">🖼️</div>
+        <div class="tool-card__icon">IMG</div>
         <div class="tool-card__name">PDF to Images</div>
         <p class="tool-card__desc">Convert each PDF page into a PNG or JPG image. Choose resolution, preview all pages, then download individually or grab everything as a ZIP.</p>
         <div class="tool-card__meta">
@@ -740,7 +740,7 @@
         </div>
       </a>
       <a href="pages/tts" class="tool-card">
-        <div class="tool-card__icon">🔊</div>
+        <div class="tool-card__icon">TTS</div>
         <div class="tool-card__name">Text to Speech</div>
         <p class="tool-card__desc">Convert text to spoken audio using your browser's built-in voices. Adjust speed, pitch and volume. Supports multiple languages — 100% client-side.</p>
         <div class="tool-card__meta">
@@ -750,7 +750,7 @@
         </div>
       </a>
       <a href="pages/word-count" class="tool-card">
-        <div class="tool-card__icon">📝</div>
+        <div class="tool-card__icon">TXT</div>
         <div class="tool-card__name">Word Counter</div>
         <p class="tool-card__desc">Count words, characters, sentences and paragraphs in real time. Includes reading time and speaking time estimates. Instant, no button needed.</p>
         <div class="tool-card__meta">
@@ -760,7 +760,7 @@
         </div>
       </a>
       <a href="pages/base-convert" class="tool-card">
-        <div class="tool-card__icon">🔢</div>
+        <div class="tool-card__icon">123</div>
         <div class="tool-card__name">Base Converter</div>
         <p class="tool-card__desc">Convert between binary, octal, decimal, and hexadecimal instantly. Type in any field and all others update in real time.</p>
         <div class="tool-card__meta">
@@ -770,7 +770,7 @@
         </div>
       </a>
       <a href="pages/color-convert" class="tool-card">
-        <div class="tool-card__icon">🎨</div>
+        <div class="tool-card__icon">CLR</div>
         <div class="tool-card__name">Color Converter</div>
         <p class="tool-card__desc">Convert between HEX, RGB, HSL, HSV and CMYK instantly. Includes a color picker, preset swatches and one-click copy for each format.</p>
         <div class="tool-card__meta">
@@ -783,12 +783,12 @@
 
     <!-- QR Code -->
     <div class="section-head" data-section="tools" style="margin-top:48px;">
-      <h2 class="section-head__title">⬛ <span>QR Code</span> Tools</h2>
+      <h2 class="section-head__title"><span class="section-token">QR</span><span>QR Code</span> Tools</h2>
       <div class="section-head__line"></div>
     </div>
     <div class="tools-grid">
       <a href="pages/qrcode" class="tool-card">
-        <div class="tool-card__icon">⬛</div>
+        <div class="tool-card__icon">QR</div>
         <div class="tool-card__name">QR Code Generator</div>
         <p class="tool-card__desc">Generate QR codes from URLs, plain text, WiFi passwords, and contact cards. Download as PNG with custom colors and sizes.</p>
         <div class="tool-card__meta">
@@ -798,7 +798,7 @@
         </div>
       </a>
       <a href="pages/qrcode#tab-scan" class="tool-card">
-        <div class="tool-card__icon">🔍</div>
+        <div class="tool-card__icon">SCAN</div>
         <div class="tool-card__name">QR Code Scanner</div>
         <p class="tool-card__desc">Upload any QR code image to instantly extract its content — URLs, text, WiFi credentials, and more. All client-side.</p>
         <div class="tool-card__meta">
@@ -989,9 +989,23 @@
     const search = document.getElementById('cw-tool-search');
     const hasQuery = Boolean(search && search.value.trim());
     section.setAttribute('data-has-recent', 'true');
+    const iconMap = {
+      'aes':'AES','rsa':'RSA','sha256':'SHA','hash':'HMAC','bcrypt':'BC',
+      'encoding':'B64','video':'VID','video-trim':'TRM','video-merge':'MRG','video-rotate':'ROT',
+      'video-speed':'SPD','video-loop':'LOOP','video-volume':'VOL','video-crop':'CROP',
+      'audio':'AUD','audio-cut':'CUT','audio-merge':'MRG','audio-volume':'VOL','audio-reverse':'REV',
+      'audio-pitch':'PIT','mp4-to-mp3':'MP3','des':'DES','tripledes':'3D','image':'IMG',
+      'image-webp':'WEBP','password':'PWD','qrcode':'QR','date-diff':'DATE','age':'AGE',
+      'pdf-merge':'PDF','pdf-split':'PDF','pdf-images':'IMG','tts':'TTS','word-count':'TXT',
+      'base-convert':'123','color-convert':'CLR'
+    };
+    const iconForHref = href => {
+      const key = String(href || '').replace(/^pages\//, '').replace(/\.html(?=$|#)/, '').split('#')[0];
+      return iconMap[key] || 'TL';
+    };
     grid.innerHTML = recent.map(r => `
       <a href="${r.href}" class="tool-card">
-        <div class="tool-card__icon">${r.icon}</div>
+        <div class="tool-card__icon">${iconForHref(r.href)}</div>
         <div class="tool-card__name">${r.name}</div>
         ${r.desc ? `<p class="tool-card__desc">${r.desc}</p>` : ''}
         <div class="tool-card__meta"><span class="tool-card__arrow">→</span></div>
