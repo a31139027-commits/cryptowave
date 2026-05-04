@@ -212,21 +212,34 @@
 <section class="hero">
   <div class="container">
     <div class="hero__badge">
-      <span></span> 100% Client-Side · Zero Data Transmission
+      <span></span> Private browser tools · No upload required
     </div>
     <h1 class="hero__title">
-      Security &amp; Conversion<br /><span>Tools for Developers</span>
+      Find a tool and<br /><span>finish in your browser</span>
     </h1>
     <p class="hero__subtitle">
-      Professional-grade encryption, hashing, encoding, and audio conversion — all running directly in your browser. No servers. No accounts. No data leaves your device.
+      Encryption, hashing, media conversion, PDF utilities, passwords, and QR codes. Files stay on your device and process locally.
     </p>
-    <div class="hero__tags">
-      <span class="hero__tag"><span class="hero__tag-dot"></span>AES-GCM / CBC / CTR</span>
-      <span class="hero__tag"><span class="hero__tag-dot"></span>RSA-OAEP / PKCS#1</span>
-      <span class="hero__tag"><span class="hero__tag-dot"></span>SHA-256 / SHA-512</span>
-      <span class="hero__tag"><span class="hero__tag-dot"></span>HMAC · Bcrypt · MD5</span>
-      <span class="hero__tag"><span class="hero__tag-dot"></span>Base64 · Hex · JWT</span>
-      <span class="hero__tag"><span class="hero__tag-dot"></span>MP3 / WAV / FLAC / AAC</span>
+
+    <div class="tool-search" role="search">
+      <label class="sr-only" for="cw-tool-search">Search tools</label>
+      <input id="cw-tool-search" type="search" placeholder="Search AES, video trim, PDF split, Base64..." autocomplete="off" />
+      <button type="button" id="cw-search-clear" aria-label="Clear search">Clear</button>
+    </div>
+
+    <div class="quick-tools" aria-label="Popular tools">
+      <a href="pages/video">Video Converter</a>
+      <a href="pages/pdf-merge">PDF Merger</a>
+      <a href="pages/aes">AES Encryption</a>
+      <a href="pages/sha256">Hash Generator</a>
+      <a href="pages/image">Image Compressor</a>
+    </div>
+
+    <div class="trust-strip" aria-label="Privacy and security">
+      <span>No file uploads</span>
+      <span>Runs locally</span>
+      <span>No account</span>
+      <span>No server storage</span>
     </div>
   </div>
 </section>
@@ -246,14 +259,15 @@
 <section class="tools-section" style="padding-bottom:0;">
   <div class="container">
     <div class="filter-bar" id="cw-filter-bar">
-      <button class="filter-pill active" data-filter="all">✦ All Tools</button>
-      <button class="filter-pill" data-filter="crypto">🔐 Crypto</button>
-      <button class="filter-pill" data-filter="hash">＃ Hash</button>
-      <button class="filter-pill" data-filter="encoding">⇄ Encoding</button>
-      <button class="filter-pill" data-filter="media">🎵 Media</button>
-      <button class="filter-pill" data-filter="image">🖼️ Image</button>
-      <button class="filter-pill" data-filter="tools">🔧 Tools</button>
+      <button class="filter-pill active" data-filter="all">All Tools</button>
+      <button class="filter-pill" data-filter="crypto">Crypto</button>
+      <button class="filter-pill" data-filter="hash">Hash</button>
+      <button class="filter-pill" data-filter="encoding">Encoding</button>
+      <button class="filter-pill" data-filter="media">Media</button>
+      <button class="filter-pill" data-filter="image">Image</button>
+      <button class="filter-pill" data-filter="tools">Utilities</button>
     </div>
+    <p class="search-empty" id="cw-search-empty" hidden>No matching tools found.</p>
   </div>
 </section>
 
@@ -856,24 +870,79 @@
 <script>
 (function () {
   var bar = document.getElementById('cw-filter-bar');
+  var search = document.getElementById('cw-tool-search');
+  var clear = document.getElementById('cw-search-clear');
+  var empty = document.getElementById('cw-search-empty');
   if (!bar) return;
+
+  var activeFilter = 'all';
+
+  function getGroup(head) {
+    var nodes = [];
+    var el = head.nextElementSibling;
+    while (el && !el.classList.contains('section-head')) {
+      nodes.push(el);
+      el = el.nextElementSibling;
+    }
+    return nodes;
+  }
+
+  function applyToolFilters() {
+    var query = search ? search.value.trim().toLowerCase() : '';
+    var anyVisible = false;
+
+    document.querySelectorAll('.section-head[data-section]').forEach(function (head) {
+      var sectionMatches = activeFilter === 'all' || head.dataset.section === activeFilter;
+      var groupNodes = getGroup(head);
+      var groupHasVisibleCard = false;
+
+      groupNodes.forEach(function (node) {
+        if (!node.classList.contains('tools-grid')) {
+          node.style.display = sectionMatches ? '' : 'none';
+          return;
+        }
+
+        var visibleInGrid = false;
+        node.querySelectorAll('.tool-card').forEach(function (card) {
+          var text = card.textContent.toLowerCase();
+          var href = (card.getAttribute('href') || '').toLowerCase();
+          var matchesSearch = !query || text.indexOf(query) !== -1 || href.indexOf(query) !== -1;
+          var showCard = sectionMatches && matchesSearch;
+          card.style.display = showCard ? '' : 'none';
+          if (showCard) visibleInGrid = true;
+        });
+
+        node.style.display = sectionMatches && visibleInGrid ? '' : 'none';
+        if (visibleInGrid) groupHasVisibleCard = true;
+      });
+
+      head.style.display = sectionMatches && groupHasVisibleCard ? '' : 'none';
+      if (sectionMatches && groupHasVisibleCard) anyVisible = true;
+    });
+
+    if (empty) empty.hidden = anyVisible;
+  }
+
   bar.addEventListener('click', function (e) {
     var pill = e.target.closest('.filter-pill');
     if (!pill) return;
-    var filter = pill.dataset.filter;
+    activeFilter = pill.dataset.filter;
     bar.querySelectorAll('.filter-pill').forEach(function (p) {
       p.classList.toggle('active', p === pill);
     });
-    document.querySelectorAll('.section-head[data-section]').forEach(function (head) {
-      var show = filter === 'all' || head.dataset.section === filter;
-      head.style.display = show ? '' : 'none';
-      var el = head.nextElementSibling;
-      while (el && !el.classList.contains('section-head')) {
-        el.style.display = show ? '' : 'none';
-        el = el.nextElementSibling;
-      }
-    });
+    applyToolFilters();
   });
+
+  if (search) {
+    search.addEventListener('input', applyToolFilters);
+  }
+  if (clear && search) {
+    clear.addEventListener('click', function () {
+      search.value = '';
+      search.focus();
+      applyToolFilters();
+    });
+  }
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
