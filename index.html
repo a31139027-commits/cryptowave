@@ -267,7 +267,7 @@
       <button class="filter-pill" data-filter="image">Image</button>
       <button class="filter-pill" data-filter="tools">Utilities</button>
     </div>
-    <p class="search-empty" id="cw-search-empty" hidden>No matching tools found.</p>
+    <p class="search-empty" id="cw-search-empty" hidden></p>
   </div>
 </section>
 
@@ -910,6 +910,10 @@
     setVisible(recentSection, Boolean(hasRecent && !query));
   }
 
+  function syncSearchMode(query) {
+    document.body.classList.toggle('cw-search-active', Boolean(query));
+  }
+
   function updateSections() {
     document.querySelectorAll('.section-head[data-section]').forEach(function (head) {
       var node = head.nextElementSibling;
@@ -940,11 +944,14 @@
       if (showCard) visibleCount += 1;
     });
 
+    syncSearchMode(query);
     syncRecentSection(query);
     updateSections();
     if (empty) {
-      setVisible(empty, visibleCount === 0);
-      empty.textContent = query ? 'No matching tools found for "' + search.value.trim() + '".' : 'No matching tools found.';
+      setVisible(empty, Boolean(query));
+      empty.textContent = visibleCount
+        ? visibleCount + ' matching tool' + (visibleCount === 1 ? '' : 's') + ' for "' + search.value.trim() + '".'
+        : 'No matching tools found for "' + search.value.trim() + '".';
     }
   }
 
