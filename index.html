@@ -879,6 +879,12 @@
   var recentSection = document.getElementById('cw-recent-section');
   var mainTools = Array.prototype.slice.call(document.querySelectorAll('section.tools-section[data-category] .tool-card'));
 
+  function setVisible(el, visible) {
+    if (!el) return;
+    el.hidden = !visible;
+    el.style.display = visible ? '' : 'none';
+  }
+
   function findSection(card) {
     var grid = card.closest('.tools-grid');
     var node = grid ? grid.previousElementSibling : null;
@@ -900,7 +906,8 @@
   }
 
   function syncRecentSection(query) {
-    if (recentSection) recentSection.hidden = Boolean(query);
+    var hasRecent = recentSection && recentSection.getAttribute('data-has-recent') === 'true';
+    setVisible(recentSection, Boolean(hasRecent && !query));
   }
 
   function updateSections() {
@@ -912,12 +919,12 @@
         if (node.classList.contains('tools-grid')) {
           var visibleCards = node.querySelectorAll('.tool-card:not([hidden])');
           if (visibleCards.length) hasVisibleCard = true;
-          node.hidden = !visibleCards.length;
+          setVisible(node, Boolean(visibleCards.length));
         }
         node = node.nextElementSibling;
       }
 
-      head.hidden = !hasVisibleCard;
+      setVisible(head, hasVisibleCard);
     });
   }
 
@@ -929,20 +936,16 @@
       var section = findSection(card);
       var sectionMatches = activeFilter === 'all' || section === activeFilter;
       var showCard = sectionMatches && cardMatches(card, query);
-      card.hidden = !showCard;
+      setVisible(card, showCard);
       if (showCard) visibleCount += 1;
     });
 
     syncRecentSection(query);
     updateSections();
     if (empty) {
-      empty.hidden = visibleCount > 0;
+      setVisible(empty, visibleCount === 0);
       empty.textContent = query ? 'No matching tools found for "' + search.value.trim() + '".' : 'No matching tools found.';
     }
-  }
-
-  function firstVisibleTool() {
-    return mainTools.find(function (card) { return !card.hidden; });
   }
 
   bar.addEventListener('click', function (e) {
@@ -957,14 +960,6 @@
 
   if (search) {
     search.addEventListener('input', applyToolFilters);
-    search.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter') return;
-      var first = firstVisibleTool();
-      if (first) {
-        e.preventDefault();
-        window.location.href = first.getAttribute('href');
-      }
-    });
   }
   if (clear && search) {
     clear.addEventListener('click', function () {
@@ -985,6 +980,8 @@
     const grid = document.getElementById('cw-recent-grid');
     if (!section || !grid) return;
     const search = document.getElementById('cw-tool-search');
+    const hasQuery = Boolean(search && search.value.trim());
+    section.setAttribute('data-has-recent', 'true');
     grid.innerHTML = recent.map(r => `
       <a href="${r.href}" class="tool-card">
         <div class="tool-card__icon">${r.icon}</div>
@@ -992,8 +989,8 @@
         ${r.desc ? `<p class="tool-card__desc">${r.desc}</p>` : ''}
         <div class="tool-card__meta"><span class="tool-card__arrow">→</span></div>
       </a>`).join('');
-    section.hidden = Boolean(search && search.value.trim());
-    section.style.display = '';
+    section.hidden = hasQuery;
+    section.style.display = hasQuery ? 'none' : '';
   } catch (_) {}
 })();
 </script>
