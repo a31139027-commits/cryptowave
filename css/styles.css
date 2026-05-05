@@ -140,14 +140,6 @@ body::after {
 }
 .navbar__nav a:hover { color: var(--text-primary); background: var(--accent-dim); }
 .navbar__nav a.active { color: var(--accent); background: var(--accent-dim); }
-.nav-icon {
-  width: 24px; height: 20px; border-radius: 6px;
-  display: inline-flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-family: var(--font-mono);
-  font-size: 0.58rem; font-weight: 800; letter-spacing: 0;
-  color: var(--accent); background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-}
 .navbar__badge {
   font-size: 9px; font-weight: 700;
   background: var(--accent); color: var(--text-inverse);
@@ -247,14 +239,6 @@ body.cw-search-active .filter-bar { margin-bottom: 14px; }
   text-transform: uppercase; white-space: nowrap;
 }
 .section-head__title span { color: var(--accent); }
-.section-token {
-  width: 30px; height: 22px; border-radius: 6px;
-  display: inline-flex; align-items: center; justify-content: center;
-  margin-right: 8px; font-family: var(--font-mono);
-  font-size: 0.6rem; font-weight: 800; letter-spacing: 0;
-  color: var(--accent); background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-}
 .section-head__line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border), transparent); }
 
 /* ─── Tools Grid ──────────────────────────────────────────── */
@@ -281,8 +265,7 @@ body.cw-search-active .filter-bar { margin-bottom: 14px; }
 .tool-card__icon {
   width: 38px; height: 38px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono); font-size: 0.66rem; font-weight: 800;
-  letter-spacing: 0; margin-bottom: 14px;
+  font-size: 17px; margin-bottom: 14px;
   background: var(--bg-input); border: 1px solid var(--border);
   transition: all var(--transition);
 }
@@ -972,13 +955,7 @@ select {
   color: var(--accent);
   background: var(--accent-dim);
 }
-.theme-toggle__icon {
-  min-width: 24px; height: 20px; border-radius: 6px;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono); font-size: 0.58rem; font-weight: 800;
-  color: var(--accent); background: var(--accent-dim);
-  border: 1px solid var(--accent-border); line-height: 1;
-}
+.theme-toggle__icon { font-size: 14px; line-height: 1; }
 .theme-toggle__label { font-size: 0.8125rem; }
 
 /* ─── Theme Picker Dropdown ──────────────────────────────── */
@@ -1198,7 +1175,6 @@ input, textarea, select, .key-box, .drop-zone,
 }
 .dropdown__col { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .dropdown__col-head {
-  display: flex; align-items: center; gap: 8px;
   font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: .07em; color: var(--text-muted);
   padding: 6px 12px 4px;
