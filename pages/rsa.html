@@ -21,8 +21,8 @@
   gtag('config', 'G-DMKQ5TY77T');
 </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RSA Encryption & Decryption Online — Key Generator | CryptoWave</title>
-  <meta name="description" content="Free RSA encryption and decryption tool. Generate RSA key pairs up to 4096-bit. Supports OAEP and PKCS#1 v1.5 padding. All processing is client-side." />
+  <title>RSA Encrypt & Decrypt Online — Public Private Keys | CryptoWave</title>
+  <meta name="description" content="Generate RSA key pairs, encrypt with a public key, and decrypt with a private key online. Supports 2048/4096-bit RSA-OAEP and client-side processing." />
   <meta name="keywords" content="RSA encryption online, RSA key generator, RSA-OAEP, public key encryption, private key decryption, RSA 2048 4096" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://cryptowaveapp.com/pages/rsa" />
@@ -332,6 +332,17 @@
           <li>Verifying how RSA encryption and decryption works</li>
           <li>Learning public-key cryptography concepts hands-on</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:24px;">
+      <div class="panel__head">
+        <div class="panel__head-icon">PEM</div>
+        <h2 class="panel__head-title">RSA Key and Ciphertext Formats</h2>
+      </div>
+      <div style="padding:16px 20px;font-size:0.875rem;line-height:1.75;color:var(--text-secondary);">
+        <p>This RSA tool exports keys as PEM strings, including <code>PUBLIC KEY</code> and <code>PRIVATE KEY</code> headers. Ciphertext is encoded as Base64 so it can be copied into JSON, forms, logs, or another RSA decryption tool.</p>
+        <p style="margin-top:12px;">For best compatibility, use RSA-OAEP with SHA-256 for new tests. Use PKCS#1 v1.5 only when you need to compare against a legacy system that explicitly requires it.</p>
       </div>
     </div>
 
