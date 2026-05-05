@@ -267,10 +267,11 @@
         </div>
         <div style="display:flex;gap:12px;margin-top:6px;align-items:center;">
           <select id="aes-key-format" style="width:auto;font-size:0.8125rem;padding:4px 28px 4px 8px;">
+            <option value="text" selected>Text</option>
             <option value="hex">Hex</option>
             <option value="base64">Base64</option>
           </select>
-          <span class="text-xs text-muted">Format for key generation</span>
+          <span class="text-xs text-muted">Text is best for anycript.com; Hex/Base64 are raw key encodings</span>
         </div>
       </div>
 
@@ -285,10 +286,11 @@
         </div>
         <div style="display:flex;gap:12px;margin-top:6px;align-items:center;flex-wrap:wrap;">
           <select id="aes-iv-format" style="width:auto;font-size:0.8125rem;padding:4px 28px 4px 8px;">
+            <option value="text" selected>Text</option>
             <option value="hex">Hex</option>
             <option value="base64">Base64</option>
           </select>
-          <span class="text-xs text-muted" id="aes-iv-hint">GCM: 12 bytes (24 hex chars) · CBC/CTR: 16 bytes (32 hex chars)</span>
+          <span class="text-xs text-muted" id="aes-iv-hint">GCM: 12 chars / 24 hex chars · CBC/CTR: 16 chars / 32 hex chars</span>
         </div>
         <div class="alert alert--info" style="margin-top:10px;margin-bottom:0;font-size:0.8rem;">
           <span class="alert__icon">ℹ</span>

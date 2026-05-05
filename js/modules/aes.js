@@ -201,13 +201,21 @@ const AESModule = (() => {
 
   function generateKey(bits=256, format='hex') {
     const b = new Uint8Array(bits/8); crypto.getRandomValues(b);
+    if (format==='text') return randomText(bits/8);
     return format==='base64' ? Utils.bufToBase64(b.buffer) : Utils.bufToHex(b);
   }
 
   function generateIV(mode, format='hex') {
     const len = mode==='GCM' ? 12 : 16;
     const b = new Uint8Array(len); crypto.getRandomValues(b);
+    if (format==='text') return randomText(len);
     return format==='base64' ? Utils.bufToBase64(b.buffer) : Utils.bufToHex(b);
+  }
+
+  function randomText(len) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const b = new Uint8Array(len); crypto.getRandomValues(b);
+    return Array.from(b).map(v => chars[v % chars.length]).join('');
   }
 
   /* ── UI ───────────────────────────────────────────────── */
