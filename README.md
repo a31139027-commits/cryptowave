@@ -1,6 +1,6 @@
 # CryptoWave
 
-**Free, browser-based developer tools. No uploads. No accounts. No data leaves your device.**
+**Free, browser-based developer tools. No uploads. No accounts. Tool inputs and files stay on your device.**
 
 🌐 [cryptowaveapp.com](https://cryptowaveapp.com)
 
