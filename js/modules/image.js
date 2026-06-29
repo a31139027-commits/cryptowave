@@ -13,18 +13,52 @@ const ImageModule = (() => {
 
   /* ── Helpers ──────────────────────────────────────────── */
 
-  function loadImage(file) {
+  const MAX_PREVIEW_ITEMS = 12;
+  const JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+  const JSPDF_INTEGRITY = 'sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk';
+  let jsPdfPromise = null;
+
+  async function loadImage(file) {
+    if ('createImageBitmap' in window) {
+      try {
+        const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });
+        return {
+          source: bitmap,
+          width: bitmap.width,
+          height: bitmap.height,
+          close: () => bitmap.close(),
+        };
+      } catch (_) {}
+    }
+
     return new Promise((resolve, reject) => {
       const img = new Image();
       const url = URL.createObjectURL(file);
-      img.onload  = () => { resolve(img); URL.revokeObjectURL(url); };
-      img.onerror = () => reject(new Error('Failed to load image'));
+      img.onload  = () => {
+        URL.revokeObjectURL(url);
+        resolve({
+          source: img,
+          width: img.naturalWidth || img.width,
+          height: img.naturalHeight || img.height,
+          close: () => {},
+        });
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error('Failed to load image'));
+      };
       img.src = url;
     });
   }
 
+  function closeImage(img) {
+    try { img?.close?.(); } catch (_) {}
+  }
+
   function canvasToBlob(canvas, mime, quality) {
-    return new Promise(resolve => canvas.toBlob(resolve, mime, quality));
+    return new Promise((resolve, reject) => {
+      canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('Could not encode image')), mime, quality);
+    });
   }
 
   function getOutputMime(format) {
@@ -37,6 +71,93 @@ const ImageModule = (() => {
       bmp:  'image/bmp',
     };
     return map[format] || 'image/jpeg';
+  }
+
+  function getScaledSize(width, height, maxWidth, maxHeight) {
+    if (width <= maxWidth && height <= maxHeight) return { width, height };
+    const ratio = Math.min(maxWidth / width, maxHeight / height);
+    return {
+      width: Math.max(1, Math.round(width * ratio)),
+      height: Math.max(1, Math.round(height * ratio)),
+    };
+  }
+
+  function makeCanvas(width, height) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
+  }
+
+  function fillBackground(ctx, width, height, outputFormat) {
+    if (outputFormat === 'jpg' || outputFormat === 'jpeg') {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+    }
+  }
+
+  function drawScaledImage(img, width, height, outputFormat, stepped = false) {
+    let source = img.source;
+    let sourceWidth = img.width;
+    let sourceHeight = img.height;
+
+    if (stepped) {
+      while (sourceWidth > width * 2 || sourceHeight > height * 2) {
+        const nextWidth = Math.max(width, Math.round(sourceWidth * 0.5));
+        const nextHeight = Math.max(height, Math.round(sourceHeight * 0.5));
+        const nextCanvas = makeCanvas(nextWidth, nextHeight);
+        const nextCtx = nextCanvas.getContext('2d', { alpha: outputFormat !== 'jpg' && outputFormat !== 'jpeg' });
+        fillBackground(nextCtx, nextWidth, nextHeight, outputFormat);
+        nextCtx.imageSmoothingEnabled = true;
+        nextCtx.imageSmoothingQuality = 'medium';
+        nextCtx.drawImage(source, 0, 0, sourceWidth, sourceHeight, 0, 0, nextWidth, nextHeight);
+        source = nextCanvas;
+        sourceWidth = nextWidth;
+        sourceHeight = nextHeight;
+      }
+    }
+
+    const canvas = makeCanvas(width, height);
+    const ctx = canvas.getContext('2d', { alpha: outputFormat !== 'jpg' && outputFormat !== 'jpeg' });
+    fillBackground(ctx, width, height, outputFormat);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(source, 0, 0, sourceWidth, sourceHeight, 0, 0, width, height);
+    return canvas;
+  }
+
+  function yieldToBrowser() {
+    return new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  function loadScriptOnce(src, integrity) {
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector(`script[src="${src}"]`);
+      if (existing) {
+        if (window.jspdf?.jsPDF) resolve();
+        existing.addEventListener('load', resolve, { once: true });
+        existing.addEventListener('error', reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.crossOrigin = 'anonymous';
+      if (integrity) script.integrity = integrity;
+      script.onload = resolve;
+      script.onerror = () => reject(new Error('Failed to load PDF engine'));
+      document.head.appendChild(script);
+    });
+  }
+
+  async function ensureJsPDF() {
+    if (window.jspdf?.jsPDF) return window.jspdf.jsPDF;
+    jsPdfPromise = jsPdfPromise || loadScriptOnce(JSPDF_URL, JSPDF_INTEGRITY).then(() => {
+      if (!window.jspdf?.jsPDF) throw new Error('jsPDF not loaded');
+      return window.jspdf.jsPDF;
+    });
+    return jsPdfPromise;
   }
 
   /* ── Image Compress ───────────────────────────────────── */
@@ -149,6 +270,90 @@ const ImageModule = (() => {
     return doc.output('blob');
   }
 
+  compressImage = async function(file, options = {}) {
+    const {
+      quality    = 0.8,
+      maxWidth   = 1920,
+      maxHeight  = 1920,
+      outputFormat = 'jpg',
+    } = options;
+
+    const img = await loadImage(file);
+    try {
+      const { width, height } = getScaledSize(img.width, img.height, maxWidth, maxHeight);
+      const canvas = drawScaledImage(img, width, height, outputFormat, true);
+      const mime = getOutputMime(outputFormat);
+      const blob = await canvasToBlob(canvas, mime, quality);
+      canvas.width = 0;
+      canvas.height = 0;
+      return { blob, width, height, mime };
+    } finally {
+      closeImage(img);
+    }
+  };
+
+  convertFormat = async function(file, outputFormat, quality = 0.92) {
+    const img = await loadImage(file);
+    try {
+      const canvas = drawScaledImage(img, img.width, img.height, outputFormat, false);
+      const mime = getOutputMime(outputFormat);
+      const blob = await canvasToBlob(canvas, mime, quality);
+      const width = canvas.width;
+      const height = canvas.height;
+      canvas.width = 0;
+      canvas.height = 0;
+      return { blob, width, height, mime };
+    } finally {
+      closeImage(img);
+    }
+  };
+
+  imagesToPDF = async function(files, options = {}) {
+    const { pageSize = 'a4', orientation = 'auto', margin = 10 } = options;
+    const jsPDF = await ensureJsPDF();
+    let doc = null;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const img = await loadImage(file);
+      try {
+        const iw = img.width;
+        const ih = img.height;
+        const orient = orientation === 'auto'
+          ? (iw > ih ? 'landscape' : 'portrait')
+          : orientation;
+
+        if (!doc) {
+          doc = new jsPDF({ orientation: orient, unit: 'mm', format: pageSize });
+        } else {
+          doc.addPage(pageSize, orient);
+        }
+
+        const pw = doc.internal.pageSize.getWidth();
+        const ph = doc.internal.pageSize.getHeight();
+        const mw = pw - margin * 2;
+        const mh = ph - margin * 2;
+        const ratio = Math.min(mw / iw, mh / ih);
+        const fw = iw * ratio;
+        const fh = ih * ratio;
+        const x = margin + (mw - fw) / 2;
+        const y = margin + (mh - fh) / 2;
+        const scaled = getScaledSize(iw, ih, 2200, 2200);
+        const canvas = drawScaledImage(img, scaled.width, scaled.height, 'jpg', true);
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+        canvas.width = 0;
+        canvas.height = 0;
+
+        doc.addImage(dataUrl, 'JPEG', x, y, fw, fh);
+      } finally {
+        closeImage(img);
+      }
+      await yieldToBrowser();
+    }
+
+    return doc.output('blob');
+  };
+
   /* ── UI Init ──────────────────────────────────────────── */
 
   function init() {
@@ -200,7 +405,7 @@ const ImageModule = (() => {
     function renderPreviews() {
       if (!preview) return;
       preview.innerHTML = '';
-      selectedFiles.forEach(file => {
+      selectedFiles.slice(0, MAX_PREVIEW_ITEMS).forEach(file => {
         const url = URL.createObjectURL(file);
         const wrap = document.createElement('div');
         wrap.style.cssText = 'position:relative;display:inline-block;';
@@ -214,6 +419,12 @@ const ImageModule = (() => {
         wrap.appendChild(img); wrap.appendChild(lbl);
         preview.appendChild(wrap);
       });
+      if (selectedFiles.length > MAX_PREVIEW_ITEMS) {
+        const more = document.createElement('div');
+        more.style.cssText = 'width:80px;height:80px;border-radius:8px;border:1px dashed var(--border);display:flex;align-items:center;justify-content:center;text-align:center;font-size:0.72rem;color:var(--text-muted);padding:8px;';
+        more.textContent = `+${selectedFiles.length - MAX_PREVIEW_ITEMS} more`;
+        preview.appendChild(more);
+      }
     }
 
     btn.addEventListener('click', async () => {
@@ -221,8 +432,10 @@ const ImageModule = (() => {
       Utils.setLoading(btn, true);
       results.innerHTML = '';
 
-      for (const file of selectedFiles) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file = selectedFiles[i];
         try {
+          btn.innerHTML = `<span class="spinner"></span> Processing ${i + 1}/${selectedFiles.length}…`;
           const opts = {
             quality:      parseFloat(quality?.value || 0.8),
             maxWidth:     parseInt(maxW?.value || 1920),
@@ -257,6 +470,7 @@ const ImageModule = (() => {
           item.innerHTML = `<span>✗</span><div class="convert-result__info"><div style="color:var(--red)">${Utils.sanitize(file.name)}</div><div class="convert-result__meta">${err.message}</div></div>`;
           results.appendChild(item);
         }
+        await yieldToBrowser();
       }
       Utils.setLoading(btn, false);
     });
@@ -308,8 +522,10 @@ const ImageModule = (() => {
       Utils.setLoading(btn, true);
       results.innerHTML = '';
 
-      for (const file of selectedFiles) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file = selectedFiles[i];
         try {
+          btn.innerHTML = `<span class="spinner"></span> Processing ${i + 1}/${selectedFiles.length}…`;
           const outFmt  = fmt?.value || 'jpg';
           const q       = parseFloat(quality?.value || 0.92);
           const result  = await convertFormat(file, outFmt, q);
@@ -335,6 +551,7 @@ const ImageModule = (() => {
           item.innerHTML = `<span>✗</span><div class="convert-result__info"><div style="color:var(--red)">${Utils.sanitize(file.name)}</div><div class="convert-result__meta">${err.message}</div></div>`;
           results.appendChild(item);
         }
+        await yieldToBrowser();
       }
       Utils.setLoading(btn, false);
     });
