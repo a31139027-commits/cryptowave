@@ -11,6 +11,18 @@
 
   async function loadFFmpeg() {
     if (isLoaded) return true;
+    if (window.Utils && Utils.loadFFmpegScript) {
+      try {
+        await Utils.loadFFmpegScript();
+      } catch (e) {
+        if (typeof setStatus === 'function') {
+          setStatus('FFmpeg load failed: ' + e.message, 'error');
+        } else {
+          console.error('FFmpeg wrapper load error:', e);
+        }
+        return false;
+      }
+    }
     try {
       const { createFFmpeg, fetchFile } = window.FFmpeg || {};
       if (!createFFmpeg) return false;

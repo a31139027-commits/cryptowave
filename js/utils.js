@@ -45,6 +45,43 @@ const Utils = (() => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   }
 
+  let ffmpegScriptPromise = null;
+
+  /** Load the FFmpeg browser wrapper only when a media tool needs it. */
+  function loadFFmpegScript() {
+    if (window.FFmpeg && window.FFmpeg.createFFmpeg) {
+      return Promise.resolve(window.FFmpeg);
+    }
+
+    if (ffmpegScriptPromise) {
+      return ffmpegScriptPromise;
+    }
+
+    ffmpegScriptPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-ffmpeg-wrapper="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.FFmpeg), { once: true });
+        existing.addEventListener('error', () => reject(new Error('FFmpeg wrapper failed to load.')), { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/@ffmpeg/ffmpeg@0.11.6/dist/ffmpeg.min.js';
+      script.integrity = 'sha384-m5or9sW5FUT2WQbj3UthGceVpwo9zSgHKdCugYKHl19lyXPvwO/oQcmq8Fw0FfaA';
+      script.crossOrigin = 'anonymous';
+      script.async = true;
+      script.dataset.ffmpegWrapper = 'true';
+      script.onload = () => resolve(window.FFmpeg);
+      script.onerror = () => {
+        ffmpegScriptPromise = null;
+        reject(new Error('FFmpeg wrapper failed to load.'));
+      };
+      document.head.appendChild(script);
+    });
+
+    return ffmpegScriptPromise;
+  }
+
   /** Sanitize HTML to prevent XSS */
   function sanitize(str) {
     const div = document.createElement('div');
@@ -391,6 +428,7 @@ const Utils = (() => {
   return {
     copyToClipboard, showToast, formatBytes, sanitize,
     requireField, setOutput, downloadText, downloadBlob,
+    loadFFmpegScript,
     debounce, bindCharCounter, setLoading, initTabs, initNavbar,
     randomHex, bufToHex, hexToBuf, bufToBase64, base64ToBuf,
   };
