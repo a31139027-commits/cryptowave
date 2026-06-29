@@ -170,114 +170,6 @@ const ImageModule = (() => {
       outputFormat = 'jpg',
     } = options;
 
-    const img    = await loadImage(file);
-    let { width, height } = img;
-
-    // Scale down if needed
-    if (width > maxWidth || height > maxHeight) {
-      const ratio = Math.min(maxWidth / width, maxHeight / height);
-      width  = Math.round(width  * ratio);
-      height = Math.round(height * ratio);
-    }
-
-    const canvas = document.createElement('canvas');
-    canvas.width  = width;
-    canvas.height = height;
-    const ctx = canvas.getContext('2d');
-
-    // White background for JPG (transparent → white)
-    if (outputFormat === 'jpg' || outputFormat === 'jpeg') {
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, width, height);
-    }
-
-    ctx.drawImage(img, 0, 0, width, height);
-
-    const mime = getOutputMime(outputFormat);
-    const blob = await canvasToBlob(canvas, mime, quality);
-    return { blob, width, height, mime };
-  }
-
-  /* ── Image Format Convert ─────────────────────────────── */
-
-  async function convertFormat(file, outputFormat, quality = 0.92) {
-    const img    = await loadImage(file);
-    const canvas = document.createElement('canvas');
-    canvas.width  = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
-
-    if (outputFormat === 'jpg' || outputFormat === 'jpeg') {
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    ctx.drawImage(img, 0, 0);
-
-    const mime = getOutputMime(outputFormat);
-    const blob = await canvasToBlob(canvas, mime, quality);
-    return { blob, width: canvas.width, height: canvas.height, mime };
-  }
-
-  /* ── Image to PDF ─────────────────────────────────────── */
-
-  async function imagesToPDF(files, options = {}) {
-    if (!window.jspdf?.jsPDF) throw new Error('jsPDF not loaded');
-    const { pageSize = 'a4', orientation = 'auto', margin = 10 } = options;
-    const { jsPDF } = window.jspdf;
-
-    let doc = null;
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const img  = await loadImage(file);
-      const iw   = img.naturalWidth;
-      const ih   = img.naturalHeight;
-
-      // Determine orientation for this image
-      const orient = orientation === 'auto'
-        ? (iw > ih ? 'landscape' : 'portrait')
-        : orientation;
-
-      if (!doc) {
-        doc = new jsPDF({ orientation: orient, unit: 'mm', format: pageSize });
-      } else {
-        doc.addPage(pageSize, orient);
-      }
-
-      // Page dimensions in mm
-      const pw = doc.internal.pageSize.getWidth();
-      const ph = doc.internal.pageSize.getHeight();
-
-      // Fit image within page with margin
-      const mw = pw - margin * 2;
-      const mh = ph - margin * 2;
-      const ratio = Math.min(mw / iw, mh / ih);
-      const fw = iw * ratio;
-      const fh = ih * ratio;
-      const x  = margin + (mw - fw) / 2;
-      const y  = margin + (mh - fh) / 2;
-
-      // Convert to base64
-      const canvas = document.createElement('canvas');
-      canvas.width  = iw; canvas.height = ih;
-      canvas.getContext('2d').drawImage(img, 0, 0);
-      const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
-
-      doc.addImage(dataUrl, 'JPEG', x, y, fw, fh);
-    }
-
-    return doc.output('blob');
-  }
-
-  compressImage = async function(file, options = {}) {
-    const {
-      quality    = 0.8,
-      maxWidth   = 1920,
-      maxHeight  = 1920,
-      outputFormat = 'jpg',
-    } = options;
-
     const img = await loadImage(file);
     try {
       const { width, height } = getScaledSize(img.width, img.height, maxWidth, maxHeight);
@@ -290,9 +182,11 @@ const ImageModule = (() => {
     } finally {
       closeImage(img);
     }
-  };
+  }
 
-  convertFormat = async function(file, outputFormat, quality = 0.92) {
+  /* ── Image Format Convert ─────────────────────────────── */
+
+  async function convertFormat(file, outputFormat, quality = 0.92) {
     const img = await loadImage(file);
     try {
       const canvas = drawScaledImage(img, img.width, img.height, outputFormat, false);
@@ -306,9 +200,11 @@ const ImageModule = (() => {
     } finally {
       closeImage(img);
     }
-  };
+  }
 
-  imagesToPDF = async function(files, options = {}) {
+  /* ── Image to PDF ─────────────────────────────────────── */
+
+  async function imagesToPDF(files, options = {}) {
     const { pageSize = 'a4', orientation = 'auto', margin = 10 } = options;
     const jsPDF = await ensureJsPDF();
     let doc = null;
@@ -352,7 +248,7 @@ const ImageModule = (() => {
     }
 
     return doc.output('blob');
-  };
+  }
 
   /* ── UI Init ──────────────────────────────────────────── */
 
