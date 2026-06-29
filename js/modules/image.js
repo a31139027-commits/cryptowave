@@ -14,6 +14,7 @@ const ImageModule = (() => {
   /* ── Helpers ──────────────────────────────────────────── */
 
   const MAX_PREVIEW_ITEMS = 12;
+  const LARGE_IMAGE_BATCH_BYTES = 40 * 1024 * 1024;
   const JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
   const JSPDF_INTEGRITY = 'sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk';
   let jsPdfPromise = null;
@@ -128,6 +129,19 @@ const ImageModule = (() => {
 
   function yieldToBrowser() {
     return new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  function getBatchSize(files) {
+    return files.reduce((sum, file) => sum + file.size, 0);
+  }
+
+  function createStatusLine(text, type = 'info') {
+    const el = document.createElement('div');
+    el.className = `alert alert--${type}`;
+    el.style.marginBottom = '12px';
+    el.style.gridColumn = '1 / -1';
+    el.textContent = text;
+    return el;
   }
 
   function loadScriptOnce(src, integrity) {
@@ -301,6 +315,14 @@ const ImageModule = (() => {
     function renderPreviews() {
       if (!preview) return;
       preview.innerHTML = '';
+      const batchSize = getBatchSize(selectedFiles);
+      if (selectedFiles.length > 1 || batchSize >= LARGE_IMAGE_BATCH_BYTES) {
+        const note = createStatusLine(
+          `${selectedFiles.length} image(s), ${Utils.formatBytes(batchSize)} selected. Large batches run locally and may take longer; keep this tab open.`,
+          batchSize >= LARGE_IMAGE_BATCH_BYTES ? 'warning' : 'info'
+        );
+        preview.appendChild(note);
+      }
       selectedFiles.slice(0, MAX_PREVIEW_ITEMS).forEach(file => {
         const url = URL.createObjectURL(file);
         const wrap = document.createElement('div');
@@ -327,10 +349,17 @@ const ImageModule = (() => {
       if (!selectedFiles.length) return;
       Utils.setLoading(btn, true);
       results.innerHTML = '';
+      const batchSize = getBatchSize(selectedFiles);
+      const statusLine = createStatusLine(
+        `Processing ${selectedFiles.length} image(s), ${Utils.formatBytes(batchSize)} total. Keep this tab open until downloads appear.`,
+        batchSize >= LARGE_IMAGE_BATCH_BYTES ? 'warning' : 'info'
+      );
+      results.appendChild(statusLine);
 
       for (let i = 0; i < selectedFiles.length; i++) {
         const file = selectedFiles[i];
         try {
+          statusLine.textContent = `Compressing ${i + 1}/${selectedFiles.length}: ${file.name}`;
           btn.innerHTML = `<span class="spinner"></span> Processing ${i + 1}/${selectedFiles.length}…`;
           const opts = {
             quality:      parseFloat(quality?.value || 0.8),
@@ -368,6 +397,8 @@ const ImageModule = (() => {
         }
         await yieldToBrowser();
       }
+      statusLine.className = 'alert alert--success';
+      statusLine.textContent = `Done. ${selectedFiles.length} image(s) processed locally.`;
       Utils.setLoading(btn, false);
     });
   }
@@ -417,10 +448,17 @@ const ImageModule = (() => {
       if (!selectedFiles.length) return;
       Utils.setLoading(btn, true);
       results.innerHTML = '';
+      const batchSize = getBatchSize(selectedFiles);
+      const statusLine = createStatusLine(
+        `Converting ${selectedFiles.length} image(s), ${Utils.formatBytes(batchSize)} total. Keep this tab open until downloads appear.`,
+        batchSize >= LARGE_IMAGE_BATCH_BYTES ? 'warning' : 'info'
+      );
+      results.appendChild(statusLine);
 
       for (let i = 0; i < selectedFiles.length; i++) {
         const file = selectedFiles[i];
         try {
+          statusLine.textContent = `Converting ${i + 1}/${selectedFiles.length}: ${file.name}`;
           btn.innerHTML = `<span class="spinner"></span> Processing ${i + 1}/${selectedFiles.length}…`;
           const outFmt  = fmt?.value || 'jpg';
           const q       = parseFloat(quality?.value || 0.92);
@@ -449,6 +487,8 @@ const ImageModule = (() => {
         }
         await yieldToBrowser();
       }
+      statusLine.className = 'alert alert--success';
+      statusLine.textContent = `Done. ${selectedFiles.length} image(s) converted locally.`;
       Utils.setLoading(btn, false);
     });
   }

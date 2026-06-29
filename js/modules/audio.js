@@ -22,6 +22,7 @@ const AudioModule = (() => {
   const AUDIO_FORMATS = ['mp3', 'wav', 'flac', 'aac', 'ogg', 'opus', 'm4a', 'aiff'];
   const VIDEO_FORMATS = ['mp4', 'mkv', 'mov', 'avi', 'webm', 'flv', '3gp'];
   const ALL_INPUT     = [...AUDIO_FORMATS, ...VIDEO_FORMATS];
+  const LARGE_AUDIO_BATCH_BYTES = 100 * 1024 * 1024;
 
   const FORMAT_FFMPEG_MAP = {
     mp3:  { codec: 'libmp3lame', ext: 'mp3',  mime: 'audio/mpeg' },
@@ -138,6 +139,23 @@ const AudioModule = (() => {
     if (lbl) lbl.textContent = `${pct}%`;
   }
 
+  function getBatchSize(files) {
+    return files.reduce((sum, file) => sum + file.size, 0);
+  }
+
+  function updateSelectionStatus(statusEl, files) {
+    if (!statusEl || !files.length) return;
+    const total = getBatchSize(files);
+    const isLarge = total >= LARGE_AUDIO_BATCH_BYTES;
+    if (typeof SharedArrayBuffer === 'undefined') {
+      statusEl.className = 'alert alert--warning';
+      statusEl.textContent = `${files.length} file(s), ${Utils.formatBytes(total)} selected. Conversion requires browser isolation before FFmpeg can run.`;
+      return;
+    }
+    statusEl.className = `alert alert--${isLarge ? 'warning' : 'info'}`;
+    statusEl.textContent = `${files.length} file(s), ${Utils.formatBytes(total)} selected. Conversion runs locally in this tab${isLarge ? '; large batches may take several minutes.' : '.'}`;
+  }
+
   /* ── UI Init ──────────────────────────────────────────── */
 
   function init() {
@@ -178,6 +196,7 @@ const AudioModule = (() => {
       if (invalid.length) Utils.showToast(`⚠ ${invalid.length} unsupported file(s) skipped`);
       selectedFiles = [...selectedFiles, ...valid];
       renderFileList();
+      updateSelectionStatus(statusEl, selectedFiles);
     }
 
     function renderFileList() {
@@ -201,6 +220,8 @@ const AudioModule = (() => {
           e.stopPropagation();
           selectedFiles.splice(parseInt(btn.dataset.idx), 1);
           renderFileList();
+          if (selectedFiles.length) updateSelectionStatus(statusEl, selectedFiles);
+          else checkFFmpegSupport(statusEl);
         });
       });
       convertBtn.disabled = selectedFiles.length === 0;
@@ -214,6 +235,11 @@ const AudioModule = (() => {
       if (progressWrap) progressWrap.classList.remove('hidden');
 
       const fmt     = outputFmt.value;
+      const totalSize = getBatchSize(selectedFiles);
+      if (statusEl) {
+        statusEl.className = `alert alert--${totalSize >= LARGE_AUDIO_BATCH_BYTES ? 'warning' : 'info'}`;
+        statusEl.textContent = `Preparing local conversion for ${selectedFiles.length} file(s), ${Utils.formatBytes(totalSize)} total. Keep this tab open.`;
+      }
       const options = {
         bitrate:    bitrateEl?.value || '192k',
         sampleRate: srateEl?.value   || '44100',
@@ -223,7 +249,7 @@ const AudioModule = (() => {
       for (let i = 0; i < selectedFiles.length; i++) {
         const file = selectedFiles[i];
         updateProgress(0);
-        if (statusEl) statusEl.textContent = `Converting ${i + 1}/${selectedFiles.length}: ${file.name}`;
+        if (statusEl) statusEl.textContent = `Converting ${i + 1}/${selectedFiles.length}: ${file.name}. First run may also load the FFmpeg engine.`;
 
         try {
           const result = await convertAudio(file, fmt, options);
@@ -255,7 +281,10 @@ const AudioModule = (() => {
       }
 
       updateProgress(100);
-      if (statusEl) statusEl.textContent = `Done — ${selectedFiles.length} file(s) processed`;
+      if (statusEl) {
+        statusEl.className = 'alert alert--success';
+        statusEl.textContent = `Done — ${selectedFiles.length} file(s) processed locally.`;
+      }
       Utils.setLoading(convertBtn, false);
     });
   }
