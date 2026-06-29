@@ -221,6 +221,22 @@
       <span class="alert__icon">⏳</span> Checking browser capabilities…
     </div>
 
+    <div class="mode-grid" aria-label="Conversion modes">
+      <div class="mode-card mode-card--active">
+        <div class="mode-card__eyebrow">Current mode</div>
+        <h2 class="mode-card__title">Private Local Mode</h2>
+        <p class="mode-card__text">Files stay on your device. Best for small files, quick remuxing, trimming, and privacy-sensitive videos.</p>
+      </div>
+      <div class="mode-card">
+        <div class="mode-card__eyebrow">Demand test</div>
+        <h2 class="mode-card__title">Fast Cloud Mode</h2>
+        <p class="mode-card__text">Planned for large files that need server-side speed. Upload would be required.</p>
+        <button class="btn btn--ghost" id="video-cloud-request" type="button">Request this</button>
+      </div>
+    </div>
+
+    <div id="video-size-hint" class="alert alert--info hidden" aria-live="polite"></div>
+
     <!-- Drop Zone -->
     <div id="video-drop-zone" class="drop-zone">
       <div class="drop-zone__icon">🎬</div>

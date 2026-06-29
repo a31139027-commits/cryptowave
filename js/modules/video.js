@@ -228,6 +228,8 @@ const VideoModule = (() => {
     const progressWrap = document.getElementById('video-progress-wrap');
     const resultList = document.getElementById('video-result-list');
     const statusEl   = document.getElementById('video-status');
+    const sizeHintEl = document.getElementById('video-size-hint');
+    const cloudRequestBtn = document.getElementById('video-cloud-request');
 
     let selectedFiles = [];
 
@@ -260,6 +262,7 @@ const VideoModule = (() => {
       if (invalid.length) Utils.showToast(`⚠ ${invalid.length} unsupported file(s) skipped`);
       selectedFiles = [...selectedFiles, ...valid];
       renderFileList();
+      updateFileSizeHint();
       if (valid.length) warmFFmpeg();
     }
 
@@ -292,9 +295,53 @@ const VideoModule = (() => {
           e.stopPropagation();
           selectedFiles.splice(parseInt(btn.dataset.idx), 1);
           renderFileList();
+          updateFileSizeHint();
         });
       });
       convertBtn.disabled = selectedFiles.length === 0;
+    }
+
+    function updateFileSizeHint() {
+      if (!sizeHintEl) return;
+      if (!selectedFiles.length) {
+        sizeHintEl.className = 'alert alert--info hidden';
+        sizeHintEl.textContent = '';
+        return;
+      }
+
+      const totalBytes = selectedFiles.reduce((sum, file) => sum + file.size, 0);
+      const largestBytes = Math.max(...selectedFiles.map(file => file.size));
+      const largestMb = largestBytes / 1048576;
+      const totalLabel = Utils.formatBytes(totalBytes);
+
+      let level = 'info';
+      let message = `Local conversion selected: ${selectedFiles.length} file(s), ${totalLabel} total. Small files and same-container remuxes are usually fastest.`;
+
+      if (largestMb >= 500) {
+        level = 'warning';
+        message = `Large local job: ${selectedFiles.length} file(s), ${totalLabel} total. Browser conversion may take several minutes and depends on your CPU and memory.`;
+      } else if (largestMb >= 100) {
+        level = 'warning';
+        message = `Medium local job: ${selectedFiles.length} file(s), ${totalLabel} total. Keep the resolution and FPS unchanged for the fastest result.`;
+      }
+
+      sizeHintEl.className = `alert alert--${level}`;
+      sizeHintEl.textContent = message;
+    }
+
+    if (cloudRequestBtn) {
+      cloudRequestBtn.addEventListener('click', () => {
+        try {
+          localStorage.setItem('cw-video-cloud-requested', String(Date.now()));
+          if (typeof gtag === 'function') {
+            gtag('event', 'video_cloud_mode_request', {
+              event_category: 'engagement',
+              event_label: 'video_converter'
+            });
+          }
+        } catch (_) {}
+        Utils.showToast('Request noted');
+      });
     }
 
     // Convert

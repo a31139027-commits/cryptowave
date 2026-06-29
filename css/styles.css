@@ -492,6 +492,49 @@ select {
 .alert--success { background: var(--green-dim); border: 1px solid var(--green-border); color: var(--green-text); }
 .alert__icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; opacity: 0.8; }
 
+/* ─── Mode Cards ─────────────────────────────────────────── */
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 16px;
+}
+.mode-card {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+}
+.mode-card--active {
+  border-color: var(--green-border);
+  background: var(--green-dim);
+}
+.mode-card__eyebrow {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.mode-card__title {
+  color: var(--text-primary);
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.mode-card__text {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+.mode-card__text:last-child { margin-bottom: 0; }
+
 /* ─── Key Grid ───────────────────────────────────────────── */
 .key-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media (max-width: 640px) { .key-grid { grid-template-columns: 1fr; } }
@@ -638,6 +681,7 @@ select {
   .tool-search { flex-direction: column; align-items: stretch; }
   .tool-search button { width: 100%; }
   .trust-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mode-grid { grid-template-columns: 1fr; }
   .panel { padding: 20px; }
   .tools-grid { grid-template-columns: 1fr; gap: 10px; }
   .form-row { grid-template-columns: 1fr; }
