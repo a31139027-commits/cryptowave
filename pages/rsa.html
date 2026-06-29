@@ -10,16 +10,7 @@
       document.documentElement.setAttribute('data-theme', (['light','dark','ocean','ocean-light','forest','forest-light'].indexOf(t)>-1) ? t : 'light');
     })();
   </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18036940841');
-  gtag('config', 'G-DMKQ5TY77T');
-</script>
+  <script src="../js/analytics-loader.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RSA Encrypt & Decrypt Online — Public Private Keys | CryptoWave</title>
   <meta name="description" content="Generate RSA key pairs, encrypt with a public key, and decrypt with a private key online. Supports 2048/4096-bit RSA-OAEP and client-side processing." />
@@ -419,6 +410,5 @@
 <script src="../js/utils.js"></script>
 <script src="../js/theme.js"></script>
 <script src="../js/modules/rsa.js"></script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

@@ -10,16 +10,7 @@
       document.documentElement.setAttribute('data-theme', (['light','dark','ocean','ocean-light','forest','forest-light'].indexOf(t)>-1) ? t : 'light');
     })();
   </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18036940841"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18036940841');
-  gtag('config', 'G-DMKQ5TY77T');
-</script>
+  <script src="../js/analytics-loader.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Online Audio Converter — MP3, WAV, FLAC, AAC | CryptoWave</title>
   <meta name="description" content="Free online audio converter. Convert MP3, WAV, FLAC, AAC, OGG, OPUS, M4A, AIFF. Extract audio from MP4, MKV, MOV video files. Powered by FFmpeg.wasm in browser." />
@@ -400,6 +391,5 @@
     document.getElementById('audio-bitrate').disabled = lossless;
   });
 </script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
