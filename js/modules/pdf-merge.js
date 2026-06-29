@@ -84,6 +84,7 @@
     mergeBtn.textContent = '⏳ Merging…';
 
     try {
+      await Utils.loadPdfLibScript();
       const { PDFDocument } = PDFLib;
       const merged = await PDFDocument.create();
 

@@ -34,6 +34,7 @@
   }
 
   async function extractPages(sourceDoc, pageIndices) {
+    await Utils.loadPdfLibScript();
     const { PDFDocument } = PDFLib;
     const newDoc = await PDFDocument.create();
     const copied = await newDoc.copyPages(sourceDoc, pageIndices);
@@ -60,6 +61,7 @@
     statusEl.textContent = 'Loading…';
 
     try {
+      await Utils.loadPdfLibScript();
       const { PDFDocument } = PDFLib;
       const buf = await file.arrayBuffer();
       loadedPdf  = await PDFDocument.load(buf, { ignoreEncryption: true });

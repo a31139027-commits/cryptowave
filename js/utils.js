@@ -82,6 +82,43 @@ const Utils = (() => {
     return ffmpegScriptPromise;
   }
 
+  let pdfLibScriptPromise = null;
+
+  /** Load pdf-lib only when a PDF tool needs to read or write a document. */
+  function loadPdfLibScript() {
+    if (window.PDFLib && window.PDFLib.PDFDocument) {
+      return Promise.resolve(window.PDFLib);
+    }
+
+    if (pdfLibScriptPromise) {
+      return pdfLibScriptPromise;
+    }
+
+    pdfLibScriptPromise = new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-pdf-lib="true"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(window.PDFLib), { once: true });
+        existing.addEventListener('error', () => reject(new Error('pdf-lib failed to load.')), { once: true });
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js';
+      script.integrity = 'sha384-weMABwrltA6jWR8DDe9Jp5blk+tZQh7ugpCsF3JwSA53WZM9/14PjS5LAJNHNjAI';
+      script.crossOrigin = 'anonymous';
+      script.async = true;
+      script.dataset.pdfLib = 'true';
+      script.onload = () => resolve(window.PDFLib);
+      script.onerror = () => {
+        pdfLibScriptPromise = null;
+        reject(new Error('pdf-lib failed to load.'));
+      };
+      document.head.appendChild(script);
+    });
+
+    return pdfLibScriptPromise;
+  }
+
   /** Sanitize HTML to prevent XSS */
   function sanitize(str) {
     const div = document.createElement('div');
@@ -428,7 +465,7 @@ const Utils = (() => {
   return {
     copyToClipboard, showToast, formatBytes, sanitize,
     requireField, setOutput, downloadText, downloadBlob,
-    loadFFmpegScript,
+    loadFFmpegScript, loadPdfLibScript,
     debounce, bindCharCounter, setLoading, initTabs, initNavbar,
     randomHex, bufToHex, hexToBuf, bufToBase64, base64ToBuf,
   };
