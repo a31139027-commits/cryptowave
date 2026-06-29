@@ -16,6 +16,7 @@ const VideoModule = (() => {
 
   let ffmpeg = null;
   let isLoaded = false;
+  let loadPromise = null;
 
   const INPUT_FORMATS  = ['mp4','mkv','mov','avi','webm','flv','3gp','wmv','ts','m4v','ogv'];
   const OUTPUT_FORMATS = {
@@ -30,10 +31,10 @@ const VideoModule = (() => {
   };
 
   const QUALITY_PRESETS = {
-    low:    { crf: '28', preset: 'fast',   label: 'Low'    },
-    medium: { crf: '23', preset: 'medium', label: 'Medium' },
-    high:   { crf: '18', preset: 'slow',   label: 'High'   },
-    best:   { crf: '15', preset: 'slower', label: 'Best'   },
+    low:    { crf: '30', preset: 'ultrafast', label: 'Low'    },
+    medium: { crf: '25', preset: 'veryfast',  label: 'Medium' },
+    high:   { crf: '21', preset: 'fast',      label: 'High'   },
+    best:   { crf: '18', preset: 'medium',    label: 'Best'   },
   };
 
   const RESOLUTION_PRESETS = {
@@ -48,6 +49,8 @@ const VideoModule = (() => {
 
   async function loadFFmpeg() {
     if (isLoaded) return true;
+    if (loadPromise) return loadPromise;
+    loadPromise = (async () => {
     try {
       const { createFFmpeg, fetchFile } = window.FFmpeg || {};
       if (!createFFmpeg) { return false; }
@@ -62,8 +65,11 @@ const VideoModule = (() => {
       return true;
     } catch (err) {
       console.error('FFmpeg load error:', err);
+      loadPromise = null;
       return false;
     }
+    })();
+    return loadPromise;
   }
 
   /* ── Video Conversion ─────────────────────────────────── */
@@ -88,6 +94,8 @@ const VideoModule = (() => {
     ffmpeg.FS('writeFile', inputName, await window._fetchFile(file));
 
     const args = ['-i', inputName];
+    const inputExt = getExt(file.name);
+    const canFastCopy = shouldUseStreamCopy(inputExt, outputFormat, { resolution, fps, noAudio });
 
     if (outputFormat === 'gif') {
       // GIF special handling — palette for quality
@@ -103,12 +111,20 @@ const VideoModule = (() => {
         `${fpsFilter},${scaleFilter}[x];[x][1:v]paletteuse`, outputName);
       try { ffmpeg.FS('unlink', palette); } catch(_) {}
 
+    } else if (canFastCopy) {
+      args.push('-c', 'copy');
+      if (outputFormat === 'mp4' || outputFormat === 'mov') {
+        args.push('-movflags', '+faststart');
+      }
+      args.push(outputName);
+      await ffmpeg.run(...args);
+
     } else {
       // Video codec selection
       if (outputFormat === 'webm') {
         args.push('-c:v', 'libvpx-vp9');
         const q = QUALITY_PRESETS[quality];
-        args.push('-crf', q?.crf || '23', '-b:v', '0');
+        args.push('-crf', q?.crf || '25', '-b:v', '0', '-deadline', 'realtime', '-cpu-used', '8');
       } else if (outputFormat === 'avi') {
         args.push('-c:v', 'mpeg4');
         args.push('-q:v', '5');
@@ -169,6 +185,25 @@ const VideoModule = (() => {
     return INPUT_FORMATS.includes(getExt(filename));
   }
 
+  function shouldUseStreamCopy(inputExt, outputFormat, options) {
+    if (outputFormat === 'gif') return false;
+    if (options.noAudio) return false;
+    if (options.resolution && options.resolution !== 'original') return false;
+    if (options.fps && options.fps !== 'original') return false;
+
+    if (inputExt === outputFormat) return true;
+
+    const remuxableToMp4 = ['mp4', 'm4v', 'mov'];
+    const remuxableToMov = ['mp4', 'm4v', 'mov'];
+    const remuxableToMkv = ['mp4', 'm4v', 'mov', 'mkv', 'webm'];
+
+    if (outputFormat === 'mp4') return remuxableToMp4.includes(inputExt);
+    if (outputFormat === 'mov') return remuxableToMov.includes(inputExt);
+    if (outputFormat === 'mkv') return remuxableToMkv.includes(inputExt);
+
+    return false;
+  }
+
   function updateProgress(pct) {
     const bar = document.getElementById('video-progress-fill');
     const lbl = document.getElementById('video-progress-label');
@@ -225,6 +260,16 @@ const VideoModule = (() => {
       if (invalid.length) Utils.showToast(`⚠ ${invalid.length} unsupported file(s) skipped`);
       selectedFiles = [...selectedFiles, ...valid];
       renderFileList();
+      if (valid.length) warmFFmpeg();
+    }
+
+    function warmFFmpeg() {
+      const warm = () => loadFFmpeg().catch(() => false);
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(warm, { timeout: 1500 });
+      } else {
+        setTimeout(warm, 250);
+      }
     }
 
     function renderFileList() {
